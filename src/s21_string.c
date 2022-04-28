@@ -25,7 +25,7 @@ char *s21_strpbrk(const char *str1, const char *str2) {
     for (i = 0; i < s21_strlen(str1); i++) {
         for (j = 0; j < s21_strlen(str2); j++) {
             if (str2[j] == str1[i]) {
-                return (char *)str2 + i;
+                return (char *)str1 + i;
             }
         }
     }
@@ -43,9 +43,9 @@ size_t s21_strlen(const char *str) {
 int main ()
 {    
    // Массив со строкой для поиска
-   char str [11] = "0123456789";
+   char str [11] = "NAIL";
    // Набор символов, которые должны входить в искомый сегмент
-   char sym [10]="369";
+   char sym [10]="ROA";
    // Переменная, в которую будет занесен адрес первого найденного символа
    char *isym;
 
@@ -56,7 +56,7 @@ int main ()
    if ( isym == NULL)
       printf ("Символы не найдены\n");
    else
-      printf ("Искомый символ на позиции %s\n", isym);
+      printf ("Искомый символ на позиции %lld\n", isym - str + 1);
 
    return 0;
 }
