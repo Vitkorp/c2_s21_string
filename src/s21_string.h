@@ -1,11 +1,16 @@
+#include <stdio.h>
+#include <corecrt.h>
+
 #ifndef SRC_S21_STRING_H_
 #define SRC_S21_STRING_H_
+
+
 
 #ifndef NULL
 #define NULL (void *)0
 #endif  // NULL
 
-typedef unsigned long int size_t;
+//typedef unsigned long int size_t;
 
 /* func 1:
     Выполняет поиск первого вхождения
@@ -50,5 +55,8 @@ char *s21_strrchr(const char *str, int c);
 */
 
 char *s21_strstr(const char *haystack, const char *needle);
+
+size_t s21_strlen(const char *str);
+
 
 #endif  // SRC_S21_STRING_H_
