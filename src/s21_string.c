@@ -12,7 +12,7 @@ void *s21_memchr(const void *str, int c, size_t n) {
 char *s21_strchr(const char *str, int c) {
     int i = 0;
     while (str[i] && str[i] != c){
-        ++i;
+        i++;
         if (str[i] == c)
             return (char *)str + i;
     }
@@ -29,7 +29,16 @@ char *s21_strpbrk(const char *str1, const char *str2) {
             }
         }
     }
+    return NULL;
+}
 
+char *s21_strrchr(const char *str, int c) {
+    size_t i = s21_strlen(str);
+    while (str[i] && str[i] != c) {
+        i--;
+        if (str[i] == c)
+            return (char *)str + i;
+    }
     return NULL;
 }
 
@@ -42,21 +51,23 @@ size_t s21_strlen(const char *str) {
  
 int main ()
 {    
-   // Массив со строкой для поиска
-   char str [11] = "NAIL";
-   // Набор символов, которые должны входить в искомый сегмент
-   char sym [10]="ROA";
-   // Переменная, в которую будет занесен адрес первого найденного символа
-   char *isym;
+    // Массив со строкой для поиска
+    char str [11]="444544454";
+    // Код искомого символа
+    int ch = '5';
+    // Указатель на искомую переменную в строке,
+    // по которой осуществляется поиск.
+    char *ach;
+    
+    // Ищем символ ‘6’
+    ach = s21_strrchr(str,ch);
 
-   //Поиск символов
-   isym = (char *)s21_strpbrk (str,sym);
+    // Выводим результат на консоль
+    if (ach==NULL)
+        printf ("Символ в строке не найден\n");
+    else
+        printf ("Искомый символ в строке на позиции # %lld\n",ach-str);
 
-   //Вывод результата поиска на консоль
-   if ( isym == NULL)
-      printf ("Символы не найдены\n");
-   else
-      printf ("Искомый символ на позиции %lld\n", isym - str + 1);
-
-   return 0;
+    return 0;
+    return 0;
 }
