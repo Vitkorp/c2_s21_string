@@ -17,7 +17,20 @@ char *s21_strchr(const char *str, int c) {
             return (char *)str + i;
     }
     return NULL;
+}
 
+char *s21_strpbrk(const char *str1, const char *str2) {
+    size_t i;
+    size_t j;
+    for (i = 0; i < s21_strlen(str1); i++) {
+        for (j = 0; j < s21_strlen(str2); j++) {
+            if (str2[j] == str1[i]) {
+                return (char *)str2 + i;
+            }
+        }
+    }
+
+    return NULL;
 }
 
 size_t s21_strlen(const char *str) {
@@ -26,4 +39,24 @@ size_t s21_strlen(const char *str) {
     return _len;
 }
 
+ 
+int main ()
+{    
+   // Массив со строкой для поиска
+   char str [11] = "0123456789";
+   // Набор символов, которые должны входить в искомый сегмент
+   char sym [10]="369";
+   // Переменная, в которую будет занесен адрес первого найденного символа
+   char *isym;
 
+   //Поиск символов
+   isym = (char *)s21_strpbrk (str,sym);
+
+   //Вывод результата поиска на консоль
+   if ( isym == NULL)
+      printf ("Символы не найдены\n");
+   else
+      printf ("Искомый символ на позиции %s\n", isym);
+
+   return 0;
+}
