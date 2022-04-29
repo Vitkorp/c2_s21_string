@@ -33,11 +33,10 @@ char *s21_strpbrk(const char *str1, const char *str2) {
 }
 
 char *s21_strrchr(const char *str, int c) {
-    size_t i = s21_strlen(str);
-    while (str[i] && str[i] != c) {
-        i--;
-        if (str[i] == c)
+    for (int i = s21_strlen(str); i > 0; i--) {
+        if (str[i] == c) {
             return (char *)str + i;
+        }
     }
     return NULL;
 }
@@ -52,7 +51,7 @@ size_t s21_strlen(const char *str) {
 int main ()
 {    
     // Массив со строкой для поиска
-    char str [11]="444544454";
+    char str [11]="444545444";
     // Код искомого символа
     int ch = '5';
     // Указатель на искомую переменную в строке,
@@ -60,7 +59,7 @@ int main ()
     char *ach;
     
     // Ищем символ ‘6’
-    ach = s21_strrchr(str,ch);
+    ach = s21_strchr(str,ch);
 
     // Выводим результат на консоль
     if (ach==NULL)
@@ -68,6 +67,5 @@ int main ()
     else
         printf ("Искомый символ в строке на позиции # %lld\n",ach-str);
 
-    return 0;
     return 0;
 }
