@@ -90,15 +90,3 @@ s21_size_t s21_strlen(const char *str) {
     for (_len = 0; *str; str++, _len++) {}
     return _len;
 }
-
-int main (void)
-{
-    char str[] = "ABCDEFG";
-    char *ps = s21_memchr(str,'D',strlen(str));
-    if (ps != NULL)
-       printf ("search character found:  %s\n", ps);
-    else
-       printf ("search character not found\n");
-
-   return EXIT_SUCCESS;
-}
