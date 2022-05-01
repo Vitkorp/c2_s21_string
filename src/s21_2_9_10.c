@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-
-int s21_memcmp(const void *str1, const void *str2, size_t n);
-int s21_strncmp(const char *str1, const char *str2, size_t n);
-int s21_strcmp(const char *str1, const char *str2);
+#include "s21_2_9_10.h"
 
 int main() {
     const char* str1 = "1a234567890g";
