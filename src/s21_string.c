@@ -1,10 +1,7 @@
 #include "s21_string.h"
-#include <string.h>
-#include <stdbool.h>
 
-
-void *s21_memchr(const void *str, int c, size_t n) {
-    size_t i;
+void *s21_memchr(const void *str, int c, s21_size_t n) {
+    s21_size_t i;
     for (i = 0; i < n; i++)
         if (*((char *)str + i) == c) 
             return (char *)str + i;
@@ -22,8 +19,8 @@ char *s21_strchr(const char *str, int c) {
 }
 
 char *s21_strpbrk(const char *str1, const char *str2) {
-    size_t i;
-    size_t j;
+    s21_size_t i;
+    s21_size_t j;
     for (i = 0; i < s21_strlen(str1); i++) {
         for (j = 0; j < s21_strlen(str2); j++) {
             if (str2[j] == str1[i]) {
@@ -69,8 +66,8 @@ char *s21_strstr(const char *haystack, const char *needle) {
     else if (identical)
         return (char *) haystack;
 
-    size_t needle_len = i_needle - needle;
-    size_t needle_len_1 = needle_len - 1;
+    s21_size_t needle_len = i_needle - needle;
+    s21_size_t needle_len_1 = needle_len - 1;
 
     const char   *sub_start;
     for (sub_start = haystack; *i_haystack; i_haystack++) {
@@ -88,8 +85,20 @@ char *s21_strstr(const char *haystack, const char *needle) {
 }
 
 
-size_t s21_strlen(const char *str) {
+s21_size_t s21_strlen(const char *str) {
     int _len = 0;
     for (_len = 0; *str; str++, _len++) {}
     return _len;
+}
+
+int main (void)
+{
+    char str[] = "ABCDEFG";
+    char *ps = s21_memchr(str,'D',strlen(str));
+    if (ps != NULL)
+       printf ("search character found:  %s\n", ps);
+    else
+       printf ("search character not found\n");
+
+   return EXIT_SUCCESS;
 }
