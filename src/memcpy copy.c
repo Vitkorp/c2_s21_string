@@ -1,5 +1,35 @@
-#include "s21_string.h"
+#include <stdio.h>  //Для printf
+#include <string.h>  
+#include <stdlib.h>
 
+void *s21_memcpy(void *dest, const void *src, size_t n);
+void *s21_memmove(void *dest, const void *src, size_t n);
+void *s21_memset(void *str, int c, size_t n);
+char *s21_strcpy(char *dest, const char *src);
+char *s21_strncpy(char *dest, const char *src, size_t n);
+char *s21_strtok(char *str, const char *delim);
+void *s21_to_upper(const char *str);
+void *s21_to_lower(const char *str);
+
+int main () {
+char src[40];
+    char dest[100];
+    char src1[40];
+    char dest1[100];
+    
+    printf("00000strcpy00000\n");
+    strcpy(src, "This is tutorialspoint.com");
+    strcpy(dest, src);
+    printf("Final copied string : %s\n", dest);
+
+    printf("\n\n\n22222strcpy22222\n");
+    strcpy(src1, "This is tutorialspoint.com");
+    strcpy(dest1, src1);
+    printf("Final copied string : %s\n", dest1);
+    return 0;
+}
+
+//копирует n символовов из src в dest
 void *s21_memcpy(void *dest, const void *src, size_t n) {
     char *to = dest;
     const char *from = src;
@@ -115,4 +145,4 @@ void *s21_to_lower(const char *str) {
     }
     return  dst;
 }
-*/s21_string1
+*/
