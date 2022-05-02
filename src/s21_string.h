@@ -2,7 +2,7 @@
 #define SRC_S21_STRING_H_
 
 #ifndef NULL
-#define NULL (void *)0
+#define NULL (void *)
 #endif  // NULL
 
 typedef unsigned long int size_t;
