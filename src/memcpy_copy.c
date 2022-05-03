@@ -12,20 +12,12 @@ void *s21_to_upper(const char *str);
 void *s21_to_lower(const char *str);
 
 int main () {
-char src[40];
-    char dest[100];
-    char src1[40];
-    char dest1[100];
     
-    printf("00000strcpy00000\n");
-    strcpy(src, "This is tutorialspoint.com");
-    strcpy(dest, src);
-    printf("Final copied string : %s\n", dest);
-
-    printf("\n\n\n22222strcpy22222\n");
-    strcpy(src1, "This is tutorialspoint.com");
-    strcpy(dest1, src1);
-    printf("Final copied string : %s\n", dest1);
+    char src[1024]="first str second str";
+    printf ("src: %s\n",src);
+    char *dst;
+    dst = s21_to_upper(src);
+    printf ("dst: %s\n", dst);
     return 0;
 }
 
@@ -100,7 +92,7 @@ char *s21_strncpy(char *dest, const char *src, size_t n) {
 }
 
 // Разбивает строку по токенам
-char *s21_strtok(char *str, const char *delim) {
+/*char *s21_strtok(char *str, const char *delim) {
     static char *end;
     int ch;
     if (str == NULL) {
@@ -119,30 +111,32 @@ char *s21_strtok(char *str, const char *delim) {
     if (*end != '\0') // обнуляем первый символ end, который сейчас равен '/' 
 	*end++ = '\0';
     return str;
-}
+}*/
 
 // Все буквы в верхний регистр
-/*void *s21_to_upper(const char *str) {
-    char *dst;
-    dst = strcpy(dst, str);
+void *s21_to_upper(const char *str) {
+    char *dest="first str second ssq";  // эти -Wall пропускает, но не работает
+    dest = s21_strcpy(dest, str);
+    // char *dest;  эти строчки работают, но на них -Wall жалуется
+    // s21_strcpy(dest, str);
     for (size_t j = 0; j < strlen(str); j++) {
-        if (('a' <= dst[j] && 'z' >= dst[j] )) {
-            dst[j] += 'A' - 'a';
+        if (('a' <= dest[j] && 'z' >= dest[j] )) {
+            dest[j] += 'A' - 'a';
         }
     }
-    return dst;
-    
+    return dest;
 }
 
 //Все буквы в нижний регистр
 void *s21_to_lower(const char *str) {
-    char dst[256];
-    strcpy(dst, str);
+    char *dest="first str second ssq";  // эти -Wall пропускает, но не работает
+    dest = s21_strcpy(dest, str);
+    // char *dest;  эти строчки работают, но на них -Wall жалуется
+    // s21_strcpy(dest, str);
     for (size_t j = 0; j < strlen(str); j++) {
-        if (('A' <= dst[j] && 'Z' >= dst[j] )) {
-            dst[j] += 'a' - 'A';
+        if (('A' <= dest[j] && 'Z' >= dest[j] )) {
+            dest[j] += 'a' - 'A';
         }
     }
-    return  dst;
+    return  dest;
 }
-*/

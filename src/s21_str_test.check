@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "s21_string.h"
+
+#test memcpy_1
+char buf1[50] = "It's check memcpy - ok", buf2[50];
+ck_assert_int_eq(memcpy(buf2,buf1,21),s21_memcpy(buf2,buf1,21));
+
+#test memmove_1
+char src[] = "******************************";
+char dest[] = "abcdefghijklmnopqrstuvwxyz0123456789";
+ck_assert_int_eq(memmove(dest,src,26),s21_memmove(dest,src,26));
+
+#test memset_1
+char str[] = "salam aleikum memset!n";
+ck_assert_int_eq(memset(str,'*',12),s21_memset(str,'*',12));
+
+#test strcpy_1
+char src[40] = "This is interesting joke";
+char dest[100];
+ck_assert_int_eq(memmove(dest,src,26),s21_memmove(dest,src,26));
+
+#test memmove_1
+char src[] = "******************************";
+char dest[] = "abcdefghijklmnopqrstuvwxyz0123456789";
+ck_assert_int_eq(strcpy(dest, src),s21_strcpy(dest, src));
