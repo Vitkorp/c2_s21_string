@@ -35,8 +35,7 @@ void *s21_memmove(void *dest, const void *src, size_t n) {
 // Копирует символ c (беззнаковый тип) в первые n символов строки, на которую указывает аргумент str.
 void *s21_memset(void *src, int c, size_t n) {
     char *to = src;
-    size_t i = 0;
-    for (i = 0; i < n; i++) {
+    for (size_t i = 0; i < n; i++) {
         *to++ = c;
     }
     return src;
@@ -69,7 +68,7 @@ char *s21_strncpy(char *dest, const char *src, size_t n) {
     }
     return dest;
 }
-
+/*
 // Все буквы в верхний регистр
 void *s21_to_upper(const char *str) {
     char *dest = "first str second ssq";  // эти -Wall пропускает, но не работает
@@ -86,10 +85,10 @@ void *s21_to_upper(const char *str) {
 
 // Все буквы в нижний регистр
 void *s21_to_lower(const char *str) {
-    char *dest = "first str second ssq";  // эти -Wall пропускает, но не работает
-    dest = s21_strcpy(dest, str);
-    // char *dest;  эти строчки работают, но на них -Wall жалуется
-    // s21_strcpy(dest, str);
+    // char *dest = "first str second ssq";  // эти -Wall пропускает, но не работает
+    // dest = s21_strcpy(dest, str);
+    char *dest;  // эти строчки работают, но на них -Wall жалуется
+    s21_strcpy(dest, str);
     for (size_t j = 0; j < strlen(str); j++) {
         if (('A' <= dest[j] && 'Z' >= dest[j] )) {
             dest[j] += 'a' - 'A';
@@ -97,3 +96,4 @@ void *s21_to_lower(const char *str) {
     }
     return  dest;
 }
+*/
