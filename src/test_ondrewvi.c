@@ -54,12 +54,237 @@ START_TEST(test_strlen) {
 
 START_TEST(test_strerror) {
     for (int i = 0;i < 255 ;i++) {
-        ck_assert_str_eq(s21_strerror(i), strerror(i));
+        if (i < 60 || (i > 63 && i < 79) || (i > 84 && i < 128) || \
+           (i > 128 && i < 134)) {
+            ck_assert_str_eq(s21_strerror(i), strerror(i));
+        }
+    }
+}
+
+START_TEST(test_strcspn) {
+    int continuesFlag = 1;
+    for (int i = 0;continuesFlag;i++) {
+        char *input1;
+        char *input2;
+        switch (i) {
+            case (0): {
+                input1 = "ABCDEF";
+                input2 = "P";
+                break;
+            }
+            case (1): {
+                input1 = "ABCDEF";
+                input2 = "A";
+                break;
+            }
+            case (2): {
+                input1 = "ABCDEF";
+                input2 = "B";
+                break;
+            }
+            case (3): {
+                input1 = "ABCDEF";
+                input2 = "C";
+                break;
+            }
+            case (4): {
+                input1 = "ABCDEF";
+                input2 = "CD";
+                break;
+            }
+            case (5): {
+                input1 = "ABCDEF";
+                input2 = "DC";
+                break;
+            }
+            case (6): {
+                input1 = "ABCDEF";
+                input2 = "AB";
+                break;
+            }
+            case (7): {
+                input1 = "ABCDEF";
+                input2 = "BA";
+                break;
+            }
+            case (8): {
+                input1 = "ABCDEF";
+                input2 = "EA";
+                break;
+            }
+            case (9): {
+                input1 = "ABCDEF";
+                input2 = "A";
+                break;
+            }
+            case (10): {
+                input1 = "ABCDEF";
+                input2 = "\n";
+                break;
+            }
+            case (11): {
+                input1 = "ABCDEF";
+                input2 = "\n";
+                break;
+            }
+            case (12): {
+                input1 = "ABCDEF";
+                input2 = "DEF";
+                break;
+            }
+            case (13): {
+                input1 = "ABCDEF FGEHTYA";
+                input2 = "\n";
+                break;
+            }
+            case (14): {
+                input1 = "ABCDEF FGEHTYA";
+                input2 = "A";
+                break;
+            }
+            case (15): {
+                input1 = "ABCDEF FGEHTYA";
+                input2 = "AB";
+                break;
+            }
+            case (16): {
+                input1 = "ABCDEF FGEHTYA";
+                input2 = "FE";
+                break;
+            }
+            case (17): {
+                input1 = "ABCDEF FGEHTYA";
+                input2 = "EF";
+                break;
+            }
+            case (18): {
+                input1 = "ABCDEF FGEHTYA";
+                input2 = " ";
+                break;
+            }
+            default: {
+                continuesFlag = 0;
+                break;
+            }
+        }
+        // printf("test %d is OK\n",i);
+        ck_assert_int_eq(s21_strcspn(input1, input2), strcspn(input1, input2));
+    }
+}
+
+START_TEST(test_strspn) {
+    int continuesFlag = 1;
+    for (int i = 0;continuesFlag;i++) {
+        char *input1;
+        char *input2;
+        switch (i) {
+            case (0): {
+                input1 = "ABCDEF";
+                input2 = "";
+                break;
+            }
+            case (1): {
+                input1 = "ABCDEF";
+                input2 = "A";
+                break;
+            }
+            case (2): {
+                input1 = "ABCDEF";
+                input2 = "B";
+                break;
+            }
+            case (3): {
+                input1 = "ABCDEF";
+                input2 = "C";
+                break;
+            }
+            case (4): {
+                input1 = "ABCDEF";
+                input2 = "CD";
+                break;
+            }
+            case (5): {
+                input1 = "ABCDEF";
+                input2 = "DC";
+                break;
+            }
+            case (6): {
+                input1 = "ABCDEF";
+                input2 = "AB";
+                break;
+            }
+            case (7): {
+                input1 = "ABCDEF";
+                input2 = "BA";
+                break;
+            }
+            case (8): {
+                input1 = "ABCDEF";
+                input2 = "BAA";
+                break;
+            }
+            case (9): {
+                input1 = "ABCDEF";
+                input2 = "AAAA";
+                break;
+            }
+            case (10): {
+                input1 = "ABCDEF";
+                input2 = "\n";
+                break;
+            }
+            case (11): {
+                input1 = "ABCDEF";
+                input2 = "\n";
+                break;
+            }
+            case (12): {
+                input1 = "ABCDEF";
+                input2 = "DEF";
+                break;
+            }
+            case (13): {
+                input1 = "ABCDEF FGEHTYA";
+                input2 = "\n";
+                break;
+            }
+            case (14): {
+                input1 = "ABCDEF FGEHTYA";
+                input2 = "A";
+                break;
+            }
+            case (15): {
+                input1 = "ABCDEF FGEHTYA";
+                input2 = "AB";
+                break;
+            }
+            case (16): {
+                input1 = "ABCDEF FGEHTYA";
+                input2 = "FE";
+                break;
+            }
+            case (17): {
+                input1 = "ABCDEF FGEHTYA";
+                input2 = "EF";
+                break;
+            }
+            case (18): {
+                input1 = "ABCDEF FGEHTYA";
+                input2 = " ";
+                break;
+            }
+            default: {
+                continuesFlag = 0;
+                break;
+            }
+        }
+        // printf("test %d is OK\n",i);
+        ck_assert_int_eq(s21_strspn(input1, input2), strspn(input1, input2));
     }
 }
 
 Suite* s21_strlen_suit(void) {
-    Suite *s = suite_create("String Unit Tests");
+    Suite *s = suite_create("String Unit Tests strlen");
     TCase *tc_strlen = tcase_create("strlen");
     tcase_add_test(tc_strlen, test_strlen);
     suite_add_tcase(s, tc_strlen); 
@@ -67,10 +292,26 @@ Suite* s21_strlen_suit(void) {
 }
 
 Suite* s21_strerror_suit(void) {
-    Suite *s = suite_create("String Unit Tests");
+    Suite *s = suite_create("String Unit Tests strerror");
     TCase *tc_strerror = tcase_create("strerror");
     tcase_add_test(tc_strerror, test_strerror);
     suite_add_tcase(s, tc_strerror); 
+    return s;
+}
+
+Suite* s21_strcspn_suit(void) {
+    Suite *s = suite_create("String Unit Tests strcspn");
+    TCase *tc_strcspn= tcase_create("strcspn");
+    tcase_add_test(tc_strcspn, test_strcspn);
+    suite_add_tcase(s, tc_strcspn); 
+    return s;
+}
+
+Suite* s21_strspn_suit(void) {
+    Suite *s = suite_create("String Unit Tests strspn");
+    TCase *tc_strspn= tcase_create("strspn");
+    tcase_add_test(tc_strspn, test_strspn);
+    suite_add_tcase(s, tc_strspn); 
     return s;
 }
 #endif  // S21_TEST
@@ -86,17 +327,19 @@ int main(int argc, char** argv) {
         }
 
         case (1): {
-            s = s21_strlen_suit();
-            sr = srunner_create(s);
-            srunner_run_all(sr, CK_NORMAL);
-            number_failed = srunner_ntests_failed(sr);
-            srunner_free(sr);
-
-            s = s21_strerror_suit();
-            sr = srunner_create(s);
-            srunner_run_all(sr, CK_NORMAL);
-            number_failed = srunner_ntests_failed(sr);
-            srunner_free(sr);
+            for (int i = 0; i < 4; i++) {
+                switch (i) {
+                    case 0: {s = s21_strlen_suit(); break;}
+                    case 1: {s = s21_strerror_suit(); break;}
+                    case 2: {s = s21_strcspn_suit(); break;}
+                    case 3: {s = s21_strspn_suit(); break;}
+                    default: break;
+                }
+                sr = srunner_create(s);
+                srunner_run_all(sr, CK_NORMAL);
+                number_failed = srunner_ntests_failed(sr);
+                srunner_free(sr);
+            }
             break;
         }
         case (2): {
