@@ -21,6 +21,145 @@ ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
 }
 END_TEST
 
+START_TEST(memcmp_2)
+{
+#line 12
+const char* str1 = "123456x7890";
+const char* str2 = "1234567890";
+ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
+
+}
+END_TEST
+
+START_TEST(memcmp_3)
+{
+#line 17
+const char* str1 = "1234567890";
+const char* str2 = "12345678y90";
+ck_assert_int_eq(memcmp(str1,str2,5),s21_memcmp(str1,str2,5));
+
+}
+END_TEST
+
+START_TEST(memcmp_4)
+{
+#line 22
+const char* str1 = "1234567890";
+const char* str2 = "\n";
+ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
+
+}
+END_TEST
+
+START_TEST(memcmp_5)
+{
+#line 27
+const char* str1 = "hello";
+const char* str2 = "hello world";
+ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
+
+}
+END_TEST
+
+START_TEST(strcmp_1)
+{
+#line 32
+const char* str1 = "123456789";
+const char* str2 = "123456789";
+ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
+
+}
+END_TEST
+
+START_TEST(strcmp_2)
+{
+#line 37
+const char* str1 = "12345";
+const char* str2 = "1234567890";
+ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
+
+}
+END_TEST
+
+START_TEST(strcmp_3)
+{
+#line 42
+const char* str1 = "1234567890";
+const char* str2 = "1234";
+ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
+
+}
+END_TEST
+
+START_TEST(strcmp_4)
+{
+#line 47
+const char* str1 = "/n";
+const char* str2 = "1234";
+ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
+
+}
+END_TEST
+
+START_TEST(strcmp_5)
+{
+#line 52
+const char* str1 = "/n";
+const char* str2 = "1234";
+ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
+
+}
+END_TEST
+
+START_TEST(strncmp_1)
+{
+#line 57
+const char* str1 = "123456789";
+const char* str2 = "123456789";
+ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
+
+}
+END_TEST
+
+START_TEST(strncmp_2)
+{
+#line 62
+const char* str1 = "1234x56789";
+const char* str2 = "123456789";
+ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
+
+}
+END_TEST
+
+START_TEST(strncmp_3)
+{
+#line 67
+const char* str1 = "123456789";
+const char* str2 = "123456y789";
+ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
+
+}
+END_TEST
+
+START_TEST(strncmp_4)
+{
+#line 72
+const char* str1 = "123456789";
+const char* str2 = "\n";
+ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
+
+}
+END_TEST
+
+START_TEST(strncmp_5)
+{
+#line 77
+const char* str1 = "123456789";
+const char* str2 = "123456y789";
+ck_assert_int_eq(strncmp(str1,str2,5),s21_strncmp(str1,str2,5));
+}
+END_TEST
+
 int main(void)
 {
     Suite *s1 = suite_create("Core");
@@ -30,6 +169,20 @@ int main(void)
 
     suite_add_tcase(s1, tc1_1);
     tcase_add_test(tc1_1, memcmp_1);
+    tcase_add_test(tc1_1, memcmp_2);
+    tcase_add_test(tc1_1, memcmp_3);
+    tcase_add_test(tc1_1, memcmp_4);
+    tcase_add_test(tc1_1, memcmp_5);
+    tcase_add_test(tc1_1, strcmp_1);
+    tcase_add_test(tc1_1, strcmp_2);
+    tcase_add_test(tc1_1, strcmp_3);
+    tcase_add_test(tc1_1, strcmp_4);
+    tcase_add_test(tc1_1, strcmp_5);
+    tcase_add_test(tc1_1, strncmp_1);
+    tcase_add_test(tc1_1, strncmp_2);
+    tcase_add_test(tc1_1, strncmp_3);
+    tcase_add_test(tc1_1, strncmp_4);
+    tcase_add_test(tc1_1, strncmp_5);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);

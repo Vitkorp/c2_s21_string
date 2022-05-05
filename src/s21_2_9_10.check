@@ -8,3 +8,72 @@ const char* str1 = "1234567890";
 const char* str2 = "1234567890";
 ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
 
+#test memcmp_2
+const char* str1 = "123456x7890";
+const char* str2 = "1234567890";
+ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
+
+#test memcmp_3
+const char* str1 = "1234567890";
+const char* str2 = "12345678y90";
+ck_assert_int_eq(memcmp(str1,str2,5),s21_memcmp(str1,str2,5));
+
+#test memcmp_4
+const char* str1 = "1234567890";
+const char* str2 = "\n";
+ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
+
+#test memcmp_5
+const char* str1 = "hello";
+const char* str2 = "hello world";
+ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
+
+#test strcmp_1
+const char* str1 = "123456789";
+const char* str2 = "123456789";
+ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
+
+#test strcmp_2
+const char* str1 = "12345";
+const char* str2 = "1234567890";
+ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
+
+#test strcmp_3
+const char* str1 = "1234567890";
+const char* str2 = "1234";
+ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
+
+#test strcmp_4
+const char* str1 = "/n";
+const char* str2 = "1234";
+ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
+
+#test strcmp_5
+const char* str1 = "/n";
+const char* str2 = "1234";
+ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
+
+#test strncmp_1
+const char* str1 = "123456789";
+const char* str2 = "123456789";
+ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
+
+#test strncmp_2
+const char* str1 = "1234x56789";
+const char* str2 = "123456789";
+ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
+
+#test strncmp_3
+const char* str1 = "123456789";
+const char* str2 = "123456y789";
+ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
+
+#test strncmp_4
+const char* str1 = "123456789";
+const char* str2 = "\n";
+ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
+
+#test strncmp_5
+const char* str1 = "123456789";
+const char* str2 = "123456y789";
+ck_assert_int_eq(strncmp(str1,str2,5),s21_strncmp(str1,str2,5));

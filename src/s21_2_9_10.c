@@ -1,5 +1,16 @@
 #include "s21_2_9_10.h"
 
+// int main() {
+//     const char* str1 = "1234567890";
+//     const char* str2 = "12341567890";
+//     if (s21_strcmp(str1, str2) == 0) {
+//         puts("equal");
+//     } else {
+//         puts("different");
+//     }
+//     printf("%d", s21_strcmp(str1, str2));
+// }
+
 int s21_memcmp(const void *str1, const void *str2, size_t n) {
     const char* string1 = (char*)str1;
     const char* string2 = (char*)str2;
@@ -62,7 +73,7 @@ int s21_strcmp(const char *str1, const char *str2) {
     while (1) {
         if (str1[i] == str2[i]) {
             i++;
-        } else {
+        } if (str1[i] == '\n' || str2[i] == '\n' || str1[i] != str2[i]) {
             break;
         }
     }
