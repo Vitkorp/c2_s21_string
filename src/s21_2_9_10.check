@@ -1,19 +1,10 @@
 #include "s21_2_9_10.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #test memcmp_1
 const char* str1 = "1234567890";
 const char* str2 = "1234567890";
 ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
-
-#test strcmp_1
-const char* str1 = "1234567890";
-const char* str2 = "1234567890";
-ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
-
-#test strncmp_1
-const char* str1 = "1234567890";
-const char* str2 = "1234567890";
-ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
 
