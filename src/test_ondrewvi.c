@@ -51,15 +51,41 @@ START_TEST(test_strlen) {
         ck_assert_int_eq(s21_strlen(input), strlen(input));
     }
 }
+END_TEST
 
-START_TEST(test_strerror) {
-    for (int i = 0;i < 255 ;i++) {
-        if (i < 60 || (i > 63 && i < 79) || (i > 84 && i < 128) || \
-           (i > 128 && i < 134)) {
-            ck_assert_str_eq(s21_strerror(i), strerror(i));
-        }
+START_TEST(test_strerror_POSIX) {
+    int count;
+#if defined(__APPLE__) && defined(__MACH__)
+            count = 60;
+#elif defined(__linux__)
+            count = 76;
+#endif    
+    err elist[] = S21_ERRLIST;  
+    for (int i = 0;i < count ;i++) {
+            printf("id = %3d  ", elist[i].id);
+            printf("%s\n", elist[i].null_str);
+            printf("%s\n", strerror(elist[i].id));
+            ck_assert_str_eq(s21_strerror(elist[i].id), strerror(elist[i].id));
     }
 }
+END_TEST
+
+START_TEST(test_strerror_NOTPOSIX) {
+    int start;
+    err elist[] = S21_ERRLIST;  
+#if defined(__APPLE__) && defined(__MACH__)
+            start = 107;
+#elif defined(__linux__)
+            start = 134;
+#endif    
+    for (int i = 0; i < (255 - start - 1); i++) {
+        printf("id = %3d  ", elist[i].id);
+            printf("%s\n", elist[i].null_str);
+            printf("%s\n", strerror(elist[start + i].id));
+            ck_assert_str_eq(s21_strerror(start + i), strerror(elist[start + i].id));
+    }
+}
+END_TEST
 
 START_TEST(test_strcspn) {
     int continuesFlag = 1;
@@ -171,6 +197,7 @@ START_TEST(test_strcspn) {
         ck_assert_int_eq(s21_strcspn(input1, input2), strcspn(input1, input2));
     }
 }
+END_TEST
 
 START_TEST(test_strspn) {
     int continuesFlag = 1;
@@ -282,6 +309,7 @@ START_TEST(test_strspn) {
         ck_assert_int_eq(s21_strspn(input1, input2), strspn(input1, input2));
     }
 }
+END_TEST
 
 Suite* s21_strlen_suit(void) {
     Suite *s = suite_create("String Unit Tests strlen");
@@ -294,7 +322,8 @@ Suite* s21_strlen_suit(void) {
 Suite* s21_strerror_suit(void) {
     Suite *s = suite_create("String Unit Tests strerror");
     TCase *tc_strerror = tcase_create("strerror");
-    tcase_add_test(tc_strerror, test_strerror);
+    tcase_add_test(tc_strerror, test_strerror_POSIX);
+    tcase_add_test(tc_strerror, test_strerror_NOTPOSIX);
     suite_add_tcase(s, tc_strerror); 
     return s;
 }

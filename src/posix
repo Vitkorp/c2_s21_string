@@ -193,7 +193,7 @@ Value too large to be stored in data type.
 130[EOWNERDEAD]105
 Previous owner died.
 
-1[EPERM]7
+1[EPERM]1
 Operation not permitted.
 
 32[EPIPE]32
