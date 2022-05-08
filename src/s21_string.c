@@ -25,134 +25,134 @@ s21_size_t s21_strcspn(const char *str1, const char *str2) {
 
 char* s21_strerror(int errnum) {
     /*
-     * EPERM 1 Operation not permitted
-     * ENOENT 2 No such file or directory
-     * ESRCH 3 No such process
-     * EINTR 4 Interrupted system call
-     * EIO 5 Input/output error
-     * ENXIO 6 No such device or address
-     * E2BIG 7 Argument list too long
-     * ENOEXEC 8 Exec format error
-     * EBADF 9 Bad file descriptor
-     * ECHILD 10 No child processes
-     * EAGAIN 11 Resource temporarily unavailable
-     * ENOMEM 12 Cannot allocate memory
-     * EACCES 13 Permission denied
-     * EFAULT 14 Bad address
-     * ENOTBLK 15 Block device required
-     * EBUSY 16 Device or resource busy
-     * EEXIST 17 File exists
-     * EXDEV 18 Invalid cross-device link
-     * ENODEV 19 No such device
-     * ENOTDIR 20 Not a directory
-     * EISDIR 21 Is a directory
-     * EINVAL 22 Invalid argument
-     * ENFILE 23 Too many open files in system
-     * EMFILE 24 Too many open files
-     * ENOTTY 25 Inappropriate ioctl for device
-     * ETXTBSY 26 Text file busy
-     * EFBIG 27 File too large
-     * ENOSPC 28 No space left on device
-     * ESPIPE 29 Illegal seek
-     * EROFS 30 Read-only file system
-     * EMLINK 31 Too many links
-     * EPIPE 32 Broken pipe
-     * EDOM 33 Numerical argument out of domain
-     * ERANGE 34 Numerical result out of range
-     * EDEADLK 35 Resource deadlock avoided
-     * ENAMETOOLONG 36 File name too long
-     * ENOLCK 37 No locks available
-     * ENOSYS 38 Function not implemented
-     * ENOTEMPTY 39 Directory not empty
-     * ELOOP 40 Too many levels of symbolic links
-     * EWOULDBLOCK 11 Resource temporarily unavailable
-     * ENOMSG 42 No message of desired type
-     * EIDRM 43 Identifier removed
-     * ECHRNG 44 Channel number out of range
-     * EL2NSYNC 45 Level 2 not synchronized
-     * EL3HLT 46 Level 3 halted
-     * EL3RST 47 Level 3 reset
-     * ELNRNG 48 Link number out of range
-     * EUNATCH 49 Protocol driver not attached
-     * ENOCSI 50 No CSI structure available
-     * EL2HLT 51 Level 2 halted
-     * EBADE 52 Invalid exchange
-     * EBADR 53 Invalid request descriptor
-     * EXFULL 54 Exchange full
-     * ENOANO 55 No anode
-     * EBADRQC 56 Invalid request code
-     * EBADSLT 57 Invalid slot
-     * EDEADLOCK 35 Resource deadlock avoided
-     * EBFONT 59 Bad font file format
-     ******** ENOSTR 60 Device not a stream
-     ******** ENODATA 61 No data available
-     ******** ETIME 62 Timer expired
-     ******** ENOSR 63 Out of streams resources
-     * ENONET 64 Machine is not on the network
-     * ENOPKG 65 Package not installed
-     * EREMOTE 66 Object is remote
-     * ENOLINK 67 Link has been severed
-     * EADV 68 Advertise error
-     * ESRMNT 69 Srmount error
-     * ECOMM 70 Communication error on send
-     * EPROTO 71 Protocol error
-     * EMULTIHOP 72 Multihop attempted
-     * EDOTDOT 73 RFS specific error
-     * EBADMSG 74 Bad message
-     * EOVERFLOW 75 Value too large for defined data type
-     * ENOTUNIQ 76 Name not unique on network
-     * EBADFD 77 File descriptor in bad state
-     * EREMCHG 78 Remote address chNo such file or directorylete multibyte or wide character
-     * ERESTART 85 Interrupted system call should be restarted
-     * ESTRPIPE 86 Streams pipe error
-     * EUSERS 87 Too many users
-     * ENOTSOCK 88 Socket operation on non-socket
-     * EDESTADDRREQ 89 Destination address required
-     * EMSGSIZE 90 Message too long
-     * EPROTOTYPE 91 Protocol wrong type for socket
-     * ENOPROTOOPT 92 Protocol not available
-     * EPROTONOSUPPORT 93 Protocol not supported
-     * ESOCKTNOSUPPORT 94 Socket type not supported
-     * EOPNOTSUPP 95 Operation not supported
-     * EPFNOSUPPORT 96 Protocol family not supported
-     * EAFNOSUPPORT 97 Address family not supported by protocol
-     * EADDRINUSE 98 Address already in use
-     * EADDRNOTAVAIL 99 Cannot assign requested address
-     * ENETDOWN 100 Network is down
-     * ENETUNREACH 101 Network is unreachable
-     * ENETRESET 102 Network dropped connection on reset
-     * ECONNABORTED 103 Software caused connection abort
-     * ECONNRESET 104 Connection reset by peer
-     * ENOBUFS 105 No buffer space available
-     * EISCONN 106 Transport endpoint is already connected
-     * ENOTCONN 107 Transport endpoint is not connected
-     * ESHUTDOWN 108 Cannot send after transport endpoint shutdown
-     * ETOOMANYREFS 109 Too many references: cannot splice
-     * ETIMEDOUT 110 Connection timed out
-     * ECONNREFUSED 111 Connection refused
-     * EHOSTDOWN 112 Host is down
-     * EHOSTUNREACH 113 No route to host
-     * EALREADY 114 Operation already in progress
-     * EINPROGRESS 115 Operation now in progress
-     * ESTALE 116 Stale file handle
-     * EUCLEAN 117 Structure needs cleaning
-     * ENOTNAM 118 Not a XENIX named type file
-     * ENAVAIL 119 No XENIX semaphores available
-     * EISNAM 120 Is a named type file
-     * EREMOTEIO 121 Remote I/O error
-     * EDQUOT 122 Disk quota exceeded
-     * ENOMEDIUM 123 No medium found
-     * EMEDIUMTYPE 124 Wrong medium type
-     * ECANCELED 125 Operation canceled
-     * ENOKEY 126 Required key not available
-     * EKEYEXPIRED 127 Key has expired
-     * EKEYREVOKED 128 Key has been revoked
-     * EKEYREJECTED 129 Key was rejected by service
-     * EOWNERDEAD 130 Owner died
-     * ENOTRECOVERABLE 131 State not recoverable
-     * ERFKILL 132 Operation not possible due to RF-kill
-     * EHWPOISON 133 Memory page has hardware error
-     * ENOTSUP 95 Operation not supported
+     v EPERM 1 Operation not permitted
+     v ENOENT 2 No such file or directory
+     v ESRCH 3 No such process
+     v EINTR 4 Interrupted system call
+     v EIO 5 Input/output error
+     v ENXIO 6 No such device or address
+     v E2BIG 7 Argument list too long
+     v ENOEXEC 8 Exec format error
+     v EBADF 9 Bad file descriptor
+     v ECHILD 10 No child processes
+     v EAGAIN 11 Resource temporarily unavailable
+     v ENOMEM 12 Cannot allocate memory
+     v EACCES 13 Permission denied
+     v EFAULT 14 Bad address
+     x ENOTBLK 15 Block device required
+     v EBUSY 16 Device or resource busy
+     v EEXIST 17 File exists
+     v EXDEV 18 Invalid cross-device link
+     v ENODEV 19 No such device
+     v ENOTDIR 20 Not a directory
+     v EISDIR 21 Is a directory
+     v EINVAL 22 Invalid argument
+     v ENFILE 23 Too many open files in system
+     v EMFILE 24 Too many open files
+     v ENOTTY 25 Inappropriate ioctl for device
+     v ETXTBSY 26 Text file busy
+     v EFBIG 27 File too large
+     v ENOSPC 28 No space left on device
+     v ESPIPE 29 Illegal seek
+     v EROFS 30 Read-only file system
+     v EMLINK 31 Too many links
+     v EPIPE 32 Broken pipe
+     v EDOM 33 Numerical argument out of domain
+     v ERANGE 34 Numerical result out of range
+     v EDEADLK 35 Resource deadlock avoided
+     v ENAMETOOLONG 36 File name too long
+     v ENOLCK 37 No locks available
+     v ENOSYS 38 Function not implemented
+     v ENOTEMPTY 39 Directory not empty
+     v ELOOP 40 Too many levels of symbolic links
+     v EWOULDBLOCK 11 Resource temporarily unavailable
+     v ENOMSG 42 No message of desired type
+     v EIDRM 43 Identifier removed
+     x ECHRNG 44 Channel number out of range
+     x EL2NSYNC 45 Level 2 not synchronized
+     x EL3HLT 46 Level 3 halted
+     x EL3RST 47 Level 3 reset
+     x ELNRNG 48 Link number out of range
+     x EUNATCH 49 Protocol driver not attached
+     x ENOCSI 50 No CSI structure available
+     x EL2HLT 51 Level 2 halted
+     x EBADE 52 Invalid exchange
+     x EBADR 53 Invalid request descriptor
+     x EXFULL 54 Exchange full
+     x ENOANO 55 No anode
+     x EBADRQC 56 Invalid request code
+     x EBADSLT 57 Invalid slot
+     x EDEADLOCK 35 Resource deadlock avoided
+     x EBFONT 59 Bad font file format
+     v******* ENOSTR 60 Device not a stream
+     v******* ENODATA 61 No data available
+     v******* ETIME 62 Timer expired
+     v******* ENOSR 63 Out of streams resources
+     x ENONET 64 Machine is not on the network
+     x ENOPKG 65 Package not installed
+     x EREMOTE 66 Object is remote
+     v ENOLINK 67 Link has been severed
+     x EADV 68 Advertise error
+     x ESRMNT 69 Srmount error
+     x ECOMM 70 Communication error on send
+     v EPROTO 71 Protocol error
+     v EMULTIHOP 72 Multihop attempted
+     x EDOTDOT 73 RFS specific error
+     v EBADMSG 74 Bad message
+     v EOVERFLOW 75 Value too large for defined data type
+     x ENOTUNIQ 76 Name not unique on network
+     x EBADFD 77 File descriptor in bad state
+     x EREMCHG 78 Remote address changed
+     x ERESTART 85 Interrupted system call should be restarted
+     x ESTRPIPE 86 Streams pipe error
+     x EUSERS 87 Too many users
+     v ENOTSOCK 88 Socket operation on non-socket
+     v EDESTADDRREQ 89 Destination address required
+     v EMSGSIZE 90 Message too long
+     v EPROTOTYPE 91 Protocol wrong type for socket
+     v ENOPROTOOPT 92 Protocol not available
+     v EPROTONOSUPPORT 93 Protocol not supported
+     x ESOCKTNOSUPPORT 94 Socket type not supported
+     v EOPNOTSUPP 95 Operation not supported
+     x EPFNOSUPPORT 96 Protocol family not supported
+     v EAFNOSUPPORT 97 Address family not supported by protocol
+     v EADDRINUSE 98 Address already in use
+     v EADDRNOTAVAIL 99 Cannot assign requested address
+     v ENETDOWN 100 Network is down
+     v ENETUNREACH 101 Network is unreachable
+     v ENETRESET 102 Network dropped connection on reset
+     v ECONNABORTED 103 Software caused connection abort
+     v ECONNRESET 104 Connection reset by peer
+     v ENOBUFS 105 No buffer space available
+     v EISCONN 106 Transport endpoint is already connected
+     v ENOTCONN 107 Transport endpoint is not connected
+     x ESHUTDOWN 108 Cannot send after transport endpoint shutdown
+     x ETOOMANYREFS 109 Too many references: cannot splice
+     v ETIMEDOUT 110 Connection timed out
+     v ECONNREFUSED 111 Connection refused
+     x EHOSTDOWN 112 Host is down
+     v EHOSTUNREACH 113 No route to host
+     v EALREADY 114 Operation already in progress
+     v EINPROGRESS 115 Operation now in progress
+     v ESTALE 116 Stale file handle
+     x EUCLEAN 117 Structure needs cleaning
+     x ENOTNAM 118 Not a XENIX named type file
+     x ENAVAIL 119 No XENIX semaphores available
+     x EISNAM 120 Is a named type file
+     x EREMOTEIO 121 Remote I/O error
+     v EDQUOT 122 Disk quota exceeded
+     x ENOMEDIUM 123 No medium found
+     x EMEDIUMTYPE 124 Wrong medium type
+     v ECANCELED 125 Operation canceled
+     x ENOKEY 126 Required key not available
+     x EKEYEXPIRED 127 Key has expired
+     x EKEYREVOKED 128 Key has been revoked
+     x EKEYREJECTED 129 Key was rejected by service
+     v EOWNERDEAD 130 Owner died
+     v ENOTRECOVERABLE 131 State not recoverable
+     x ERFKILL 132 Operation not possible due to RF-kill
+     x EHWPOISON 133 Memory page has hardware error
+     v ENOTSUP 95 Operation not supported
      */
 #if defined(__APPLE__) && defined(__MACH__)
     err errors[] = {

@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "s21_string.h"
 
-#ifdef S21_TEST
+//#ifdef S21_TEST
 START_TEST(test_strlen) {
     int continuesFlag = 1;
     for (int i = 0;continuesFlag;i++) {
@@ -314,7 +314,7 @@ Suite* s21_strspn_suit(void) {
     suite_add_tcase(s, tc_strspn); 
     return s;
 }
-#endif  // S21_TEST
+//#endif  // S21_TEST
 
 int main(int argc, char** argv) {
     int number_failed;

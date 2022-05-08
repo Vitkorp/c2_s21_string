@@ -1,0 +1,255 @@
+Error 0: Success
+Error 1: Operation not permitted
+Error 2: No such file or directory
+Error 3: No such process
+Error 4: Interrupted system call
+Error 5: Input/output error
+Error 6: No such device or address
+Error 7: Argument list too long
+Error 8: Exec format error
+Error 9: Bad file descriptor
+Error 10: No child processes
+Error 11: Resource temporarily unavailable
+Error 12: Cannot allocate memory
+Error 13: Permission denied
+Error 14: Bad address
+Error 15: Block device required
+Error 16: Device or resource busy
+Error 17: File exists
+Error 18: Invalid cross-device link
+Error 19: No such device
+Error 20: Not a directory
+Error 21: Is a directory
+Error 22: Invalid argument
+Error 23: Too many open files in system
+Error 24: Too many open files
+Error 25: Inappropriate ioctl for device
+Error 26: Text file busy
+Error 27: File too large
+Error 28: No space left on device
+Error 29: Illegal seek
+Error 30: Read-only file system
+Error 31: Too many links
+Error 32: Broken pipe
+Error 33: Numerical argument out of domain
+Error 34: Numerical result out of range
+Error 35: Resource deadlock avoided
+Error 36: File name too long
+Error 37: No locks available
+Error 38: Function not implemented
+Error 39: Directory not empty
+Error 40: Too many levels of symbolic links
+Error 41: Unknown error 41
+Error 42: No message of desired type
+Error 43: Identifier removed
+Error 44: Channel number out of range
+Error 45: Level 2 not synchronized
+Error 46: Level 3 halted
+Error 47: Level 3 reset
+Error 48: Link number out of range
+Error 49: Protocol driver not attached
+Error 50: No CSI structure available
+Error 51: Level 2 halted
+Error 52: Invalid exchange
+Error 53: Invalid request descriptor
+Error 54: Exchange full
+Error 55: No anode
+Error 56: Invalid request code
+Error 57: Invalid slot
+Error 58: Unknown error 58
+Error 59: Bad font file format
+Error 60: Device not a stream
+Error 61: No data available
+Error 62: Timer expired
+Error 63: Out of streams resources
+Error 64: Machine is not on the network
+Error 65: Package not installed
+Error 66: Object is remote
+Error 67: Link has been severed
+Error 68: Advertise error
+Error 69: Srmount error
+Error 70: Communication error on send
+Error 71: Protocol error
+Error 72: Multihop attempted
+Error 73: RFS specific error
+Error 74: Bad message
+Error 75: Value too large for defined data type
+Error 76: Name not unique on network
+Error 77: File descriptor in bad state
+Error 78: Remote address changed
+Error 79: Can not access a needed shared library
+Error 80: Accessing a corrupted shared library
+Error 81: .lib section in a.out corrupted
+Error 82: Attempting to link in too many shared libraries
+Error 83: Cannot exec a shared library directly
+Error 84: Invalid or incomplete multibyte or wide character
+Error 85: Interrupted system call should be restarted
+Error 86: Streams pipe error
+Error 87: Too many users
+Error 88: Socket operation on non-socket
+Error 89: Destination address required
+Error 90: Message too long
+Error 91: Protocol wrong type for socket
+Error 92: Protocol not available
+Error 93: Protocol not supported
+Error 94: Socket type not supported
+Error 95: Operation not supported
+Error 96: Protocol family not supported
+Error 97: Address family not supported by protocol
+Error 98: Address already in use
+Error 99: Cannot assign requested address
+Error 100: Network is down
+Error 101: Network is unreachable
+Error 102: Network dropped connection on reset
+Error 103: Software caused connection abort
+Error 104: Connection reset by peer
+Error 105: No buffer space available
+Error 106: Transport endpoint is already connected
+Error 107: Transport endpoint is not connected
+Error 108: Cannot send after transport endpoint shutdown
+Error 109: Too many references: cannot splice
+Error 110: Connection timed out
+Error 111: Connection refused
+Error 112: Host is down
+Error 113: No route to host
+Error 114: Operation already in progress
+Error 115: Operation now in progress
+Error 116: Stale file handle
+Error 117: Structure needs cleaning
+Error 118: Not a XENIX named type file
+Error 119: No XENIX semaphores available
+Error 120: Is a named type file
+Error 121: Remote I/O error
+Error 122: Disk quota exceeded
+Error 123: No medium found
+Error 124: Wrong medium type
+Error 125: Operation canceled
+Error 126: Required key not available
+Error 127: Key has expired
+Error 128: Key has been revoked
+Error 129: Key was rejected by service
+Error 130: Owner died
+Error 131: State not recoverable
+Error 132: Operation not possible due to RF-kill
+Error 133: Memory page has hardware error
+Error 134: Unknown error 134
+Error 135: Unknown error 135
+Error 136: Unknown error 136
+Error 137: Unknown error 137
+Error 138: Unknown error 138
+Error 139: Unknown error 139
+Error 140: Unknown error 140
+Error 141: Unknown error 141
+Error 142: Unknown error 142
+Error 143: Unknown error 143
+Error 144: Unknown error 144
+Error 145: Unknown error 145
+Error 146: Unknown error 146
+Error 147: Unknown error 147
+Error 148: Unknown error 148
+Error 149: Unknown error 149
+Error 150: Unknown error 150
+Error 151: Unknown error 151
+Error 152: Unknown error 152
+Error 153: Unknown error 153
+Error 154: Unknown error 154
+Error 155: Unknown error 155
+Error 156: Unknown error 156
+Error 157: Unknown error 157
+Error 158: Unknown error 158
+Error 159: Unknown error 159
+Error 160: Unknown error 160
+Error 161: Unknown error 161
+Error 162: Unknown error 162
+Error 163: Unknown error 163
+Error 164: Unknown error 164
+Error 165: Unknown error 165
+Error 166: Unknown error 166
+Error 167: Unknown error 167
+Error 168: Unknown error 168
+Error 169: Unknown error 169
+Error 170: Unknown error 170
+Error 171: Unknown error 171
+Error 172: Unknown error 172
+Error 173: Unknown error 173
+Error 174: Unknown error 174
+Error 175: Unknown error 175
+Error 176: Unknown error 176
+Error 177: Unknown error 177
+Error 178: Unknown error 178
+Error 179: Unknown error 179
+Error 180: Unknown error 180
+Error 181: Unknown error 181
+Error 182: Unknown error 182
+Error 183: Unknown error 183
+Error 184: Unknown error 184
+Error 185: Unknown error 185
+Error 186: Unknown error 186
+Error 187: Unknown error 187
+Error 188: Unknown error 188
+Error 189: Unknown error 189
+Error 190: Unknown error 190
+Error 191: Unknown error 191
+Error 192: Unknown error 192
+Error 193: Unknown error 193
+Error 194: Unknown error 194
+Error 195: Unknown error 195
+Error 196: Unknown error 196
+Error 197: Unknown error 197
+Error 198: Unknown error 198
+Error 199: Unknown error 199
+Error 200: Unknown error 200
+Error 201: Unknown error 201
+Error 202: Unknown error 202
+Error 203: Unknown error 203
+Error 204: Unknown error 204
+Error 205: Unknown error 205
+Error 206: Unknown error 206
+Error 207: Unknown error 207
+Error 208: Unknown error 208
+Error 209: Unknown error 209
+Error 210: Unknown error 210
+Error 211: Unknown error 211
+Error 212: Unknown error 212
+Error 213: Unknown error 213
+Error 214: Unknown error 214
+Error 215: Unknown error 215
+Error 216: Unknown error 216
+Error 217: Unknown error 217
+Error 218: Unknown error 218
+Error 219: Unknown error 219
+Error 220: Unknown error 220
+Error 221: Unknown error 221
+Error 222: Unknown error 222
+Error 223: Unknown error 223
+Error 224: Unknown error 224
+Error 225: Unknown error 225
+Error 226: Unknown error 226
+Error 227: Unknown error 227
+Error 228: Unknown error 228
+Error 229: Unknown error 229
+Error 230: Unknown error 230
+Error 231: Unknown error 231
+Error 232: Unknown error 232
+Error 233: Unknown error 233
+Error 234: Unknown error 234
+Error 235: Unknown error 235
+Error 236: Unknown error 236
+Error 237: Unknown error 237
+Error 238: Unknown error 238
+Error 239: Unknown error 239
+Error 240: Unknown error 240
+Error 241: Unknown error 241
+Error 242: Unknown error 242
+Error 243: Unknown error 243
+Error 244: Unknown error 244
+Error 245: Unknown error 245
+Error 246: Unknown error 246
+Error 247: Unknown error 247
+Error 248: Unknown error 248
+Error 249: Unknown error 249
+Error 250: Unknown error 250
+Error 251: Unknown error 251
+Error 252: Unknown error 252
+Error 253: Unknown error 253
+Error 254: Unknown error 254
