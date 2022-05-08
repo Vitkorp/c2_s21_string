@@ -26,29 +26,28 @@ s21_size_t s21_strcspn(const char *str1, const char *str2) {
 }
 
 char* s21_strerror(int errnum) {
-    err elist[] = S21_ERRLIST;  
-    char *a = "";
+    err errlist[] = S21_ERRLIST;  
     int count;
 #if defined(__APPLE__) && defined(__MACH__)
-    a = "Unknown error: ";
+    char baseMsg[50] = "Unknown error: ";
     count = 60;
 #elif defined(__linux__)
-    a = "Unknown error ";
+    char baseMsg[50] = "Unknown error ";
     count = 76;
 #endif
-    char *b = "";
-    char *c = "";
+    char b[12] = "";
+    int found = 0;
+    char res[1000] = "";
     snprintf(b,10, "%d",errnum);
-    c = strcat(a, b);
-    a = c;
-        
+    strcat(baseMsg, b);      
     for (int i = 0; i < count; i++) {
-        if (errnum == elist[i].id) {
-            a = elist[i].null_str;
+        if (errnum == errlist[i].id) {
+            strcpy(res, errlist[i].null_str);
+            found = 1;
             break;
         }
     }
-    return a;
+    return (found) ? res : baseMsg;
 }
 
 s21_size_t s21_strspn(const char *str1, const char *str2) {

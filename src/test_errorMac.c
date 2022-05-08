@@ -6,10 +6,12 @@
 //
 
 #include "test_errorMac.h"
+#include <stdio.h>
+#include <string.h>
 
-int main() {
-    for (int i = 0; i < 255; i++) {
-        printf("Error %d: %s\n", i, strerror(i));
-    }
-    return 0;
-}
+// int main() {
+//     char *input1 = "abcd";
+//     char *input2 = NULL;
+//     printf("%ld\n",strspn(input1, input2));
+//     return 0;
+// }

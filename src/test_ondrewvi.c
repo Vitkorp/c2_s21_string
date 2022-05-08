@@ -60,29 +60,25 @@ START_TEST(test_strerror_POSIX) {
 #elif defined(__linux__)
             count = 76;
 #endif    
+    printf("case Posix\n");
     err elist[] = S21_ERRLIST;  
     for (int i = 0;i < count ;i++) {
-            printf("id = %3d  ", elist[i].id);
-            printf("%s\n", elist[i].null_str);
-            printf("%s\n", strerror(elist[i].id));
-            ck_assert_str_eq(s21_strerror(elist[i].id), strerror(elist[i].id));
+            int errnum = elist[i].id;
+            ck_assert_str_eq(s21_strerror(errnum), strerror(errnum));
     }
 }
 END_TEST
 
 START_TEST(test_strerror_NOTPOSIX) {
     int start;
-    err elist[] = S21_ERRLIST;  
 #if defined(__APPLE__) && defined(__MACH__)
             start = 107;
 #elif defined(__linux__)
             start = 134;
 #endif    
-    for (int i = 0; i < (255 - start - 1); i++) {
-        printf("id = %3d  ", elist[i].id);
-            printf("%s\n", elist[i].null_str);
-            printf("%s\n", strerror(elist[start + i].id));
-            ck_assert_str_eq(s21_strerror(start + i), strerror(elist[start + i].id));
+    printf("case notPosix\n");
+    for (int i = 0; i < (255 - start + 1); i++) {
+            ck_assert_str_eq(s21_strerror(start + i), strerror(start + i));
     }
 }
 END_TEST
@@ -321,10 +317,12 @@ Suite* s21_strlen_suit(void) {
 
 Suite* s21_strerror_suit(void) {
     Suite *s = suite_create("String Unit Tests strerror");
-    TCase *tc_strerror = tcase_create("strerror");
-    tcase_add_test(tc_strerror, test_strerror_POSIX);
-    tcase_add_test(tc_strerror, test_strerror_NOTPOSIX);
-    suite_add_tcase(s, tc_strerror); 
+    TCase *tc_strerror_posix = tcase_create("strerror_posix");
+    TCase *tc_strerror_notposix = tcase_create("strerror_notposix");
+    tcase_add_test(tc_strerror_posix, test_strerror_POSIX);
+    tcase_add_test(tc_strerror_notposix, test_strerror_NOTPOSIX);
+    suite_add_tcase(s, tc_strerror_posix); 
+    suite_add_tcase(s, tc_strerror_notposix); 
     return s;
 }
 
