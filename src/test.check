@@ -39,14 +39,14 @@ char dest[] = "rembo wave sorry";
 ck_assert_str_eq(memmove(dest,src,6),s21_memmove(dest,src,6));
 
 #test memmove_4
-char src[] = "Hel\nlo \0world\0";
-char dest[] = "salam wave";
-ck_assert_str_eq(memmove(dest,src,6),s21_memmove(dest,src,6));
-
-#test memmove_5
 char src[] = " \n\0";
 char dest[] = "rembo hello";
 ck_assert_str_eq(memmove(dest,src,1),s21_memmove(dest,src,1));
+
+#test memmove_5
+char src[] = "Hel\nlo \0world\0";
+char dest[] = "salam wave";
+ck_assert_str_eq(memmove(dest,src,6),s21_memmove(dest,src,6));
 
 #test memset_1
 char str[] = "salam aleikum memset!n";
