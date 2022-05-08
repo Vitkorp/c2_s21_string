@@ -2,6 +2,7 @@
 #include <string.h>
 #include "s21_string.h"
 
+// копирует n сивловов из src в dest
 void *s21_memcpy(void *dest, const void *src, size_t n) {
     char *to = dest;
     const char *from = src;
@@ -68,32 +69,55 @@ char *s21_strncpy(char *dest, const char *src, size_t n) {
     }
     return dest;
 }
-/*
-// Все буквы в верхний регистр
+
 void *s21_to_upper(const char *str) {
-    char *dest = "first str second ssq";  // эти -Wall пропускает, но не работает
-    dest = s21_strcpy(dest, str);
-    // char *dest;  эти строчки работают, но на них -Wall жалуется
-    // s21_strcpy(dest, str);
-    for (size_t j = 0; j < strlen(str); j++) {
-        if (('a' <= dest[j] && 'z' >= dest[j] )) {
-            dest[j] += 'A' - 'a';
+    int flag;
+    char dest[strlen(str)];
+    if (str[0] == '\0') {
+        flag = 0;
+    } else {
+        s21_strcpy(dest, str);
+        for (size_t j = 0; j < strlen(str); j++) {
+            if (('a' <= dest[j] && 'z' >= dest[j])) {
+                dest[j] += 'A' - 'a';
+            }
         }
+        flag = 1;
     }
-    return dest;
+    switch (flag)
+    {
+    case 1:
+        char *copy_str = dest;
+        return  copy_str;
+    
+    default:
+        return NULL;
+    }
+    
 }
 
-// Все буквы в нижний регистр
+
 void *s21_to_lower(const char *str) {
-    // char *dest = "first str second ssq";  // эти -Wall пропускает, но не работает
-    // dest = s21_strcpy(dest, str);
-    char *dest;  // эти строчки работают, но на них -Wall жалуется
-    s21_strcpy(dest, str);
-    for (size_t j = 0; j < strlen(str); j++) {
-        if (('A' <= dest[j] && 'Z' >= dest[j] )) {
-            dest[j] += 'a' - 'A';
+    int flag;
+    char dest[strlen(str)];
+    if (str[0] == '\0') {
+        flag = 0;
+    } else {
+        s21_strcpy(dest, str);
+        for (size_t j = 0; j < strlen(str); j++) {
+            if (('A' <= dest[j] && 'Z' >= dest[j])) {
+                dest[j] += 'a' - 'A';
+            }
         }
+        flag = 1;
     }
-    return  dest;
+    switch (flag)
+    {
+    case 1:
+        char *copy_str = dest;
+        return  copy_str;
+    
+    default:
+        return NULL;
+    }
 }
-*/
