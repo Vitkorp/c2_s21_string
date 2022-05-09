@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 s21_size_t s21_strlen(const char *str) {
-    int _len = 0;
+    s21_size_t _len = 0;
     for (_len = 0; str[_len]; _len++) {}
     return _len;
 }
