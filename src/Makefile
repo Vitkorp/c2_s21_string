@@ -20,3 +20,6 @@ clean:
 	rm -rf unit_tests *.o *.a html_report *.css *.html mid_html_res *.gcda *.gcno test.c
 
 rebuild: clean all 
+
+spec:
+	gcc -Wall -Werror -Wextra specif.c
