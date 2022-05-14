@@ -71,7 +71,7 @@ char *s21_strncpy(char *dest, const char *src, s21_size_t n) {
     }
     return dest;
 }
-
+/*
 void *s21_to_upper(const char *str) {
     int flag;
     char dest[strlen(str)];
@@ -98,7 +98,6 @@ void *s21_to_upper(const char *str) {
     
 }
 
-
 void *s21_to_lower(const char *str) {
     int flag;
     char dest[strlen(str)];
@@ -122,4 +121,4 @@ void *s21_to_lower(const char *str) {
     default:
         return NULL;
     }
-}
+}*/
