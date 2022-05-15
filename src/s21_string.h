@@ -1,14 +1,14 @@
 #ifndef SRC_S21_STRING_H_
-    #define SRC_S21_STRING_H_
+#define SRC_S21_STRING_H_
     #include <stdio.h>
     // #include <corecrt.h>
     #include <string.h>
-    #include <stdbool.h>
+    // #include <stdbool.h>
     // #include <check.h>
     #include <stdlib.h>
 
-    #ifndef NULL
-        #define NULL (void *)0
+    #ifndef s21_NULL
+        #define s21_NULL (void *)0
     #endif // NULL
 
     typedef unsigned long int s21_size_t;

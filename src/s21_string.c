@@ -8,7 +8,7 @@ void *s21_memchr(const void *str, int c, s21_size_t n) {
             found = 1;
             break; 
         }
-    return found ? ((char *)str + i) : NULL;
+    return found ? ((char *)str + i) : s21_NULL;
 }
 
 char *s21_strchr(const char *str, int c) {
@@ -21,7 +21,7 @@ char *s21_strchr(const char *str, int c) {
             break;
         }
     }
-    return found ? ((char *)str + i) : NULL;
+    return found ? ((char *)str + i) : s21_NULL;
 }
 
 char *s21_strpbrk(const char *str1, const char *str2) {
@@ -35,7 +35,7 @@ char *s21_strpbrk(const char *str1, const char *str2) {
             }
         }
     }
-    return found ? ((char *)str1 + i) : NULL;
+    return found ? ((char *)str1 + i) : s21_NULL;
 }
 
 char *s21_strrchr(const char *str, int c) {
@@ -47,7 +47,7 @@ char *s21_strrchr(const char *str, int c) {
             break;
         }
     }
-    return found ? ((char *)str + i) : NULL;
+    return found ? ((char *)str + i) : s21_NULL;
 }
 
 char *s21_strstr(const char *haystack, const char *needle) {
@@ -64,7 +64,7 @@ char *s21_strstr(const char *haystack, const char *needle) {
         haystack = s21_strchr(haystack, needle_first);
         if (haystack) {
             // exit_code = 1;
-            // return NULL;
+            // return s21_NULL;
         
             const char *i_haystack = haystack + 1,
                        *i_needle   = needle   + 1;
@@ -79,10 +79,10 @@ char *s21_strstr(const char *haystack, const char *needle) {
             }
 
             if (*i_needle) {
-                exit_code = 1;  // == NULL
-                // return NULL;
+                exit_code = 1;  // == s21_NULL
+                // return s21_NULL;
             } else if (identical) {
-                exit_code = -1;  // == NULL
+                exit_code = -1;  // == s21_NULL
                 // return (char *) haystack;
             } else {
 
@@ -107,7 +107,7 @@ char *s21_strstr(const char *haystack, const char *needle) {
                 }
             }
         } else {
-            exit_code = 1;  // == NULL
+            exit_code = 1;  // == s21_NULL
         }
     } else {
         exit_code = -1;  // == (char *) haystack
@@ -116,7 +116,7 @@ char *s21_strstr(const char *haystack, const char *needle) {
     if (exit_code == -1) {
         _res = (char *) haystack;
     } else if (exit_code == 1) {
-        _res = NULL;
+        _res = s21_NULL;
     } else if (exit_code == 2) {
         _res = (char *) sub_start;
     }
