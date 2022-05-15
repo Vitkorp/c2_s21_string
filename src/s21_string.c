@@ -30,7 +30,7 @@ char* s21_strerror(int errnum) {
     int count;
 #if defined(__APPLE__) && defined(__MACH__)
     char baseMsg[1024] = {"Unknown error: "};
-    printf("__APPLE__ err: %d ", errnum);
+    // printf("__APPLE__ err: %d ", errnum);
     count = 60;
     char b[12] = "";
     int found = 0;
@@ -45,7 +45,7 @@ char* s21_strerror(int errnum) {
             break;
         }
     }
-    printf(" baseMsg:{%s}\n", (found) ? res : baseMsg);
+    // printf(" baseMsg:{%s}\n", (found) ? res : baseMsg);
 #elif defined(__linux__)
     char baseMsg[50] = "Unknown error ";
     count = 76;

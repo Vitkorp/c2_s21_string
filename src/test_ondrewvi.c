@@ -78,7 +78,7 @@ START_TEST(test_strerror_NOTPOSIX) {
 #endif    
     printf("case notPosix\n");
     for (int i = 0; i < (255 - start + 1); i++) {
-            printf("err: %d\n", start + i);
+            // printf("err: %d\n", start + i);
             ck_assert_str_eq(s21_strerror(start + i), strerror(start + i));
     }
 }
