@@ -78,6 +78,7 @@ START_TEST(test_strerror_NOTPOSIX) {
 #endif    
     printf("case notPosix\n");
     for (int i = 0; i < (255 - start + 1); i++) {
+            printf("err: %d\n", start + i);
             ck_assert_str_eq(s21_strerror(start + i), strerror(start + i));
     }
 }
@@ -347,47 +348,18 @@ int main(int argc, char** argv) {
     int number_failed;
     Suite *s;
     SRunner *sr;
-    switch (argc){
-        case (0): {
-            printf("Не правильное число параметров\n");
-            break;
+    for (int i = 0; i < 4; i++) {
+        switch (i) {
+            case 0: {s = s21_strlen_suit(); break;}
+            case 1: {s = s21_strerror_suit(); break;}
+            case 2: {s = s21_strcspn_suit(); break;}
+            case 3: {s = s21_strspn_suit(); break;}
+            default: break;
         }
-
-        case (1): {
-            for (int i = 0; i < 4; i++) {
-                switch (i) {
-                    case 0: {s = s21_strlen_suit(); break;}
-                    case 1: {s = s21_strerror_suit(); break;}
-                    case 2: {s = s21_strcspn_suit(); break;}
-                    case 3: {s = s21_strspn_suit(); break;}
-                    default: break;
-                }
-                sr = srunner_create(s);
-                srunner_run_all(sr, CK_NORMAL);
-                number_failed = srunner_ntests_failed(sr);
-                srunner_free(sr);
-            }
-            break;
-        }
-        case (2): {
-            printf("Распознан 1 аргумент: %s\n", argv[1]);
-            printf("Результат работы функции strlen(): %lu \n", strlen(argv[1]));
-            printf("Результат работы функции s21_strlen(): %lu \n", s21_strlen(argv[1]));
-            break;
-        }
-        case (3): {
-            printf("Распознаны 2 аргумента: %s\n", argv[1]);
-            printf("Результат работы функции strlen(): %lu \n", strlen(argv[1]));
-            printf("Результат работы функции s21_strlen(): %lu \n", s21_strlen(argv[1]));
-            printf("Результат работы функции strcspn(): %lu \n", strcspn(argv[1], argv[2]));
-            printf("Результат работы функции s21_strcspn(): %lu \n", s21_strcspn(argv[1], argv[2]));
-            printf("Результат работы функции strspn(): %lu \n", strspn(argv[1], argv[2]));
-            printf("Результат работы функции s21_strspn(): %lu \n", s21_strspn(argv[1], argv[2]));
-            break;
-        }
-        default: {
-            break;
-        }
+        sr = srunner_create(s);
+        srunner_run_all(sr, CK_NORMAL);
+        number_failed = srunner_ntests_failed(sr);
+        srunner_free(sr);
     }
     return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }

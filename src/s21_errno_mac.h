@@ -176,19 +176,19 @@
 #endif
 
 #ifndef S21_ECONNRESET
-#define S21_ECONNRESET    54
+#define S21_ECONNRESET       54
 #endif
 
 #ifndef S21_ENOBUFS
-#define S21_ENOBUFS       55
+#define S21_ENOBUFS          55
 #endif
 
 #ifndef S21_EISCONN
-#define S21_EISCONN       56
+#define S21_EISCONN          56
 #endif
 
 #ifndef S21_ENOTCONN
-#define S21_ENOTCONN      57
+#define S21_ENOTCONN         57
 #endif
 
 #ifndef S21_ECONNREFUSED

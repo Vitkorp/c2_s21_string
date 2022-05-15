@@ -30,16 +30,13 @@ char* s21_strerror(int errnum) {
     int count;
 #if defined(__APPLE__) && defined(__MACH__)
     char baseMsg[50] = "Unknown error: ";
+    printf("__APPLE__ err: %d ", errnum);
     count = 60;
-#elif defined(__linux__)
-    char baseMsg[50] = "Unknown error ";
-    count = 76;
-#endif
     char b[12] = "";
     int found = 0;
     char res[1000] = "";
-    snprintf(b,10, "%d",errnum);
-    strcat(baseMsg, b);      
+    snprintf(b,11, "%d",errnum);
+    strcat(baseMsg, b);  // заменить на s21_strcat
     for (int i = 0; i < count; i++) {
         if (errnum == errlist[i].id) {
             strcpy(res, errlist[i].null_str);
@@ -47,6 +44,24 @@ char* s21_strerror(int errnum) {
             break;
         }
     }
+    printf(" baseMsg:{%s}\n", (found) ? res : baseMsg);
+#elif defined(__linux__)
+    char baseMsg[50] = "Unknown error ";
+    count = 76;
+    char b[12] = "";
+    int found = 0;
+    char res[1000] = "";
+    snprintf(b,10, "%d",errnum);
+    strcat(baseMsg, b);  // заменить на s21_strcat
+    for (int i = 0; i < count; i++) {
+        if (errnum == errlist[i].id) {
+            strcpy(res, errlist[i].null_str);
+            found = 1;
+            break;
+        }
+    }
+#endif
+    
     return (found) ? res : baseMsg;
 }
 

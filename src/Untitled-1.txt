@@ -1,0 +1,31 @@
+
+
+struct a {
+    char flags;
+    int width;
+    int precision;
+    int length;
+    char spec; 
+} x;
+
+char *func(void *val, struct a _a) {
+    if (_a.flag )
+}
+
+if (x.spec == 'd') {
+    func(val, _a)
+}
+
+
+
+char *_res;
+sprintf(_res,"Heloo %-5.6f", v);
+
+            |
+            v
+        parser -> struct a _aa -> /* вызов функции char *func(void *val, struct a _a) */
+
+
+
+
+
