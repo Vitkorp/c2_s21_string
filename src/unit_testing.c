@@ -1,5 +1,6 @@
 #include "s21_string.h"
 #include <check.h>
+
 START_TEST(test_memchr) {
     char *s21_memchr1 = s21_memchr("ABCDEFG", 'D', 8);
     char *s21_memchr2 = s21_memchr("ABCDEFG", 'C', 8);
