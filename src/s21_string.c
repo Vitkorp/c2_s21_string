@@ -29,13 +29,14 @@ char* s21_strerror(int errnum) {
     err errlist[] = S21_ERRLIST;  
     int count;
 #if defined(__APPLE__) && defined(__MACH__)
-    char baseMsg[50] = "Unknown error: ";
+    char baseMsg[1024] = {"Unknown error: "};
     printf("__APPLE__ err: %d ", errnum);
     count = 60;
     char b[12] = "";
     int found = 0;
-    char res[1000] = "";
-    snprintf(b,11, "%d",errnum);
+    char res[1000] = {'\0'};
+    snprintf(b,10, "%d",errnum);
+    // strcpy(res, baseMsg);
     strcat(baseMsg, b);  // заменить на s21_strcat
     for (int i = 0; i < count; i++) {
         if (errnum == errlist[i].id) {

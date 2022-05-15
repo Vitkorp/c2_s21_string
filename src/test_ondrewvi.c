@@ -344,7 +344,7 @@ Suite* s21_strspn_suit(void) {
 }
 //#endif  // S21_TEST
 
-int main(int argc, char** argv) {
+int main() {
     int number_failed;
     Suite *s;
     SRunner *sr;
