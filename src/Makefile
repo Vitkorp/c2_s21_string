@@ -1,5 +1,8 @@
 rebuild: clean test gcov_report
 
+checkmk:
+	checkmk s21_2_9_10.check > test.c
+
 test: 
 	OS="`uname`";  \
 	if [ "$$OS" == "Darwin" ]; then gcc test_ondrewvi.c  s21_string.c s21_string.h  -Wall -o test -lcheck -pthread -lm | echo "case1";  \
@@ -36,5 +39,8 @@ clean:
 	rm mid_html_res *.gcda *.gcnomake *.html *.css html_report test *.gcno; \
 	rm -rf ./ne_ploho/horosho/*; \
 	rm -rf ./ne_ploho/*; \
-	rm -rf ./ne_ploho;
+	rm -rf ./ne_ploho; \
+	rm a.out;	
 
+s21_2_9_10:
+	gcc -Wall -Werror -Wextra *.c -lcheck -pthread -Icheck_pic -pthread -Irt -lm -Isubunit

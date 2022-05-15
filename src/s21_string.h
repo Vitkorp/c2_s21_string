@@ -164,6 +164,21 @@ typedef struct str_err {
 #endif
 
 /*
+ * 2. Сравнивает первые n байтов str1 и str2. 
+ */
+int s21_memcmp(const void *str1, const void *str2, s21_size_t n);
+
+/*
+ * 9. Сравнивает строку, на которую указывает str1, со строкой, на которую указывает str2.
+ */
+int s21_strcmp(const char *str1, const char *str2);
+
+/*
+ * 10. Сравнивает не более первых n байтов str1 и str2.
+ */
+int s21_strncmp(const char *str1, const char *str2, s21_size_t n);
+
+/*
  * 13. Вычисляет длину начального сегмента str1, который полностью 
  * состоит из символов, не входящих в str2.
  */

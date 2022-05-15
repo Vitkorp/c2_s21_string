@@ -2,10 +2,60 @@
 #include <string.h>
 #include <stdio.h>
 
-s21_size_t s21_strlen(const char *str) {
-    s21_size_t _len = 0;
-    for (_len = 0; str[_len]; _len++) {}
-    return _len;
+int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
+    const char* string1 = (char*)str1;
+    const char* string2 = (char*)str2;
+    int flag = 0;
+    s21_size_t i = 0;
+    while (i < n) {
+        if (string1[i] == string2[i]) {
+            i++;
+        } else {
+            break;
+        }
+    }
+    if (string1[i] != string2[i] && (int)string1[i] > (int)string2[i]) {
+        flag = (int)string1[i] - (int)string2[i];
+    } if (string1[i] != string2[i] && (int)string1[i] < (int)string2[i]) {
+        flag = ((int)string2[i] - (int)string1[i]) * (-1);
+    }
+    return flag;
+}
+
+int s21_strcmp(const char *str1, const char *str2) {
+    int flag = 0;
+    s21_size_t i = 0;
+    while (1) {
+        if (str1[i] == str2[i]) {
+            i++;
+        } if (str1[i] == '\n' || str2[i] == '\n' || str1[i] != str2[i]) {
+            break;
+        }
+    }
+    if (str1[i] != str2[i] && (int)str1[i] > (int)str2[i]) {
+        flag = (int)str1[i] - (int)str2[i];
+    } if (str1[i] != str2[i] && (int)str1[i] < (int)str2[i]) {
+        flag = ((int)str2[i] - (int)str1[i]) * (-1);
+    }
+    return flag;
+}
+
+int s21_strncmp(const char *str1, const char *str2, s21_size_t n) {
+    int flag = 0;
+    s21_size_t i = 0;
+    while (i < n) {
+        if (str1[i] == str2[i]) {
+            i++;
+        } else {
+            break;
+        }
+    }
+    if (str1[i] != str2[i] && (int)str1[i] > (int)str2[i]) {
+        flag = (int)str1[i] - (int)str2[i];
+    } if (str1[i] != str2[i] && (int)str1[i] < (int)str2[i]) {
+        flag = ((int)str2[i] - (int)str1[i]) * (-1);
+    }
+    return flag;
 }
 
 s21_size_t s21_strcspn(const char *str1, const char *str2) {
@@ -30,13 +80,11 @@ char* s21_strerror(int errnum) {
     int count;
 #if defined(__APPLE__) && defined(__MACH__)
     char baseMsg[1024] = {"Unknown error: "};
-    // printf("__APPLE__ err: %d ", errnum);
     count = 60;
     char b[12] = "";
     int found = 0;
     char res[1000] = {'\0'};
     snprintf(b,10, "%d",errnum);
-    // strcpy(res, baseMsg);
     strcat(baseMsg, b);  // заменить на s21_strcat
     for (int i = 0; i < count; i++) {
         if (errnum == errlist[i].id) {
@@ -45,7 +93,6 @@ char* s21_strerror(int errnum) {
             break;
         }
     }
-    // printf(" baseMsg:{%s}\n", (found) ? res : baseMsg);
 #elif defined(__linux__)
     char baseMsg[50] = "Unknown error ";
     count = 76;
@@ -62,8 +109,14 @@ char* s21_strerror(int errnum) {
         }
     }
 #endif
-    
+
     return (found) ? res : baseMsg;
+}
+
+s21_size_t s21_strlen(const char *str) {
+    s21_size_t _len = 0;
+    for (_len = 0; str[_len]; _len++) {}
+    return _len;
 }
 
 s21_size_t s21_strspn(const char *str1, const char *str2) {
