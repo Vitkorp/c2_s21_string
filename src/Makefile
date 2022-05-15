@@ -1,15 +1,25 @@
 all: test
 
-test:
-	gcc -Wall -Wextra -Werror s21_string.c s21_string.h unit_testing.c -L. -lcheck -lm -o check_test.o
-	chmod +x check_test
-	./check_test
+#test:
+#	gcc -Wall -Wextra -Werror s21_string.c s21_string.h unit_testing.c -L. -lcheck -lm -o check_test
+#	chmod +x check_test
+#	./check_test
 
 clean:
 	rm -rf *.o
 
 
 #//////////////////////////////////////////////////////////////
+
+test:
+	gcc unit_testing.c  s21_string.c s21_string.h  -Wall -o test -lcheck -pthread -lcheck_pic -pthread -lrt -lm -lsubunit
+	chmod +x test
+
+gcov_report: 
+	gcc -Wall -Werror -Wextra unit_testing.c s21_string.c -fprofile-arcs -ftest-coverage -pthread -lcheck_pic -pthread -lrt -lm -lsubunit -o mid_html_res
+	./mid_html_res
+	gcovr -r . --html --html-details -o html_report
+
 
 #all: s21_string.a test gcov_report
     
