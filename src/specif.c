@@ -3,14 +3,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-char* specif_f(char* str, float num);
+char* specif_f(float num);
 
 int main() {
-    // printf("%s\n", specif_f("float value: %f", -2.6));
-    // printf("%f", -2.6);
-    float num = -13.46;
-    float saved_num = num;
-    char mass[32];
+    printf("string %s\n", specif_f(245.606));
+    printf("float  %.1f", 245.606);
+
+    return 0;
+}
+
+char* specif_f(float num) {
+    static char mass[32];
     int i = 0;
     if (num < 0.0) {
         mass[i++] = '-';
@@ -35,30 +38,17 @@ int main() {
         mass[i++] = res + 48;
         deci_num %= exponent;
     }
-    mass[i++] = '.';
+    if(precision != 0) {
+        mass[i++] = '.';
+    }
     for (int j = 0; j < precision; j++) {
         num *= 10.0;
         int tmp = num;
         mass[i++] = tmp + 48;
         num -= tmp;
+        printf("%d", tmp);
     }
+    printf("\n");
     mass[i] = '\0';
-    printf("float  %f\n", saved_num);
-	printf("string %s\n", mass);
-    return 0;
+    return &(mass[0]);    
 }
-
-// char* specif_f(char* str, float num) {
-//     int n = 0;
-//     float temp = num;
-//     char* mass = NULL;
-//     mass = malloc(n * sizeof(char));
-//     for (size_t i = 0; i < strlen(str); i++) {
-//         if (str[i] == '%' && str[i + 1] == 'f') {
-//             mass[n] = 
-//         }
-//     }
-//         printf("%d\n", n);
-//         free(mass);
-//     return mass;    
-// }
