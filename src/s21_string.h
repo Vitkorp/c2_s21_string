@@ -3,13 +3,13 @@
     #include <stdio.h>
     // #include <corecrt.h>
     #include <string.h>
-    // #include <stdbool.h>
+    #include <stdbool.h>
     // #include <check.h>
     #include <stdlib.h>
 
-    #ifndef s21_NULL
-        #define s21_NULL (void *)0
-    #endif // NULL
+    #ifndef S21_NULL
+        #define S21_NULL (void *)0
+    #endif // S21_NULL
 
     typedef unsigned long int s21_size_t;
 
