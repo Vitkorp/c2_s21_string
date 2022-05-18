@@ -1,6 +1,8 @@
+
 #ifndef SRC_S21_STRING_H_
 #define SRC_S21_STRING_H_
 
+#include <stdio.h>
 #include "s21_errno_mac.h"
 #include "s21_errno_linux.h"
 
@@ -161,12 +163,28 @@ typedef struct str_err {
                     {S21_ENOTSUP, "Operation not supported"}                       \
                     }
 #endif  // S21_ERRLIST
-#endif
+#endif  // OS
 
 /*
  * 2. Сравнивает первые n байтов str1 и str2. 
  */
 int s21_memcmp(const void *str1, const void *str2, s21_size_t n);
+
+/*
+ * 3. Копирует n символов из src в dest
+ */
+void *s21_memcpy(void *dest, const void *src, s21_size_t n);
+
+/*
+ * 4. Еще одна функция для копирования n символов из str2 в str1.
+ */
+void *s21_memmove(void *dest, const void *src, s21_size_t n);
+
+/*
+ * 5. Копирует символ c (беззнаковый тип) в первые n символов строки, 
+ * на которую указывает аргумент str.
+ */
+void *s21_memset(void *str, int c, s21_size_t n);
 
 /*
  * 9. Сравнивает строку, на которую указывает str1, со строкой, на которую указывает str2.
@@ -177,6 +195,16 @@ int s21_strcmp(const char *str1, const char *str2);
  * 10. Сравнивает не более первых n байтов str1 и str2.
  */
 int s21_strncmp(const char *str1, const char *str2, s21_size_t n);
+
+/*
+ * 11. Копирует строку, на которую указывает src, в dest
+ */
+char *s21_strcpy(char *dest, const char *src);
+
+/*
+ * 12. Копирует до n символов из строки, на которую указывает src, в dest.
+ */
+char *s21_strncpy(char *dest, const char *src, s21_size_t n);
 
 /*
  * 13. Вычисляет длину начального сегмента str1, который полностью 
@@ -202,5 +230,7 @@ s21_size_t s21_strlen(const char *str);
  */
 s21_size_t s21_strspn(const char *str1, const char *str2);
 
+void *s21_to_upper(const char *str);
+void *s21_to_lower(const char *str);
 
 #endif  // SRC_S21_STRING_H_

@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "s21_string.h"
+
+#test memcpy_1
+char buf1[50] = "It's check memcpy - ok", buf2[50];
+ck_assert_str_eq(memcpy(buf2,buf1,21),s21_memcpy(buf2,buf1,21));
+
+#test memcpy_2
+char buf1[50] = "Hello world\0", buf2[50];
+ck_assert_str_eq(memcpy(buf2,buf1,12),s21_memcpy(buf2,buf1,12));
+
+#test memcpy_3
+char buf1[50] = "Hello w\0orld", buf2[50];
+ck_assert_str_eq(memcpy(buf2,buf1,10),s21_memcpy(buf2,buf1,10));
+
+#test memcpy_4
+char buf1[50] = "a\n\0", buf2[50];
+ck_assert_str_eq(memcpy(buf2,buf1,3),s21_memcpy(buf2,buf1,3));
+
+#test memcpy_5
+char buf1[50] = "Hel\0lo w\0orld", buf2[50];
+ck_assert_str_eq(memcpy(buf2,buf1,5),s21_memcpy(buf2,buf1,5));
+
+#test memmove_1
+char src[] = "Hello world\0";
+char dest[] = "rembo";
+ck_assert_str_eq(memmove(dest,src,2),s21_memmove(dest,src,2));
+
+#test memmove_2
+char src[] = "Hello world\0";
+char dest[] = "a\n\0";
+ck_assert_str_eq(memmove(dest,src,1),s21_memmove(dest,src,1));
+
+#test memmove_3
+char src[] = "Hel\0lo world\0";
+char dest[] = "rembo wave sorry";
+ck_assert_str_eq(memmove(dest,src,6),s21_memmove(dest,src,6));
+
+#test memmove_4
+char src[] = " \n\0";
+char dest[] = "rembo hello";
+ck_assert_str_eq(memmove(dest,src,1),s21_memmove(dest,src,1));
+
+#test memmove_5
+char src[] = "Hel\nlo \0world\0";
+char dest[] = "salam wave";
+ck_assert_str_eq(memmove(dest,src,6),s21_memmove(dest,src,6));
+
+#test memset_1
+char str[] = "salam aleikum memset!n";
+ck_assert_str_eq(memset(str,'*',12),s21_memset(str,'*',12));
+
+#test memset_2
+char str[] = "Hello \0world\0";
+ck_assert_str_eq(memset(str,'*',9),s21_memset(str,'*',9));
+
+#test memset_3
+char str[] = "Hell\no \0world\0";
+ck_assert_str_eq(memset(str,'*',8),s21_memset(str,'*',8));
+
+#test memset_4
+char str[] = "a\n\0";
+ck_assert_str_eq(memset(str,'*',2),s21_memset(str,'*',2));
+
+#test memset_5
+char str[] = "\n\0";
+ck_assert_str_eq(memset(str,'*',2),s21_memset(str,'*',2));
+
+#test strncpy_1
+char src[40] = "This is interesting joke";
+char dest[100];
+ck_assert_str_eq(strncpy(dest,src,26),s21_strncpy(dest,src,26));
+
+#test strncpy_2
+char src[40] = "Hello world\n\0";
+char dest[100];
+ck_assert_str_eq(strncpy(dest,src,13),s21_strncpy(dest,src,13));
+
+#test strncpy_3
+char src[40] = "a\n\0";
+char dest[100];
+ck_assert_str_eq(strncpy(dest,src,2),s21_strncpy(dest,src,2));
+
+#test strncpy_4
+char src[40] = "Hello world\0";
+char dest[100];
+ck_assert_str_eq(strncpy(dest,src,12),s21_strncpy(dest,src,12));
+
+#test strncpy_5
+char src[40] = " \n\0";
+char dest[100];
+ck_assert_str_eq(strncpy(dest,src,2),s21_strncpy(dest,src,2));
+
+#test strcpy_1
+char src[] = "Hello world\0";
+char dest[] = "abcdefghijklm";
+ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
+
+#test strcpy_2
+char src[] = "Hello world\n\0";
+char dest[] = "abcdefghijklm";
+ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
+
+#test strcpy_3
+char src[] = "a\n\0";
+char dest[] = "ab";
+ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
+
+#test strcpy_4
+char src[] = " \0";
+char dest[] = "ab";
+ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
+
+#test strcpy_5
+char src[] = "hello\0 russian";
+char dest[] = "abcdefghijklmnfff";
+ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
