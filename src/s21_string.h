@@ -6,7 +6,7 @@
     // #include <stdbool.h>
     // #include <check.h>
     #include <stdlib.h>
-
+    #include <string.h>
     #ifndef s21_NULL
         #define s21_NULL (void *)0
     #endif // NULL
