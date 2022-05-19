@@ -66,6 +66,7 @@ char *s21_strstr(const char *haystack, const char *needle) {
             // exit_code = 1;
             // return s21_NULL;
         
+        
             const char *i_haystack = haystack + 1,
                        *i_needle   = needle   + 1;
 
@@ -129,4 +130,22 @@ s21_size_t s21_strlen(const char *str) {
     s21_size_t _len = 0;
     for (_len = 0; *str; str++, _len++) {}
     return _len;
+}
+
+int main() {
+    char str[] =    "lazy";
+    char string[] = "The quick brown dog jumps over the lazy fox";
+    char fmt1[] =   "         1         2         3         4         5";
+    char fmt2[] =   "12345678901234567890123456789012345678901234567890";
+    
+    char *pdest;
+    int  result;
+    printf( "String to be searched:\n   %s\n", string );
+    printf( "   %s\n   %s\n\n", fmt1, fmt2 );
+    pdest = s21_strstr( string, str );
+    result = (int)(pdest - string + 1);
+    if ( pdest != NULL )
+        printf( "%s found at position %d\n", str, result );
+    else
+        printf( "%s not found\n", str );
 }
