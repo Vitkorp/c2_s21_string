@@ -40,18 +40,28 @@ char *s21_strpbrk(const char *str1, const char *str2) {
     const char *scanp;
     int c, sc;
     char * _res = ""; 
-    // int exit_code = 0;
+    int exit_code = 0;
     while ((c = *str1++) != 0) {
         for (scanp = str2; (sc = *scanp++) != '\0';) {
             if (sc == c) {
                 _res = ((char*)(str1 - 1));
-                // exit_code = 1;
+                exit_code = 1;
                 break;
                 // return ((char *)(str1 - 1));
             }
         }
+            // _res = ((char*)(str1 - 1));
+        if (exit_code == 1){
+            break;
+        }
+        // else if(exit_code == 0){
+            // _res = S21_NULL;
+            // break;
+        // }
     }
-    return _res;
+    // if (exit_code == 0)
+    //     _res = S21_NULL;
+    return exit_code ? _res : S21_NULL;
     // return S21_NULL;
 
     // return S21_NULL;
@@ -136,11 +146,13 @@ s21_size_t s21_strlen(const char *str) {
 int main() {
     char *p;
     char *my;
-    p = strpbrk ("this is a test", "absj");
-    my = s21_strpbrk("this is a test", "absj");
-    printf(p);
-    printf("||");
-    printf(my);
+    p = strpbrk("this is a test", "qwer");
+    my = s21_strpbrk("this is a test", "qwer");
+    if ((p != NULL) && (my != S21_NULL)) {
+        printf("%s\n", p);
+        printf("||");
+        printf("%s\n", my);
+    }
 
     return 0;
 }
