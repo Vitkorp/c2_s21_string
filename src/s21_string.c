@@ -164,7 +164,7 @@ char* s21_strerror(int errnum) {
         }
     }
 #elif defined(__linux__)
-    char baseMsg[50] = "Unknown error ";
+    char baseMsg[1024] = "Unknown error ";
     count = 76;
     char b[12] = "";
     int found = 0;
@@ -210,54 +210,54 @@ s21_size_t s21_strspn(const char *str1, const char *str2) {
     return len;
 }
 
-void *s21_to_upper(const char *str) {
-    int flag;
-    char dest[strlen(str)];
-    if (str[0] == '\0') {
-        flag = 0;
-    } else {
-        s21_strcpy(dest, str);
-        for (s21_size_t j = 0; j < strlen(str); j++) {
-            if (('a' <= dest[j] && 'z' >= dest[j])) {
-                dest[j] += 'A' - 'a';
-            }
-        }
-        flag = 1;
-    }
-    switch (flag)
-    {
-    case 1:
-        char *copy_str = dest;
-        return  copy_str;
+// void *s21_to_upper(const char *str) {
+//     int flag;
+//     char dest[strlen(str)];
+//     if (str[0] == '\0') {
+//         flag = 0;
+//     } else {
+//         s21_strcpy(dest, str);
+//         for (s21_size_t j = 0; j < strlen(str); j++) {
+//             if (('a' <= dest[j] && 'z' >= dest[j])) {
+//                 dest[j] += 'A' - 'a';
+//             }
+//         }
+//         flag = 1;
+//     }
+//     switch (flag)
+//     {
+//     case 1:
+//         char *copy_str = dest;
+//         return  copy_str;
     
-    default:
-        return NULL;
-    }
+//     default:
+//         return NULL;
+//     }
     
-}
+// }
 
 
-void *s21_to_lower(const char *str) {
-    int flag;
-    char dest[strlen(str)];
-    if (str[0] == '\0') {
-        flag = 0;
-    } else {
-        s21_strcpy(dest, str);
-        for (s21_size_t j = 0; j < strlen(str); j++) {
-            if (('A' <= dest[j] && 'Z' >= dest[j])) {
-                dest[j] += 'a' - 'A';
-            }
-        }
-        flag = 1;
-    }
-    switch (flag)
-    {
-    case 1:
-        char *copy_str = dest;
-        return  copy_str;
+// void *s21_to_lower(const char *str) {
+//     int flag;
+//     char dest[strlen(str)];
+//     if (str[0] == '\0') {
+//         flag = 0;
+//     } else {
+//         s21_strcpy(dest, str);
+//         for (s21_size_t j = 0; j < strlen(str); j++) {
+//             if (('A' <= dest[j] && 'Z' >= dest[j])) {
+//                 dest[j] += 'a' - 'A';
+//             }
+//         }
+//         flag = 1;
+//     }
+//     switch (flag)
+//     {
+//     case 1:
+//         char *copy_str = dest;
+//         return  copy_str;
     
-    default:
-        return NULL;
-    }
-}
+//     default:
+//         return NULL;
+//     }
+// }
