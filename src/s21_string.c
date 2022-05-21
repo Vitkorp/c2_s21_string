@@ -8,7 +8,7 @@ s21_size_t s21_strlen(const char *str) {
 
 char *s21_strcat(char *dest, const char *src) {
     int i = 0, j = 0;
-    if (src != s21_NULL) {
+    if (src != S21_NULL) {
         while (dest[i]) {
             i++;
         }
@@ -39,7 +39,7 @@ char *s21_strncat(char *dest, const char *src, s21_size_t n) {
 
 char *s21_strtok(char *str, const char *delim) {
     char *tok = str;
-    if (tok != s21_NULL) {
+    if (tok != S21_NULL) {
         str = tok + s21_strspn(tok, delim);
         tok = str + s21_strcspn(str, delim);
         if (tok == str) {
