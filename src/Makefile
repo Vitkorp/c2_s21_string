@@ -23,3 +23,4 @@ rebuild: clean all
 
 spec:
 	gcc -Wall -Werror -Wextra specif.c
+	./a.out

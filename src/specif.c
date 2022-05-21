@@ -3,26 +3,28 @@
 #include <stdlib.h>
 #include <string.h>
 
-char* specif_f(float num);
 
 int main() {
-    printf("string %s\n", specif_f(245.606));
-    printf("float  %.1f", 245.606);
+    static char mass[10000] = {'\0'};
+    static char arr[10000] = {'\0'};
 
-    return 0;
-}
-
-char* specif_f(float num) {
-    static char mass[32];
+    long double exp = 0.0, num = 123.456;
+    double n = 0.0;
+    // scanf("%Lf", &num);
+    long double f = num;
     int i = 0;
-    if (num < 0.0) {
+    if (num <= -0.0) {
         mass[i++] = '-';
         num *= -1;
     }
+    exp = modf(num, &n);
     short precision = 6;
     short num_deci_digits = precision;
-    int deci_num = num;
-    num -= deci_num;
+    int deci_num = round(n);
+    if (deci_num == 0) {
+        mass[i++] = '0';
+    }
+    // num -= deci_num;
     while(num_deci_digits >= 0) {
         int exponent = pow(10, num_deci_digits);
 		int res = deci_num / exponent;
@@ -42,13 +44,14 @@ char* specif_f(float num) {
         mass[i++] = '.';
     }
     for (int j = 0; j < precision; j++) {
-        num *= 10.0;
-        int tmp = num;
+        exp *= 10.0;
+        int tmp = exp;
         mass[i++] = tmp + 48;
-        num -= tmp;
-        printf("%d", tmp);
+        exp -= tmp;
     }
-    printf("\n");
     mass[i] = '\0';
-    return &(mass[0]);    
+    printf("string %s\n", mass);
+    sprintf(arr, "%Lf", f);
+    printf("orig   %s", arr);
+    return 0;
 }
