@@ -90,3 +90,25 @@ ck_assert_ptr_null(s21_strrchr(buf1,'5'));
 #test strrchr_5
 char buf1[25] = "ABCCDEFG fjehiedjhf";
 ck_assert_str_eq(strrchr(buf1,0),s21_strrchr(buf1,0));
+
+#test strstr_1
+char buf1[14] = "ABCCDEFG WORLD";
+ck_assert_str_eq(strstr(buf1, "WORLD"), s21_strstr(buf1, "WORLD"));
+
+#test strstr_2
+char buf1[10] = "";
+ck_assert_ptr_null(strstr(buf1, "world"));
+ck_assert_ptr_null(s21_strstr(buf1, "world"));
+
+#test strstr_3
+char buf1[11] = "Hello World";
+ck_assert_str_eq(strstr(buf1, "Wo"), s21_strstr(buf1, "Wo"));
+
+#test strstr_4
+char buf1[11] = "Hello World";
+ck_assert_ptr_null(strstr(buf1, "Yes"));
+ck_assert_ptr_null(s21_strstr(buf1, "Yes"));
+
+#test strstr_5
+char buf1[11] = "Hello world";
+ck_assert_str_eq(strstr(buf1, " "), s21_strstr(buf1, " "));

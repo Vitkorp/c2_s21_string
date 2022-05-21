@@ -1,38 +1,25 @@
-all: test
+all: checkmk s21_archiver unit_tests_compiler gcovr_report
 
-#test:
-#	gcc -Wall -Wextra -Werror s21_string.c s21_string.h unit_testing.c -L. -lcheck -lm -o check_test
-#	chmod +x check_test
-#	./check_test
+checkmk:
+	checkmk test.check > test.c
 
-clean:
-	rm -rf *.o
+s21_archiver:
+	gcc -c -g test.c
+	ar rcs libs21.a *.o
+	ranlib libs21.a
 
+unit_tests_compiler:
+	gcc -Wall -Werror -Wextra test.c -L. -ls21 -lcheck -pthread -Icheck_pic -pthread -Irt -lm -Isubunit -o unit_tests
 
-#//////////////////////////////////////////////////////////////
-
-test:
-	gcc unit_testing.c  s21_string.c s21_string.h  -Wall -o test -lcheck -pthread -lcheck_pic -pthread -lrt -lm -lsubunit
-	chmod +x test
-
-gcov_report: 
-	gcc -Wall -Werror -Wextra unit_testing.c s21_string.c -fprofile-arcs -ftest-coverage -pthread -lcheck_pic -pthread -lrt -lm -lsubunit -o mid_html_res
+gcovr_report:
+	gcc -Wall -Werror -Wextra -fprofile-arcs -ftest-coverage test.c -ls21 -L. -lcheck -lm -o mid_html_res
 	./mid_html_res
 	gcovr -r . --html --html-details -o html_report
 
+clean:
+	rm -rf unit_tests *.o *.a html_report *.css *.html mid_html_res *.gcda *.gcno test.c
 
-#all: s21_string.a test gcov_report
-    
-# test:
-#     gcc test.c -ls21_string -L. -lcheck -lm -o check_unit_tests
-#     chmod +x check_unit_tests
-#     ./check_unit_tests  	
-# s21_string.a: 
-#     gcc -g -c -o libs21_string.o functions.c    
-#     ar rcs libs21_string.a libs21_string.o
-# gcov_report: 
-#     gcc -Wall -Wextra -Werror -fprofile-arcs -ftest-coverage test.c -ls21_string -L. -lcheck -lm -o check_unit_tests
-#     ./check_unit_tests
-#     gcovr -r . --html --html-details -o coverage_report.html
-# clean:
-#    rm -rf *.gcno *.html *.css *.o *.a *.gcda check_unit_tests
+rebuild: clean all 
+
+spec:
+	gcc -Wall -Werror -Wextra specif.c
