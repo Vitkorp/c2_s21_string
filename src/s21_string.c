@@ -117,7 +117,7 @@ char *s21_strrchr(const char *str, int c) {
 // }
 
 char *s21_strstr(const char *haystack, const char *needle) {
-    const size_t needle_len = strlen(needle);
+    const size_t needle_len = s21_strlen(needle);
     char *res = "";
     int exit_code = 0;
     while (*haystack != '\0') {
@@ -131,7 +131,7 @@ char *s21_strstr(const char *haystack, const char *needle) {
         }
     }
 
-    return exit_code ? res : NULL;
+    return exit_code ? res : S21_NULL;
 }
 
 s21_size_t s21_strlen(const char *str) {
@@ -141,8 +141,8 @@ s21_size_t s21_strlen(const char *str) {
 }
 
 int main() {
-    char *src = "this is a test";
-    char *sub = "te";
+    char *src = "this is a test!";
+    char *sub = "!";
     char *p;
     char *my;
 
