@@ -4,13 +4,22 @@ all: checkmk s21_string.a test gcov_report
 rebuild: clean all
 
 clean:
-	rm mid_html_res *.gcda *.gcnomake *.html *.css html_report test *.gcno; \
-	rm -rf ./ne_ploho/horosho/*; \
-	rm -rf ./ne_ploho/*; \
-	rm -rf ./ne_ploho; \
-	rm a.out test.out; \
-	rm -rf ./*.o ./*.a ./*.out
-	rm ./test.out
+	rm -rf ./mid_html_res \
+	 ./*.gcda \
+	 ./*.gcnomake \
+	 ./*.html \
+	 ./*.css \
+	 ./html_report \
+	 ./test \
+	 ./ne_ploho/horosho/* \
+	 ./ne_ploho/* \
+	 ./ne_ploho \
+	 ./*.o \
+	 ./*.a \
+	 ./test.out \
+	 ./test.c \
+	 ./s21_string.gcno \
+	 ./test.gcno
 
 
 checkmk:
