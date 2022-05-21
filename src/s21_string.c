@@ -1,5 +1,5 @@
 // Copyright [2022] <Copyright Bobbie>
-#include <string.h>
+// #include <string.h>
 #include "s21_string.h"
 #include <string.h>
 #include <stdio.h>

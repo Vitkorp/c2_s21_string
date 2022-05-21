@@ -374,7 +374,7 @@ ck_assert_str_eq(s21_strerror(40), strerror(40));
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(41), strerror(41));
 #else
-ck_assert_str_ne(s21_strerror(41), strerror(41));
+ck_assert_str_eq(s21_strerror(41), strerror(41));
 #endif
 
 #test test_strerror_POSIX_43
@@ -458,7 +458,11 @@ ck_assert_str_ne(s21_strerror(57), strerror(57));
 #endif
 
 #test test_strerror_POSIX_59
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(58), strerror(58));
+#else
+ck_assert_str_eq(s21_strerror(58), strerror(58));
+#endif
 
 #test test_strerror_POSIX_60
 ck_assert_str_ne(s21_strerror(59), strerror(59));
