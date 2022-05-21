@@ -19,7 +19,7 @@ lcov_report:
 	genhtml ne_ploho/ploho -o ne_ploho/horosho
 	
 clean:
-	rm -rf unit_tests *.o *.a html_report *.css *.html mid_html_res *.gcda *.gcno horosho ploho ne_ploho report test.c
+	rm -rf unit_tests *.o a.out *.a html_report *.css *.html mid_html_res *.gcda *.gcno horosho ploho ne_ploho report test.c
 
 rebuild: clean all 
 
