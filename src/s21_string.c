@@ -1,7 +1,6 @@
 // Copyright [2022] <Copyright Bobbie>
 // #include <string.h>
 #include "s21_string.h"
-#include <string.h>
 #include <stdio.h>
 
 
@@ -258,10 +257,10 @@ char* s21_strerror(int errnum) {
     int found = 0;
     char res[1000] = {'\0'};
     snprintf(b,10, "%d",errnum);
-    strcat(baseMsg, b);  // заменить на s21_strcat
+    s21_strcat(baseMsg, b);  // заменить на s21_strcat
     for (int i = 0; i < count; i++) {
         if (errnum == errlist[i].id) {
-            strcpy(res, errlist[i].null_str);
+            s21_strcpy(res, errlist[i].null_str);
             found = 1;
             break;
         }
@@ -273,10 +272,10 @@ char* s21_strerror(int errnum) {
     int found = 0;
     char res[1000] = "";
     snprintf(b,10, "%d",errnum);
-    strcat(baseMsg, b);  // заменить на s21_strcat
+    s21_strcat(baseMsg, b);  // заменить на s21_strcat
     for (int i = 0; i < count; i++) {
         if (errnum == errlist[i].id) {
-            strcpy(res, errlist[i].null_str);
+            s21_strcpy(res, errlist[i].null_str);
             found = 1;
             break;
         }
@@ -296,7 +295,7 @@ char *s21_strstr(const char *haystack, const char *needle) {
     char *res = "";
     int exit_code = 0;
     while (*haystack != '\0') {
-        if (strncmp(haystack, needle, needle_len) == 0) {
+        if (s21_strncmp(haystack, needle, needle_len) == 0) {
             res = (char *)haystack;
             exit_code = 1;
             break;
@@ -308,8 +307,6 @@ char *s21_strstr(const char *haystack, const char *needle) {
 
     return exit_code ? res : S21_NULL;
 }
-
-
 
 // Расчет длины начального сегмента str1, полностью состоящий из str2
 
@@ -344,4 +341,3 @@ char *s21_strrchr(const char *str, int c) {
     }
     return found ? ((char *)str + i) : S21_NULL;
 }
-

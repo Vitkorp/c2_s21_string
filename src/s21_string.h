@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "s21_errno_mac.h"
 #include "s21_errno_linux.h"
-#include <string.h>
+// #include <string.h>
 #include <stdlib.h>
 
 #ifndef S21_NULL
