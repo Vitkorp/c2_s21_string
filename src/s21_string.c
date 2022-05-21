@@ -1,4 +1,5 @@
 #include "s21_string.h"
+#include <string.h>
 
 s21_size_t s21_strlen(const char *str) {
     s21_size_t len = 0;
@@ -26,15 +27,17 @@ char *s21_strncat(char *dest, const char *src, s21_size_t n) {
     int i = s21_strlen(dest), j = 0;
     if (n > 0) {
         while (src[j] != '\0') {
-            dest[i + j] = src[j];
+            tmp[i + j] = src[j];
             j++;
             n--;
             if (n == 0) {
+                tmp[i + j] = '\0';
                 break;
             }
         }
     }
-    return tmp;
+
+    return dest;
 }
 
 char *s21_strtok(char *str, const char *delim) {
