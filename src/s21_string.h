@@ -1,7 +1,9 @@
 #ifndef SRC_S21_STRING_H_
 #define SRC_S21_STRING_H_
-
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
 #include "s21_errno_mac.h"
 #include "s21_errno_linux.h"
 
@@ -164,6 +166,12 @@ typedef struct str_err {
 #endif  // S21_ERRLIST
 #endif  // OS
 
+/* 
+ * 1. Выполняет поиск первого вхождения символа c (беззнаковый тип) в первых 
+ * n байтах строки, на которую указывает аргумент str.
+ */
+void *s21_memchr(const void *str, int c, s21_size_t n);
+
 /*
  * 2. Сравнивает первые n байтов str1 и str2. 
  */
@@ -195,6 +203,12 @@ char *s21_strcat(char *dest, const char *src);
  * указывает dest, длиной до n символов.
  */
 char *s21_strncat(char *dest, const char *src, s21_size_t n);
+
+/* 
+ *  8. Выполняет поиск первого вхождения символа c (беззнаковый тип) в строке,
+ *  на которую указывает аргумент str.
+ */
+char *s21_strchr(const char *str, int c);
 
 /*
  * 9. Сравнивает строку, на которую указывает str1, со строкой, на которую указывает str2.
@@ -234,11 +248,29 @@ char* s21_strerror(int errnum);
 // 15. Вычисляет длину строки str, не включая завершающий нулевой символ.
 s21_size_t s21_strlen(const char *str);
 
+/*
+ * 16. Находит первый символ в строке str1, который соответствует любому 
+ * символу, указанному в str2.
+ */
+char *s21_strpbrk(const char *str1, const char *str2);
+
+/*
+ * 17. Выполняет поиск последнего вхождения символа c (беззнаковый тип) в
+ * строке, на которую указывает аргумент str.
+ */
+char *s21_strrchr(const char *str, int c);
+
 /* 
  * 18. Вычисляет длину начального сегмента str1, который полностью состоит 
  * из символов str2.
  */
 s21_size_t s21_strspn(const char *str1, const char *str2);
+
+/* 
+ * 19. Находит первое вхождение всей строки needle (не включая завершающий 
+ * нулевой символ), которая появляется в строке haystack
+ */
+char *s21_strstr(const char *haystack, const char *needle);
 
 /*
  * 20. Разбивает строку str на ряд токенов, разделенных delim.
@@ -248,4 +280,5 @@ char *s21_strtok(char * str, const char * delim);
 void *s21_to_upper(const char *str);
 void *s21_to_lower(const char *str);
 
-#endif //S21_STRING_GELLERTI_S21_STRING_H
+#endif // SRC_S21_STRING_H_
+

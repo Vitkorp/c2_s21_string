@@ -3544,6 +3544,263 @@ START_TEST(strtok_9)
 char *token = " ";
 ck_assert_ptr_null(strtok(NULL, token));
 ck_assert_ptr_null(s21_strtok(NULL, token));
+
+
+// roberter
+}
+END_TEST
+
+START_TEST(memchr_1)
+{
+#line 1631
+char buf1[10] = "ABCCDEFG";
+ck_assert_str_eq(memchr(buf1,'D',8),s21_memchr(buf1,'D',8));
+
+}
+END_TEST
+
+START_TEST(memchr_2)
+{
+#line 1635
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_ptr_null(memchr(buf1,0,8));
+ck_assert_ptr_null(s21_memchr(buf1,0,8));
+
+}
+END_TEST
+
+START_TEST(memchr_3)
+{
+#line 1640
+char buf1[10] = "ABCCDEFG";
+ck_assert_ptr_null(memchr(buf1,'R',20));
+ck_assert_ptr_null(s21_memchr(buf1,'R',20));
+
+}
+END_TEST
+
+START_TEST(memchr_4)
+{
+#line 1645
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(memchr(buf1,'f',15),s21_memchr(buf1,'f',15));
+
+}
+END_TEST
+
+START_TEST(memchr_5)
+{
+#line 1649
+char buf1[10] = "";
+ck_assert_ptr_null(memchr(buf1,'f',0));
+ck_assert_ptr_null(s21_memchr(buf1,'f',0));
+
+}
+END_TEST
+
+START_TEST(strchr_1)
+{
+#line 1654
+char buf1[10] = "ABCCDEFG";
+ck_assert_str_eq(strchr(buf1,'D'),s21_strchr(buf1,'D'));
+
+}
+END_TEST
+
+START_TEST(strchr_2)
+{
+#line 1658
+char buf1[10] = "";
+ck_assert_ptr_null(strchr(buf1,'f'));
+ck_assert_ptr_null(s21_strchr(buf1,'f'));
+
+}
+END_TEST
+
+START_TEST(strchr_3)
+{
+#line 1663
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(strchr(buf1,'f'),s21_strchr(buf1,'f'));
+
+}
+END_TEST
+
+START_TEST(strchr_4)
+{
+#line 1667
+char buf1[10] = "12";
+ck_assert_str_eq(strchr(buf1,0),s21_strchr(buf1,0));
+
+}
+END_TEST
+
+START_TEST(strchr_5)
+{
+#line 1671
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(strchr(buf1,'j'),s21_strchr(buf1,'j'));
+
+}
+END_TEST
+
+START_TEST(strpbrk_1)
+{
+#line 1675
+char buf1[10] = "ABCCDEFG";
+ck_assert_str_eq(strpbrk(buf1,"GEB"),s21_strpbrk(buf1,"GEB"));
+
+}
+END_TEST
+
+START_TEST(strpbrk_2)
+{
+#line 1679
+char buf1[10] = "";
+ck_assert_ptr_null(strpbrk(buf1,"GEB"));
+ck_assert_ptr_null(s21_strpbrk(buf1,"GEB"));
+
+}
+END_TEST
+
+START_TEST(strpbrk_3)
+{
+#line 1684
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(strpbrk(buf1,"wqaf"),s21_strpbrk(buf1,"wqaf"));
+
+}
+END_TEST
+
+START_TEST(strpbrk_4)
+{
+#line 1688
+char buf1[10] = "ABCCDEFG";
+ck_assert_ptr_null(strpbrk(buf1,"55555"));
+ck_assert_ptr_null(s21_strpbrk(buf1,"55555"));
+
+}
+END_TEST
+
+START_TEST(strpbrk_5)
+{
+#line 1693
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(strpbrk(buf1,buf1+3),s21_strpbrk(buf1,buf1+3));
+
+}
+END_TEST
+
+START_TEST(strpbrk_6)
+{
+#line 1697
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_ptr_null(strpbrk(buf1,""));
+ck_assert_ptr_null(s21_strpbrk(buf1,""));
+
+}
+END_TEST
+
+START_TEST(strpbrk_7)
+{
+#line 1702
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_ptr_null(strpbrk(buf1,S21_NULL));
+ck_assert_ptr_null(s21_strpbrk(buf1,S21_NULL));
+
+}
+END_TEST
+
+START_TEST(strrchr_1)
+{
+#line 1707
+char buf1[10] = "ABCCDEFG";
+ck_assert_str_eq(strrchr(buf1,'D'),s21_strrchr(buf1,'D'));
+
+}
+END_TEST
+
+START_TEST(strrchr_2)
+{
+#line 1711
+char buf1[10] = "";
+ck_assert_ptr_null(strrchr(buf1,'f'));
+ck_assert_ptr_null(s21_strrchr(buf1,'f'));
+
+}
+END_TEST
+
+START_TEST(strrchr_3)
+{
+#line 1716
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(strrchr(buf1,'j'),s21_strrchr(buf1,'j'));
+
+}
+END_TEST
+
+START_TEST(strrchr_4)
+{
+#line 1720
+char buf1[10] = "ABCCDEFG";
+ck_assert_ptr_null(strrchr(buf1,'5'));
+ck_assert_ptr_null(s21_strrchr(buf1,'5'));
+
+}
+END_TEST
+
+START_TEST(strrchr_5)
+{
+#line 1725
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(strrchr(buf1,0),s21_strrchr(buf1,0));
+
+}
+END_TEST
+
+START_TEST(strstr_1)
+{
+#line 1729
+char buf1[14] = "ABCCDEFG WORLD";
+ck_assert_str_eq(strstr(buf1, "WORLD"), s21_strstr(buf1, "WORLD"));
+
+}
+END_TEST
+
+START_TEST(strstr_2)
+{
+#line 1733
+char buf1[10] = "";
+ck_assert_ptr_null(strstr(buf1, "world"));
+ck_assert_ptr_null(s21_strstr(buf1, "world"));
+
+}
+END_TEST
+
+START_TEST(strstr_3)
+{
+#line 1738
+char buf1[11] = "Hello World";
+ck_assert_str_eq(strstr(buf1, "Wo"), s21_strstr(buf1, "Wo"));
+
+}
+END_TEST
+
+START_TEST(strstr_4)
+{
+#line 1742
+char buf1[11] = "Hello World";
+ck_assert_ptr_null(strstr(buf1, "Yes"));
+ck_assert_ptr_null(s21_strstr(buf1, "Yes"));
+
+}
+END_TEST
+
+START_TEST(strstr_5)
+{
+#line 1747
+char buf1[11] = "Hello world";
+ck_assert_str_eq(strstr(buf1, " "), s21_strstr(buf1, " "));
 }
 END_TEST
 
@@ -3938,6 +4195,33 @@ int main(void)
     tcase_add_test(tc1_1, strtok_7);
     tcase_add_test(tc1_1, strtok_8);
     tcase_add_test(tc1_1, strtok_9);
+    tcase_add_test(tc1_1, memchr_1);
+    tcase_add_test(tc1_1, memchr_2);
+    tcase_add_test(tc1_1, memchr_3);
+    tcase_add_test(tc1_1, memchr_4);
+    tcase_add_test(tc1_1, memchr_5);
+    tcase_add_test(tc1_1, strchr_1);
+    tcase_add_test(tc1_1, strchr_2);
+    tcase_add_test(tc1_1, strchr_3);
+    tcase_add_test(tc1_1, strchr_4);
+    tcase_add_test(tc1_1, strchr_5);
+    tcase_add_test(tc1_1, strpbrk_1);
+    tcase_add_test(tc1_1, strpbrk_2);
+    tcase_add_test(tc1_1, strpbrk_3);
+    tcase_add_test(tc1_1, strpbrk_4);
+    tcase_add_test(tc1_1, strpbrk_5);
+    tcase_add_test(tc1_1, strpbrk_6);
+    tcase_add_test(tc1_1, strpbrk_7);
+    tcase_add_test(tc1_1, strrchr_1);
+    tcase_add_test(tc1_1, strrchr_2);
+    tcase_add_test(tc1_1, strrchr_3);
+    tcase_add_test(tc1_1, strrchr_4);
+    tcase_add_test(tc1_1, strrchr_5);
+    tcase_add_test(tc1_1, strstr_1);
+    tcase_add_test(tc1_1, strstr_2);
+    tcase_add_test(tc1_1, strstr_3);
+    tcase_add_test(tc1_1, strstr_4);
+    tcase_add_test(tc1_1, strstr_5);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);
