@@ -8,8 +8,9 @@ clean:
 	rm -rf ./ne_ploho/horosho/*; \
 	rm -rf ./ne_ploho/*; \
 	rm -rf ./ne_ploho; \
-	rm a.out; \
+	rm a.out test.out; \
 	rm -rf ./*.o ./*.a ./*.out
+	rm ./test.out
 
 
 checkmk:
@@ -38,9 +39,7 @@ gcov_report:
 gcov_linux:
 	gcc -Wall -Werror -Wextra test.c s21_string.c -fprofile-arcs -ftest-coverage -pthread -lcheck_pic -lrt  -lm -lsubunit  -o mid_html_res;\
 	./mid_html_res; \
-
-clean:
-	rm -rf unit_tests *.o *.a html_report *.css *.html mid_html_res *.gcda *.gcno test.c
+	gcovr -r . --html --html-details -o html_report
 
 
 lcov: 
