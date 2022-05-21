@@ -3,7 +3,6 @@
 #include <string.h>
 #include "s21_string.h"
 
-
 #test memcpy_1
 char buf1[50] = "It's check memcpy - ok", buf2[50];
 ck_assert_str_eq(memcpy(buf2,buf1,21),s21_memcpy(buf2,buf1,21));
@@ -1624,3 +1623,116 @@ ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
 char *token = " ";
 ck_assert_ptr_null(strtok(NULL, token));
 ck_assert_ptr_null(s21_strtok(NULL, token));
+
+
+
+#test memchr_1
+char buf1[10] = "ABCCDEFG";
+ck_assert_str_eq(memchr(buf1,'D',8),s21_memchr(buf1,'D',8));
+
+#test memchr_2
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_ptr_null(memchr(buf1,0,8));
+ck_assert_ptr_null(s21_memchr(buf1,0,8));
+
+#test memchr_3
+char buf1[10] = "ABCCDEFG";
+ck_assert_ptr_null(memchr(buf1,'R',20));
+ck_assert_ptr_null(s21_memchr(buf1,'R',20));
+
+#test memchr_4
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(memchr(buf1,'f',15),s21_memchr(buf1,'f',15));
+
+#test memchr_5
+char buf1[10] = "";
+ck_assert_ptr_null(memchr(buf1,'f',0));
+ck_assert_ptr_null(s21_memchr(buf1,'f',0));
+
+#test strchr_1
+char buf1[10] = "ABCCDEFG";
+ck_assert_str_eq(strchr(buf1,'D'),s21_strchr(buf1,'D'));
+
+#test strchr_2
+char buf1[10] = "";
+ck_assert_ptr_null(strchr(buf1,'f'));
+ck_assert_ptr_null(s21_strchr(buf1,'f'));
+
+#test strchr_3
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(strchr(buf1,'f'),s21_strchr(buf1,'f'));
+
+#test strchr_4
+char buf1[10] = "12";
+ck_assert_str_eq(strchr(buf1,0),s21_strchr(buf1,0));
+
+#test strchr_5
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(strchr(buf1,'j'),s21_strchr(buf1,'j'));
+
+#test strpbrk_1
+char buf1[10] = "ABCCDEFG";
+ck_assert_str_eq(strpbrk(buf1,"GEB"),s21_strpbrk(buf1,"GEB"));
+
+#test strpbrk_2
+char buf1[10] = "";
+ck_assert_ptr_null(strpbrk(buf1,"GEB"));
+ck_assert_ptr_null(s21_strpbrk(buf1,"GEB"));
+
+#test strpbrk_3
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(strpbrk(buf1,"wqaf"),s21_strpbrk(buf1,"wqaf"));
+
+#test strpbrk_4
+char buf1[10] = "ABCCDEFG";
+ck_assert_ptr_null(strpbrk(buf1,"55555"));
+ck_assert_ptr_null(s21_strpbrk(buf1,"55555"));
+
+#test strpbrk_5
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(strpbrk(buf1,buf1+3),s21_strpbrk(buf1,buf1+3));
+
+#test strrchr_1
+char buf1[10] = "ABCCDEFG";
+ck_assert_str_eq(strrchr(buf1,'D'),s21_strrchr(buf1,'D'));
+
+#test strrchr_2
+char buf1[10] = "";
+ck_assert_ptr_null(strrchr(buf1,'f'));
+ck_assert_ptr_null(s21_strrchr(buf1,'f'));
+
+#test strrchr_3
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(strrchr(buf1,'j'),s21_strrchr(buf1,'j'));
+
+#test strrchr_4
+char buf1[10] = "ABCCDEFG";
+ck_assert_ptr_null(strrchr(buf1,'5'));
+ck_assert_ptr_null(s21_strrchr(buf1,'5'));
+
+#test strrchr_5
+char buf1[25] = "ABCCDEFG fjehiedjhf";
+ck_assert_str_eq(strrchr(buf1,0),s21_strrchr(buf1,0));
+
+#test strstr_1
+char buf1[14] = "ABCCDEFG WORLD";
+ck_assert_str_eq(strstr(buf1, "WORLD"), s21_strstr(buf1, "WORLD"));
+
+#test strstr_2
+char buf1[10] = "";
+ck_assert_ptr_null(strstr(buf1, "world"));
+ck_assert_ptr_null(s21_strstr(buf1, "world"));
+
+#test strstr_3
+char buf1[11] = "Hello World";
+ck_assert_str_eq(strstr(buf1, "Wo"), s21_strstr(buf1, "Wo"));
+
+#test strstr_4
+char buf1[11] = "Hello World";
+ck_assert_ptr_null(strstr(buf1, "Yes"));
+ck_assert_ptr_null(s21_strstr(buf1, "Yes"));
+
+#test strstr_5
+char buf1[11] = "Hello world";
+ck_assert_str_eq(strstr(buf1, " "), s21_strstr(buf1, " "));
+

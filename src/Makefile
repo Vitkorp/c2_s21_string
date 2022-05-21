@@ -1,4 +1,5 @@
-all: s21_string.a test gcov_report
+
+all: checkmk s21_string.a test gcov_report
 
 rebuild: clean all
 
@@ -37,7 +38,9 @@ gcov_report:
 gcov_linux:
 	gcc -Wall -Werror -Wextra test.c s21_string.c -fprofile-arcs -ftest-coverage -pthread -lcheck_pic -lrt  -lm -lsubunit  -o mid_html_res;\
 	./mid_html_res; \
-	gcovr -r . --html --html-details -o html_report
+
+clean:
+	rm -rf unit_tests *.o *.a html_report *.css *.html mid_html_res *.gcda *.gcno test.c
 
 
 lcov: 
@@ -63,4 +66,4 @@ lcov_report:
 	genhtml ne_ploho/ploho -o ne_ploho/horosho
 	open ne_ploho/horosho/index.html
 
-rebuild: clean test gcov_report
+

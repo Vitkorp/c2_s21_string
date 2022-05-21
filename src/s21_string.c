@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 
+
 int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
     const char* string1 = (char*)str1;
     const char* string2 = (char*)str2;
@@ -32,6 +33,19 @@ void *s21_memcpy(void *dest, const void *src, s21_size_t n) {
         *to++ = *from++;
     }
     return dest;
+}
+
+void *s21_memchr(const void *str, int c, s21_size_t n) {
+    const char *src = (const char *)str;
+    int flag = 0;
+    while (n-- > 0) {
+        if (*src == c) {
+            flag = 1;
+            break;
+        }
+        src++;
+    }
+    return flag ? (char *)src : S21_NULL;
 }
 
 // копирует n сивловов из src в dest. whithout overlap
@@ -98,6 +112,7 @@ int s21_strcmp(const char *str1, const char *str2) {
     return flag;
 }
 
+
 int s21_strncmp(const char *str1, const char *str2, s21_size_t n) {
     int flag = 0;
     s21_size_t i = 0;
@@ -114,6 +129,40 @@ int s21_strncmp(const char *str1, const char *str2, s21_size_t n) {
         flag = ((int)str2[i] - (int)str1[i]) * (-1);
     }
     return flag;
+}
+
+char *s21_strchr(const char *str, int c) {
+    s21_size_t i = 0;
+    int found = 0;
+    while (str[i] && str[i] != c){
+        i++;
+        if (str[i] == c) {
+            found = 1;
+            break;
+        }
+    }
+    return found ? ((char *)str + i) : S21_NULL;
+}
+
+char *s21_strpbrk(const char *str1, const char *str2) {
+    const char *scanp;
+    int c, sc;
+    char * _res = ""; 
+    int exit_code = 0;
+    while ((c = *str1++) != 0) {
+        for (scanp = str2; (sc = *scanp++) != '\0';) {
+            if (sc == c) {
+                _res = ((char*)(str1 - 1));
+                exit_code = 1;
+                break;
+            }
+
+        }
+        if (exit_code == 1){
+            break;
+        }
+    }
+    return exit_code ? _res : S21_NULL;
 }
 
 // Копирует строку, на которую указывает src, в dest.
@@ -144,6 +193,7 @@ char *s21_strncpy(char *dest, const char *src, s21_size_t n) {
     return dest;
 }
 
+
 char *s21_strncat(char *dest, const char *src, s21_size_t n) {
     char *tmp = dest;
     int i = s21_strlen(dest), j = 0;
@@ -158,7 +208,6 @@ char *s21_strncat(char *dest, const char *src, s21_size_t n) {
             }
         }
     }
-
     return dest;
 }
 
@@ -242,6 +291,26 @@ s21_size_t s21_strlen(const char *str) {
     return _len;
 }
 
+char *s21_strstr(const char *haystack, const char *needle) {
+    const size_t needle_len = s21_strlen(needle);
+    char *res = "";
+    int exit_code = 0;
+    while (*haystack != '\0') {
+        if (strncmp(haystack, needle, needle_len) == 0) {
+            res = (char *)haystack;
+            exit_code = 1;
+            break;
+        }
+        else {
+            haystack++;
+        }
+    }
+
+    return exit_code ? res : S21_NULL;
+}
+
+
+
 // Расчет длины начального сегмента str1, полностью состоящий из str2
 
 s21_size_t s21_strspn(const char *str1, const char *str2) {
@@ -264,56 +333,15 @@ s21_size_t s21_strspn(const char *str1, const char *str2) {
     return len;
 }
 
-
-// void *s21_to_upper(const char *str) {
-//     int flag;
-//     char dest[strlen(str)];
-//     if (str[0] == '\0') {
-//         flag = 0;
-//     } else {
-//         s21_strcpy(dest, str);
-//         for (s21_size_t j = 0; j < strlen(str); j++) {
-//             if (('a' <= dest[j] && 'z' >= dest[j])) {
-//                 dest[j] += 'A' - 'a';
-//             }
-//         }
-//         flag = 1;
-//     }
-//     switch (flag)
-//     {
-//     case 1:
-//         char *copy_str = dest;
-//         return  copy_str;
-    
-//     default:
-//         return NULL;
-//     }
-    
-// }
-
-
-// void *s21_to_lower(const char *str) {
-//     int flag;
-//     char dest[strlen(str)];
-//     if (str[0] == '\0') {
-//         flag = 0;
-//     } else {
-//         s21_strcpy(dest, str);
-//         for (s21_size_t j = 0; j < strlen(str); j++) {
-//             if (('A' <= dest[j] && 'Z' >= dest[j])) {
-//                 dest[j] += 'a' - 'A';
-//             }
-//         }
-//         flag = 1;
-//     }
-//     switch (flag)
-//     {
-//     case 1:
-//         char *copy_str = dest;
-//         return  copy_str;
-    
-//     default:
-//         return NULL;
-//     }
-// }
+char *s21_strrchr(const char *str, int c) {
+    int found = 0;
+    s21_size_t i;
+    for (i = s21_strlen(str); i > 0; i--) {
+        if (str[i] == c) {
+            found = 1;
+            break;
+        }
+    }
+    return found ? ((char *)str + i) : S21_NULL;
+}
 
