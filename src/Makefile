@@ -1,4 +1,4 @@
-all: clean checkmk gcov_linux
+all: clean test gcov_report
 
 clean:
 	rm mid_html_res *.gcda *.gcnomake *.html *.css html_report test *.gcno; \
