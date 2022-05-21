@@ -11,9 +11,10 @@
 #include <string.h>
 #include "s21_string.h"
 
+
 START_TEST(memcpy_1)
 {
-#line 7
+#line 8
 char buf1[50] = "It's check memcpy - ok", buf2[50];
 ck_assert_str_eq(memcpy(buf2,buf1,21),s21_memcpy(buf2,buf1,21));
 
@@ -22,7 +23,7 @@ END_TEST
 
 START_TEST(memcpy_2)
 {
-#line 11
+#line 12
 char buf1[50] = "Hello world\0", buf2[50];
 ck_assert_str_eq(memcpy(buf2,buf1,12),s21_memcpy(buf2,buf1,12));
 
@@ -31,7 +32,7 @@ END_TEST
 
 START_TEST(memcpy_3)
 {
-#line 15
+#line 16
 char buf1[50] = "Hello w\0orld", buf2[50];
 ck_assert_str_eq(memcpy(buf2,buf1,10),s21_memcpy(buf2,buf1,10));
 
@@ -40,7 +41,7 @@ END_TEST
 
 START_TEST(memcpy_4)
 {
-#line 19
+#line 20
 char buf1[50] = "a\n\0", buf2[50];
 ck_assert_str_eq(memcpy(buf2,buf1,3),s21_memcpy(buf2,buf1,3));
 
@@ -49,7 +50,7 @@ END_TEST
 
 START_TEST(memcpy_5)
 {
-#line 23
+#line 24
 char buf1[50] = "Hel\0lo w\0orld", buf2[50];
 ck_assert_str_eq(memcpy(buf2,buf1,5),s21_memcpy(buf2,buf1,5));
 
@@ -58,7 +59,7 @@ END_TEST
 
 START_TEST(memmove_1)
 {
-#line 27
+#line 28
 char src[] = "Hello world\0";
 char dest[] = "rembo";
 ck_assert_str_eq(memmove(dest,src,2),s21_memmove(dest,src,2));
@@ -68,7 +69,7 @@ END_TEST
 
 START_TEST(memmove_2)
 {
-#line 32
+#line 33
 char src[] = "Hello world\0";
 char dest[] = "a\n\0";
 ck_assert_str_eq(memmove(dest,src,1),s21_memmove(dest,src,1));
@@ -78,7 +79,7 @@ END_TEST
 
 START_TEST(memmove_3)
 {
-#line 37
+#line 38
 char src[] = "Hel\0lo world\0";
 char dest[] = "rembo wave sorry";
 ck_assert_str_eq(memmove(dest,src,6),s21_memmove(dest,src,6));
@@ -88,7 +89,7 @@ END_TEST
 
 START_TEST(memmove_4)
 {
-#line 42
+#line 43
 char src[] = " \n\0";
 char dest[] = "rembo hello";
 ck_assert_str_eq(memmove(dest,src,1),s21_memmove(dest,src,1));
@@ -98,7 +99,7 @@ END_TEST
 
 START_TEST(memmove_5)
 {
-#line 47
+#line 48
 char src[] = "Hel\nlo \0world\0";
 char dest[] = "salam wave";
 ck_assert_str_eq(memmove(dest,src,6),s21_memmove(dest,src,6));
@@ -108,7 +109,7 @@ END_TEST
 
 START_TEST(memset_1)
 {
-#line 52
+#line 53
 char str[] = "salam aleikum memset!n";
 ck_assert_str_eq(memset(str,'*',12),s21_memset(str,'*',12));
 
@@ -117,7 +118,7 @@ END_TEST
 
 START_TEST(memset_2)
 {
-#line 56
+#line 57
 char str[] = "Hello \0world\0";
 ck_assert_str_eq(memset(str,'*',9),s21_memset(str,'*',9));
 
@@ -126,7 +127,7 @@ END_TEST
 
 START_TEST(memset_3)
 {
-#line 60
+#line 61
 char str[] = "Hell\no \0world\0";
 ck_assert_str_eq(memset(str,'*',8),s21_memset(str,'*',8));
 
@@ -135,7 +136,7 @@ END_TEST
 
 START_TEST(memset_4)
 {
-#line 64
+#line 65
 char str[] = "a\n\0";
 ck_assert_str_eq(memset(str,'*',2),s21_memset(str,'*',2));
 
@@ -144,7 +145,7 @@ END_TEST
 
 START_TEST(memset_5)
 {
-#line 68
+#line 69
 char str[] = "\n\0";
 ck_assert_str_eq(memset(str,'*',2),s21_memset(str,'*',2));
 
@@ -153,7 +154,7 @@ END_TEST
 
 START_TEST(strncpy_1)
 {
-#line 72
+#line 73
 char src[40] = "This is interesting joke";
 char dest[100];
 ck_assert_str_eq(strncpy(dest,src,26),s21_strncpy(dest,src,26));
@@ -163,7 +164,7 @@ END_TEST
 
 START_TEST(strncpy_2)
 {
-#line 77
+#line 78
 char src[40] = "Hello world\n\0";
 char dest[100];
 ck_assert_str_eq(strncpy(dest,src,13),s21_strncpy(dest,src,13));
@@ -173,7 +174,7 @@ END_TEST
 
 START_TEST(strncpy_3)
 {
-#line 82
+#line 83
 char src[40] = "a\n\0";
 char dest[100];
 ck_assert_str_eq(strncpy(dest,src,2),s21_strncpy(dest,src,2));
@@ -183,7 +184,7 @@ END_TEST
 
 START_TEST(strncpy_4)
 {
-#line 87
+#line 88
 char src[40] = "Hello world\0";
 char dest[100];
 ck_assert_str_eq(strncpy(dest,src,12),s21_strncpy(dest,src,12));
@@ -193,7 +194,7 @@ END_TEST
 
 START_TEST(strncpy_5)
 {
-#line 92
+#line 93
 char src[40] = " \n\0";
 char dest[100];
 ck_assert_str_eq(strncpy(dest,src,2),s21_strncpy(dest,src,2));
@@ -203,7 +204,7 @@ END_TEST
 
 START_TEST(strcpy_1)
 {
-#line 97
+#line 98
 char src[] = "Hello world\0";
 char dest[] = "abcdefghijklm";
 ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
@@ -213,7 +214,7 @@ END_TEST
 
 START_TEST(strcpy_2)
 {
-#line 102
+#line 103
 char src[] = "Hello world\n\0";
 char dest[] = "abcdefghijklm";
 ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
@@ -223,7 +224,7 @@ END_TEST
 
 START_TEST(strcpy_3)
 {
-#line 107
+#line 108
 char src[] = "a\n\0";
 char dest[] = "ab";
 ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
@@ -233,7 +234,7 @@ END_TEST
 
 START_TEST(strcpy_4)
 {
-#line 112
+#line 113
 char src[] = " \0";
 char dest[] = "ab";
 ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
@@ -243,7 +244,7 @@ END_TEST
 
 START_TEST(strcpy_5)
 {
-#line 117
+#line 118
 char src[] = "hello\0 russian";
 char dest[] = "abcdefghijklmnfff";
 ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
@@ -253,7 +254,7 @@ END_TEST
 
 START_TEST(memcmp_1)
 {
-#line 122
+#line 123
 const char* str1 = "1234567890";
 const char* str2 = "1234567890";
 ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
@@ -263,7 +264,7 @@ END_TEST
 
 START_TEST(memcmp_2)
 {
-#line 127
+#line 128
 const char* str1 = "123456x7890";
 const char* str2 = "1234567890";
 ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
@@ -273,7 +274,7 @@ END_TEST
 
 START_TEST(memcmp_3)
 {
-#line 132
+#line 133
 const char* str1 = "1234567890";
 const char* str2 = "12345678y90";
 ck_assert_int_eq(memcmp(str1,str2,5),s21_memcmp(str1,str2,5));
@@ -283,7 +284,7 @@ END_TEST
 
 START_TEST(memcmp_4)
 {
-#line 137
+#line 138
 const char* str1 = "1234567890";
 const char* str2 = "\n";
 ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
@@ -293,7 +294,7 @@ END_TEST
 
 START_TEST(memcmp_5)
 {
-#line 142
+#line 143
 const char* str1 = "hello";
 const char* str2 = "hello world";
 ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
@@ -303,7 +304,7 @@ END_TEST
 
 START_TEST(strcmp_1)
 {
-#line 147
+#line 148
 const char* str1 = "123456789";
 const char* str2 = "123456789";
 ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
@@ -313,7 +314,7 @@ END_TEST
 
 START_TEST(strcmp_2)
 {
-#line 152
+#line 153
 const char* str1 = "12345";
 const char* str2 = "1234567890";
 ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
@@ -323,7 +324,7 @@ END_TEST
 
 START_TEST(strcmp_3)
 {
-#line 157
+#line 158
 const char* str1 = "1234567890";
 const char* str2 = "1234";
 ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
@@ -333,7 +334,7 @@ END_TEST
 
 START_TEST(strcmp_4)
 {
-#line 162
+#line 163
 const char* str1 = "/n";
 const char* str2 = "1234";
 ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
@@ -343,7 +344,7 @@ END_TEST
 
 START_TEST(strcmp_5)
 {
-#line 167
+#line 168
 const char* str1 = "/n";
 const char* str2 = "1234";
 ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
@@ -353,7 +354,7 @@ END_TEST
 
 START_TEST(strncmp_1)
 {
-#line 172
+#line 173
 const char* str1 = "123456789";
 const char* str2 = "123456789";
 ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
@@ -363,7 +364,7 @@ END_TEST
 
 START_TEST(strncmp_2)
 {
-#line 177
+#line 178
 const char* str1 = "1234x56789";
 const char* str2 = "123456789";
 ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
@@ -373,7 +374,7 @@ END_TEST
 
 START_TEST(strncmp_3)
 {
-#line 182
+#line 183
 const char* str1 = "123456789";
 const char* str2 = "123456y789";
 ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
@@ -383,7 +384,7 @@ END_TEST
 
 START_TEST(strncmp_4)
 {
-#line 187
+#line 188
 const char* str1 = "123456789";
 const char* str2 = "\n";
 ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
@@ -393,7 +394,7 @@ END_TEST
 
 START_TEST(strncmp_5)
 {
-#line 192
+#line 193
 const char* str1 = "123456789";
 const char* str2 = "123456y789";
 ck_assert_int_eq(strncmp(str1,str2,5),s21_strncmp(str1,str2,5));
@@ -403,7 +404,7 @@ END_TEST
 
 START_TEST(strlen_1)
 {
-#line 197
+#line 198
 const char* str1 = "ABCDEF";
 ck_assert_int_eq(strlen(str1),s21_strlen(str1));
 
@@ -412,7 +413,7 @@ END_TEST
 
 START_TEST(strlen_2)
 {
-#line 201
+#line 202
 const char* str1 = "Школа 21";
 ck_assert_int_eq(strlen(str1),s21_strlen(str1));
 
@@ -421,7 +422,7 @@ END_TEST
 
 START_TEST(strlen_3)
 {
-#line 205
+#line 206
 const char* str1 = "\0";
 ck_assert_int_eq(strlen(str1),s21_strlen(str1));
 
@@ -430,7 +431,7 @@ END_TEST
 
 START_TEST(strlen_4)
 {
-#line 209
+#line 210
 const char* str1 = "\n";
 ck_assert_int_eq(strlen(str1),s21_strlen(str1));
 
@@ -439,7 +440,7 @@ END_TEST
 
 START_TEST(strlen_5)
 {
-#line 213
+#line 214
 const char* str1 = "\0\n";
 ck_assert_int_eq(strlen(str1),s21_strlen(str1));
 
@@ -448,7 +449,7 @@ END_TEST
 
 START_TEST(strlen_6)
 {
-#line 217
+#line 218
 const char* str1 = "\"";
 ck_assert_int_eq(strlen(str1),s21_strlen(str1));
 
@@ -457,7 +458,7 @@ END_TEST
 
 START_TEST(strlen_7)
 {
-#line 221
+#line 222
 const char* str1 = "\327";
 ck_assert_int_eq(strlen(str1),s21_strlen(str1));
 
@@ -468,7 +469,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_1)
 {
-#line 227
+#line 228
 ck_assert_str_ne(s21_strerror(0), strerror(0));
 
 }
@@ -476,7 +477,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_2)
 {
-#line 230
+#line 231
 ck_assert_str_eq(s21_strerror(1), strerror(1));
 
 }
@@ -484,7 +485,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_3)
 {
-#line 233
+#line 234
 ck_assert_str_eq(s21_strerror(2), strerror(2));
 
 }
@@ -492,7 +493,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_4)
 {
-#line 236
+#line 237
 ck_assert_str_eq(s21_strerror(3), strerror(3));
 
 }
@@ -500,7 +501,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_5)
 {
-#line 239
+#line 240
 ck_assert_str_eq(s21_strerror(4), strerror(4));
 
 }
@@ -508,7 +509,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_6)
 {
-#line 242
+#line 243
 ck_assert_str_eq(s21_strerror(5), strerror(5));
 
 }
@@ -516,7 +517,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_7)
 {
-#line 245
+#line 246
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(6), strerror(6));
 #else 
@@ -528,7 +529,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_8)
 {
-#line 252
+#line 253
 ck_assert_str_eq(s21_strerror(7), strerror(7));
 
 }
@@ -536,7 +537,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_9)
 {
-#line 255
+#line 256
 ck_assert_str_eq(s21_strerror(8), strerror(8));
 
 }
@@ -544,7 +545,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_10)
 {
-#line 258
+#line 259
 ck_assert_str_eq(s21_strerror(9), strerror(9));
 
 }
@@ -552,7 +553,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_11)
 {
-#line 261
+#line 262
 ck_assert_str_eq(s21_strerror(10), strerror(10));
 
 }
@@ -560,7 +561,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_12)
 {
-#line 264
+#line 265
 ck_assert_str_eq(s21_strerror(11), strerror(11));
 
 }
@@ -568,7 +569,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_13)
 {
-#line 267
+#line 268
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(12), strerror(12));
 #else
@@ -580,7 +581,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_14)
 {
-#line 274
+#line 275
 ck_assert_str_eq(s21_strerror(13), strerror(13));
 
 }
@@ -588,7 +589,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_15)
 {
-#line 277
+#line 278
 ck_assert_str_eq(s21_strerror(14), strerror(14));
 
 }
@@ -596,7 +597,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_16)
 {
-#line 280
+#line 281
 ck_assert_str_ne(s21_strerror(15), strerror(15));
 
 }
@@ -604,7 +605,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_17)
 {
-#line 283
+#line 284
 ck_assert_str_eq(s21_strerror(16), strerror(16));
 
 }
@@ -612,7 +613,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_18)
 {
-#line 286
+#line 287
 ck_assert_str_eq(s21_strerror(17), strerror(17));
 
 }
@@ -620,7 +621,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_19)
 {
-#line 289
+#line 290
 ck_assert_str_eq(s21_strerror(18), strerror(18));
 
 }
@@ -628,7 +629,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_20)
 {
-#line 292
+#line 293
 ck_assert_str_eq(s21_strerror(19), strerror(19));
 
 }
@@ -636,7 +637,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_21)
 {
-#line 295
+#line 296
 ck_assert_str_eq(s21_strerror(20), strerror(20));
 
 }
@@ -644,7 +645,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_22)
 {
-#line 298
+#line 299
 ck_assert_str_eq(s21_strerror(21), strerror(21));
 
 }
@@ -652,7 +653,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_23)
 {
-#line 301
+#line 302
 ck_assert_str_eq(s21_strerror(22), strerror(22));
 
 }
@@ -660,7 +661,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_24)
 {
-#line 304
+#line 305
 ck_assert_str_eq(s21_strerror(23), strerror(23));
 
 }
@@ -668,7 +669,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_25)
 {
-#line 307
+#line 308
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(24), strerror(24));
 #else
@@ -680,7 +681,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_26)
 {
-#line 314
+#line 315
 ck_assert_str_eq(s21_strerror(25), strerror(25));
 
 }
@@ -688,7 +689,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_27)
 {
-#line 317
+#line 318
 ck_assert_str_eq(s21_strerror(26), strerror(26));
 
 }
@@ -696,7 +697,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_28)
 {
-#line 320
+#line 321
 ck_assert_str_eq(s21_strerror(27), strerror(27));
 
 }
@@ -704,7 +705,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_29)
 {
-#line 323
+#line 324
 ck_assert_str_eq(s21_strerror(28), strerror(28));
 
 }
@@ -712,7 +713,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_30)
 {
-#line 326
+#line 327
 ck_assert_str_eq(s21_strerror(29), strerror(29));
 
 }
@@ -720,7 +721,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_31)
 {
-#line 329
+#line 330
 ck_assert_str_eq(s21_strerror(30), strerror(30));
 
 }
@@ -728,7 +729,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_32)
 {
-#line 332
+#line 333
 ck_assert_str_eq(s21_strerror(31), strerror(31));
 
 }
@@ -736,7 +737,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_33)
 {
-#line 335
+#line 336
 ck_assert_str_eq(s21_strerror(32), strerror(32));
 
 }
@@ -744,7 +745,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_34)
 {
-#line 338
+#line 339
 ck_assert_str_eq(s21_strerror(33), strerror(33));
 
 }
@@ -752,7 +753,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_35)
 {
-#line 341
+#line 342
 ck_assert_str_eq(s21_strerror(34), strerror(34));
 
 }
@@ -760,7 +761,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_36)
 {
-#line 344
+#line 345
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(35), strerror(35));
 #else
@@ -772,7 +773,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_37)
 {
-#line 351
+#line 352
 ck_assert_str_eq(s21_strerror(36), strerror(36));
 
 }
@@ -780,7 +781,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_38)
 {
-#line 354
+#line 355
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(37), strerror(37));
 #else
@@ -792,7 +793,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_39)
 {
-#line 361
+#line 362
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(38), strerror(38));
 #else
@@ -804,7 +805,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_40)
 {
-#line 368
+#line 369
 ck_assert_str_eq(s21_strerror(39), strerror(39));
 
 }
@@ -812,7 +813,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_41)
 {
-#line 371
+#line 372
 ck_assert_str_eq(s21_strerror(40), strerror(40));
 
 }
@@ -820,7 +821,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_42)
 {
-#line 374
+#line 375
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(41), strerror(41));
 #else
@@ -832,7 +833,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_43)
 {
-#line 381
+#line 382
 ck_assert_str_eq(s21_strerror(42), strerror(42));
 
 }
@@ -840,7 +841,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_44)
 {
-#line 384
+#line 385
 ck_assert_str_eq(s21_strerror(43), strerror(43));
 
 }
@@ -848,7 +849,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_45)
 {
-#line 387
+#line 388
 ck_assert_str_ne(s21_strerror(44), strerror(44));
 
 }
@@ -856,7 +857,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_46)
 {
-#line 390
+#line 391
 ck_assert_str_ne(s21_strerror(45), strerror(45));
 
 }
@@ -864,7 +865,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_47)
 {
-#line 393
+#line 394
 ck_assert_str_ne(s21_strerror(46), strerror(46));
 
 }
@@ -872,7 +873,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_48)
 {
-#line 396
+#line 397
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(47), strerror(47));
 #else
@@ -884,7 +885,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_49)
 {
-#line 403
+#line 404
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(48), strerror(48));
 #else
@@ -896,7 +897,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_50)
 {
-#line 410
+#line 411
 ck_assert_str_ne(s21_strerror(49), strerror(49));
 
 }
@@ -904,7 +905,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_51)
 {
-#line 413
+#line 414
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(50), strerror(50));
 #else
@@ -916,7 +917,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_52)
 {
-#line 420
+#line 421
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(51), strerror(51));
 #else
@@ -928,7 +929,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_53)
 {
-#line 427
+#line 428
 ck_assert_str_ne(s21_strerror(52), strerror(52));
 
 }
@@ -936,7 +937,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_54)
 {
-#line 430
+#line 431
 ck_assert_str_ne(s21_strerror(53), strerror(53));
 
 }
@@ -944,7 +945,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_55)
 {
-#line 433
+#line 434
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(54), strerror(54));
 #else
@@ -956,7 +957,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_56)
 {
-#line 440
+#line 441
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(55), strerror(55));
 #else
@@ -968,7 +969,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_57)
 {
-#line 447
+#line 448
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(56), strerror(56));
 #else
@@ -980,7 +981,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_58)
 {
-#line 454
+#line 455
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(57), strerror(57));
 #else
@@ -992,7 +993,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_59)
 {
-#line 461
+#line 462
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(58), strerror(58));
 #else
@@ -1004,7 +1005,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_60)
 {
-#line 468
+#line 469
 ck_assert_str_ne(s21_strerror(59), strerror(59));
 
 }
@@ -1012,7 +1013,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_61)
 {
-#line 471
+#line 472
 ck_assert_str_ne(s21_strerror(60), strerror(60));
 
 }
@@ -1020,7 +1021,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_62)
 {
-#line 474
+#line 475
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(61), strerror(61));
 #else
@@ -1032,7 +1033,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_63)
 {
-#line 481
+#line 482
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(62), strerror(62));
 #else
@@ -1044,7 +1045,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_64)
 {
-#line 488
+#line 489
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(63), strerror(63));
 #else
@@ -1056,7 +1057,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_65)
 {
-#line 495
+#line 496
 ck_assert_str_ne(s21_strerror(64), strerror(64));
 
 }
@@ -1064,7 +1065,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_66)
 {
-#line 498
+#line 499
 ck_assert_str_ne(s21_strerror(65), strerror(65));
 
 }
@@ -1072,7 +1073,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_67)
 {
-#line 501
+#line 502
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(66), strerror(66));
 #else
@@ -1084,7 +1085,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_68)
 {
-#line 508
+#line 509
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(67), strerror(67));
 #else
@@ -1096,7 +1097,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_69)
 {
-#line 515
+#line 516
 ck_assert_str_ne(s21_strerror(68), strerror(68));
 
 }
@@ -1104,7 +1105,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_70)
 {
-#line 518
+#line 519
 ck_assert_str_ne(s21_strerror(69), strerror(69));
 
 }
@@ -1112,7 +1113,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_71)
 {
-#line 521
+#line 522
 ck_assert_str_ne(s21_strerror(70), strerror(70));
 
 }
@@ -1120,7 +1121,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_72)
 {
-#line 524
+#line 525
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(71), strerror(71));
 #else
@@ -1132,7 +1133,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_73)
 {
-#line 531
+#line 532
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(72), strerror(72));
 #else
@@ -1144,7 +1145,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_74)
 {
-#line 538
+#line 539
 ck_assert_str_ne(s21_strerror(73), strerror(73));
 
 }
@@ -1152,7 +1153,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_75)
 {
-#line 541
+#line 542
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(74), strerror(74));
 #else
@@ -1164,7 +1165,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_76)
 {
-#line 548
+#line 549
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(75), strerror(75));
 #else
@@ -1176,7 +1177,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_77)
 {
-#line 555
+#line 556
 ck_assert_str_ne(s21_strerror(76), strerror(76));
 
 }
@@ -1184,7 +1185,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_78)
 {
-#line 558
+#line 559
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(77), strerror(77));
 #else
@@ -1196,7 +1197,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_79)
 {
-#line 565
+#line 566
 ck_assert_str_ne(s21_strerror(78), strerror(78));
 
 }
@@ -1204,7 +1205,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_80)
 {
-#line 568
+#line 569
 ck_assert_str_ne(s21_strerror(79), strerror(79));
 
 }
@@ -1212,7 +1213,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_81)
 {
-#line 571
+#line 572
 ck_assert_str_ne(s21_strerror(80), strerror(80));
 
 }
@@ -1220,7 +1221,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_82)
 {
-#line 574
+#line 575
 ck_assert_str_ne(s21_strerror(81), strerror(81));
 
 }
@@ -1228,7 +1229,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_83)
 {
-#line 577
+#line 578
 ck_assert_str_ne(s21_strerror(82), strerror(82));
 
 }
@@ -1236,7 +1237,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_84)
 {
-#line 580
+#line 581
 ck_assert_str_ne(s21_strerror(83), strerror(83));
 
 }
@@ -1244,7 +1245,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_85)
 {
-#line 583
+#line 584
 ck_assert_str_ne(s21_strerror(84), strerror(84));
 
 }
@@ -1252,7 +1253,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_86)
 {
-#line 586
+#line 587
 ck_assert_str_ne(s21_strerror(85), strerror(85));
 
 }
@@ -1260,7 +1261,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_87)
 {
-#line 589
+#line 590
 ck_assert_str_ne(s21_strerror(86), strerror(86));
 
 }
@@ -1268,7 +1269,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_88)
 {
-#line 592
+#line 593
 ck_assert_str_ne(s21_strerror(87), strerror(87));
 
 }
@@ -1276,7 +1277,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_89)
 {
-#line 595
+#line 596
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(88), strerror(88));
 #else
@@ -1288,7 +1289,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_90)
 {
-#line 602
+#line 603
 ck_assert_str_eq(s21_strerror(89), strerror(89));
 
 }
@@ -1296,7 +1297,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_91)
 {
-#line 605
+#line 606
 ck_assert_str_eq(s21_strerror(90), strerror(90));
 
 }
@@ -1304,7 +1305,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_92)
 {
-#line 608
+#line 609
 ck_assert_str_eq(s21_strerror(91), strerror(91));
 
 }
@@ -1312,7 +1313,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_93)
 {
-#line 611
+#line 612
 ck_assert_str_eq(s21_strerror(92), strerror(92));
 
 }
@@ -1320,7 +1321,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_94)
 {
-#line 614
+#line 615
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(93), strerror(93));
 #else
@@ -1332,7 +1333,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_95)
 {
-#line 621
+#line 622
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(94), strerror(94));
 #else
@@ -1344,7 +1345,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_96)
 {
-#line 628
+#line 629
 ck_assert_str_eq(s21_strerror(95), strerror(95));
 
 }
@@ -1352,7 +1353,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_97)
 {
-#line 631
+#line 632
 ck_assert_str_ne(s21_strerror(96), strerror(96));
 
 }
@@ -1360,7 +1361,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_98)
 {
-#line 634
+#line 635
 ck_assert_str_eq(s21_strerror(97), strerror(97));
 
 }
@@ -1368,7 +1369,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_99)
 {
-#line 637
+#line 638
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(98), strerror(98));
 #else
@@ -1380,7 +1381,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_100)
 {
-#line 644
+#line 645
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(99), strerror(99));
 #else
@@ -1392,7 +1393,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_101)
 {
-#line 651
+#line 652
 ck_assert_str_eq(s21_strerror(100), strerror(100));
 
 }
@@ -1400,7 +1401,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_102)
 {
-#line 654
+#line 655
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(101), strerror(101));
 #else
@@ -1412,7 +1413,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_103)
 {
-#line 661
+#line 662
 ck_assert_str_eq(s21_strerror(102), strerror(102));
 
 }
@@ -1420,7 +1421,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_104)
 {
-#line 664
+#line 665
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(103), strerror(103));
 #else
@@ -1432,7 +1433,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_105)
 {
-#line 671
+#line 672
 ck_assert_str_eq(s21_strerror(104), strerror(104));
 
 }
@@ -1440,7 +1441,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_106)
 {
-#line 674
+#line 675
 ck_assert_str_eq(s21_strerror(105), strerror(105));
 
 }
@@ -1448,7 +1449,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_107)
 {
-#line 677
+#line 678
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_ne(s21_strerror(106), strerror(106));
 #else
@@ -1460,7 +1461,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_108)
 {
-#line 684
+#line 685
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(107), strerror(107));
 #else
@@ -1472,7 +1473,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_109)
 {
-#line 691
+#line 692
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(108), strerror(108));
 #else
@@ -1484,7 +1485,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_110)
 {
-#line 698
+#line 699
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(109), strerror(109));
 #else
@@ -1496,7 +1497,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_111)
 {
-#line 705
+#line 706
 ck_assert_str_eq(s21_strerror(110), strerror(110));
 
 
@@ -1505,7 +1506,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_112)
 {
-#line 709
+#line 710
 ck_assert_str_eq(s21_strerror(111), strerror(111));
 
 }
@@ -1513,7 +1514,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_113)
 {
-#line 712
+#line 713
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(112), strerror(112));
 #else
@@ -1525,7 +1526,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_114)
 {
-#line 719
+#line 720
 ck_assert_str_eq(s21_strerror(113), strerror(113));
 
 }
@@ -1533,7 +1534,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_115)
 {
-#line 722
+#line 723
 ck_assert_str_eq(s21_strerror(114), strerror(114));
 
 }
@@ -1541,7 +1542,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_116)
 {
-#line 725
+#line 726
 ck_assert_str_eq(s21_strerror(115), strerror(115));
 
 }
@@ -1549,7 +1550,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_117)
 {
-#line 728
+#line 729
 ck_assert_str_eq(s21_strerror(116), strerror(116));
 
 }
@@ -1557,7 +1558,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_118)
 {
-#line 731
+#line 732
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(117), strerror(117));
 #else
@@ -1569,7 +1570,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_119)
 {
-#line 738
+#line 739
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(118), strerror(118));
 #else
@@ -1581,7 +1582,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_120)
 {
-#line 745
+#line 746
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(119), strerror(119));
 #else
@@ -1593,7 +1594,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_121)
 {
-#line 752
+#line 753
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(120), strerror(120));
 #else
@@ -1605,7 +1606,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_122)
 {
-#line 759
+#line 760
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(121), strerror(121));
 #else
@@ -1617,7 +1618,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_123)
 {
-#line 766
+#line 767
 ck_assert_str_eq(s21_strerror(122), strerror(122));
 
 }
@@ -1625,7 +1626,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_124)
 {
-#line 769
+#line 770
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(123), strerror(123));
 #else
@@ -1637,7 +1638,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_125)
 {
-#line 776
+#line 777
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(124), strerror(124));
 #else
@@ -1649,7 +1650,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_126)
 {
-#line 783
+#line 784
 ck_assert_str_eq(s21_strerror(125), strerror(125));
 
 }
@@ -1657,7 +1658,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_127)
 {
-#line 786
+#line 787
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(126), strerror(126));
 #else
@@ -1669,7 +1670,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_128)
 {
-#line 793
+#line 794
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(127), strerror(127));
 #else
@@ -1681,7 +1682,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_129)
 {
-#line 800
+#line 801
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(128), strerror(128));
 #else
@@ -1693,7 +1694,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_130)
 {
-#line 807
+#line 808
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(129), strerror(129));
 #else
@@ -1705,7 +1706,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_131)
 {
-#line 814
+#line 815
 ck_assert_str_eq(s21_strerror(130), strerror(130));
 
 }
@@ -1713,7 +1714,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_132)
 {
-#line 817
+#line 818
 ck_assert_str_eq(s21_strerror(131), strerror(131));
 
 }
@@ -1721,7 +1722,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_133)
 {
-#line 820
+#line 821
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(132), strerror(132));
 #else
@@ -1733,7 +1734,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_134)
 {
-#line 827
+#line 828
 #if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(133), strerror(133));
 #else
@@ -1745,7 +1746,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_135)
 {
-#line 834
+#line 835
 ck_assert_str_eq(s21_strerror(134), strerror(134));
 
 }
@@ -1753,7 +1754,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_136)
 {
-#line 837
+#line 838
 ck_assert_str_eq(s21_strerror(135), strerror(135));
 
 }
@@ -1761,7 +1762,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_137)
 {
-#line 840
+#line 841
 ck_assert_str_eq(s21_strerror(136), strerror(136));
 
 }
@@ -1769,7 +1770,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_138)
 {
-#line 843
+#line 844
 ck_assert_str_eq(s21_strerror(137), strerror(137));
 
 }
@@ -1777,7 +1778,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_139)
 {
-#line 846
+#line 847
 ck_assert_str_eq(s21_strerror(138), strerror(138));
 
 }
@@ -1785,7 +1786,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_140)
 {
-#line 849
+#line 850
 ck_assert_str_eq(s21_strerror(139), strerror(139));
 
 }
@@ -1793,7 +1794,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_141)
 {
-#line 852
+#line 853
 ck_assert_str_eq(s21_strerror(140), strerror(140));
 
 }
@@ -1801,7 +1802,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_142)
 {
-#line 855
+#line 856
 ck_assert_str_eq(s21_strerror(141), strerror(141));
 
 }
@@ -1809,7 +1810,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_143)
 {
-#line 858
+#line 859
 ck_assert_str_eq(s21_strerror(142), strerror(142));
 
 }
@@ -1817,7 +1818,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_144)
 {
-#line 861
+#line 862
 ck_assert_str_eq(s21_strerror(143), strerror(143));
 
 }
@@ -1825,7 +1826,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_145)
 {
-#line 864
+#line 865
 ck_assert_str_eq(s21_strerror(144), strerror(144));
 
 }
@@ -1833,7 +1834,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_146)
 {
-#line 867
+#line 868
 ck_assert_str_eq(s21_strerror(145), strerror(145));
 
 }
@@ -1841,7 +1842,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_147)
 {
-#line 870
+#line 871
 ck_assert_str_eq(s21_strerror(146), strerror(146));
 
 }
@@ -1849,7 +1850,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_148)
 {
-#line 873
+#line 874
 ck_assert_str_eq(s21_strerror(147), strerror(147));
 
 }
@@ -1857,7 +1858,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_149)
 {
-#line 876
+#line 877
 ck_assert_str_eq(s21_strerror(148), strerror(148));
 
 }
@@ -1865,7 +1866,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_150)
 {
-#line 879
+#line 880
 ck_assert_str_eq(s21_strerror(149), strerror(149));
 
 }
@@ -1873,7 +1874,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_151)
 {
-#line 882
+#line 883
 ck_assert_str_eq(s21_strerror(150), strerror(150));
 
 }
@@ -1881,7 +1882,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_152)
 {
-#line 885
+#line 886
 ck_assert_str_eq(s21_strerror(151), strerror(151));
 
 }
@@ -1889,7 +1890,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_153)
 {
-#line 888
+#line 889
 ck_assert_str_eq(s21_strerror(152), strerror(152));
 
 }
@@ -1897,7 +1898,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_154)
 {
-#line 891
+#line 892
 ck_assert_str_eq(s21_strerror(153), strerror(153));
 
 }
@@ -1905,7 +1906,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_155)
 {
-#line 894
+#line 895
 ck_assert_str_eq(s21_strerror(154), strerror(154));
 
 }
@@ -1913,7 +1914,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_156)
 {
-#line 897
+#line 898
 ck_assert_str_eq(s21_strerror(155), strerror(155));
 
 }
@@ -1921,7 +1922,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_157)
 {
-#line 900
+#line 901
 ck_assert_str_eq(s21_strerror(156), strerror(156));
 
 }
@@ -1929,7 +1930,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_158)
 {
-#line 903
+#line 904
 ck_assert_str_eq(s21_strerror(157), strerror(157));
 
 }
@@ -1937,7 +1938,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_159)
 {
-#line 906
+#line 907
 ck_assert_str_eq(s21_strerror(158), strerror(158));
 
 }
@@ -1945,7 +1946,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_160)
 {
-#line 909
+#line 910
 ck_assert_str_eq(s21_strerror(159), strerror(159));
 
 }
@@ -1953,7 +1954,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_161)
 {
-#line 912
+#line 913
 ck_assert_str_eq(s21_strerror(160), strerror(160));
 
 }
@@ -1961,7 +1962,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_162)
 {
-#line 915
+#line 916
 ck_assert_str_eq(s21_strerror(161), strerror(161));
 
 }
@@ -1969,7 +1970,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_163)
 {
-#line 918
+#line 919
 ck_assert_str_eq(s21_strerror(162), strerror(162));
 
 }
@@ -1977,7 +1978,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_164)
 {
-#line 921
+#line 922
 ck_assert_str_eq(s21_strerror(163), strerror(163));
 
 }
@@ -1985,7 +1986,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_165)
 {
-#line 924
+#line 925
 ck_assert_str_eq(s21_strerror(164), strerror(164));
 
 }
@@ -1993,7 +1994,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_166)
 {
-#line 927
+#line 928
 ck_assert_str_eq(s21_strerror(165), strerror(165));
 
 }
@@ -2001,7 +2002,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_167)
 {
-#line 930
+#line 931
 ck_assert_str_eq(s21_strerror(166), strerror(166));
 
 }
@@ -2009,7 +2010,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_168)
 {
-#line 933
+#line 934
 ck_assert_str_eq(s21_strerror(167), strerror(167));
 
 }
@@ -2017,7 +2018,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_169)
 {
-#line 936
+#line 937
 ck_assert_str_eq(s21_strerror(168), strerror(168));
 
 }
@@ -2025,7 +2026,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_170)
 {
-#line 939
+#line 940
 ck_assert_str_eq(s21_strerror(169), strerror(169));
 
 }
@@ -2033,7 +2034,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_171)
 {
-#line 942
+#line 943
 ck_assert_str_eq(s21_strerror(170), strerror(170));
 
 }
@@ -2041,7 +2042,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_172)
 {
-#line 945
+#line 946
 ck_assert_str_eq(s21_strerror(171), strerror(171));
 
 }
@@ -2049,7 +2050,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_173)
 {
-#line 948
+#line 949
 ck_assert_str_eq(s21_strerror(172), strerror(172));
 
 }
@@ -2057,7 +2058,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_174)
 {
-#line 951
+#line 952
 ck_assert_str_eq(s21_strerror(173), strerror(173));
 
 }
@@ -2065,7 +2066,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_175)
 {
-#line 954
+#line 955
 ck_assert_str_eq(s21_strerror(174), strerror(174));
 
 }
@@ -2073,7 +2074,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_176)
 {
-#line 957
+#line 958
 ck_assert_str_eq(s21_strerror(175), strerror(175));
 
 }
@@ -2081,7 +2082,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_177)
 {
-#line 960
+#line 961
 ck_assert_str_eq(s21_strerror(176), strerror(176));
 
 }
@@ -2089,7 +2090,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_178)
 {
-#line 963
+#line 964
 ck_assert_str_eq(s21_strerror(177), strerror(177));
 
 }
@@ -2097,7 +2098,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_179)
 {
-#line 966
+#line 967
 ck_assert_str_eq(s21_strerror(178), strerror(178));
 
 }
@@ -2105,7 +2106,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_180)
 {
-#line 969
+#line 970
 ck_assert_str_eq(s21_strerror(179), strerror(179));
 
 }
@@ -2113,7 +2114,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_181)
 {
-#line 972
+#line 973
 ck_assert_str_eq(s21_strerror(180), strerror(180));
 
 }
@@ -2121,7 +2122,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_182)
 {
-#line 975
+#line 976
 ck_assert_str_eq(s21_strerror(181), strerror(181));
 
 }
@@ -2129,7 +2130,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_183)
 {
-#line 978
+#line 979
 ck_assert_str_eq(s21_strerror(182), strerror(182));
 
 }
@@ -2137,7 +2138,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_184)
 {
-#line 981
+#line 982
 ck_assert_str_eq(s21_strerror(183), strerror(183));
 
 }
@@ -2145,7 +2146,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_185)
 {
-#line 984
+#line 985
 ck_assert_str_eq(s21_strerror(184), strerror(184));
 
 }
@@ -2153,7 +2154,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_186)
 {
-#line 987
+#line 988
 ck_assert_str_eq(s21_strerror(185), strerror(185));
 
 }
@@ -2161,7 +2162,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_187)
 {
-#line 990
+#line 991
 ck_assert_str_eq(s21_strerror(186), strerror(186));
 
 }
@@ -2169,7 +2170,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_188)
 {
-#line 993
+#line 994
 ck_assert_str_eq(s21_strerror(187), strerror(187));
 
 }
@@ -2177,7 +2178,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_189)
 {
-#line 996
+#line 997
 ck_assert_str_eq(s21_strerror(188), strerror(188));
 
 }
@@ -2185,7 +2186,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_190)
 {
-#line 999
+#line 1000
 ck_assert_str_eq(s21_strerror(189), strerror(189));
 
 }
@@ -2193,7 +2194,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_191)
 {
-#line 1002
+#line 1003
 ck_assert_str_eq(s21_strerror(190), strerror(190));
 
 }
@@ -2201,7 +2202,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_192)
 {
-#line 1005
+#line 1006
 ck_assert_str_eq(s21_strerror(191), strerror(191));
 
 }
@@ -2209,7 +2210,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_193)
 {
-#line 1008
+#line 1009
 ck_assert_str_eq(s21_strerror(192), strerror(192));
 
 }
@@ -2217,7 +2218,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_194)
 {
-#line 1011
+#line 1012
 ck_assert_str_eq(s21_strerror(193), strerror(193));
 
 }
@@ -2225,7 +2226,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_195)
 {
-#line 1014
+#line 1015
 ck_assert_str_eq(s21_strerror(194), strerror(194));
 
 }
@@ -2233,7 +2234,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_196)
 {
-#line 1017
+#line 1018
 ck_assert_str_eq(s21_strerror(195), strerror(195));
 
 }
@@ -2241,7 +2242,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_197)
 {
-#line 1020
+#line 1021
 ck_assert_str_eq(s21_strerror(196), strerror(196));
 
 }
@@ -2249,7 +2250,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_198)
 {
-#line 1023
+#line 1024
 ck_assert_str_eq(s21_strerror(197), strerror(197));
 
 }
@@ -2257,7 +2258,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_199)
 {
-#line 1026
+#line 1027
 ck_assert_str_eq(s21_strerror(198), strerror(198));
 
 }
@@ -2265,7 +2266,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_200)
 {
-#line 1029
+#line 1030
 ck_assert_str_eq(s21_strerror(199), strerror(199));
 
 }
@@ -2273,7 +2274,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_201)
 {
-#line 1032
+#line 1033
 ck_assert_str_eq(s21_strerror(200), strerror(200));
 
 }
@@ -2281,7 +2282,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_202)
 {
-#line 1035
+#line 1036
 ck_assert_str_eq(s21_strerror(201), strerror(201));
 
 }
@@ -2289,7 +2290,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_203)
 {
-#line 1038
+#line 1039
 ck_assert_str_eq(s21_strerror(202), strerror(202));
 
 }
@@ -2297,7 +2298,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_204)
 {
-#line 1041
+#line 1042
 ck_assert_str_eq(s21_strerror(203), strerror(203));
 
 }
@@ -2305,7 +2306,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_205)
 {
-#line 1044
+#line 1045
 ck_assert_str_eq(s21_strerror(204), strerror(204));
 
 }
@@ -2313,7 +2314,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_206)
 {
-#line 1047
+#line 1048
 ck_assert_str_eq(s21_strerror(205), strerror(205));
 
 }
@@ -2321,7 +2322,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_207)
 {
-#line 1050
+#line 1051
 ck_assert_str_eq(s21_strerror(206), strerror(206));
 
 }
@@ -2329,7 +2330,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_208)
 {
-#line 1053
+#line 1054
 ck_assert_str_eq(s21_strerror(207), strerror(207));
 
 }
@@ -2337,7 +2338,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_209)
 {
-#line 1056
+#line 1057
 ck_assert_str_eq(s21_strerror(208), strerror(208));
 
 }
@@ -2345,7 +2346,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_210)
 {
-#line 1059
+#line 1060
 ck_assert_str_eq(s21_strerror(209), strerror(209));
 
 }
@@ -2353,7 +2354,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_211)
 {
-#line 1062
+#line 1063
 ck_assert_str_eq(s21_strerror(210), strerror(210));
 
 }
@@ -2361,7 +2362,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_212)
 {
-#line 1065
+#line 1066
 ck_assert_str_eq(s21_strerror(211), strerror(211));
 
 }
@@ -2369,7 +2370,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_213)
 {
-#line 1068
+#line 1069
 ck_assert_str_eq(s21_strerror(212), strerror(212));
 
 }
@@ -2377,7 +2378,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_214)
 {
-#line 1071
+#line 1072
 ck_assert_str_eq(s21_strerror(213), strerror(213));
 
 }
@@ -2385,7 +2386,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_215)
 {
-#line 1074
+#line 1075
 ck_assert_str_eq(s21_strerror(214), strerror(214));
 
 }
@@ -2393,7 +2394,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_216)
 {
-#line 1077
+#line 1078
 ck_assert_str_eq(s21_strerror(215), strerror(215));
 
 }
@@ -2401,7 +2402,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_217)
 {
-#line 1080
+#line 1081
 ck_assert_str_eq(s21_strerror(216), strerror(216));
 
 }
@@ -2409,7 +2410,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_218)
 {
-#line 1083
+#line 1084
 ck_assert_str_eq(s21_strerror(217), strerror(217));
 
 }
@@ -2417,7 +2418,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_219)
 {
-#line 1086
+#line 1087
 ck_assert_str_eq(s21_strerror(218), strerror(218));
 
 }
@@ -2425,7 +2426,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_220)
 {
-#line 1089
+#line 1090
 ck_assert_str_eq(s21_strerror(219), strerror(219));
 
 }
@@ -2433,7 +2434,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_221)
 {
-#line 1092
+#line 1093
 ck_assert_str_eq(s21_strerror(220), strerror(220));
 
 }
@@ -2441,7 +2442,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_222)
 {
-#line 1095
+#line 1096
 ck_assert_str_eq(s21_strerror(221), strerror(221));
 
 }
@@ -2449,7 +2450,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_223)
 {
-#line 1098
+#line 1099
 ck_assert_str_eq(s21_strerror(222), strerror(222));
 
 }
@@ -2457,7 +2458,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_224)
 {
-#line 1101
+#line 1102
 ck_assert_str_eq(s21_strerror(223), strerror(223));
 
 }
@@ -2465,7 +2466,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_225)
 {
-#line 1104
+#line 1105
 ck_assert_str_eq(s21_strerror(224), strerror(224));
 
 }
@@ -2473,7 +2474,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_226)
 {
-#line 1107
+#line 1108
 ck_assert_str_eq(s21_strerror(225), strerror(225));
 
 }
@@ -2481,7 +2482,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_227)
 {
-#line 1110
+#line 1111
 ck_assert_str_eq(s21_strerror(226), strerror(226));
 
 }
@@ -2489,7 +2490,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_228)
 {
-#line 1113
+#line 1114
 ck_assert_str_eq(s21_strerror(227), strerror(227));
 
 }
@@ -2497,7 +2498,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_229)
 {
-#line 1116
+#line 1117
 ck_assert_str_eq(s21_strerror(228), strerror(228));
 
 }
@@ -2505,7 +2506,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_230)
 {
-#line 1119
+#line 1120
 ck_assert_str_eq(s21_strerror(229), strerror(229));
 
 }
@@ -2513,7 +2514,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_231)
 {
-#line 1122
+#line 1123
 ck_assert_str_eq(s21_strerror(230), strerror(230));
 
 }
@@ -2521,7 +2522,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_232)
 {
-#line 1125
+#line 1126
 ck_assert_str_eq(s21_strerror(231), strerror(231));
 
 }
@@ -2529,7 +2530,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_233)
 {
-#line 1128
+#line 1129
 ck_assert_str_eq(s21_strerror(232), strerror(232));
 
 }
@@ -2537,7 +2538,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_234)
 {
-#line 1131
+#line 1132
 ck_assert_str_eq(s21_strerror(233), strerror(233));
 
 }
@@ -2545,7 +2546,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_235)
 {
-#line 1134
+#line 1135
 ck_assert_str_eq(s21_strerror(234), strerror(234));
 
 }
@@ -2553,7 +2554,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_236)
 {
-#line 1137
+#line 1138
 ck_assert_str_eq(s21_strerror(235), strerror(235));
 
 }
@@ -2561,7 +2562,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_237)
 {
-#line 1140
+#line 1141
 ck_assert_str_eq(s21_strerror(236), strerror(236));
 
 }
@@ -2569,7 +2570,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_238)
 {
-#line 1143
+#line 1144
 ck_assert_str_eq(s21_strerror(237), strerror(237));
 
 }
@@ -2577,7 +2578,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_239)
 {
-#line 1146
+#line 1147
 ck_assert_str_eq(s21_strerror(238), strerror(238));
 
 }
@@ -2585,7 +2586,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_240)
 {
-#line 1149
+#line 1150
 ck_assert_str_eq(s21_strerror(239), strerror(239));
 
 }
@@ -2593,7 +2594,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_241)
 {
-#line 1152
+#line 1153
 ck_assert_str_eq(s21_strerror(240), strerror(240));
 
 }
@@ -2601,7 +2602,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_242)
 {
-#line 1155
+#line 1156
 ck_assert_str_eq(s21_strerror(241), strerror(241));
 
 }
@@ -2609,7 +2610,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_243)
 {
-#line 1158
+#line 1159
 ck_assert_str_eq(s21_strerror(242), strerror(242));
 
 }
@@ -2617,7 +2618,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_244)
 {
-#line 1161
+#line 1162
 ck_assert_str_eq(s21_strerror(243), strerror(243));
 
 }
@@ -2625,7 +2626,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_245)
 {
-#line 1164
+#line 1165
 ck_assert_str_eq(s21_strerror(244), strerror(244));
 
 }
@@ -2633,7 +2634,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_246)
 {
-#line 1167
+#line 1168
 ck_assert_str_eq(s21_strerror(245), strerror(245));
 
 }
@@ -2641,7 +2642,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_247)
 {
-#line 1170
+#line 1171
 ck_assert_str_eq(s21_strerror(246), strerror(246));
 
 }
@@ -2649,7 +2650,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_248)
 {
-#line 1173
+#line 1174
 ck_assert_str_eq(s21_strerror(247), strerror(247));
 
 }
@@ -2657,7 +2658,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_249)
 {
-#line 1176
+#line 1177
 ck_assert_str_eq(s21_strerror(248), strerror(248));
 
 }
@@ -2665,7 +2666,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_250)
 {
-#line 1179
+#line 1180
 ck_assert_str_eq(s21_strerror(249), strerror(249));
 
 }
@@ -2673,7 +2674,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_251)
 {
-#line 1182
+#line 1183
 ck_assert_str_eq(s21_strerror(250), strerror(250));
 
 }
@@ -2681,7 +2682,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_252)
 {
-#line 1185
+#line 1186
 ck_assert_str_eq(s21_strerror(251), strerror(251));
 
 }
@@ -2689,7 +2690,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_253)
 {
-#line 1188
+#line 1189
 ck_assert_str_eq(s21_strerror(252), strerror(252));
 
 }
@@ -2697,7 +2698,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_254)
 {
-#line 1191
+#line 1192
 ck_assert_str_eq(s21_strerror(253), strerror(253));
 
 }
@@ -2705,7 +2706,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_255)
 {
-#line 1194
+#line 1195
 ck_assert_str_eq(s21_strerror(254), strerror(254));
 
 }
@@ -2713,7 +2714,7 @@ END_TEST
 
 START_TEST(test_strerror_POSIX_256)
 {
-#line 1197
+#line 1198
 ck_assert_str_eq(s21_strerror(255), strerror(255));
 
 
@@ -2724,7 +2725,7 @@ END_TEST
 
 START_TEST(strcspn_1)
 {
-#line 1203
+#line 1204
 const char* str1 = "ABCDEF";
 const char* str2 = "P";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2734,7 +2735,7 @@ END_TEST
 
 START_TEST(strcspn_2)
 {
-#line 1208
+#line 1209
 const char* str1 = "ABCDEF";
 const char* str2 = "A";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2744,7 +2745,7 @@ END_TEST
 
 START_TEST(strcspn_3)
 {
-#line 1213
+#line 1214
 const char* str1 = "ABCDEF";
 const char* str2 = "B";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2754,7 +2755,7 @@ END_TEST
 
 START_TEST(strcspn_4)
 {
-#line 1218
+#line 1219
 const char* str1 = "ABCDEF";
 const char* str2 = "C";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2764,7 +2765,7 @@ END_TEST
 
 START_TEST(strcspn_5)
 {
-#line 1223
+#line 1224
 const char* str1 = "ABCDEF";
 const char* str2 = "CD";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2774,7 +2775,7 @@ END_TEST
 
 START_TEST(strcspn_6)
 {
-#line 1228
+#line 1229
 const char* str1 = "ABCDEF";
 const char* str2 = "DC";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2784,7 +2785,7 @@ END_TEST
 
 START_TEST(strcspn_7)
 {
-#line 1233
+#line 1234
 const char* str1 = "ABCDEF";
 const char* str2 = "AB";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2794,7 +2795,7 @@ END_TEST
 
 START_TEST(strcspn_8)
 {
-#line 1238
+#line 1239
 const char* str1 = "ABCDEF";
 const char* str2 = "BA";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2804,7 +2805,7 @@ END_TEST
 
 START_TEST(strcspn_9)
 {
-#line 1243
+#line 1244
 const char* str1 = "ABCDEF";
 const char* str2 = "EA";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2814,7 +2815,7 @@ END_TEST
 
 START_TEST(strcspn_10)
 {
-#line 1248
+#line 1249
 const char* str1 = "ABCDEF";
 const char* str2 = "A";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2824,7 +2825,7 @@ END_TEST
 
 START_TEST(strcspn_11)
 {
-#line 1253
+#line 1254
 const char* str1 = "ABCDEF";
 const char* str2 = "\n";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2834,7 +2835,7 @@ END_TEST
 
 START_TEST(strcspn_12)
 {
-#line 1258
+#line 1259
 const char* str1 = "ABCDEF";
 const char* str2 = "DEF";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2844,7 +2845,7 @@ END_TEST
 
 START_TEST(strcspn_13)
 {
-#line 1263
+#line 1264
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "\n";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2854,7 +2855,7 @@ END_TEST
 
 START_TEST(strcspn_14)
 {
-#line 1268
+#line 1269
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "A";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2864,7 +2865,7 @@ END_TEST
 
 START_TEST(strcspn_15)
 {
-#line 1273
+#line 1274
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "AB";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2874,7 +2875,7 @@ END_TEST
 
 START_TEST(strcspn_16)
 {
-#line 1278
+#line 1279
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "FE";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2884,7 +2885,7 @@ END_TEST
 
 START_TEST(strcspn_17)
 {
-#line 1283
+#line 1284
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "EF";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2894,7 +2895,7 @@ END_TEST
 
 START_TEST(strcspn_18)
 {
-#line 1288
+#line 1289
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = " ";
 ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
@@ -2907,7 +2908,7 @@ END_TEST
 
 START_TEST(strspn_1)
 {
-#line 1296
+#line 1297
 const char* str1 = "ABCDEF";
 const char* str2 = "P";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -2917,7 +2918,7 @@ END_TEST
 
 START_TEST(strspn_2)
 {
-#line 1301
+#line 1302
 const char* str1 = "ABCDEF";
 const char* str2 = "A";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -2927,7 +2928,7 @@ END_TEST
 
 START_TEST(strspn_3)
 {
-#line 1306
+#line 1307
 const char* str1 = "ABCDEF";
 const char* str2 = "B";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -2937,7 +2938,7 @@ END_TEST
 
 START_TEST(strspn_4)
 {
-#line 1311
+#line 1312
 const char* str1 = "ABCDEF";
 const char* str2 = "C";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -2947,7 +2948,7 @@ END_TEST
 
 START_TEST(strspn_5)
 {
-#line 1316
+#line 1317
 const char* str1 = "ABCDEF";
 const char* str2 = "CD";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -2957,7 +2958,7 @@ END_TEST
 
 START_TEST(strspn_6)
 {
-#line 1321
+#line 1322
 const char* str1 = "ABCDEF";
 const char* str2 = "DC";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -2967,7 +2968,7 @@ END_TEST
 
 START_TEST(strspn_7)
 {
-#line 1326
+#line 1327
 const char* str1 = "ABCDEF";
 const char* str2 = "AB";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -2977,7 +2978,7 @@ END_TEST
 
 START_TEST(strspn_8)
 {
-#line 1331
+#line 1332
 const char* str1 = "ABCDEF";
 const char* str2 = "BA";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -2987,7 +2988,7 @@ END_TEST
 
 START_TEST(strspn_9)
 {
-#line 1336
+#line 1337
 const char* str1 = "ABCDEF";
 const char* str2 = "EA";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -2997,7 +2998,7 @@ END_TEST
 
 START_TEST(strspn_10)
 {
-#line 1341
+#line 1342
 const char* str1 = "ABCDEF";
 const char* str2 = "A";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -3007,7 +3008,7 @@ END_TEST
 
 START_TEST(strspn_11)
 {
-#line 1346
+#line 1347
 const char* str1 = "ABCDEF";
 const char* str2 = "\n";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -3017,7 +3018,7 @@ END_TEST
 
 START_TEST(strspn_12)
 {
-#line 1351
+#line 1352
 const char* str1 = "ABCDEF";
 const char* str2 = "DEF";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -3027,7 +3028,7 @@ END_TEST
 
 START_TEST(strspn_13)
 {
-#line 1356
+#line 1357
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "\n";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -3037,7 +3038,7 @@ END_TEST
 
 START_TEST(strspn_14)
 {
-#line 1361
+#line 1362
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "A";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -3047,7 +3048,7 @@ END_TEST
 
 START_TEST(strspn_15)
 {
-#line 1366
+#line 1367
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "AB";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -3057,7 +3058,7 @@ END_TEST
 
 START_TEST(strspn_16)
 {
-#line 1371
+#line 1372
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "FE";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -3067,7 +3068,7 @@ END_TEST
 
 START_TEST(strspn_17)
 {
-#line 1376
+#line 1377
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "EF";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
@@ -3077,11 +3078,472 @@ END_TEST
 
 START_TEST(strspn_18)
 {
-#line 1381
+#line 1382
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = " ";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
 
+// strcat
+
+}
+END_TEST
+
+START_TEST(strcat_1)
+{
+#line 1389
+char   src[50] = "Hello world";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+}
+END_TEST
+
+START_TEST(strcat_2)
+{
+#line 1395
+char   src[50] = " \n\0";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+}
+END_TEST
+
+START_TEST(strcat_3)
+{
+#line 1401
+char   src[50] = "\0";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+}
+END_TEST
+
+START_TEST(strcat_4)
+{
+#line 1407
+char   src[50] = "\n\0";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+}
+END_TEST
+
+START_TEST(strcat_5)
+{
+#line 1413
+char   src[50] = "a\0";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+}
+END_TEST
+
+START_TEST(strcat_6)
+{
+#line 1419
+char   src[50] = "NULL\0";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+}
+END_TEST
+
+START_TEST(strcat_7)
+{
+#line 1425
+char   src[50] = "Hello Hello Hello Hello\0";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+}
+END_TEST
+
+START_TEST(strcat_8)
+{
+#line 1431
+char   src[50] = "Hello world";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+}
+END_TEST
+
+START_TEST(strcat_9)
+{
+#line 1437
+char   src[50] = " \n\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+}
+END_TEST
+
+START_TEST(strcat_10)
+{
+#line 1443
+char   src[50] = "\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+}
+END_TEST
+
+START_TEST(strcat_11)
+{
+#line 1449
+char   src[50] = "\n\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+}
+END_TEST
+
+START_TEST(strcat_12)
+{
+#line 1455
+char   src[50] = "a\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+}
+END_TEST
+
+START_TEST(strcat_13)
+{
+#line 1461
+char   src[50] = "NULL\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+}
+END_TEST
+
+START_TEST(strcat_14)
+{
+#line 1467
+char   src[50] = "Hello Hello Hello Hello\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+// strncat
+
+}
+END_TEST
+
+START_TEST(strncat_1)
+{
+#line 1475
+char   src[50] = "Hello world";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_2)
+{
+#line 1480
+char   src[50] = " \n\0";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_3)
+{
+#line 1485
+char   src[50] = "\0";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_4)
+{
+#line 1490
+char   src[50] = "\n\0";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_5)
+{
+#line 1495
+char   src[50] = "a\0";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_6)
+{
+#line 1500
+char   src[50] = "NULL\0";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_7)
+{
+#line 1505
+char   src[50] = "Hello Hello Hello Hello\0";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_8)
+{
+#line 1510
+char   src[50] = "Hello world";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_9)
+{
+#line 1515
+char   src[50] = " \n\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_10)
+{
+#line 1520
+char   src[50] = "\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_11)
+{
+#line 1525
+char   src[50] = "\n\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_12)
+{
+#line 1530
+char   src[50] = "a\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_13)
+{
+#line 1535
+char   src[50] = "NULL\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_14)
+{
+#line 1540
+char   src[50] = "Hello Hello Hello Hello\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+}
+END_TEST
+
+START_TEST(strncat_15)
+{
+#line 1545
+char   src[50] = "Hello world";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+}
+END_TEST
+
+START_TEST(strncat_16)
+{
+#line 1550
+char   src[50] = " \n\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+}
+END_TEST
+
+START_TEST(strncat_17)
+{
+#line 1555
+char   src[50] = "\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+}
+END_TEST
+
+START_TEST(strncat_18)
+{
+#line 1560
+char   src[50] = "\n\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+}
+END_TEST
+
+START_TEST(strncat_19)
+{
+#line 1565
+char   src[50] = "a\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+}
+END_TEST
+
+START_TEST(strncat_20)
+{
+#line 1570
+char   src[50] = "NULL\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+}
+END_TEST
+
+START_TEST(strncat_21)
+{
+#line 1575
+char   src[50] = "Hello Hello Hello Hello\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+// strtok
+
+}
+END_TEST
+
+START_TEST(strtok_1)
+{
+#line 1582
+char   src[50] = "Hello world";
+char *token = " ";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+}
+END_TEST
+
+START_TEST(strtok_2)
+{
+#line 1587
+char   src[50] = "He/ll/owor/ld";
+char *token = "/";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+}
+END_TEST
+
+START_TEST(strtok_3)
+{
+#line 1592
+char   src[50] = "NULL";
+char *token = " ";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+}
+END_TEST
+
+START_TEST(strtok_4)
+{
+#line 1597
+char   src[50] = "a\0";
+char *token = "!";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+}
+END_TEST
+
+START_TEST(strtok_5)
+{
+#line 1602
+char   src[50] = "\n\0";
+char *token = " ";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+}
+END_TEST
+
+START_TEST(strtok_6)
+{
+#line 1607
+char   src[50] = "He*ll*ow*or*ld";
+char *token = "*";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+}
+END_TEST
+
+START_TEST(strtok_7)
+{
+#line 1614
+char   src[50] = "Hello world";
+char *token = "#";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+}
+END_TEST
+
+START_TEST(strtok_8)
+{
+#line 1619
+char   src[50] = "NULL";
+char *token = "&";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+}
+END_TEST
+
+START_TEST(strtok_9)
+{
+#line 1624
+char *token = " ";
+ck_assert_ptr_null(strtok(NULL, token));
+ck_assert_ptr_null(s21_strtok(NULL, token));
 }
 END_TEST
 
@@ -3432,6 +3894,50 @@ int main(void)
     tcase_add_test(tc1_1, strspn_16);
     tcase_add_test(tc1_1, strspn_17);
     tcase_add_test(tc1_1, strspn_18);
+    tcase_add_test(tc1_1, strcat_1);
+    tcase_add_test(tc1_1, strcat_2);
+    tcase_add_test(tc1_1, strcat_3);
+    tcase_add_test(tc1_1, strcat_4);
+    tcase_add_test(tc1_1, strcat_5);
+    tcase_add_test(tc1_1, strcat_6);
+    tcase_add_test(tc1_1, strcat_7);
+    tcase_add_test(tc1_1, strcat_8);
+    tcase_add_test(tc1_1, strcat_9);
+    tcase_add_test(tc1_1, strcat_10);
+    tcase_add_test(tc1_1, strcat_11);
+    tcase_add_test(tc1_1, strcat_12);
+    tcase_add_test(tc1_1, strcat_13);
+    tcase_add_test(tc1_1, strcat_14);
+    tcase_add_test(tc1_1, strncat_1);
+    tcase_add_test(tc1_1, strncat_2);
+    tcase_add_test(tc1_1, strncat_3);
+    tcase_add_test(tc1_1, strncat_4);
+    tcase_add_test(tc1_1, strncat_5);
+    tcase_add_test(tc1_1, strncat_6);
+    tcase_add_test(tc1_1, strncat_7);
+    tcase_add_test(tc1_1, strncat_8);
+    tcase_add_test(tc1_1, strncat_9);
+    tcase_add_test(tc1_1, strncat_10);
+    tcase_add_test(tc1_1, strncat_11);
+    tcase_add_test(tc1_1, strncat_12);
+    tcase_add_test(tc1_1, strncat_13);
+    tcase_add_test(tc1_1, strncat_14);
+    tcase_add_test(tc1_1, strncat_15);
+    tcase_add_test(tc1_1, strncat_16);
+    tcase_add_test(tc1_1, strncat_17);
+    tcase_add_test(tc1_1, strncat_18);
+    tcase_add_test(tc1_1, strncat_19);
+    tcase_add_test(tc1_1, strncat_20);
+    tcase_add_test(tc1_1, strncat_21);
+    tcase_add_test(tc1_1, strtok_1);
+    tcase_add_test(tc1_1, strtok_2);
+    tcase_add_test(tc1_1, strtok_3);
+    tcase_add_test(tc1_1, strtok_4);
+    tcase_add_test(tc1_1, strtok_5);
+    tcase_add_test(tc1_1, strtok_6);
+    tcase_add_test(tc1_1, strtok_7);
+    tcase_add_test(tc1_1, strtok_8);
+    tcase_add_test(tc1_1, strtok_9);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);

@@ -1,4 +1,3 @@
-
 #ifndef SRC_S21_STRING_H_
 #define SRC_S21_STRING_H_
 
@@ -187,6 +186,17 @@ void *s21_memmove(void *dest, const void *src, s21_size_t n);
 void *s21_memset(void *str, int c, s21_size_t n);
 
 /*
+ * 6. Добавляет строку, на которую указывает src, в конец строки, на которую указывает dest.
+ */
+char *s21_strcat(char *dest, const char *src);
+
+/*
+ * 7. Добавляет строку, на которую указывает src, в конец строки, на которую 
+ * указывает dest, длиной до n символов.
+ */
+char *s21_strncat(char *dest, const char *src, s21_size_t n);
+
+/*
  * 9. Сравнивает строку, на которую указывает str1, со строкой, на которую указывает str2.
  */
 int s21_strcmp(const char *str1, const char *str2);
@@ -230,7 +240,12 @@ s21_size_t s21_strlen(const char *str);
  */
 s21_size_t s21_strspn(const char *str1, const char *str2);
 
+/*
+ * 20. Разбивает строку str на ряд токенов, разделенных delim.
+ */
+char *s21_strtok(char * str, const char * delim);
+
 void *s21_to_upper(const char *str);
 void *s21_to_lower(const char *str);
 
-#endif  // SRC_S21_STRING_H_
+#endif //S21_STRING_GELLERTI_S21_STRING_H

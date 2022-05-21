@@ -55,6 +55,22 @@ void *s21_memmove(void *dest, const void *src, s21_size_t n) {
     return dest;
 }
 
+char *s21_strcat(char *dest, const char *src) {
+    int i = 0, j = 0;
+    if (src != S21_NULL) {
+        while (dest[i]) {
+            i++;
+        }
+        while (src[j]) {
+            dest[i + j] = src[j];
+            j++;
+        }
+        dest[i + j] = '\0';
+    }
+    return dest;
+}
+
+
 // Копирует символ c (беззнаковый тип) в первые n символов строки, на которую указывает аргумент str.
 void *s21_memset(void *src, int c, s21_size_t n) {
     char *to = src;
@@ -128,6 +144,43 @@ char *s21_strncpy(char *dest, const char *src, s21_size_t n) {
     return dest;
 }
 
+char *s21_strncat(char *dest, const char *src, s21_size_t n) {
+    char *tmp = dest;
+    int i = s21_strlen(dest), j = 0;
+    if (n > 0) {
+        while (src[j] != '\0') {
+            tmp[i + j] = src[j];
+            j++;
+            n--;
+            if (n == 0) {
+                tmp[i + j] = '\0';
+                break;
+            }
+        }
+    }
+
+    return dest;
+}
+
+char *s21_strtok(char *str, const char *delim) {
+    char *tok = str;
+    if (tok != S21_NULL) {
+        str = tok + s21_strspn(tok, delim);
+        tok = str + s21_strcspn(str, delim);
+        if (tok == str) {
+            str = 0;
+        } else {
+            if (*tok) {
+                *tok = 0;
+                tok += 1;
+            } else {
+                tok = 0;
+            }
+        }
+    }
+    return str;
+}
+
 s21_size_t s21_strcspn(const char *str1, const char *str2) {
     s21_size_t i;
     int continuesFlag = 1;
@@ -144,6 +197,7 @@ s21_size_t s21_strcspn(const char *str1, const char *str2) {
     }
     return i;
 }
+
 
 char* s21_strerror(int errnum) {
     err errlist[] = S21_ERRLIST;  
@@ -179,7 +233,6 @@ char* s21_strerror(int errnum) {
         }
     }
 #endif
-
     return (found) ? res : baseMsg;
 }
 
@@ -190,6 +243,7 @@ s21_size_t s21_strlen(const char *str) {
 }
 
 // Расчет длины начального сегмента str1, полностью состоящий из str2
+
 s21_size_t s21_strspn(const char *str1, const char *str2) {
     s21_size_t len = 0;
     int continuesFlag = 1;
@@ -209,6 +263,7 @@ s21_size_t s21_strspn(const char *str1, const char *str2) {
     }
     return len;
 }
+
 
 // void *s21_to_upper(const char *str) {
 //     int flag;
@@ -261,3 +316,4 @@ s21_size_t s21_strspn(const char *str1, const char *str2) {
 //         return NULL;
 //     }
 // }
+

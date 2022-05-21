@@ -3,6 +3,7 @@
 #include <string.h>
 #include "s21_string.h"
 
+
 #test memcpy_1
 char buf1[50] = "It's check memcpy - ok", buf2[50];
 ck_assert_str_eq(memcpy(buf2,buf1,21),s21_memcpy(buf2,buf1,21));
@@ -1382,3 +1383,244 @@ const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = " ";
 ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
 
+// strcat
+
+#test strcat_1
+char   src[50] = "Hello world";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+#test strcat_2
+char   src[50] = " \n\0";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+#test strcat_3
+char   src[50] = "\0";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+#test strcat_4
+char   src[50] = "\n\0";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+#test strcat_5
+char   src[50] = "a\0";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+#test strcat_6
+char   src[50] = "NULL\0";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+#test strcat_7
+char   src[50] = "Hello Hello Hello Hello\0";
+char dest1[50] = "";
+char dest2[50] = "";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+#test strcat_8
+char   src[50] = "Hello world";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+#test strcat_9
+char   src[50] = " \n\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+#test strcat_10
+char   src[50] = "\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+#test strcat_11
+char   src[50] = "\n\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+#test strcat_12
+char   src[50] = "a\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+#test strcat_13
+char   src[50] = "NULL\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+#test strcat_14
+char   src[50] = "Hello Hello Hello Hello\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+char dest2[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
+
+// strncat
+
+#test strncat_1
+char   src[50] = "Hello world";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_2
+char   src[50] = " \n\0";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_3
+char   src[50] = "\0";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_4
+char   src[50] = "\n\0";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_5
+char   src[50] = "a\0";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_6
+char   src[50] = "NULL\0";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_7
+char   src[50] = "Hello Hello Hello Hello\0";
+char dest1[50] = "";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_8
+char   src[50] = "Hello world";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_9
+char   src[50] = " \n\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_10
+char   src[50] = "\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_11
+char   src[50] = "\n\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_12
+char   src[50] = "a\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_13
+char   src[50] = "NULL\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_14
+char   src[50] = "Hello Hello Hello Hello\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
+
+#test strncat_15
+char   src[50] = "Hello world";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+#test strncat_16
+char   src[50] = " \n\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+#test strncat_17
+char   src[50] = "\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+#test strncat_18
+char   src[50] = "\n\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+#test strncat_19
+char   src[50] = "a\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+#test strncat_20
+char   src[50] = "NULL\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+#test strncat_21
+char   src[50] = "Hello Hello Hello Hello\0";
+char dest1[50] = "sdkfjhge ri3hc8 ";
+ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
+
+// strtok
+
+#test strtok_1
+char   src[50] = "Hello world";
+char *token = " ";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+#test strtok_2
+char   src[50] = "He/ll/owor/ld";
+char *token = "/";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+#test strtok_3
+char   src[50] = "NULL";
+char *token = " ";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+#test strtok_4
+char   src[50] = "a\0";
+char *token = "!";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+#test strtok_5
+char   src[50] = "\n\0";
+char *token = " ";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+#test strtok_6
+char   src[50] = "He*ll*ow*or*ld";
+char *token = "*";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+#test strtok_7
+char   src[50] = "Hello world";
+char *token = "#";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+#test strtok_8
+char   src[50] = "NULL";
+char *token = "&";
+ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
+
+#test strtok_9
+char *token = " ";
+ck_assert_ptr_null(strtok(NULL, token));
+ck_assert_ptr_null(s21_strtok(NULL, token));
