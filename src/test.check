@@ -2,1737 +2,1317 @@
 #include <stdlib.h>
 #include <string.h>
 #include "s21_string.h"
-
 #test memcpy_1
-char buf1[50] = "It's check memcpy - ok", buf2[50];
-ck_assert_str_eq(memcpy(buf2,buf1,21),s21_memcpy(buf2,buf1,21));
-
+char buf1[50] = "It's check memcpy - ok",  buf2[50];
+ck_assert_str_eq(memcpy(buf2, buf1, 21), s21_memcpy(buf2, buf1, 21));
 #test memcpy_2
-char buf1[50] = "Hello world\0", buf2[50];
-ck_assert_str_eq(memcpy(buf2,buf1,12),s21_memcpy(buf2,buf1,12));
-
+char buf1[50] = "Hello world\0",  buf2[50];
+ck_assert_str_eq(memcpy(buf2, buf1, 12), s21_memcpy(buf2, buf1, 12));
 #test memcpy_3
-char buf1[50] = "Hello w\0orld", buf2[50];
-ck_assert_str_eq(memcpy(buf2,buf1,10),s21_memcpy(buf2,buf1,10));
-
+char buf1[50] = "Hello w\0orld",  buf2[50];
+ck_assert_str_eq(memcpy(buf2, buf1, 10), s21_memcpy(buf2, buf1, 10));
 #test memcpy_4
-char buf1[50] = "a\n\0", buf2[50];
-ck_assert_str_eq(memcpy(buf2,buf1,3),s21_memcpy(buf2,buf1,3));
-
+char buf1[50] = "a\n\0",  buf2[50];
+ck_assert_str_eq(memcpy(buf2, buf1, 3), s21_memcpy(buf2, buf1, 3));
 #test memcpy_5
-char buf1[50] = "Hel\0lo w\0orld", buf2[50];
-ck_assert_str_eq(memcpy(buf2,buf1,5),s21_memcpy(buf2,buf1,5));
-
+char buf1[50] = "Hel\0lo w\0orld",  buf2[50];
+ck_assert_str_eq(memcpy(buf2, buf1, 5), s21_memcpy(buf2, buf1, 5));
 #test memmove_1
 char src[] = "Hello world\0";
 char dest[] = "rembo";
-ck_assert_str_eq(memmove(dest,src,2),s21_memmove(dest,src,2));
-
+ck_assert_str_eq(memmove(dest, src, 2), s21_memmove(dest, src, 2));
 #test memmove_2
 char src[] = "Hello world\0";
 char dest[] = "a\n\0";
-ck_assert_str_eq(memmove(dest,src,1),s21_memmove(dest,src,1));
-
+ck_assert_str_eq(memmove(dest, src, 1), s21_memmove(dest, src, 1));
 #test memmove_3
 char src[] = "Hel\0lo world\0";
 char dest[] = "rembo wave sorry";
-ck_assert_str_eq(memmove(dest,src,6),s21_memmove(dest,src,6));
-
+ck_assert_str_eq(memmove(dest, src, 6), s21_memmove(dest, src, 6));
 #test memmove_4
 char src[] = " \n\0";
 char dest[] = "rembo hello";
-ck_assert_str_eq(memmove(dest,src,1),s21_memmove(dest,src,1));
-
+ck_assert_str_eq(memmove(dest, src, 1), s21_memmove(dest, src, 1));
 #test memmove_5
 char src[] = "Hel\nlo \0world\0";
 char dest[] = "salam wave";
-ck_assert_str_eq(memmove(dest,src,6),s21_memmove(dest,src,6));
-
+ck_assert_str_eq(memmove(dest, src, 6), s21_memmove(dest, src, 6));
 #test memset_1
 char str[] = "salam aleikum memset!n";
-ck_assert_str_eq(memset(str,'*',12),s21_memset(str,'*',12));
-
+ck_assert_str_eq(memset(str, '*', 12), s21_memset(str, '*', 12));
 #test memset_2
 char str[] = "Hello \0world\0";
-ck_assert_str_eq(memset(str,'*',9),s21_memset(str,'*',9));
-
+ck_assert_str_eq(memset(str, '*', 9), s21_memset(str, '*', 9));
 #test memset_3
 char str[] = "Hell\no \0world\0";
-ck_assert_str_eq(memset(str,'*',8),s21_memset(str,'*',8));
-
+ck_assert_str_eq(memset(str, '*', 8), s21_memset(str, '*', 8));
 #test memset_4
 char str[] = "a\n\0";
-ck_assert_str_eq(memset(str,'*',2),s21_memset(str,'*',2));
-
+ck_assert_str_eq(memset(str, '*', 2), s21_memset(str, '*', 2));
 #test memset_5
 char str[] = "\n\0";
-ck_assert_str_eq(memset(str,'*',2),s21_memset(str,'*',2));
-
+ck_assert_str_eq(memset(str, '*', 2), s21_memset(str, '*', 2));
 #test strncpy_1
 char src[40] = "This is interesting joke";
 char dest[100];
-ck_assert_str_eq(strncpy(dest,src,26),s21_strncpy(dest,src,26));
-
+ck_assert_str_eq(strncpy(dest, src, 26), s21_strncpy(dest, src, 26));
 #test strncpy_2
 char src[40] = "Hello world\n\0";
 char dest[100];
-ck_assert_str_eq(strncpy(dest,src,13),s21_strncpy(dest,src,13));
-
+ck_assert_str_eq(strncpy(dest, src, 13), s21_strncpy(dest, src, 13));
 #test strncpy_3
 char src[40] = "a\n\0";
 char dest[100];
-ck_assert_str_eq(strncpy(dest,src,2),s21_strncpy(dest,src,2));
-
+ck_assert_str_eq(strncpy(dest, src, 2), s21_strncpy(dest, src, 2));
 #test strncpy_4
 char src[40] = "Hello world\0";
 char dest[100];
-ck_assert_str_eq(strncpy(dest,src,12),s21_strncpy(dest,src,12));
-
+ck_assert_str_eq(strncpy(dest, src, 12), s21_strncpy(dest, src, 12));
 #test strncpy_5
 char src[40] = " \n\0";
 char dest[100];
-ck_assert_str_eq(strncpy(dest,src,2),s21_strncpy(dest,src,2));
-
+ck_assert_str_eq(strncpy(dest, src, 2), s21_strncpy(dest, src, 2));
 #test strcpy_1
 char src[] = "Hello world\0";
 char dest[] = "abcdefghijklm";
-ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
-
+ck_assert_str_eq(strcpy(dest,  src), s21_strcpy(dest,  src));
 #test strcpy_2
 char src[] = "Hello world\n\0";
 char dest[] = "abcdefghijklm";
-ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
-
+ck_assert_str_eq(strcpy(dest,  src), s21_strcpy(dest,  src));
 #test strcpy_3
 char src[] = "a\n\0";
 char dest[] = "ab";
-ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
-
+ck_assert_str_eq(strcpy(dest,  src), s21_strcpy(dest,  src));
 #test strcpy_4
 char src[] = " \0";
 char dest[] = "ab";
-ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
-
+ck_assert_str_eq(strcpy(dest,  src), s21_strcpy(dest,  src));
 #test strcpy_5
 char src[] = "hello\0 russian";
 char dest[] = "abcdefghijklmnfff";
-ck_assert_str_eq(strcpy(dest, src),s21_strcpy(dest, src));
-
+ck_assert_str_eq(strcpy(dest,  src), s21_strcpy(dest,  src));
 #test memcmp_1
 const char* str1 = "1234567890";
 const char* str2 = "1234567890";
-ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
-
+ck_assert_int_eq(memcmp(str1, str2, 10), s21_memcmp(str1, str2, 10));
 #test memcmp_2
 const char* str1 = "123456x7890";
 const char* str2 = "1234567890";
-ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
-
+ck_assert_int_eq(memcmp(str1, str2, 10), s21_memcmp(str1, str2, 10));
 #test memcmp_3
 const char* str1 = "1234567890";
 const char* str2 = "12345678y90";
-ck_assert_int_eq(memcmp(str1,str2,5),s21_memcmp(str1,str2,5));
-
+ck_assert_int_eq(memcmp(str1, str2, 5), s21_memcmp(str1, str2, 5));
 #test memcmp_4
 const char* str1 = "1234567890";
 const char* str2 = "\n";
-ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
-
+ck_assert_int_eq(memcmp(str1, str2, 10), s21_memcmp(str1, str2, 10));
 #test memcmp_5
 const char* str1 = "hello";
 const char* str2 = "hello world";
-ck_assert_int_eq(memcmp(str1,str2,10),s21_memcmp(str1,str2,10));
-
+ck_assert_int_eq(memcmp(str1, str2, 10), s21_memcmp(str1, str2, 10));
 #test strcmp_1
 const char* str1 = "123456789";
 const char* str2 = "123456789";
-ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
-
+ck_assert_int_eq(strcmp(str1, str2), s21_strcmp(str1, str2));
 #test strcmp_2
 const char* str1 = "12345";
 const char* str2 = "1234567890";
-ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
-
+ck_assert_int_eq(strcmp(str1, str2), s21_strcmp(str1, str2));
 #test strcmp_3
 const char* str1 = "1234567890";
 const char* str2 = "1234";
-ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
-
+ck_assert_int_eq(strcmp(str1, str2), s21_strcmp(str1, str2));
 #test strcmp_4
 const char* str1 = "/n";
 const char* str2 = "1234";
-ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
-
+ck_assert_int_eq(strcmp(str1, str2), s21_strcmp(str1, str2));
 #test strcmp_5
 const char* str1 = "/n";
 const char* str2 = "1234";
-ck_assert_int_eq(strcmp(str1,str2),s21_strcmp(str1,str2));
-
+ck_assert_int_eq(strcmp(str1, str2), s21_strcmp(str1, str2));
 #test strncmp_1
 const char* str1 = "123456789";
 const char* str2 = "123456789";
-ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
-
+ck_assert_int_eq(strncmp(str1, str2, 10), s21_strncmp(str1, str2, 10));
 #test strncmp_2
 const char* str1 = "1234x56789";
 const char* str2 = "123456789";
-ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
-
+ck_assert_int_eq(strncmp(str1, str2, 10), s21_strncmp(str1, str2, 10));
 #test strncmp_3
 const char* str1 = "123456789";
 const char* str2 = "123456y789";
-ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
-
+ck_assert_int_eq(strncmp(str1, str2, 10), s21_strncmp(str1, str2, 10));
 #test strncmp_4
 const char* str1 = "123456789";
 const char* str2 = "\n";
-ck_assert_int_eq(strncmp(str1,str2,10),s21_strncmp(str1,str2,10));
-
+ck_assert_int_eq(strncmp(str1, str2, 10), s21_strncmp(str1, str2, 10));
 #test strncmp_5
 const char* str1 = "123456789";
 const char* str2 = "123456y789";
-ck_assert_int_eq(strncmp(str1,str2,5),s21_strncmp(str1,str2,5));
-
+ck_assert_int_eq(strncmp(str1, str2, 5), s21_strncmp(str1, str2, 5));
 #test strlen_1
 const char* str1 = "ABCDEF";
-ck_assert_int_eq(strlen(str1),s21_strlen(str1));
-
+ck_assert_int_eq(strlen(str1), s21_strlen(str1));
 #test strlen_2
 const char* str1 = "Школа 21";
-ck_assert_int_eq(strlen(str1),s21_strlen(str1));
-
+ck_assert_int_eq(strlen(str1), s21_strlen(str1));
 #test strlen_3
 const char* str1 = "\0";
-ck_assert_int_eq(strlen(str1),s21_strlen(str1));
-
+ck_assert_int_eq(strlen(str1), s21_strlen(str1));
 #test strlen_4
 const char* str1 = "\n";
-ck_assert_int_eq(strlen(str1),s21_strlen(str1));
-
+ck_assert_int_eq(strlen(str1), s21_strlen(str1));
 #test strlen_5
 const char* str1 = "\0\n";
-ck_assert_int_eq(strlen(str1),s21_strlen(str1));
-
+ck_assert_int_eq(strlen(str1), s21_strlen(str1));
 #test strlen_6
 const char* str1 = "\"";
-ck_assert_int_eq(strlen(str1),s21_strlen(str1));
-
+ck_assert_int_eq(strlen(str1), s21_strlen(str1));
 #test strlen_7
 const char* str1 = "\327";
-ck_assert_int_eq(strlen(str1),s21_strlen(str1));
-
+ck_assert_int_eq(strlen(str1), s21_strlen(str1));
 // strerror
-
 #test test_strerror_POSIX_1
-ck_assert_str_ne(s21_strerror(0), strerror(0));
-
+ck_assert_str_ne(s21_strerror(0),  strerror(0));
 #test test_strerror_POSIX_2
-ck_assert_str_eq(s21_strerror(1), strerror(1));
-
+ck_assert_str_eq(s21_strerror(1),  strerror(1));
 #test test_strerror_POSIX_3
-ck_assert_str_eq(s21_strerror(2), strerror(2));
-
+ck_assert_str_eq(s21_strerror(2),  strerror(2));
 #test test_strerror_POSIX_4
-ck_assert_str_eq(s21_strerror(3), strerror(3));
-
+ck_assert_str_eq(s21_strerror(3),  strerror(3));
 #test test_strerror_POSIX_5
-ck_assert_str_eq(s21_strerror(4), strerror(4));
-
+ck_assert_str_eq(s21_strerror(4),  strerror(4));
 #test test_strerror_POSIX_6
-ck_assert_str_eq(s21_strerror(5), strerror(5));
-
+ck_assert_str_eq(s21_strerror(5),  strerror(5));
 #test test_strerror_POSIX_7
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(6), strerror(6));
-#else 
-ck_assert_str_eq(s21_strerror(6), strerror(6));
+ck_assert_str_ne(s21_strerror(6),  strerror(6));
+#else
+ck_assert_str_eq(s21_strerror(6),  strerror(6));
 #endif
-
 #test test_strerror_POSIX_8
-ck_assert_str_eq(s21_strerror(7), strerror(7));
-
+ck_assert_str_eq(s21_strerror(7),  strerror(7));
 #test test_strerror_POSIX_9
-ck_assert_str_eq(s21_strerror(8), strerror(8));
-
+ck_assert_str_eq(s21_strerror(8),  strerror(8));
 #test test_strerror_POSIX_10
-ck_assert_str_eq(s21_strerror(9), strerror(9));
-
+ck_assert_str_eq(s21_strerror(9),  strerror(9));
 #test test_strerror_POSIX_11
-ck_assert_str_eq(s21_strerror(10), strerror(10));
-
+ck_assert_str_eq(s21_strerror(10),  strerror(10));
 #test test_strerror_POSIX_12
-ck_assert_str_eq(s21_strerror(11), strerror(11));
-
+ck_assert_str_eq(s21_strerror(11),  strerror(11));
 #test test_strerror_POSIX_13
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(12), strerror(12));
+ck_assert_str_ne(s21_strerror(12),  strerror(12));
 #else
-ck_assert_str_eq(s21_strerror(12), strerror(12));
+ck_assert_str_eq(s21_strerror(12),  strerror(12));
 #endif
-
 #test test_strerror_POSIX_14
-ck_assert_str_eq(s21_strerror(13), strerror(13));
-
+ck_assert_str_eq(s21_strerror(13),  strerror(13));
 #test test_strerror_POSIX_15
-ck_assert_str_eq(s21_strerror(14), strerror(14));
-
+ck_assert_str_eq(s21_strerror(14),  strerror(14));
 #test test_strerror_POSIX_16
-ck_assert_str_ne(s21_strerror(15), strerror(15));
-
+ck_assert_str_ne(s21_strerror(15),  strerror(15));
 #test test_strerror_POSIX_17
-ck_assert_str_eq(s21_strerror(16), strerror(16));
-
+ck_assert_str_eq(s21_strerror(16),  strerror(16));
 #test test_strerror_POSIX_18
-ck_assert_str_eq(s21_strerror(17), strerror(17));
-
+ck_assert_str_eq(s21_strerror(17),  strerror(17));
 #test test_strerror_POSIX_19
-ck_assert_str_eq(s21_strerror(18), strerror(18));
-
+ck_assert_str_eq(s21_strerror(18),  strerror(18));
 #test test_strerror_POSIX_20
-ck_assert_str_eq(s21_strerror(19), strerror(19));
-
+ck_assert_str_eq(s21_strerror(19),  strerror(19));
 #test test_strerror_POSIX_21
-ck_assert_str_eq(s21_strerror(20), strerror(20));
-
+ck_assert_str_eq(s21_strerror(20),  strerror(20));
 #test test_strerror_POSIX_22
-ck_assert_str_eq(s21_strerror(21), strerror(21));
-
+ck_assert_str_eq(s21_strerror(21),  strerror(21));
 #test test_strerror_POSIX_23
-ck_assert_str_eq(s21_strerror(22), strerror(22));
-
+ck_assert_str_eq(s21_strerror(22),  strerror(22));
 #test test_strerror_POSIX_24
-ck_assert_str_eq(s21_strerror(23), strerror(23));
-
+ck_assert_str_eq(s21_strerror(23),  strerror(23));
 #test test_strerror_POSIX_25
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(24), strerror(24));
+ck_assert_str_ne(s21_strerror(24),  strerror(24));
 #else
-ck_assert_str_eq(s21_strerror(24), strerror(24));
+ck_assert_str_eq(s21_strerror(24),  strerror(24));
 #endif
-
 #test test_strerror_POSIX_26
-ck_assert_str_eq(s21_strerror(25), strerror(25));
-
+ck_assert_str_eq(s21_strerror(25),  strerror(25));
 #test test_strerror_POSIX_27
-ck_assert_str_eq(s21_strerror(26), strerror(26));
-
+ck_assert_str_eq(s21_strerror(26),  strerror(26));
 #test test_strerror_POSIX_28
-ck_assert_str_eq(s21_strerror(27), strerror(27));
-
+ck_assert_str_eq(s21_strerror(27),  strerror(27));
 #test test_strerror_POSIX_29
-ck_assert_str_eq(s21_strerror(28), strerror(28));
-
+ck_assert_str_eq(s21_strerror(28),  strerror(28));
 #test test_strerror_POSIX_30
-ck_assert_str_eq(s21_strerror(29), strerror(29));
-
+ck_assert_str_eq(s21_strerror(29),  strerror(29));
 #test test_strerror_POSIX_31
-ck_assert_str_eq(s21_strerror(30), strerror(30));
-
+ck_assert_str_eq(s21_strerror(30),  strerror(30));
 #test test_strerror_POSIX_32
-ck_assert_str_eq(s21_strerror(31), strerror(31));
-
+ck_assert_str_eq(s21_strerror(31),  strerror(31));
 #test test_strerror_POSIX_33
-ck_assert_str_eq(s21_strerror(32), strerror(32));
-
+ck_assert_str_eq(s21_strerror(32),  strerror(32));
 #test test_strerror_POSIX_34
-ck_assert_str_eq(s21_strerror(33), strerror(33));
-
+ck_assert_str_eq(s21_strerror(33),  strerror(33));
 #test test_strerror_POSIX_35
-ck_assert_str_eq(s21_strerror(34), strerror(34));
-
+ck_assert_str_eq(s21_strerror(34),  strerror(34));
 #test test_strerror_POSIX_36
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(35), strerror(35));
+ck_assert_str_ne(s21_strerror(35),  strerror(35));
 #else
-ck_assert_str_eq(s21_strerror(35), strerror(35));
+ck_assert_str_eq(s21_strerror(35),  strerror(35));
 #endif
-
 #test test_strerror_POSIX_37
-ck_assert_str_eq(s21_strerror(36), strerror(36));
-
+ck_assert_str_eq(s21_strerror(36),  strerror(36));
 #test test_strerror_POSIX_38
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(37), strerror(37));
+ck_assert_str_ne(s21_strerror(37),  strerror(37));
 #else
-ck_assert_str_eq(s21_strerror(37), strerror(37));
+ck_assert_str_eq(s21_strerror(37),  strerror(37));
 #endif
-
 #test test_strerror_POSIX_39
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(38), strerror(38));
+ck_assert_str_ne(s21_strerror(38),  strerror(38));
 #else
-ck_assert_str_eq(s21_strerror(38), strerror(38));
+ck_assert_str_eq(s21_strerror(38),  strerror(38));
 #endif
-
 #test test_strerror_POSIX_40
-ck_assert_str_eq(s21_strerror(39), strerror(39));
-
+ck_assert_str_eq(s21_strerror(39),  strerror(39));
 #test test_strerror_POSIX_41
-ck_assert_str_eq(s21_strerror(40), strerror(40));
-
+ck_assert_str_eq(s21_strerror(40),  strerror(40));
 #test test_strerror_POSIX_42
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(41), strerror(41));
+ck_assert_str_eq(s21_strerror(41),  strerror(41));
 #else
-ck_assert_str_eq(s21_strerror(41), strerror(41));
+ck_assert_str_eq(s21_strerror(41),  strerror(41));
 #endif
-
 #test test_strerror_POSIX_43
-ck_assert_str_eq(s21_strerror(42), strerror(42));
-
+ck_assert_str_eq(s21_strerror(42),  strerror(42));
 #test test_strerror_POSIX_44
-ck_assert_str_eq(s21_strerror(43), strerror(43));
-
+ck_assert_str_eq(s21_strerror(43),  strerror(43));
 #test test_strerror_POSIX_45
-ck_assert_str_ne(s21_strerror(44), strerror(44));
-
+ck_assert_str_ne(s21_strerror(44),  strerror(44));
 #test test_strerror_POSIX_46
-ck_assert_str_ne(s21_strerror(45), strerror(45));
-
+ck_assert_str_ne(s21_strerror(45),  strerror(45));
 #test test_strerror_POSIX_47
-ck_assert_str_ne(s21_strerror(46), strerror(46));
-
+ck_assert_str_ne(s21_strerror(46),  strerror(46));
 #test test_strerror_POSIX_48
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(47), strerror(47));
+ck_assert_str_eq(s21_strerror(47),  strerror(47));
 #else
-ck_assert_str_ne(s21_strerror(47), strerror(47));
+ck_assert_str_ne(s21_strerror(47),  strerror(47));
 #endif
-
 #test test_strerror_POSIX_49
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(48), strerror(48));
+ck_assert_str_eq(s21_strerror(48),  strerror(48));
 #else
-ck_assert_str_ne(s21_strerror(48), strerror(48));
+ck_assert_str_ne(s21_strerror(48),  strerror(48));
 #endif
-
 #test test_strerror_POSIX_50
-ck_assert_str_ne(s21_strerror(49), strerror(49));
-
+ck_assert_str_ne(s21_strerror(49),  strerror(49));
 #test test_strerror_POSIX_51
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(50), strerror(50));
+ck_assert_str_eq(s21_strerror(50),  strerror(50));
 #else
-ck_assert_str_ne(s21_strerror(50), strerror(50));
+ck_assert_str_ne(s21_strerror(50),  strerror(50));
 #endif
-
 #test test_strerror_POSIX_52
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(51), strerror(51));
+ck_assert_str_eq(s21_strerror(51),  strerror(51));
 #else
-ck_assert_str_ne(s21_strerror(51), strerror(51));
+ck_assert_str_ne(s21_strerror(51),  strerror(51));
 #endif
-
 #test test_strerror_POSIX_53
-ck_assert_str_ne(s21_strerror(52), strerror(52));
-
+ck_assert_str_ne(s21_strerror(52),  strerror(52));
 #test test_strerror_POSIX_54
-ck_assert_str_ne(s21_strerror(53), strerror(53));
-
+ck_assert_str_ne(s21_strerror(53),  strerror(53));
 #test test_strerror_POSIX_55
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(54), strerror(54));
+ck_assert_str_eq(s21_strerror(54),  strerror(54));
 #else
-ck_assert_str_ne(s21_strerror(54), strerror(54));
+ck_assert_str_ne(s21_strerror(54),  strerror(54));
 #endif
-
 #test test_strerror_POSIX_56
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(55), strerror(55));
+ck_assert_str_eq(s21_strerror(55),  strerror(55));
 #else
-ck_assert_str_ne(s21_strerror(55), strerror(55));
+ck_assert_str_ne(s21_strerror(55),  strerror(55));
 #endif
-
 #test test_strerror_POSIX_57
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(56), strerror(56));
+ck_assert_str_eq(s21_strerror(56),  strerror(56));
 #else
-ck_assert_str_ne(s21_strerror(56), strerror(56));
+ck_assert_str_ne(s21_strerror(56),  strerror(56));
 #endif
-
 #test test_strerror_POSIX_58
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(57), strerror(57));
+ck_assert_str_eq(s21_strerror(57),  strerror(57));
 #else
-ck_assert_str_ne(s21_strerror(57), strerror(57));
+ck_assert_str_ne(s21_strerror(57),  strerror(57));
 #endif
-
 #test test_strerror_POSIX_59
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(58), strerror(58));
+ck_assert_str_ne(s21_strerror(58),  strerror(58));
 #else
-ck_assert_str_eq(s21_strerror(58), strerror(58));
+ck_assert_str_eq(s21_strerror(58),  strerror(58));
 #endif
-
 #test test_strerror_POSIX_60
-ck_assert_str_ne(s21_strerror(59), strerror(59));
-
+ck_assert_str_ne(s21_strerror(59),  strerror(59));
 #test test_strerror_POSIX_61
-ck_assert_str_ne(s21_strerror(60), strerror(60));
-
+ck_assert_str_ne(s21_strerror(60),  strerror(60));
 #test test_strerror_POSIX_62
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(61), strerror(61));
+ck_assert_str_eq(s21_strerror(61),  strerror(61));
 #else
-ck_assert_str_ne(s21_strerror(61), strerror(61));
+ck_assert_str_ne(s21_strerror(61),  strerror(61));
 #endif
-
 #test test_strerror_POSIX_63
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(62), strerror(62));
+ck_assert_str_eq(s21_strerror(62),  strerror(62));
 #else
-ck_assert_str_ne(s21_strerror(62), strerror(62));
+ck_assert_str_ne(s21_strerror(62),  strerror(62));
 #endif
-
 #test test_strerror_POSIX_64
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(63), strerror(63));
+ck_assert_str_eq(s21_strerror(63),  strerror(63));
 #else
-ck_assert_str_ne(s21_strerror(63), strerror(63));
+ck_assert_str_ne(s21_strerror(63),  strerror(63));
 #endif
-
 #test test_strerror_POSIX_65
-ck_assert_str_ne(s21_strerror(64), strerror(64));
-
+ck_assert_str_ne(s21_strerror(64),  strerror(64));
 #test test_strerror_POSIX_66
-ck_assert_str_ne(s21_strerror(65), strerror(65));
-
+ck_assert_str_ne(s21_strerror(65),  strerror(65));
 #test test_strerror_POSIX_67
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(66), strerror(66));
+ck_assert_str_eq(s21_strerror(66),  strerror(66));
 #else
-ck_assert_str_ne(s21_strerror(66), strerror(66));
+ck_assert_str_ne(s21_strerror(66),  strerror(66));
 #endif
-
 #test test_strerror_POSIX_68
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(67), strerror(67));
+ck_assert_str_ne(s21_strerror(67),  strerror(67));
 #else
-ck_assert_str_eq(s21_strerror(67), strerror(67));
+ck_assert_str_eq(s21_strerror(67),  strerror(67));
 #endif
-
 #test test_strerror_POSIX_69
-ck_assert_str_ne(s21_strerror(68), strerror(68));
-
+ck_assert_str_ne(s21_strerror(68),  strerror(68));
 #test test_strerror_POSIX_70
-ck_assert_str_ne(s21_strerror(69), strerror(69));
-
+ck_assert_str_ne(s21_strerror(69),  strerror(69));
 #test test_strerror_POSIX_71
-ck_assert_str_ne(s21_strerror(70), strerror(70));
-
+ck_assert_str_ne(s21_strerror(70),  strerror(70));
 #test test_strerror_POSIX_72
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(71), strerror(71));
+ck_assert_str_ne(s21_strerror(71),  strerror(71));
 #else
-ck_assert_str_eq(s21_strerror(71), strerror(71));
+ck_assert_str_eq(s21_strerror(71),  strerror(71));
 #endif
-
 #test test_strerror_POSIX_73
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(72), strerror(72));
+ck_assert_str_ne(s21_strerror(72),  strerror(72));
 #else
-ck_assert_str_eq(s21_strerror(72), strerror(72));
+ck_assert_str_eq(s21_strerror(72),  strerror(72));
 #endif
-
 #test test_strerror_POSIX_74
-ck_assert_str_ne(s21_strerror(73), strerror(73));
-
+ck_assert_str_ne(s21_strerror(73),  strerror(73));
 #test test_strerror_POSIX_75
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(74), strerror(74));
+ck_assert_str_ne(s21_strerror(74),  strerror(74));
 #else
-ck_assert_str_eq(s21_strerror(74), strerror(74));
+ck_assert_str_eq(s21_strerror(74),  strerror(74));
 #endif
-
 #test test_strerror_POSIX_76
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(75), strerror(75));
+ck_assert_str_ne(s21_strerror(75),  strerror(75));
 #else
-ck_assert_str_eq(s21_strerror(75), strerror(75));
+ck_assert_str_eq(s21_strerror(75),  strerror(75));
 #endif
-
 #test test_strerror_POSIX_77
-ck_assert_str_ne(s21_strerror(76), strerror(76));
-
+ck_assert_str_ne(s21_strerror(76),  strerror(76));
 #test test_strerror_POSIX_78
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(77), strerror(77));
+ck_assert_str_eq(s21_strerror(77),  strerror(77));
 #else
-ck_assert_str_ne(s21_strerror(77), strerror(77));
+ck_assert_str_ne(s21_strerror(77),  strerror(77));
 #endif
-
 #test test_strerror_POSIX_79
-ck_assert_str_ne(s21_strerror(78), strerror(78));
-
+ck_assert_str_ne(s21_strerror(78),  strerror(78));
 #test test_strerror_POSIX_80
-ck_assert_str_ne(s21_strerror(79), strerror(79));
-
+ck_assert_str_ne(s21_strerror(79),  strerror(79));
 #test test_strerror_POSIX_81
-ck_assert_str_ne(s21_strerror(80), strerror(80));
-
+ck_assert_str_ne(s21_strerror(80),  strerror(80));
 #test test_strerror_POSIX_82
-ck_assert_str_ne(s21_strerror(81), strerror(81));
-
+ck_assert_str_ne(s21_strerror(81),  strerror(81));
 #test test_strerror_POSIX_83
-ck_assert_str_ne(s21_strerror(82), strerror(82));
-
+ck_assert_str_ne(s21_strerror(82),  strerror(82));
 #test test_strerror_POSIX_84
-ck_assert_str_ne(s21_strerror(83), strerror(83));
-
+ck_assert_str_ne(s21_strerror(83),  strerror(83));
 #test test_strerror_POSIX_85
-ck_assert_str_ne(s21_strerror(84), strerror(84));
-
+ck_assert_str_ne(s21_strerror(84),  strerror(84));
 #test test_strerror_POSIX_86
-ck_assert_str_ne(s21_strerror(85), strerror(85));
-
+ck_assert_str_ne(s21_strerror(85),  strerror(85));
 #test test_strerror_POSIX_87
-ck_assert_str_ne(s21_strerror(86), strerror(86));
-
+ck_assert_str_ne(s21_strerror(86),  strerror(86));
 #test test_strerror_POSIX_88
-ck_assert_str_ne(s21_strerror(87), strerror(87));
-
+ck_assert_str_ne(s21_strerror(87),  strerror(87));
 #test test_strerror_POSIX_89
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(88), strerror(88));
+ck_assert_str_ne(s21_strerror(88),  strerror(88));
 #else
-ck_assert_str_eq(s21_strerror(88), strerror(88));
+ck_assert_str_eq(s21_strerror(88),  strerror(88));
 #endif
-
 #test test_strerror_POSIX_90
-ck_assert_str_eq(s21_strerror(89), strerror(89));
-
+ck_assert_str_eq(s21_strerror(89),  strerror(89));
 #test test_strerror_POSIX_91
-ck_assert_str_eq(s21_strerror(90), strerror(90));
-
+ck_assert_str_eq(s21_strerror(90),  strerror(90));
 #test test_strerror_POSIX_92
-ck_assert_str_eq(s21_strerror(91), strerror(91));
-
+ck_assert_str_eq(s21_strerror(91),  strerror(91));
 #test test_strerror_POSIX_93
-ck_assert_str_eq(s21_strerror(92), strerror(92));
-
+ck_assert_str_eq(s21_strerror(92),  strerror(92));
 #test test_strerror_POSIX_94
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(93), strerror(93));
+ck_assert_str_ne(s21_strerror(93),  strerror(93));
 #else
-ck_assert_str_eq(s21_strerror(93), strerror(93));
+ck_assert_str_eq(s21_strerror(93),  strerror(93));
 #endif
-
 #test test_strerror_POSIX_95
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(94), strerror(94));
+ck_assert_str_eq(s21_strerror(94),  strerror(94));
 #else
-ck_assert_str_ne(s21_strerror(94), strerror(94));
+ck_assert_str_ne(s21_strerror(94),  strerror(94));
 #endif
-
 #test test_strerror_POSIX_96
-ck_assert_str_eq(s21_strerror(95), strerror(95));
-
+ck_assert_str_eq(s21_strerror(95),  strerror(95));
 #test test_strerror_POSIX_97
-ck_assert_str_ne(s21_strerror(96), strerror(96));
-
+ck_assert_str_ne(s21_strerror(96),  strerror(96));
 #test test_strerror_POSIX_98
-ck_assert_str_eq(s21_strerror(97), strerror(97));
-
+ck_assert_str_eq(s21_strerror(97),  strerror(97));
 #test test_strerror_POSIX_99
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(98), strerror(98));
+ck_assert_str_ne(s21_strerror(98),  strerror(98));
 #else
-ck_assert_str_eq(s21_strerror(98), strerror(98));
+ck_assert_str_eq(s21_strerror(98),  strerror(98));
 #endif
-
 #test test_strerror_POSIX_100
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(99), strerror(99));
+ck_assert_str_ne(s21_strerror(99),  strerror(99));
 #else
-ck_assert_str_eq(s21_strerror(99), strerror(99));
+ck_assert_str_eq(s21_strerror(99),  strerror(99));
 #endif
-
 #test test_strerror_POSIX_101
-ck_assert_str_eq(s21_strerror(100), strerror(100));
-
+ck_assert_str_eq(s21_strerror(100),  strerror(100));
 #test test_strerror_POSIX_102
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(101), strerror(101));
+ck_assert_str_ne(s21_strerror(101),  strerror(101));
 #else
-ck_assert_str_eq(s21_strerror(101), strerror(101));
+ck_assert_str_eq(s21_strerror(101),  strerror(101));
 #endif
-
 #test test_strerror_POSIX_103
-ck_assert_str_eq(s21_strerror(102), strerror(102));
-
+ck_assert_str_eq(s21_strerror(102),  strerror(102));
 #test test_strerror_POSIX_104
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(103), strerror(103));
+ck_assert_str_ne(s21_strerror(103),  strerror(103));
 #else
-ck_assert_str_eq(s21_strerror(103), strerror(103));
+ck_assert_str_eq(s21_strerror(103),  strerror(103));
 #endif
-
 #test test_strerror_POSIX_105
-ck_assert_str_eq(s21_strerror(104), strerror(104));
-
+ck_assert_str_eq(s21_strerror(104),  strerror(104));
 #test test_strerror_POSIX_106
-ck_assert_str_eq(s21_strerror(105), strerror(105));
-
+ck_assert_str_eq(s21_strerror(105),  strerror(105));
 #test test_strerror_POSIX_107
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_ne(s21_strerror(106), strerror(106));
+ck_assert_str_ne(s21_strerror(106),  strerror(106));
 #else
-ck_assert_str_eq(s21_strerror(106), strerror(106));
+ck_assert_str_eq(s21_strerror(106),  strerror(106));
 #endif
-
 #test test_strerror_POSIX_108
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(107), strerror(107));
+ck_assert_str_eq(s21_strerror(107),  strerror(107));
 #else
-ck_assert_str_eq(s21_strerror(107), strerror(107));
+ck_assert_str_eq(s21_strerror(107),  strerror(107));
 #endif
-
 #test test_strerror_POSIX_109
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(108), strerror(108));
+ck_assert_str_eq(s21_strerror(108),  strerror(108));
 #else
-ck_assert_str_ne(s21_strerror(108), strerror(108));
+ck_assert_str_ne(s21_strerror(108),  strerror(108));
 #endif
-
 #test test_strerror_POSIX_110
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(109), strerror(109));
+ck_assert_str_eq(s21_strerror(109),  strerror(109));
 #else
-ck_assert_str_ne(s21_strerror(109), strerror(109));
+ck_assert_str_ne(s21_strerror(109),  strerror(109));
 #endif
-
 #test test_strerror_POSIX_111
-ck_assert_str_eq(s21_strerror(110), strerror(110));
-
-
+ck_assert_str_eq(s21_strerror(110),  strerror(110));
 #test test_strerror_POSIX_112
-ck_assert_str_eq(s21_strerror(111), strerror(111));
-
+ck_assert_str_eq(s21_strerror(111),  strerror(111));
 #test test_strerror_POSIX_113
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(112), strerror(112));
+ck_assert_str_eq(s21_strerror(112),  strerror(112));
 #else
-ck_assert_str_ne(s21_strerror(112), strerror(112));
+ck_assert_str_ne(s21_strerror(112),  strerror(112));
 #endif
-
 #test test_strerror_POSIX_114
-ck_assert_str_eq(s21_strerror(113), strerror(113));
-
+ck_assert_str_eq(s21_strerror(113),  strerror(113));
 #test test_strerror_POSIX_115
-ck_assert_str_eq(s21_strerror(114), strerror(114));
-
+ck_assert_str_eq(s21_strerror(114),  strerror(114));
 #test test_strerror_POSIX_116
-ck_assert_str_eq(s21_strerror(115), strerror(115));
-
+ck_assert_str_eq(s21_strerror(115),  strerror(115));
 #test test_strerror_POSIX_117
-ck_assert_str_eq(s21_strerror(116), strerror(116));
-
+ck_assert_str_eq(s21_strerror(116),  strerror(116));
 #test test_strerror_POSIX_118
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(117), strerror(117));
+ck_assert_str_eq(s21_strerror(117),  strerror(117));
 #else
-ck_assert_str_ne(s21_strerror(117), strerror(117));
+ck_assert_str_ne(s21_strerror(117),  strerror(117));
 #endif
-
 #test test_strerror_POSIX_119
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(118), strerror(118));
+ck_assert_str_eq(s21_strerror(118),  strerror(118));
 #else
-ck_assert_str_ne(s21_strerror(118), strerror(118));
+ck_assert_str_ne(s21_strerror(118),  strerror(118));
 #endif
-
 #test test_strerror_POSIX_120
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(119), strerror(119));
+ck_assert_str_eq(s21_strerror(119),  strerror(119));
 #else
-ck_assert_str_ne(s21_strerror(119), strerror(119));
+ck_assert_str_ne(s21_strerror(119),  strerror(119));
 #endif
-
 #test test_strerror_POSIX_121
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(120), strerror(120));
+ck_assert_str_eq(s21_strerror(120),  strerror(120));
 #else
-ck_assert_str_ne(s21_strerror(120), strerror(120));
+ck_assert_str_ne(s21_strerror(120),  strerror(120));
 #endif
-
 #test test_strerror_POSIX_122
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(121), strerror(121));
+ck_assert_str_eq(s21_strerror(121),  strerror(121));
 #else
-ck_assert_str_ne(s21_strerror(121), strerror(121));
+ck_assert_str_ne(s21_strerror(121),  strerror(121));
 #endif
-
 #test test_strerror_POSIX_123
-ck_assert_str_eq(s21_strerror(122), strerror(122));
-
+ck_assert_str_eq(s21_strerror(122),  strerror(122));
 #test test_strerror_POSIX_124
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(123), strerror(123));
+ck_assert_str_eq(s21_strerror(123),  strerror(123));
 #else
-ck_assert_str_ne(s21_strerror(123), strerror(123));
+ck_assert_str_ne(s21_strerror(123),  strerror(123));
 #endif
-
 #test test_strerror_POSIX_125
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(124), strerror(124));
+ck_assert_str_eq(s21_strerror(124),  strerror(124));
 #else
-ck_assert_str_ne(s21_strerror(124), strerror(124));
+ck_assert_str_ne(s21_strerror(124),  strerror(124));
 #endif
-
 #test test_strerror_POSIX_126
-ck_assert_str_eq(s21_strerror(125), strerror(125));
-
+ck_assert_str_eq(s21_strerror(125),  strerror(125));
 #test test_strerror_POSIX_127
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(126), strerror(126));
+ck_assert_str_eq(s21_strerror(126),  strerror(126));
 #else
-ck_assert_str_ne(s21_strerror(126), strerror(126));
+ck_assert_str_ne(s21_strerror(126),  strerror(126));
 #endif
-
 #test test_strerror_POSIX_128
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(127), strerror(127));
+ck_assert_str_eq(s21_strerror(127),  strerror(127));
 #else
-ck_assert_str_ne(s21_strerror(127), strerror(127));
+ck_assert_str_ne(s21_strerror(127),  strerror(127));
 #endif
-
 #test test_strerror_POSIX_129
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(128), strerror(128));
+ck_assert_str_eq(s21_strerror(128),  strerror(128));
 #else
-ck_assert_str_ne(s21_strerror(128), strerror(128));
+ck_assert_str_ne(s21_strerror(128),  strerror(128));
 #endif
-
 #test test_strerror_POSIX_130
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(129), strerror(129));
+ck_assert_str_eq(s21_strerror(129),  strerror(129));
 #else
-ck_assert_str_ne(s21_strerror(129), strerror(129));
+ck_assert_str_ne(s21_strerror(129),  strerror(129));
 #endif
-
 #test test_strerror_POSIX_131
-ck_assert_str_eq(s21_strerror(130), strerror(130));
-
+ck_assert_str_eq(s21_strerror(130),  strerror(130));
 #test test_strerror_POSIX_132
-ck_assert_str_eq(s21_strerror(131), strerror(131));
-
+ck_assert_str_eq(s21_strerror(131),  strerror(131));
 #test test_strerror_POSIX_133
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(132), strerror(132));
+ck_assert_str_eq(s21_strerror(132),  strerror(132));
 #else
-ck_assert_str_ne(s21_strerror(132), strerror(132));
+ck_assert_str_ne(s21_strerror(132),  strerror(132));
 #endif
-
 #test test_strerror_POSIX_134
 #if defined(__APPLE__) && defined(__MACH__)
-ck_assert_str_eq(s21_strerror(133), strerror(133));
+ck_assert_str_eq(s21_strerror(133),  strerror(133));
 #else
-ck_assert_str_ne(s21_strerror(133), strerror(133));
+ck_assert_str_ne(s21_strerror(133),  strerror(133));
 #endif
-
 #test test_strerror_POSIX_135
-ck_assert_str_eq(s21_strerror(134), strerror(134));
-
+ck_assert_str_eq(s21_strerror(134),  strerror(134));
 #test test_strerror_POSIX_136
-ck_assert_str_eq(s21_strerror(135), strerror(135));
-
+ck_assert_str_eq(s21_strerror(135),  strerror(135));
 #test test_strerror_POSIX_137
-ck_assert_str_eq(s21_strerror(136), strerror(136));
-
+ck_assert_str_eq(s21_strerror(136),  strerror(136));
 #test test_strerror_POSIX_138
-ck_assert_str_eq(s21_strerror(137), strerror(137));
-
+ck_assert_str_eq(s21_strerror(137),  strerror(137));
 #test test_strerror_POSIX_139
-ck_assert_str_eq(s21_strerror(138), strerror(138));
-
+ck_assert_str_eq(s21_strerror(138),  strerror(138));
 #test test_strerror_POSIX_140
-ck_assert_str_eq(s21_strerror(139), strerror(139));
-
+ck_assert_str_eq(s21_strerror(139),  strerror(139));
 #test test_strerror_POSIX_141
-ck_assert_str_eq(s21_strerror(140), strerror(140));
-
+ck_assert_str_eq(s21_strerror(140),  strerror(140));
 #test test_strerror_POSIX_142
-ck_assert_str_eq(s21_strerror(141), strerror(141));
-
+ck_assert_str_eq(s21_strerror(141),  strerror(141));
 #test test_strerror_POSIX_143
-ck_assert_str_eq(s21_strerror(142), strerror(142));
-
+ck_assert_str_eq(s21_strerror(142),  strerror(142));
 #test test_strerror_POSIX_144
-ck_assert_str_eq(s21_strerror(143), strerror(143));
-
+ck_assert_str_eq(s21_strerror(143),  strerror(143));
 #test test_strerror_POSIX_145
-ck_assert_str_eq(s21_strerror(144), strerror(144));
-
+ck_assert_str_eq(s21_strerror(144),  strerror(144));
 #test test_strerror_POSIX_146
-ck_assert_str_eq(s21_strerror(145), strerror(145));
-
+ck_assert_str_eq(s21_strerror(145),  strerror(145));
 #test test_strerror_POSIX_147
-ck_assert_str_eq(s21_strerror(146), strerror(146));
-
+ck_assert_str_eq(s21_strerror(146),  strerror(146));
 #test test_strerror_POSIX_148
-ck_assert_str_eq(s21_strerror(147), strerror(147));
-
+ck_assert_str_eq(s21_strerror(147),  strerror(147));
 #test test_strerror_POSIX_149
-ck_assert_str_eq(s21_strerror(148), strerror(148));
-
+ck_assert_str_eq(s21_strerror(148),  strerror(148));
 #test test_strerror_POSIX_150
-ck_assert_str_eq(s21_strerror(149), strerror(149));
-
+ck_assert_str_eq(s21_strerror(149),  strerror(149));
 #test test_strerror_POSIX_151
-ck_assert_str_eq(s21_strerror(150), strerror(150));
-
+ck_assert_str_eq(s21_strerror(150),  strerror(150));
 #test test_strerror_POSIX_152
-ck_assert_str_eq(s21_strerror(151), strerror(151));
-
+ck_assert_str_eq(s21_strerror(151),  strerror(151));
 #test test_strerror_POSIX_153
-ck_assert_str_eq(s21_strerror(152), strerror(152));
-
+ck_assert_str_eq(s21_strerror(152),  strerror(152));
 #test test_strerror_POSIX_154
-ck_assert_str_eq(s21_strerror(153), strerror(153));
-
+ck_assert_str_eq(s21_strerror(153),  strerror(153));
 #test test_strerror_POSIX_155
-ck_assert_str_eq(s21_strerror(154), strerror(154));
-
+ck_assert_str_eq(s21_strerror(154),  strerror(154));
 #test test_strerror_POSIX_156
-ck_assert_str_eq(s21_strerror(155), strerror(155));
-
+ck_assert_str_eq(s21_strerror(155),  strerror(155));
 #test test_strerror_POSIX_157
-ck_assert_str_eq(s21_strerror(156), strerror(156));
-
+ck_assert_str_eq(s21_strerror(156),  strerror(156));
 #test test_strerror_POSIX_158
-ck_assert_str_eq(s21_strerror(157), strerror(157));
-
+ck_assert_str_eq(s21_strerror(157),  strerror(157));
 #test test_strerror_POSIX_159
-ck_assert_str_eq(s21_strerror(158), strerror(158));
-
+ck_assert_str_eq(s21_strerror(158),  strerror(158));
 #test test_strerror_POSIX_160
-ck_assert_str_eq(s21_strerror(159), strerror(159));
-
+ck_assert_str_eq(s21_strerror(159),  strerror(159));
 #test test_strerror_POSIX_161
-ck_assert_str_eq(s21_strerror(160), strerror(160));
-
+ck_assert_str_eq(s21_strerror(160),  strerror(160));
 #test test_strerror_POSIX_162
-ck_assert_str_eq(s21_strerror(161), strerror(161));
-
+ck_assert_str_eq(s21_strerror(161),  strerror(161));
 #test test_strerror_POSIX_163
-ck_assert_str_eq(s21_strerror(162), strerror(162));
-
+ck_assert_str_eq(s21_strerror(162),  strerror(162));
 #test test_strerror_POSIX_164
-ck_assert_str_eq(s21_strerror(163), strerror(163));
-
+ck_assert_str_eq(s21_strerror(163),  strerror(163));
 #test test_strerror_POSIX_165
-ck_assert_str_eq(s21_strerror(164), strerror(164));
-
+ck_assert_str_eq(s21_strerror(164),  strerror(164));
 #test test_strerror_POSIX_166
-ck_assert_str_eq(s21_strerror(165), strerror(165));
-
+ck_assert_str_eq(s21_strerror(165),  strerror(165));
 #test test_strerror_POSIX_167
-ck_assert_str_eq(s21_strerror(166), strerror(166));
-
+ck_assert_str_eq(s21_strerror(166),  strerror(166));
 #test test_strerror_POSIX_168
-ck_assert_str_eq(s21_strerror(167), strerror(167));
-
+ck_assert_str_eq(s21_strerror(167),  strerror(167));
 #test test_strerror_POSIX_169
-ck_assert_str_eq(s21_strerror(168), strerror(168));
-
+ck_assert_str_eq(s21_strerror(168),  strerror(168));
 #test test_strerror_POSIX_170
-ck_assert_str_eq(s21_strerror(169), strerror(169));
-
+ck_assert_str_eq(s21_strerror(169),  strerror(169));
 #test test_strerror_POSIX_171
-ck_assert_str_eq(s21_strerror(170), strerror(170));
-
+ck_assert_str_eq(s21_strerror(170),  strerror(170));
 #test test_strerror_POSIX_172
-ck_assert_str_eq(s21_strerror(171), strerror(171));
-
+ck_assert_str_eq(s21_strerror(171),  strerror(171));
 #test test_strerror_POSIX_173
-ck_assert_str_eq(s21_strerror(172), strerror(172));
-
+ck_assert_str_eq(s21_strerror(172),  strerror(172));
 #test test_strerror_POSIX_174
-ck_assert_str_eq(s21_strerror(173), strerror(173));
-
+ck_assert_str_eq(s21_strerror(173),  strerror(173));
 #test test_strerror_POSIX_175
-ck_assert_str_eq(s21_strerror(174), strerror(174));
-
+ck_assert_str_eq(s21_strerror(174),  strerror(174));
 #test test_strerror_POSIX_176
-ck_assert_str_eq(s21_strerror(175), strerror(175));
-
+ck_assert_str_eq(s21_strerror(175),  strerror(175));
 #test test_strerror_POSIX_177
-ck_assert_str_eq(s21_strerror(176), strerror(176));
-
+ck_assert_str_eq(s21_strerror(176),  strerror(176));
 #test test_strerror_POSIX_178
-ck_assert_str_eq(s21_strerror(177), strerror(177));
-
+ck_assert_str_eq(s21_strerror(177),  strerror(177));
 #test test_strerror_POSIX_179
-ck_assert_str_eq(s21_strerror(178), strerror(178));
-
+ck_assert_str_eq(s21_strerror(178),  strerror(178));
 #test test_strerror_POSIX_180
-ck_assert_str_eq(s21_strerror(179), strerror(179));
-
+ck_assert_str_eq(s21_strerror(179),  strerror(179));
 #test test_strerror_POSIX_181
-ck_assert_str_eq(s21_strerror(180), strerror(180));
-
+ck_assert_str_eq(s21_strerror(180),  strerror(180));
 #test test_strerror_POSIX_182
-ck_assert_str_eq(s21_strerror(181), strerror(181));
-
+ck_assert_str_eq(s21_strerror(181),  strerror(181));
 #test test_strerror_POSIX_183
-ck_assert_str_eq(s21_strerror(182), strerror(182));
-
+ck_assert_str_eq(s21_strerror(182),  strerror(182));
 #test test_strerror_POSIX_184
-ck_assert_str_eq(s21_strerror(183), strerror(183));
-
+ck_assert_str_eq(s21_strerror(183),  strerror(183));
 #test test_strerror_POSIX_185
-ck_assert_str_eq(s21_strerror(184), strerror(184));
-
+ck_assert_str_eq(s21_strerror(184),  strerror(184));
 #test test_strerror_POSIX_186
-ck_assert_str_eq(s21_strerror(185), strerror(185));
-
+ck_assert_str_eq(s21_strerror(185),  strerror(185));
 #test test_strerror_POSIX_187
-ck_assert_str_eq(s21_strerror(186), strerror(186));
-
+ck_assert_str_eq(s21_strerror(186),  strerror(186));
 #test test_strerror_POSIX_188
-ck_assert_str_eq(s21_strerror(187), strerror(187));
-
+ck_assert_str_eq(s21_strerror(187),  strerror(187));
 #test test_strerror_POSIX_189
-ck_assert_str_eq(s21_strerror(188), strerror(188));
-
+ck_assert_str_eq(s21_strerror(188),  strerror(188));
 #test test_strerror_POSIX_190
-ck_assert_str_eq(s21_strerror(189), strerror(189));
-
+ck_assert_str_eq(s21_strerror(189),  strerror(189));
 #test test_strerror_POSIX_191
-ck_assert_str_eq(s21_strerror(190), strerror(190));
-
+ck_assert_str_eq(s21_strerror(190),  strerror(190));
 #test test_strerror_POSIX_192
-ck_assert_str_eq(s21_strerror(191), strerror(191));
-
+ck_assert_str_eq(s21_strerror(191),  strerror(191));
 #test test_strerror_POSIX_193
-ck_assert_str_eq(s21_strerror(192), strerror(192));
-
+ck_assert_str_eq(s21_strerror(192),  strerror(192));
 #test test_strerror_POSIX_194
-ck_assert_str_eq(s21_strerror(193), strerror(193));
-
+ck_assert_str_eq(s21_strerror(193),  strerror(193));
 #test test_strerror_POSIX_195
-ck_assert_str_eq(s21_strerror(194), strerror(194));
-
+ck_assert_str_eq(s21_strerror(194),  strerror(194));
 #test test_strerror_POSIX_196
-ck_assert_str_eq(s21_strerror(195), strerror(195));
-
+ck_assert_str_eq(s21_strerror(195),  strerror(195));
 #test test_strerror_POSIX_197
-ck_assert_str_eq(s21_strerror(196), strerror(196));
-
+ck_assert_str_eq(s21_strerror(196),  strerror(196));
 #test test_strerror_POSIX_198
-ck_assert_str_eq(s21_strerror(197), strerror(197));
-
+ck_assert_str_eq(s21_strerror(197),  strerror(197));
 #test test_strerror_POSIX_199
-ck_assert_str_eq(s21_strerror(198), strerror(198));
-
+ck_assert_str_eq(s21_strerror(198),  strerror(198));
 #test test_strerror_POSIX_200
-ck_assert_str_eq(s21_strerror(199), strerror(199));
-
+ck_assert_str_eq(s21_strerror(199),  strerror(199));
 #test test_strerror_POSIX_201
-ck_assert_str_eq(s21_strerror(200), strerror(200));
-
+ck_assert_str_eq(s21_strerror(200),  strerror(200));
 #test test_strerror_POSIX_202
-ck_assert_str_eq(s21_strerror(201), strerror(201));
-
+ck_assert_str_eq(s21_strerror(201),  strerror(201));
 #test test_strerror_POSIX_203
-ck_assert_str_eq(s21_strerror(202), strerror(202));
-
+ck_assert_str_eq(s21_strerror(202),  strerror(202));
 #test test_strerror_POSIX_204
-ck_assert_str_eq(s21_strerror(203), strerror(203));
-
+ck_assert_str_eq(s21_strerror(203),  strerror(203));
 #test test_strerror_POSIX_205
-ck_assert_str_eq(s21_strerror(204), strerror(204));
-
+ck_assert_str_eq(s21_strerror(204),  strerror(204));
 #test test_strerror_POSIX_206
-ck_assert_str_eq(s21_strerror(205), strerror(205));
-
+ck_assert_str_eq(s21_strerror(205),  strerror(205));
 #test test_strerror_POSIX_207
-ck_assert_str_eq(s21_strerror(206), strerror(206));
-
+ck_assert_str_eq(s21_strerror(206),  strerror(206));
 #test test_strerror_POSIX_208
-ck_assert_str_eq(s21_strerror(207), strerror(207));
-
+ck_assert_str_eq(s21_strerror(207),  strerror(207));
 #test test_strerror_POSIX_209
-ck_assert_str_eq(s21_strerror(208), strerror(208));
-
+ck_assert_str_eq(s21_strerror(208),  strerror(208));
 #test test_strerror_POSIX_210
-ck_assert_str_eq(s21_strerror(209), strerror(209));
-
+ck_assert_str_eq(s21_strerror(209),  strerror(209));
 #test test_strerror_POSIX_211
-ck_assert_str_eq(s21_strerror(210), strerror(210));
-
+ck_assert_str_eq(s21_strerror(210),  strerror(210));
 #test test_strerror_POSIX_212
-ck_assert_str_eq(s21_strerror(211), strerror(211));
-
+ck_assert_str_eq(s21_strerror(211),  strerror(211));
 #test test_strerror_POSIX_213
-ck_assert_str_eq(s21_strerror(212), strerror(212));
-
+ck_assert_str_eq(s21_strerror(212),  strerror(212));
 #test test_strerror_POSIX_214
-ck_assert_str_eq(s21_strerror(213), strerror(213));
-
+ck_assert_str_eq(s21_strerror(213),  strerror(213));
 #test test_strerror_POSIX_215
-ck_assert_str_eq(s21_strerror(214), strerror(214));
-
+ck_assert_str_eq(s21_strerror(214),  strerror(214));
 #test test_strerror_POSIX_216
-ck_assert_str_eq(s21_strerror(215), strerror(215));
-
+ck_assert_str_eq(s21_strerror(215),  strerror(215));
 #test test_strerror_POSIX_217
-ck_assert_str_eq(s21_strerror(216), strerror(216));
-
+ck_assert_str_eq(s21_strerror(216),  strerror(216));
 #test test_strerror_POSIX_218
-ck_assert_str_eq(s21_strerror(217), strerror(217));
-
+ck_assert_str_eq(s21_strerror(217),  strerror(217));
 #test test_strerror_POSIX_219
-ck_assert_str_eq(s21_strerror(218), strerror(218));
-
+ck_assert_str_eq(s21_strerror(218),  strerror(218));
 #test test_strerror_POSIX_220
-ck_assert_str_eq(s21_strerror(219), strerror(219));
-
+ck_assert_str_eq(s21_strerror(219),  strerror(219));
 #test test_strerror_POSIX_221
-ck_assert_str_eq(s21_strerror(220), strerror(220));
-
+ck_assert_str_eq(s21_strerror(220),  strerror(220));
 #test test_strerror_POSIX_222
-ck_assert_str_eq(s21_strerror(221), strerror(221));
-
+ck_assert_str_eq(s21_strerror(221),  strerror(221));
 #test test_strerror_POSIX_223
-ck_assert_str_eq(s21_strerror(222), strerror(222));
-
+ck_assert_str_eq(s21_strerror(222),  strerror(222));
 #test test_strerror_POSIX_224
-ck_assert_str_eq(s21_strerror(223), strerror(223));
-
+ck_assert_str_eq(s21_strerror(223),  strerror(223));
 #test test_strerror_POSIX_225
-ck_assert_str_eq(s21_strerror(224), strerror(224));
-
+ck_assert_str_eq(s21_strerror(224),  strerror(224));
 #test test_strerror_POSIX_226
-ck_assert_str_eq(s21_strerror(225), strerror(225));
-
+ck_assert_str_eq(s21_strerror(225),  strerror(225));
 #test test_strerror_POSIX_227
-ck_assert_str_eq(s21_strerror(226), strerror(226));
-
+ck_assert_str_eq(s21_strerror(226),  strerror(226));
 #test test_strerror_POSIX_228
-ck_assert_str_eq(s21_strerror(227), strerror(227));
-
+ck_assert_str_eq(s21_strerror(227),  strerror(227));
 #test test_strerror_POSIX_229
-ck_assert_str_eq(s21_strerror(228), strerror(228));
-
+ck_assert_str_eq(s21_strerror(228),  strerror(228));
 #test test_strerror_POSIX_230
-ck_assert_str_eq(s21_strerror(229), strerror(229));
-
+ck_assert_str_eq(s21_strerror(229),  strerror(229));
 #test test_strerror_POSIX_231
-ck_assert_str_eq(s21_strerror(230), strerror(230));
-
+ck_assert_str_eq(s21_strerror(230),  strerror(230));
 #test test_strerror_POSIX_232
-ck_assert_str_eq(s21_strerror(231), strerror(231));
-
+ck_assert_str_eq(s21_strerror(231),  strerror(231));
 #test test_strerror_POSIX_233
-ck_assert_str_eq(s21_strerror(232), strerror(232));
-
+ck_assert_str_eq(s21_strerror(232),  strerror(232));
 #test test_strerror_POSIX_234
-ck_assert_str_eq(s21_strerror(233), strerror(233));
-
+ck_assert_str_eq(s21_strerror(233),  strerror(233));
 #test test_strerror_POSIX_235
-ck_assert_str_eq(s21_strerror(234), strerror(234));
-
+ck_assert_str_eq(s21_strerror(234),  strerror(234));
 #test test_strerror_POSIX_236
-ck_assert_str_eq(s21_strerror(235), strerror(235));
-
+ck_assert_str_eq(s21_strerror(235),  strerror(235));
 #test test_strerror_POSIX_237
-ck_assert_str_eq(s21_strerror(236), strerror(236));
-
+ck_assert_str_eq(s21_strerror(236),  strerror(236));
 #test test_strerror_POSIX_238
-ck_assert_str_eq(s21_strerror(237), strerror(237));
-
+ck_assert_str_eq(s21_strerror(237),  strerror(237));
 #test test_strerror_POSIX_239
-ck_assert_str_eq(s21_strerror(238), strerror(238));
-
+ck_assert_str_eq(s21_strerror(238),  strerror(238));
 #test test_strerror_POSIX_240
-ck_assert_str_eq(s21_strerror(239), strerror(239));
-
+ck_assert_str_eq(s21_strerror(239),  strerror(239));
 #test test_strerror_POSIX_241
-ck_assert_str_eq(s21_strerror(240), strerror(240));
-
+ck_assert_str_eq(s21_strerror(240),  strerror(240));
 #test test_strerror_POSIX_242
-ck_assert_str_eq(s21_strerror(241), strerror(241));
-
+ck_assert_str_eq(s21_strerror(241),  strerror(241));
 #test test_strerror_POSIX_243
-ck_assert_str_eq(s21_strerror(242), strerror(242));
-
+ck_assert_str_eq(s21_strerror(242),  strerror(242));
 #test test_strerror_POSIX_244
-ck_assert_str_eq(s21_strerror(243), strerror(243));
-
+ck_assert_str_eq(s21_strerror(243),  strerror(243));
 #test test_strerror_POSIX_245
-ck_assert_str_eq(s21_strerror(244), strerror(244));
-
+ck_assert_str_eq(s21_strerror(244),  strerror(244));
 #test test_strerror_POSIX_246
-ck_assert_str_eq(s21_strerror(245), strerror(245));
-
+ck_assert_str_eq(s21_strerror(245),  strerror(245));
 #test test_strerror_POSIX_247
-ck_assert_str_eq(s21_strerror(246), strerror(246));
-
+ck_assert_str_eq(s21_strerror(246),  strerror(246));
 #test test_strerror_POSIX_248
-ck_assert_str_eq(s21_strerror(247), strerror(247));
-
+ck_assert_str_eq(s21_strerror(247),  strerror(247));
 #test test_strerror_POSIX_249
-ck_assert_str_eq(s21_strerror(248), strerror(248));
-
+ck_assert_str_eq(s21_strerror(248),  strerror(248));
 #test test_strerror_POSIX_250
-ck_assert_str_eq(s21_strerror(249), strerror(249));
-
+ck_assert_str_eq(s21_strerror(249),  strerror(249));
 #test test_strerror_POSIX_251
-ck_assert_str_eq(s21_strerror(250), strerror(250));
-
+ck_assert_str_eq(s21_strerror(250),  strerror(250));
 #test test_strerror_POSIX_252
-ck_assert_str_eq(s21_strerror(251), strerror(251));
-
+ck_assert_str_eq(s21_strerror(251),  strerror(251));
 #test test_strerror_POSIX_253
-ck_assert_str_eq(s21_strerror(252), strerror(252));
-
+ck_assert_str_eq(s21_strerror(252),  strerror(252));
 #test test_strerror_POSIX_254
-ck_assert_str_eq(s21_strerror(253), strerror(253));
-
+ck_assert_str_eq(s21_strerror(253),  strerror(253));
 #test test_strerror_POSIX_255
-ck_assert_str_eq(s21_strerror(254), strerror(254));
-
+ck_assert_str_eq(s21_strerror(254),  strerror(254));
 #test test_strerror_POSIX_256
-ck_assert_str_eq(s21_strerror(255), strerror(255));
-
+ck_assert_str_eq(s21_strerror(255),  strerror(255));
 
 // strcspn
-
 #test strcspn_1
 const char* str1 = "ABCDEF";
 const char* str2 = "P";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_2
 const char* str1 = "ABCDEF";
 const char* str2 = "A";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_3
 const char* str1 = "ABCDEF";
 const char* str2 = "B";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_4
 const char* str1 = "ABCDEF";
 const char* str2 = "C";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_5
 const char* str1 = "ABCDEF";
 const char* str2 = "CD";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_6
 const char* str1 = "ABCDEF";
 const char* str2 = "DC";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_7
 const char* str1 = "ABCDEF";
 const char* str2 = "AB";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_8
 const char* str1 = "ABCDEF";
 const char* str2 = "BA";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_9
 const char* str1 = "ABCDEF";
 const char* str2 = "EA";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_10
 const char* str1 = "ABCDEF";
 const char* str2 = "A";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_11
 const char* str1 = "ABCDEF";
 const char* str2 = "\n";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_12
 const char* str1 = "ABCDEF";
 const char* str2 = "DEF";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_13
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "\n";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_14
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "A";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_15
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "AB";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_16
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "FE";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_17
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "EF";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strcspn_18
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = " ";
-ck_assert_int_eq(strcspn(str1,str2),s21_strcspn(str1,str2));
-
-
-
-
+ck_assert_int_eq(strcspn(str1, str2), s21_strcspn(str1, str2));
 #test strspn_1
 const char* str1 = "ABCDEF";
 const char* str2 = "P";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_2
 const char* str1 = "ABCDEF";
 const char* str2 = "A";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_3
 const char* str1 = "ABCDEF";
 const char* str2 = "B";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_4
 const char* str1 = "ABCDEF";
 const char* str2 = "C";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_5
 const char* str1 = "ABCDEF";
 const char* str2 = "CD";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_6
 const char* str1 = "ABCDEF";
 const char* str2 = "DC";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_7
 const char* str1 = "ABCDEF";
 const char* str2 = "AB";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_8
 const char* str1 = "ABCDEF";
 const char* str2 = "BA";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_9
 const char* str1 = "ABCDEF";
 const char* str2 = "EA";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_10
 const char* str1 = "ABCDEF";
 const char* str2 = "A";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_11
 const char* str1 = "ABCDEF";
 const char* str2 = "\n";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_12
 const char* str1 = "ABCDEF";
 const char* str2 = "DEF";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_13
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "\n";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_14
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "A";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_15
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "AB";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_16
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "FE";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_17
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = "EF";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 #test strspn_18
 const char* str1 = "ABCDEF FGEHTYA";
 const char* str2 = " ";
-ck_assert_int_eq(strspn(str1,str2),s21_strspn(str1,str2));
-
+ck_assert_int_eq(strspn(str1, str2), s21_strspn(str1, str2));
 // strcat
-
 #test strcat_1
 char   src[50] = "Hello world";
 char dest1[50] = "";
 char dest2[50] = "";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 #test strcat_2
 char   src[50] = " \n\0";
 char dest1[50] = "";
 char dest2[50] = "";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 #test strcat_3
 char   src[50] = "\0";
 char dest1[50] = "";
 char dest2[50] = "";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 #test strcat_4
 char   src[50] = "\n\0";
 char dest1[50] = "";
 char dest2[50] = "";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 #test strcat_5
 char   src[50] = "a\0";
 char dest1[50] = "";
 char dest2[50] = "";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 #test strcat_6
 char   src[50] = "NULL\0";
 char dest1[50] = "";
 char dest2[50] = "";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 #test strcat_7
 char   src[50] = "Hello Hello Hello Hello\0";
 char dest1[50] = "";
 char dest2[50] = "";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 #test strcat_8
 char   src[50] = "Hello world";
 char dest1[50] = "sdkfjhge ri3hc8 ";
 char dest2[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 #test strcat_9
 char   src[50] = " \n\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
 char dest2[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 #test strcat_10
 char   src[50] = "\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
 char dest2[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 #test strcat_11
 char   src[50] = "\n\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
 char dest2[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 #test strcat_12
 char   src[50] = "a\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
 char dest2[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 #test strcat_13
 char   src[50] = "NULL\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
 char dest2[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 #test strcat_14
 char   src[50] = "Hello Hello Hello Hello\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
 char dest2[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strcat(dest1, src), strcat(dest2, src));
-
+ck_assert_str_eq(s21_strcat(dest1,  src),  strcat(dest2,  src));
 // strncat
-
 #test strncat_1
 char   src[50] = "Hello world";
 char dest1[50] = "";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_2
 char   src[50] = " \n\0";
 char dest1[50] = "";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_3
 char   src[50] = "\0";
 char dest1[50] = "";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_4
 char   src[50] = "\n\0";
 char dest1[50] = "";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_5
 char   src[50] = "a\0";
 char dest1[50] = "";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_6
 char   src[50] = "NULL\0";
 char dest1[50] = "";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_7
 char   src[50] = "Hello Hello Hello Hello\0";
 char dest1[50] = "";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_8
 char   src[50] = "Hello world";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_9
 char   src[50] = " \n\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_10
 char   src[50] = "\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_11
 char   src[50] = "\n\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_12
 char   src[50] = "a\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_13
 char   src[50] = "NULL\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_14
 char   src[50] = "Hello Hello Hello Hello\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 7), strncat(dest1, src, 7));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  7),  strncat(dest1,  src,  7));
 #test strncat_15
 char   src[50] = "Hello world";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  15),  strncat(dest1,  src,  15));
 #test strncat_16
 char   src[50] = " \n\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  15),  strncat(dest1,  src,  15));
 #test strncat_17
 char   src[50] = "\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  15),  strncat(dest1,  src,  15));
 #test strncat_18
 char   src[50] = "\n\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  15),  strncat(dest1,  src,  15));
 #test strncat_19
 char   src[50] = "a\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  15),  strncat(dest1,  src,  15));
 #test strncat_20
 char   src[50] = "NULL\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  15),  strncat(dest1,  src,  15));
 #test strncat_21
 char   src[50] = "Hello Hello Hello Hello\0";
 char dest1[50] = "sdkfjhge ri3hc8 ";
-ck_assert_str_eq(s21_strncat(dest1, src, 15), strncat(dest1, src, 15));
-
+ck_assert_str_eq(s21_strncat(dest1,  src,  15),  strncat(dest1,  src,  15));
 // strtok
-
 #test strtok_1
 char   src[50] = "Hello world";
 char *token = " ";
-ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
-
+ck_assert_str_eq(s21_strtok(src,  token),  strtok(src,  token));
 #test strtok_2
 char   src[50] = "He/ll/owor/ld";
 char *token = "/";
-ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
-
+ck_assert_str_eq(s21_strtok(src,  token),  strtok(src,  token));
 #test strtok_3
 char   src[50] = "NULL";
 char *token = " ";
-ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
-
+ck_assert_str_eq(s21_strtok(src,  token),  strtok(src,  token));
 #test strtok_4
 char   src[50] = "a\0";
 char *token = "!";
-ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
-
+ck_assert_str_eq(s21_strtok(src,  token),  strtok(src,  token));
 #test strtok_5
 char   src[50] = "\n\0";
 char *token = " ";
-ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
-
+ck_assert_str_eq(s21_strtok(src,  token),  strtok(src,  token));
 #test strtok_6
 char   src[50] = "He*ll*ow*or*ld";
 char *token = "*";
-ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
-ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
-ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
-
+ck_assert_str_eq(s21_strtok(src,  token),  strtok(src,  token));
+ck_assert_str_eq(s21_strtok(src,  token),  strtok(src,  token));
+ck_assert_str_eq(s21_strtok(src,  token),  strtok(src,  token));
 #test strtok_7
 char   src[50] = "Hello world";
 char *token = "#";
-ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
-
+ck_assert_str_eq(s21_strtok(src,  token),  strtok(src,  token));
 #test strtok_8
 char   src[50] = "NULL";
 char *token = "&";
-ck_assert_str_eq(s21_strtok(src, token), strtok(src, token));
-
+ck_assert_str_eq(s21_strtok(src,  token),  strtok(src,  token));
 #test strtok_9
 char *token = " ";
-ck_assert_ptr_null(strtok(NULL, token));
-ck_assert_ptr_null(s21_strtok(NULL, token));
-
-
-
+ck_assert_ptr_null(strtok(NULL,  token));
+ck_assert_ptr_null(s21_strtok(NULL,  token));
 #test memchr_1
 char buf1[10] = "ABCCDEFG";
-ck_assert_str_eq(memchr(buf1,'D',8),s21_memchr(buf1,'D',8));
-
+ck_assert_str_eq(memchr(buf1, 'D', 8), s21_memchr(buf1, 'D', 8));
 #test memchr_2
 char buf1[25] = "ABCCDEFG fjehiedjhf";
-ck_assert_ptr_null(memchr(buf1,0,8));
-ck_assert_ptr_null(s21_memchr(buf1,0,8));
-
+ck_assert_ptr_null(memchr(buf1, 0, 8));
+ck_assert_ptr_null(s21_memchr(buf1, 0, 8));
 #test memchr_3
 char buf1[10] = "ABCCDEFG";
-ck_assert_ptr_null(memchr(buf1,'R',20));
-ck_assert_ptr_null(s21_memchr(buf1,'R',20));
-
+ck_assert_ptr_null(memchr(buf1, 'R', 20));
+ck_assert_ptr_null(s21_memchr(buf1, 'R', 20));
 #test memchr_4
 char buf1[25] = "ABCCDEFG fjehiedjhf";
-ck_assert_str_eq(memchr(buf1,'f',15),s21_memchr(buf1,'f',15));
-
+ck_assert_str_eq(memchr(buf1, 'f', 15), s21_memchr(buf1, 'f', 15));
 #test memchr_5
 char buf1[10] = "";
-ck_assert_ptr_null(memchr(buf1,'f',0));
-ck_assert_ptr_null(s21_memchr(buf1,'f',0));
-
+ck_assert_ptr_null(memchr(buf1, 'f', 0));
+ck_assert_ptr_null(s21_memchr(buf1, 'f', 0));
 #test strchr_1
 char buf1[10] = "ABCCDEFG";
-ck_assert_str_eq(strchr(buf1,'D'),s21_strchr(buf1,'D'));
-
+ck_assert_str_eq(strchr(buf1, 'D'), s21_strchr(buf1, 'D'));
 #test strchr_2
 char buf1[10] = "";
-ck_assert_ptr_null(strchr(buf1,'f'));
-ck_assert_ptr_null(s21_strchr(buf1,'f'));
-
+ck_assert_ptr_null(strchr(buf1, 'f'));
+ck_assert_ptr_null(s21_strchr(buf1, 'f'));
 #test strchr_3
 char buf1[25] = "ABCCDEFG fjehiedjhf";
-ck_assert_str_eq(strchr(buf1,'f'),s21_strchr(buf1,'f'));
-
+ck_assert_str_eq(strchr(buf1, 'f'), s21_strchr(buf1, 'f'));
 #test strchr_4
 char buf1[10] = "12";
-ck_assert_str_eq(strchr(buf1,0),s21_strchr(buf1,0));
-
+ck_assert_str_eq(strchr(buf1, 0), s21_strchr(buf1, 0));
 #test strchr_5
 char buf1[25] = "ABCCDEFG fjehiedjhf";
-ck_assert_str_eq(strchr(buf1,'j'),s21_strchr(buf1,'j'));
-
+ck_assert_str_eq(strchr(buf1, 'j'), s21_strchr(buf1, 'j'));
 #test strpbrk_1
 char buf1[10] = "ABCCDEFG";
-ck_assert_str_eq(strpbrk(buf1,"GEB"),s21_strpbrk(buf1,"GEB"));
-
+ck_assert_str_eq(strpbrk(buf1, "GEB"), s21_strpbrk(buf1, "GEB"));
 #test strpbrk_2
 char buf1[10] = "";
-ck_assert_ptr_null(strpbrk(buf1,"GEB"));
-ck_assert_ptr_null(s21_strpbrk(buf1,"GEB"));
-
+ck_assert_ptr_null(strpbrk(buf1, "GEB"));
+ck_assert_ptr_null(s21_strpbrk(buf1, "GEB"));
 #test strpbrk_3
 char buf1[25] = "ABCCDEFG fjehiedjhf";
-ck_assert_str_eq(strpbrk(buf1,"wqaf"),s21_strpbrk(buf1,"wqaf"));
-
+ck_assert_str_eq(strpbrk(buf1, "wqaf"), s21_strpbrk(buf1, "wqaf"));
 #test strpbrk_4
 char buf1[10] = "ABCCDEFG";
-ck_assert_ptr_null(strpbrk(buf1,"55555"));
-ck_assert_ptr_null(s21_strpbrk(buf1,"55555"));
-
+ck_assert_ptr_null(strpbrk(buf1, "55555"));
+ck_assert_ptr_null(s21_strpbrk(buf1, "55555"));
 #test strpbrk_5
 char buf1[25] = "ABCCDEFG fjehiedjhf";
-ck_assert_str_eq(strpbrk(buf1,buf1+3),s21_strpbrk(buf1,buf1+3));
-
+ck_assert_str_eq(strpbrk(buf1, buf1+3), s21_strpbrk(buf1, buf1+3));
 #test strrchr_1
 char buf1[10] = "ABCCDEFG";
-ck_assert_str_eq(strrchr(buf1,'D'),s21_strrchr(buf1,'D'));
-
+ck_assert_str_eq(strrchr(buf1, 'D'), s21_strrchr(buf1, 'D'));
 #test strrchr_2
 char buf1[10] = "";
-ck_assert_ptr_null(strrchr(buf1,'f'));
-ck_assert_ptr_null(s21_strrchr(buf1,'f'));
-
+ck_assert_ptr_null(strrchr(buf1, 'f'));
+ck_assert_ptr_null(s21_strrchr(buf1, 'f'));
 #test strrchr_3
 char buf1[25] = "ABCCDEFG fjehiedjhf";
-ck_assert_str_eq(strrchr(buf1,'j'),s21_strrchr(buf1,'j'));
-
+ck_assert_str_eq(strrchr(buf1, 'j'), s21_strrchr(buf1, 'j'));
 #test strrchr_4
 char buf1[10] = "ABCCDEFG";
-ck_assert_ptr_null(strrchr(buf1,'5'));
-ck_assert_ptr_null(s21_strrchr(buf1,'5'));
-
+ck_assert_ptr_null(strrchr(buf1, '5'));
+ck_assert_ptr_null(s21_strrchr(buf1, '5'));
 #test strrchr_5
 char buf1[25] = "ABCCDEFG fjehiedjhf";
-ck_assert_str_eq(strrchr(buf1,0),s21_strrchr(buf1,0));
-
+ck_assert_str_eq(strrchr(buf1, 0), s21_strrchr(buf1, 0));
 #test strstr_1
 char buf1[14] = "ABCCDEFG WORLD";
-ck_assert_str_eq(strstr(buf1, "WORLD"), s21_strstr(buf1, "WORLD"));
-
+ck_assert_str_eq(strstr(buf1,  "WORLD"),  s21_strstr(buf1,  "WORLD"));
 #test strstr_2
 char buf1[10] = "";
-ck_assert_ptr_null(strstr(buf1, "world"));
-ck_assert_ptr_null(s21_strstr(buf1, "world"));
-
+ck_assert_ptr_null(strstr(buf1,  "world"));
+ck_assert_ptr_null(s21_strstr(buf1,  "world"));
 #test strstr_3
 char buf1[11] = "Hello World";
-ck_assert_str_eq(strstr(buf1, "Wo"), s21_strstr(buf1, "Wo"));
-
+ck_assert_str_eq(strstr(buf1,  "Wo"),  s21_strstr(buf1,  "Wo"));
 #test strstr_4
 char buf1[11] = "Hello World";
-ck_assert_ptr_null(strstr(buf1, "Yes"));
-ck_assert_ptr_null(s21_strstr(buf1, "Yes"));
-
+ck_assert_ptr_null(strstr(buf1,  "Yes"));
+ck_assert_ptr_null(s21_strstr(buf1,  "Yes"));
 #test strstr_5
 char buf1[11] = "Hello world";
-ck_assert_str_eq(strstr(buf1, " "), s21_strstr(buf1, " "));
-
+ck_assert_str_eq(strstr(buf1,  " "),  s21_strstr(buf1,  " "));
