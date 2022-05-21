@@ -1,12 +1,19 @@
-#include <string.h>
-#include <stdlib.h>
-#include "s21_sprintf.h"
-#include "s21_string.h"
-#include <stdio.h>
 
+#include "s21_sprintf.h"
+
+
+/**
+ * @brief Вычисление положение конца сгмента формата до символа спецификатора
+ * 
+ * @param str исходная строка
+ * @param start стартовая позиция - положение символа '%'
+ * @return int положение перед спецификатором
+ */
 int endfmt(const char *str, int start) {
     int _pos = start;
-
+    if (s21_strcspn(str + start + 1, "cdeEfgGosuxXpni") == 1) {
+        _pos++;
+    }
     return _pos;
 }
 
@@ -21,16 +28,16 @@ int s21_sprintf(char *str, const char *format, ...) {
         printf("i_src={%d}, char={'%c'}     ", i_src, format[i_src]);
         if (format[i_src] != '%') {
             count++;
-            // if (slen <= (s21_size_t)count) {
-            //     tmp = realloc(str, count * sizeof(char));
-            //     str = tmp;
-            // }
-            // str[count - 1] = format[i_src];
-            // printf("str[%d]='%c',    format[%d]='%c'\n", count, str[count], i_src, format[i_src]);
+            if (slen <= (s21_size_t)count) {
+                tmp = realloc(str, count * sizeof(char));
+                str = tmp;
+            }
+            str[count - 1] = format[i_src];
+            printf("str[%d]='%c',    format[%d]='%c'\n", count, str[count], i_src, format[i_src]);
             
             printf("\n");
         } else {
-            int startFmtPosition = i_src + 1;
+            int startFmtPosition = i_src;
             int endFmrPosition = endfmt(format, startFmtPosition);
             printf("startFmtPosition={%d}, endFmrPosition={%d}\n", startFmtPosition, endFmrPosition);
         }
