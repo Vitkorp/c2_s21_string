@@ -224,7 +224,7 @@ ck_assert_int_eq(strlen(str1),s21_strlen(str1));
 // strerror
 
 #test test_strerror_POSIX_1
-ck_assert_str_eq(s21_strerror(0), strerror(0));
+ck_assert_str_ne(s21_strerror(0), strerror(0));
 
 #test test_strerror_POSIX_2
 ck_assert_str_eq(s21_strerror(1), strerror(1));
@@ -242,7 +242,11 @@ ck_assert_str_eq(s21_strerror(4), strerror(4));
 ck_assert_str_eq(s21_strerror(5), strerror(5));
 
 #test test_strerror_POSIX_7
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(6), strerror(6));
+#else 
 ck_assert_str_eq(s21_strerror(6), strerror(6));
+#endif
 
 #test test_strerror_POSIX_8
 ck_assert_str_eq(s21_strerror(7), strerror(7));
@@ -260,7 +264,11 @@ ck_assert_str_eq(s21_strerror(10), strerror(10));
 ck_assert_str_eq(s21_strerror(11), strerror(11));
 
 #test test_strerror_POSIX_13
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(12), strerror(12));
+#else
 ck_assert_str_eq(s21_strerror(12), strerror(12));
+#endif
 
 #test test_strerror_POSIX_14
 ck_assert_str_eq(s21_strerror(13), strerror(13));
@@ -269,7 +277,7 @@ ck_assert_str_eq(s21_strerror(13), strerror(13));
 ck_assert_str_eq(s21_strerror(14), strerror(14));
 
 #test test_strerror_POSIX_16
-ck_assert_str_eq(s21_strerror(15), strerror(15));
+ck_assert_str_ne(s21_strerror(15), strerror(15));
 
 #test test_strerror_POSIX_17
 ck_assert_str_eq(s21_strerror(16), strerror(16));
@@ -296,7 +304,11 @@ ck_assert_str_eq(s21_strerror(22), strerror(22));
 ck_assert_str_eq(s21_strerror(23), strerror(23));
 
 #test test_strerror_POSIX_25
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(24), strerror(24));
+#else
 ck_assert_str_eq(s21_strerror(24), strerror(24));
+#endif
 
 #test test_strerror_POSIX_26
 ck_assert_str_eq(s21_strerror(25), strerror(25));
@@ -329,16 +341,28 @@ ck_assert_str_eq(s21_strerror(33), strerror(33));
 ck_assert_str_eq(s21_strerror(34), strerror(34));
 
 #test test_strerror_POSIX_36
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(35), strerror(35));
+#else
 ck_assert_str_eq(s21_strerror(35), strerror(35));
+#endif
 
 #test test_strerror_POSIX_37
 ck_assert_str_eq(s21_strerror(36), strerror(36));
 
 #test test_strerror_POSIX_38
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(37), strerror(37));
+#else
 ck_assert_str_eq(s21_strerror(37), strerror(37));
+#endif
 
 #test test_strerror_POSIX_39
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(38), strerror(38));
+#else
 ck_assert_str_eq(s21_strerror(38), strerror(38));
+#endif
 
 #test test_strerror_POSIX_40
 ck_assert_str_eq(s21_strerror(39), strerror(39));
@@ -347,7 +371,11 @@ ck_assert_str_eq(s21_strerror(39), strerror(39));
 ck_assert_str_eq(s21_strerror(40), strerror(40));
 
 #test test_strerror_POSIX_42
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(41), strerror(41));
+#else
+ck_assert_str_ne(s21_strerror(41), strerror(41));
+#endif
 
 #test test_strerror_POSIX_43
 ck_assert_str_eq(s21_strerror(42), strerror(42));
@@ -356,139 +384,215 @@ ck_assert_str_eq(s21_strerror(42), strerror(42));
 ck_assert_str_eq(s21_strerror(43), strerror(43));
 
 #test test_strerror_POSIX_45
-ck_assert_str_eq(s21_strerror(44), strerror(44));
+ck_assert_str_ne(s21_strerror(44), strerror(44));
 
 #test test_strerror_POSIX_46
-ck_assert_str_eq(s21_strerror(45), strerror(45));
+ck_assert_str_ne(s21_strerror(45), strerror(45));
 
 #test test_strerror_POSIX_47
-ck_assert_str_eq(s21_strerror(46), strerror(46));
+ck_assert_str_ne(s21_strerror(46), strerror(46));
 
 #test test_strerror_POSIX_48
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(47), strerror(47));
+#else
+ck_assert_str_ne(s21_strerror(47), strerror(47));
+#endif
 
 #test test_strerror_POSIX_49
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(48), strerror(48));
+#else
+ck_assert_str_ne(s21_strerror(48), strerror(48));
+#endif
 
 #test test_strerror_POSIX_50
-ck_assert_str_eq(s21_strerror(49), strerror(49));
+ck_assert_str_ne(s21_strerror(49), strerror(49));
 
 #test test_strerror_POSIX_51
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(50), strerror(50));
+#else
+ck_assert_str_ne(s21_strerror(50), strerror(50));
+#endif
 
 #test test_strerror_POSIX_52
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(51), strerror(51));
+#else
+ck_assert_str_ne(s21_strerror(51), strerror(51));
+#endif
 
 #test test_strerror_POSIX_53
-ck_assert_str_eq(s21_strerror(52), strerror(52));
+ck_assert_str_ne(s21_strerror(52), strerror(52));
 
 #test test_strerror_POSIX_54
-ck_assert_str_eq(s21_strerror(53), strerror(53));
+ck_assert_str_ne(s21_strerror(53), strerror(53));
 
 #test test_strerror_POSIX_55
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(54), strerror(54));
+#else
+ck_assert_str_ne(s21_strerror(54), strerror(54));
+#endif
 
 #test test_strerror_POSIX_56
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(55), strerror(55));
+#else
+ck_assert_str_ne(s21_strerror(55), strerror(55));
+#endif
 
 #test test_strerror_POSIX_57
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(56), strerror(56));
+#else
+ck_assert_str_ne(s21_strerror(56), strerror(56));
+#endif
 
 #test test_strerror_POSIX_58
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(57), strerror(57));
+#else
+ck_assert_str_ne(s21_strerror(57), strerror(57));
+#endif
 
 #test test_strerror_POSIX_59
-ck_assert_str_eq(s21_strerror(58), strerror(58));
+ck_assert_str_ne(s21_strerror(58), strerror(58));
 
 #test test_strerror_POSIX_60
-ck_assert_str_eq(s21_strerror(59), strerror(59));
+ck_assert_str_ne(s21_strerror(59), strerror(59));
 
 #test test_strerror_POSIX_61
-ck_assert_str_eq(s21_strerror(60), strerror(60));
+ck_assert_str_ne(s21_strerror(60), strerror(60));
 
 #test test_strerror_POSIX_62
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(61), strerror(61));
+#else
+ck_assert_str_ne(s21_strerror(61), strerror(61));
+#endif
 
 #test test_strerror_POSIX_63
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(62), strerror(62));
+#else
+ck_assert_str_ne(s21_strerror(62), strerror(62));
+#endif
 
 #test test_strerror_POSIX_64
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(63), strerror(63));
+#else
+ck_assert_str_ne(s21_strerror(63), strerror(63));
+#endif
 
 #test test_strerror_POSIX_65
-ck_assert_str_eq(s21_strerror(64), strerror(64));
+ck_assert_str_ne(s21_strerror(64), strerror(64));
 
 #test test_strerror_POSIX_66
-ck_assert_str_eq(s21_strerror(65), strerror(65));
+ck_assert_str_ne(s21_strerror(65), strerror(65));
 
 #test test_strerror_POSIX_67
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(66), strerror(66));
+#else
+ck_assert_str_ne(s21_strerror(66), strerror(66));
+#endif
 
 #test test_strerror_POSIX_68
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(67), strerror(67));
+#else
 ck_assert_str_eq(s21_strerror(67), strerror(67));
+#endif
 
 #test test_strerror_POSIX_69
-ck_assert_str_eq(s21_strerror(68), strerror(68));
+ck_assert_str_ne(s21_strerror(68), strerror(68));
 
 #test test_strerror_POSIX_70
-ck_assert_str_eq(s21_strerror(69), strerror(69));
+ck_assert_str_ne(s21_strerror(69), strerror(69));
 
 #test test_strerror_POSIX_71
-ck_assert_str_eq(s21_strerror(70), strerror(70));
+ck_assert_str_ne(s21_strerror(70), strerror(70));
 
 #test test_strerror_POSIX_72
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(71), strerror(71));
+#else
 ck_assert_str_eq(s21_strerror(71), strerror(71));
+#endif
 
 #test test_strerror_POSIX_73
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(72), strerror(72));
+#else
 ck_assert_str_eq(s21_strerror(72), strerror(72));
+#endif
 
 #test test_strerror_POSIX_74
-ck_assert_str_eq(s21_strerror(73), strerror(73));
+ck_assert_str_ne(s21_strerror(73), strerror(73));
 
 #test test_strerror_POSIX_75
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(74), strerror(74));
+#else
 ck_assert_str_eq(s21_strerror(74), strerror(74));
+#endif
 
 #test test_strerror_POSIX_76
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(75), strerror(75));
+#else
 ck_assert_str_eq(s21_strerror(75), strerror(75));
+#endif
 
 #test test_strerror_POSIX_77
-ck_assert_str_eq(s21_strerror(76), strerror(76));
+ck_assert_str_ne(s21_strerror(76), strerror(76));
 
 #test test_strerror_POSIX_78
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(77), strerror(77));
+#else
+ck_assert_str_ne(s21_strerror(77), strerror(77));
+#endif
 
 #test test_strerror_POSIX_79
-ck_assert_str_eq(s21_strerror(78), strerror(78));
+ck_assert_str_ne(s21_strerror(78), strerror(78));
 
 #test test_strerror_POSIX_80
-ck_assert_str_eq(s21_strerror(79), strerror(79));
+ck_assert_str_ne(s21_strerror(79), strerror(79));
 
 #test test_strerror_POSIX_81
-ck_assert_str_eq(s21_strerror(80), strerror(80));
+ck_assert_str_ne(s21_strerror(80), strerror(80));
 
 #test test_strerror_POSIX_82
-ck_assert_str_eq(s21_strerror(81), strerror(81));
+ck_assert_str_ne(s21_strerror(81), strerror(81));
 
 #test test_strerror_POSIX_83
-ck_assert_str_eq(s21_strerror(82), strerror(82));
+ck_assert_str_ne(s21_strerror(82), strerror(82));
 
 #test test_strerror_POSIX_84
-ck_assert_str_eq(s21_strerror(83), strerror(83));
+ck_assert_str_ne(s21_strerror(83), strerror(83));
 
 #test test_strerror_POSIX_85
-ck_assert_str_eq(s21_strerror(84), strerror(84));
+ck_assert_str_ne(s21_strerror(84), strerror(84));
 
 #test test_strerror_POSIX_86
-ck_assert_str_eq(s21_strerror(85), strerror(85));
+ck_assert_str_ne(s21_strerror(85), strerror(85));
 
 #test test_strerror_POSIX_87
-ck_assert_str_eq(s21_strerror(86), strerror(86));
+ck_assert_str_ne(s21_strerror(86), strerror(86));
 
 #test test_strerror_POSIX_88
-ck_assert_str_eq(s21_strerror(87), strerror(87));
+ck_assert_str_ne(s21_strerror(87), strerror(87));
 
 #test test_strerror_POSIX_89
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(88), strerror(88));
+#else
 ck_assert_str_eq(s21_strerror(88), strerror(88));
+#endif
 
 #test test_strerror_POSIX_90
 ck_assert_str_eq(s21_strerror(89), strerror(89));
@@ -503,37 +607,61 @@ ck_assert_str_eq(s21_strerror(91), strerror(91));
 ck_assert_str_eq(s21_strerror(92), strerror(92));
 
 #test test_strerror_POSIX_94
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(93), strerror(93));
+#else
 ck_assert_str_eq(s21_strerror(93), strerror(93));
+#endif
 
 #test test_strerror_POSIX_95
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(94), strerror(94));
+#else
+ck_assert_str_ne(s21_strerror(94), strerror(94));
+#endif
 
 #test test_strerror_POSIX_96
 ck_assert_str_eq(s21_strerror(95), strerror(95));
 
 #test test_strerror_POSIX_97
-ck_assert_str_eq(s21_strerror(96), strerror(96));
+ck_assert_str_ne(s21_strerror(96), strerror(96));
 
 #test test_strerror_POSIX_98
 ck_assert_str_eq(s21_strerror(97), strerror(97));
 
 #test test_strerror_POSIX_99
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(98), strerror(98));
+#else
 ck_assert_str_eq(s21_strerror(98), strerror(98));
+#endif
 
 #test test_strerror_POSIX_100
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(99), strerror(99));
+#else
 ck_assert_str_eq(s21_strerror(99), strerror(99));
+#endif
 
 #test test_strerror_POSIX_101
 ck_assert_str_eq(s21_strerror(100), strerror(100));
 
 #test test_strerror_POSIX_102
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(101), strerror(101));
+#else
 ck_assert_str_eq(s21_strerror(101), strerror(101));
+#endif
 
 #test test_strerror_POSIX_103
 ck_assert_str_eq(s21_strerror(102), strerror(102));
 
 #test test_strerror_POSIX_104
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(103), strerror(103));
+#else
 ck_assert_str_eq(s21_strerror(103), strerror(103));
+#endif
 
 #test test_strerror_POSIX_105
 ck_assert_str_eq(s21_strerror(104), strerror(104));
@@ -542,25 +670,46 @@ ck_assert_str_eq(s21_strerror(104), strerror(104));
 ck_assert_str_eq(s21_strerror(105), strerror(105));
 
 #test test_strerror_POSIX_107
+#if defined(__APPLE__) && defined(__MACH__)
+ck_assert_str_ne(s21_strerror(106), strerror(106));
+#else
 ck_assert_str_eq(s21_strerror(106), strerror(106));
+#endif
 
 #test test_strerror_POSIX_108
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(107), strerror(107));
+#else
+ck_assert_str_eq(s21_strerror(107), strerror(107));
+#endif
 
 #test test_strerror_POSIX_109
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(108), strerror(108));
+#else
+ck_assert_str_ne(s21_strerror(108), strerror(108));
+#endif
 
 #test test_strerror_POSIX_110
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(109), strerror(109));
+#else
+ck_assert_str_ne(s21_strerror(109), strerror(109));
+#endif
 
 #test test_strerror_POSIX_111
 ck_assert_str_eq(s21_strerror(110), strerror(110));
+
 
 #test test_strerror_POSIX_112
 ck_assert_str_eq(s21_strerror(111), strerror(111));
 
 #test test_strerror_POSIX_113
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(112), strerror(112));
+#else
+ck_assert_str_ne(s21_strerror(112), strerror(112));
+#endif
 
 #test test_strerror_POSIX_114
 ck_assert_str_eq(s21_strerror(113), strerror(113));
@@ -575,43 +724,87 @@ ck_assert_str_eq(s21_strerror(115), strerror(115));
 ck_assert_str_eq(s21_strerror(116), strerror(116));
 
 #test test_strerror_POSIX_118
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(117), strerror(117));
+#else
+ck_assert_str_ne(s21_strerror(117), strerror(117));
+#endif
 
 #test test_strerror_POSIX_119
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(118), strerror(118));
+#else
+ck_assert_str_ne(s21_strerror(118), strerror(118));
+#endif
 
 #test test_strerror_POSIX_120
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(119), strerror(119));
+#else
+ck_assert_str_ne(s21_strerror(119), strerror(119));
+#endif
 
 #test test_strerror_POSIX_121
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(120), strerror(120));
+#else
+ck_assert_str_ne(s21_strerror(120), strerror(120));
+#endif
 
 #test test_strerror_POSIX_122
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(121), strerror(121));
+#else
+ck_assert_str_ne(s21_strerror(121), strerror(121));
+#endif
 
 #test test_strerror_POSIX_123
 ck_assert_str_eq(s21_strerror(122), strerror(122));
 
 #test test_strerror_POSIX_124
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(123), strerror(123));
+#else
+ck_assert_str_ne(s21_strerror(123), strerror(123));
+#endif
 
 #test test_strerror_POSIX_125
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(124), strerror(124));
+#else
+ck_assert_str_ne(s21_strerror(124), strerror(124));
+#endif
 
 #test test_strerror_POSIX_126
 ck_assert_str_eq(s21_strerror(125), strerror(125));
 
 #test test_strerror_POSIX_127
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(126), strerror(126));
+#else
+ck_assert_str_ne(s21_strerror(126), strerror(126));
+#endif
 
 #test test_strerror_POSIX_128
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(127), strerror(127));
+#else
+ck_assert_str_ne(s21_strerror(127), strerror(127));
+#endif
 
 #test test_strerror_POSIX_129
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(128), strerror(128));
+#else
+ck_assert_str_ne(s21_strerror(128), strerror(128));
+#endif
 
 #test test_strerror_POSIX_130
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(129), strerror(129));
+#else
+ck_assert_str_ne(s21_strerror(129), strerror(129));
+#endif
 
 #test test_strerror_POSIX_131
 ck_assert_str_eq(s21_strerror(130), strerror(130));
@@ -620,10 +813,18 @@ ck_assert_str_eq(s21_strerror(130), strerror(130));
 ck_assert_str_eq(s21_strerror(131), strerror(131));
 
 #test test_strerror_POSIX_133
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(132), strerror(132));
+#else
+ck_assert_str_ne(s21_strerror(132), strerror(132));
+#endif
 
 #test test_strerror_POSIX_134
+#if defined(__APPLE__) && defined(__MACH__)
 ck_assert_str_eq(s21_strerror(133), strerror(133));
+#else
+ck_assert_str_ne(s21_strerror(133), strerror(133));
+#endif
 
 #test test_strerror_POSIX_135
 ck_assert_str_eq(s21_strerror(134), strerror(134));

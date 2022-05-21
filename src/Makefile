@@ -6,7 +6,7 @@ clean:
 	rm -rf ./ne_ploho/*; \
 	rm -rf ./ne_ploho; \
 	rm a.out; \
-	rm -rf ./*.o ./*.a	
+	rm -rf ./*.o ./*.a ./*.out
 
 checkmk:
 	checkmk test.check > test.c
