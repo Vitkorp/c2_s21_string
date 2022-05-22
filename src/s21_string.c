@@ -1,8 +1,8 @@
-// Copyright [2022] <Copyright Bobbie>
+// Copyright [2022] <Copyright ONDREWVI>
 // #include <string.h>
 #include "s21_string.h"
+#include <string.h>
 #include <stdio.h>
-
 
 int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
     const char* string1 = (char*)str1;
@@ -10,6 +10,9 @@ int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
     int flag = 0;
     s21_size_t i = 0;
     while (i < n) {
+        if (i == n - 1 && string1[i] == string2[i]) {
+            break;
+        }
         if (string1[i] == string2[i]) {
             i++;
         } else {
@@ -18,7 +21,8 @@ int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
     }
     if (string1[i] != string2[i] && (int)string1[i] > (int)string2[i]) {
         flag = (int)string1[i] - (int)string2[i];
-    } if (string1[i] != string2[i] && (int)string1[i] < (int)string2[i]) {
+    }
+    if (string1[i] != string2[i] && (int)string1[i] < (int)string2[i]) {
         flag = ((int)string2[i] - (int)string1[i]) * (-1);
     }
     return flag;
@@ -99,13 +103,15 @@ int s21_strcmp(const char *str1, const char *str2) {
     while (1) {
         if (str1[i] == str2[i]) {
             i++;
-        } if (str1[i] == '\n' || str2[i] == '\n' || str1[i] != str2[i]) {
+        }
+        if (str1[i] == '\n' || str2[i] == '\n' || str1[i] != str2[i]) {
             break;
         }
     }
     if (str1[i] != str2[i] && (int)str1[i] > (int)str2[i]) {
         flag = (int)str1[i] - (int)str2[i];
-    } if (str1[i] != str2[i] && (int)str1[i] < (int)str2[i]) {
+    }
+    if (str1[i] != str2[i] && (int)str1[i] < (int)str2[i]) {
         flag = ((int)str2[i] - (int)str1[i]) * (-1);
     }
     return flag;
@@ -116,6 +122,9 @@ int s21_strncmp(const char *str1, const char *str2, s21_size_t n) {
     int flag = 0;
     s21_size_t i = 0;
     while (i < n) {
+        if (i == n - 1 && str1[i] == str2[i]) {
+            break;
+        }
         if (str1[i] == str2[i]) {
             i++;
         } else {
@@ -133,7 +142,7 @@ int s21_strncmp(const char *str1, const char *str2, s21_size_t n) {
 char *s21_strchr(const char *str, int c) {
     s21_size_t i = 0;
     int found = 0;
-    while (str[i] && str[i] != c){
+    while (str[i] && str[i] != c) {
         i++;
         if (str[i] == c) {
             found = 1;
@@ -146,7 +155,7 @@ char *s21_strchr(const char *str, int c) {
 char *s21_strpbrk(const char *str1, const char *str2) {
     const char *scanp;
     int c, sc;
-    char * _res = ""; 
+    char * _res = "";
     int exit_code = 0;
     while ((c = *str1++) != 0) {
         for (scanp = str2; (sc = *scanp++) != '\0';) {
@@ -155,9 +164,8 @@ char *s21_strpbrk(const char *str1, const char *str2) {
                 exit_code = 1;
                 break;
             }
-
         }
-        if (exit_code == 1){
+        if (exit_code == 1) {
             break;
         }
     }
@@ -247,8 +255,8 @@ s21_size_t s21_strcspn(const char *str1, const char *str2) {
 }
 
 
-char* s21_strerror(int errnum) {
-    err errlist[] = S21_ERRLIST;  
+char *s21_strerror(int errnum) {
+    err errlist[] = S21_ERRLIST;
     int count;
 #if defined(__APPLE__) && defined(__MACH__)
     char baseMsg[1024] = {"Unknown error: "};
@@ -256,11 +264,11 @@ char* s21_strerror(int errnum) {
     char b[12] = "";
     int found = 0;
     char res[1000] = {'\0'};
-    snprintf(b,10, "%d",errnum);
-    s21_strcat(baseMsg, b);  // заменить на s21_strcat
+    snprintf(b, 10, "%d", errnum);
+    strcat(baseMsg, b);  // заменить на s21_strcat
     for (int i = 0; i < count; i++) {
         if (errnum == errlist[i].id) {
-            s21_strcpy(res, errlist[i].null_str);
+            strcpy(res, errlist[i].null_str);
             found = 1;
             break;
         }
@@ -271,11 +279,11 @@ char* s21_strerror(int errnum) {
     char b[12] = "";
     int found = 0;
     char res[1000] = "";
-    snprintf(b,10, "%d",errnum);
-    s21_strcat(baseMsg, b);  // заменить на s21_strcat
+    snprintf(b, 10, "%d", errnum);
+    strcat(baseMsg, b);  // заменить на s21_strcat
     for (int i = 0; i < count; i++) {
         if (errnum == errlist[i].id) {
-            s21_strcpy(res, errlist[i].null_str);
+            strcpy(res, errlist[i].null_str);
             found = 1;
             break;
         }
@@ -295,18 +303,23 @@ char *s21_strstr(const char *haystack, const char *needle) {
     char *res = "";
     int exit_code = 0;
     while (*haystack != '\0') {
+        // printf("%s\n", haystack);
+        // printf("%d ", s21_strncmp(haystack, needle, needle_len));
+        // printf("%d\n ", strncmp(haystack, needle, needle_len));
+        // printf("%d\n", my_strncmp(haystack, needle, needle_len));
         if (s21_strncmp(haystack, needle, needle_len) == 0) {
             res = (char *)haystack;
             exit_code = 1;
             break;
-        }
-        else {
+        } else {
             haystack++;
         }
     }
 
     return exit_code ? res : S21_NULL;
 }
+
+
 
 // Расчет длины начального сегмента str1, полностью состоящий из str2
 
@@ -341,3 +354,26 @@ char *s21_strrchr(const char *str, int c) {
     }
     return found ? ((char *)str + i) : S21_NULL;
 }
+
+// int main() {
+//     char *src = "Hello world";
+//     char *sub = "lo";
+//     char *p;
+//     char *native;
+//     native = strstr(src, sub);
+//     p = s21_strstr(src, sub);
+//     printf("NATIVE - %s\n", native);
+//     printf("MY - %s\n", p);
+    
+
+//     int test1;
+//     int test2;
+//     int test3;
+
+//     test1 = strncmp(src, sub, s21_strlen(sub));
+//     test2 = s21_strncmp(src, sub, s21_strlen(sub));
+//     test3 = my_strncmp(src, sub, s21_strlen(sub));
+//     printf("NATIVE - %d\n", test1);
+//     printf("MY - %d\n", test2);
+//     printf("ANOTHER - %d\n", test3);
+// }
