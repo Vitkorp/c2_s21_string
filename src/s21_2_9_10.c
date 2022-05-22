@@ -1,15 +1,16 @@
 #include "s21_2_9_10.h"
 
-int main() {
-    const char* str1 = "lo world";
-    const char* str2 = "lo";
-    if (s21_strcmp(str1, str2) == 0) {
-        puts("equal");
-    } else {
-        puts("different");
-    }
-    printf("%d", s21_memcmp(str1, str2, 2));
-}
+// int main() {
+//     const char* str1 = "lo world123";
+//     const char* str2 = "lo world";
+//     if (s21_strcmp(str1, str2) == 0) {
+//         puts("equal");
+//     } else {
+//         puts("different");
+//     }
+//     printf("%d", s21_strcmp(str1, str2));
+//     printf("\n%d", strcmp(str1, str2));
+// }
 
 int s21_memcmp(const void *str1, const void *str2, size_t n) {
     const char* string1 = (char*)str1;

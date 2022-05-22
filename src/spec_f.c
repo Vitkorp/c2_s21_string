@@ -2,25 +2,39 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-
-
+void *int_to_str(long long int number, char *str) {
+    if (number < 0) {
+        number = number * -1;
+    }
+    long long int del = 1, copy_number = number;
+    while (copy_number >= 10) {
+        copy_number = copy_number / 10;
+        del = del * 10;
+    }
+    while (del > 0) {
+        *str++ = '0' + number / del;
+        number = number % del;
+        del = del / 10;
+    }
+    *str++ = '\0';
+    return 0;
+}
 int main() {
     static char mass[10000] = {'\0'};
     static char arr[10000] = {'\0'};
-
-    long double exp = 0.0, num = 123.456;
-    double n = 0.0;
-    // scanf("%Lf", &num);
+    long double exp = 0.0, num = 0.0;
+    long double n = 0.0;
+    scanf("%Lf", &num);
     long double f = num;
     int i = 0;
     if (num <= -0.0) {
         mass[i++] = '-';
         num *= -1;
     }
-    exp = modf(num, &n);
+    exp = modfl(num, &n);
     short precision = 6;
     short num_deci_digits = precision;
-    int deci_num = round(n);
+    long long deci_num = n;
     if (deci_num == 0) {
         mass[i++] = '0';
     }
@@ -43,15 +57,17 @@ int main() {
     if(precision != 0) {
         mass[i++] = '.';
     }
+    printf("right %Lf\n", exp);
     for (int j = 0; j < precision; j++) {
         exp *= 10.0;
-        int tmp = exp;
-        mass[i++] = tmp + 48;
-        exp -= tmp;
     }
-    mass[i] = '\0';
-    printf("string %s\n", mass);
-    sprintf(arr, "%Lf", f);
-    printf("orig   %s", arr);
+    char mass_2[32] = {'\0'};
+    exp = roundl(exp);
+    int_to_str(exp, mass_2);
+    // printf("string %s\n", mass_2);
+    strcat(mass, mass_2);
+    // printf("string %s\n", mass);
+    // sprintf(arr, "%Lf", f);
+    // printf("orig   %s", arr);
     return 0;
 }
