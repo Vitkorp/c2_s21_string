@@ -45,6 +45,12 @@ typedef struct _format{
     char spec;
 } fmt;
 
+typedef struct _regs {
+    void *value;
+    void *width;
+    void *precision;
+} regs;
+
 // int sprintf(char *str, const char *format, ...) 
 int s21_sprintf(char *str, const char *format, ...);
 

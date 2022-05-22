@@ -16,7 +16,9 @@
             "check.h": "c",
             "s21_sprintf.h": "c",
             "stdio.h": "c",
-            "sstream": "c"
+            "sstream": "c",
+            "queue": "c",
+            "random": "c"
         }
     }
 }

@@ -30,13 +30,21 @@ int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
 
 // копирует n сивловов из src в dest
 void *s21_memcpy(void *dest, const void *src, s21_size_t n) {
-    char *to = dest;
-    const char *from = src;
+    char *to = (char *)dest;
+    const char *from = (char *)src;
     for (s21_size_t i = 0; i < n; i++) {
         *to++ = *from++;
     }
     return dest;
 }
+
+// void* s21_memcpy(void* dest, const void* src, s21_size_t n) {
+//   unsigned char* dest_ptr = (unsigned char*)dest;
+//   const unsigned char* src_ptr = (const unsigned char*)src;
+
+//   while (n--) *dest_ptr++ = *src_ptr++;
+//   return dest;
+// }
 
 void *s21_memchr(const void *str, int c, s21_size_t n) {
     const char *src = (const char *)str;
@@ -53,8 +61,8 @@ void *s21_memchr(const void *str, int c, s21_size_t n) {
 
 // копирует n сивловов из src в dest. whithout overlap
 void *s21_memmove(void *dest, const void *src, s21_size_t n) {
-    char *to = dest;
-    const char *from = src;
+    char *to = (char *)dest;
+    const char *from = (char *)src;
 
     char *to_end = (to + n - 1);
     const char *from_end = (from + n - 1);
@@ -87,10 +95,15 @@ char *s21_strcat(char *dest, const char *src) {
     return dest;
 }
 
+// char* s21_strcat(char* dest, const char* src) {
+//     s21_strcpy(dest + s21_strlen(dest), src);
+//     return dest;
+// }
+
 
 // Копирует символ c (беззнаковый тип) в первые n символов строки, на которую указывает аргумент str.
 void *s21_memset(void *src, int c, s21_size_t n) {
-    char *to = src;
+    char *to = (char *)src;
     for (s21_size_t i = 0; i < n; i++) {
         *to++ = c;
     }
@@ -149,7 +162,7 @@ char *s21_strchr(const char *str, int c) {
             break;
         }
     }
-    return found ? ((char *)str + i) : S21_NULL;
+    return (found == 1) ? ((char *)(str + i)) : (char *)S21_NULL;
 }
 
 char *s21_strpbrk(const char *str1, const char *str2) {
@@ -169,7 +182,7 @@ char *s21_strpbrk(const char *str1, const char *str2) {
             break;
         }
     }
-    return exit_code ? _res : S21_NULL;
+    return exit_code ? _res : (char *)S21_NULL;
 }
 
 // Копирует строку, на которую указывает src, в dest.
@@ -182,6 +195,11 @@ char *s21_strcpy(char *dest, const char *src) {
     dest[i]='\0';
     return dest;
 }
+
+// char* s21_strcpy(char* dest, const char* src) {
+//   return s21_memcpy(dest, src, s21_strlen(src) + 1);
+// }
+
 
 // Копирует до n символов из строки, на которую указывает src, в dest.
 char *s21_strncpy(char *dest, const char *src, s21_size_t n) {
@@ -316,7 +334,7 @@ char *s21_strstr(const char *haystack, const char *needle) {
         }
     }
 
-    return exit_code ? res : S21_NULL;
+    return exit_code ? res : (char *)S21_NULL;
 }
 
 
@@ -352,7 +370,7 @@ char *s21_strrchr(const char *str, int c) {
             break;
         }
     }
-    return found ? ((char *)str + i) : S21_NULL;
+    return found ? ((char *)str + i) : (char *)S21_NULL;
 }
 
 // int main() {
