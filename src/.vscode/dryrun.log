@@ -1,0 +1,7 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/user/21School/C2_s21_stringplus-0/src'
+gcc -Wall -Wextra -Werror s21_string.c s21_string.h unit_testing.c -L. -lcheck -lm -o check_test.o
+chmod +x check_test
+./check_test
+make: Leaving directory '/home/user/21School/C2_s21_stringplus-0/src'
+ 
