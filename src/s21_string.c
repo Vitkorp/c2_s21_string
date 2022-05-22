@@ -126,7 +126,7 @@ void *s21_to_lower(const char *str) {
 В случае какой-либо ошибки следует вернуть значение NULL*/
 
 void *s21_insert(const char *src, const char *str, size_t start_index) {
-  char *tmp;
+  char *tmp = NULL;
   int flag = 0;
   s21_size_t size = s21_strlen(src) + s21_strlen(str) + 1;
   if (s21_strlen(src) >= start_index) {
@@ -146,3 +146,16 @@ void *s21_insert(const char *src, const char *str, size_t start_index) {
   }
   return copy_str;
 }
+
+s21_size_t s21_strlen(const char *str) {
+  s21_size_t len = 0;
+  for (; str[len]; len++)
+    ;
+  return len + 1;
+}
+
+/*Возвращает новую строку, в которой удаляются все начальные и конечные
+вхождения набора заданных символов (trim_chars) из данной строки (src).
+В случае какой-либо ошибки следует вернуть значение NULL*/
+
+void *trim(const char *src, const char *trim_chars) {}
