@@ -50,7 +50,7 @@ int s21_sprintf(char *str, const char *format, ...) {
         i_src++;
     }   
     printf("pointer = %p, result = %s\n", str, str);
-    tmp = S21_NULL;
+    tmp = s21_NULL;
      s21_strcpy(tmp, str);
     // free(str);
      str = tmp;

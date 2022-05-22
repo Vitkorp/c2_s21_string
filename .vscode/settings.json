@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "__locale": "c",
+        "chrono": "c",
+        "cstdio": "c",
+        "ctime": "c",
+        "cwchar": "c",
+        "locale": "c",
+        "*.tcc": "c",
+        "s21_string.h": "c"
+    }
+}

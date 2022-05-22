@@ -2,6 +2,8 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
+#include "s21_sprintf.h"
+
 void *int_to_str(long long int number, char *str) {
     if (number < 0) {
         number = number * -1;
@@ -19,13 +21,14 @@ void *int_to_str(long long int number, char *str) {
     *str++ = '\0';
     return 0;
 }
-int main() {
+
+char *s21_spec_f(fmt *format, const void *val) {
     static char mass[10000] = {'\0'};
-    // static char arr[10000] = {'\0'};
+    long double value = *((long double *)val);
     long double exp = 0.0, num = 0.0;
     long double n = 0.0;
     scanf("%Lf", &num);
-    long double f = num;
+    // long double f = num;
     int i = 0;
     if (num <= -0.0) {
         mass[i++] = '-';
@@ -56,17 +59,35 @@ int main() {
     if(precision != 0) {
         mass[i++] = '.';
     }
-    // printf("right %Lf\n", exp);
     for (int j = 0; j < precision; j++) {
         exp *= 10.0;
     }
     char mass_2[32] = {'\0'};
     exp = roundl(exp);
     int_to_str(exp, mass_2);
-    // printf("string %s\n", mass_2);
     strcat(mass, mass_2);
-    // printf("string %s\n", mass);
-    // sprintf(arr, "%Lf", f);
-    // printf("orig   %s", arr);
+
+    return &(mass[0]);
+}
+
+int main() {
+    float f = 1.245687;
+    fmt format;
+    format.flags.minus = 0;
+    format.flags.plus = 0;
+    format.flags.space = 0;
+    format.precision.number = 6;
+    format.width.number = 10;
+    format.length.L = 1;
+    s21_spec_f(&format, &f);
     return 0;
 }
+
+/* 
+typedef struct _flags {
+    int minus;
+    int plus;
+    int space;
+    int hash;
+    int zero;
+} fl; */

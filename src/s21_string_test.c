@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <locale.h>
-#include "./s21_string.h"
+#include "s21_string.h"
 
 #define BUFF_SIZE 512
 

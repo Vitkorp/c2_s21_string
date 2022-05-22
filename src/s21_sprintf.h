@@ -31,10 +31,11 @@ typedef struct _precision {
 } pr;
 
 // {h} {l} {L}
-// количество вхождений флага длины
+// количество вхождений флага длины.
 typedef struct _length {
-    int l_short;
-    int starchar;
+    int h;
+    int l;
+    int L;
 } len;
 
 typedef struct _format{
