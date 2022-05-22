@@ -21,7 +21,7 @@ void *int_to_str(long long int number, char *str) {
 }
 int main() {
     static char mass[10000] = {'\0'};
-    static char arr[10000] = {'\0'};
+    // static char arr[10000] = {'\0'};
     long double exp = 0.0, num = 0.0;
     long double n = 0.0;
     scanf("%Lf", &num);
@@ -38,7 +38,6 @@ int main() {
     if (deci_num == 0) {
         mass[i++] = '0';
     }
-    // num -= deci_num;
     while(num_deci_digits >= 0) {
         int exponent = pow(10, num_deci_digits);
 		int res = deci_num / exponent;
@@ -57,7 +56,7 @@ int main() {
     if(precision != 0) {
         mass[i++] = '.';
     }
-    printf("right %Lf\n", exp);
+    // printf("right %Lf\n", exp);
     for (int j = 0; j < precision; j++) {
         exp *= 10.0;
     }
