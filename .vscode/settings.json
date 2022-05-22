@@ -7,6 +7,8 @@
         "cwchar": "c",
         "locale": "c",
         "*.tcc": "c",
-        "s21_string.h": "c"
+        "s21_string.h": "c",
+        "s21_sprintf.h": "c",
+        "stdarg.h": "c"
     }
 }
