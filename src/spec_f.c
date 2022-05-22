@@ -24,19 +24,16 @@ void *int_to_str(long long int number, char *str) {
 
 char *s21_spec_f(fmt *format, const void *val) {
     static char mass[10000] = {'\0'};
-    long double value = *((long double *)val);
-    long double exp = 0.0, num = 0.0;
+    long double num = *((long double *)val);
+    long double exp = 0.0;
     long double n = 0.0;
-    scanf("%Lf", &num);
-    // long double f = num;
     int i = 0;
     if (num <= -0.0) {
         mass[i++] = '-';
         num *= -1;
     }
     exp = modfl(num, &n);
-    short precision = 6;
-    short num_deci_digits = precision;
+    short num_deci_digits = format -> precision.number;
     long long deci_num = n;
     if (deci_num == 0) {
         mass[i++] = '0';
@@ -56,10 +53,10 @@ char *s21_spec_f(fmt *format, const void *val) {
         mass[i++] = res + 48;
         deci_num %= exponent;
     }
-    if(precision != 0) {
+    if(format -> precision.number != 0) {
         mass[i++] = '.';
     }
-    for (int j = 0; j < precision; j++) {
+    for (int j = 0; j < format -> precision.number; j++) {
         exp *= 10.0;
     }
     char mass_2[32] = {'\0'};
@@ -67,19 +64,38 @@ char *s21_spec_f(fmt *format, const void *val) {
     int_to_str(exp, mass_2);
     strcat(mass, mass_2);
 
+    if (format -> flags.minus == 1 && format -> width.number > (int)strlen(mass)) {
+        int leng = format -> width.number - (int)strlen(mass);
+        char mass_2[leng];
+        for (int i = 0; i < leng; i++) {
+            mass_2[i] = ' ';
+        }
+        strcat(mass, mass_2);
+    } else if (format -> flags.minus != 1 && format -> width.number > (int)strlen(mass)) {
+        int leng = format -> width.number - (int)strlen(mass);
+        char mass_2[leng];
+        for (int i = 0; i < leng; i++) {
+            mass_2[i] = ' ';
+        }
+        strcat(mass_2, mass);
+        strcpy(mass, mass_2);
+    }
+
     return &(mass[0]);
 }
 
 int main() {
-    float f = 1.245687;
+    long double f = 0.0;
+    scanf("%Lf", &f);
     fmt format;
     format.flags.minus = 0;
     format.flags.plus = 0;
     format.flags.space = 0;
     format.precision.number = 6;
-    format.width.number = 10;
-    format.length.L = 1;
-    s21_spec_f(&format, &f);
+    format.width.number = 20;
+    format.length.L = 0;
+    
+    printf("%s", s21_spec_f(&format, &f));
     return 0;
 }
 
