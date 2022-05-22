@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "s21_string.h"
 #include <stdio.h>
+#include <stdarg.h>
 
 // %[флаги][ширина][.точность][длина]спецификатор
 
