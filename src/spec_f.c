@@ -28,7 +28,7 @@ char *s21_spec_f(fmt *format, const void *val) {
     long double exp = 0.0;
     long double n = 0.0;
     int i = 0;
-    if (num <= -0.0) {
+    if (num < 0.0 || signbit(num) != 0) {
         mass[i++] = '-';
         num *= -1;
     }
@@ -67,14 +67,20 @@ char *s21_spec_f(fmt *format, const void *val) {
         buff_exp /= 10;
         count++;
     }
+    printf("counter = %d", count);
+    printf("\nprecision %d\n", format -> precision.number);
     for (int i = 0; i < format -> precision.number - count; i++) {
         mass_buff[i] = '0';
+        printf("i %d, ", i);
     }
+    printf("buf[%s]", mass_buff);
     char mass_str[32] = {'\0'};
     int_to_str(exp, mass_str);
-    strcat(mass_buff, mass_str);
-    strcat(mass, mass_buff);
-
+    printf("str[%s]", mass_str);
+    if (count != 0) {
+        strcat(mass_buff, mass_str);
+    }
+        strcat(mass, mass_buff);
     if (format -> flags.minus == 1 && format -> width.number > (int)strlen(mass)) {
         int leng = format -> width.number - (int)strlen(mass);
         char mass_2[leng];
@@ -105,8 +111,9 @@ int main() {
     format.precision.number = 6;
     format.width.number = 0;
     format.length.L = 0;
-    
+    char TEMP[32];
     printf("\nрезультат = %s", s21_spec_f(&format, &f));
+    // printf("\n%s", TEMP);
     // printf("\n%f", -0.0001);
     return 0;
 }
