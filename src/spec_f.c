@@ -59,10 +59,21 @@ char *s21_spec_f(fmt *format, const void *val) {
     for (int j = 0; j < format -> precision.number; j++) {
         exp *= 10.0;
     }
-    char mass_2[32] = {'\0'};
+    char mass_buff[32] = {'\0'};
     exp = roundl(exp);
-    int_to_str(exp, mass_2);
-    strcat(mass, mass_2);
+    long long buff_exp = exp;
+    int count = 0;
+    while (buff_exp != 0) {
+        buff_exp /= 10;
+        count++;
+    }
+    for (int i = 0; i < format -> precision.number - count; i++) {
+        mass_buff[i] = '0';
+    }
+    char mass_str[32] = {'\0'};
+    int_to_str(exp, mass_str);
+    strcat(mass_buff, mass_str);
+    strcat(mass, mass_buff);
 
     if (format -> flags.minus == 1 && format -> width.number > (int)strlen(mass)) {
         int leng = format -> width.number - (int)strlen(mass);
@@ -92,10 +103,11 @@ int main() {
     format.flags.plus = 0;
     format.flags.space = 0;
     format.precision.number = 6;
-    format.width.number = 20;
+    format.width.number = 0;
     format.length.L = 0;
     
-    printf("%s", s21_spec_f(&format, &f));
+    printf("\nрезультат = %s", s21_spec_f(&format, &f));
+    // printf("\n%f", -0.0001);
     return 0;
 }
 
