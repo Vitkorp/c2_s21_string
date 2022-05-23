@@ -33,7 +33,7 @@ int main() {
     char c;
     scanf("%c", &c);
     fmt format;
-    format.flags.minus = 0;
+    format.flags.minus = 1;
     format.flags.plus = 0;
     format.flags.space = 0;
     format.precision.number = 6;

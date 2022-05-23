@@ -5,20 +5,34 @@
 #include "s21_sprintf.h"
 
 char *s21_spec_f(fmt *format, const void *val) {
-    // static char mass[4000] = {'\0'};
-    const char *s = *((char *)val);
+    char *mass = (char *)val;
+    int i = 0;
     
+     if (format -> flags.minus == 1 && format -> width.number > 1) {
+        int leng = format -> width.number - (int)strlen(mass);
+        char mass_2[leng];
+        for (int i = 0; i < leng; i++) {
+            mass_2[i] = ' ';
+        }
+        strcat(mass, mass_2);
+    } else if (format -> flags.minus != 1 && format -> width.number > 1) {
+        int leng = format -> width.number - (int)strlen(mass);
+        char mass_2[leng];
+        for (int i = 0; i < leng; i++) {
+            mass_2[i] = ' ';
+            printf("[%c]", mass_2[i]);
+        }
+        strcat(mass_2, mass);
+        strcpy(mass, mass_2);
+    }
 
-    // int i = 0;
-
-    return &(s[0]);
+    return mass;
 }
 
 int main() {
-    const char *s = (char*) calloc(10000, sizeof(char));
-    for (long unsigned i = 0; i < sizeof(s); i++) {
-        scanf("%c", &s[i]);
-    }
+    char s[19999];
+    scanf("%s", s);
+
      
     fmt format;
     format.flags.minus = 0;
@@ -29,6 +43,5 @@ int main() {
     format.length.L = 0;
     
     printf("%s", s21_spec_f(&format, &s));
-    free(s);
     return 0;
 }

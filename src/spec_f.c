@@ -33,14 +33,14 @@ char *s21_spec_f(fmt *format, const void *val) {
         num *= -1;
     }
     exp = modfl(num, &n);
-    short num_deci_digits = format -> precision.number;
+    int num_deci_digits = format -> precision.number;
     long long deci_num = n;
     if (deci_num == 0) {
         mass[i++] = '0';
     }
     while(num_deci_digits >= 0) {
-        int exponent = pow(10, num_deci_digits);
-		int res = deci_num / exponent;
+        long long exponent = pow(10, num_deci_digits);
+		long long res = deci_num / exponent;
 		if(res > 0) {
 			break;
 		}
@@ -48,8 +48,8 @@ char *s21_spec_f(fmt *format, const void *val) {
 	}
     num_deci_digits += 1;
     for (int j = num_deci_digits; j > 0; j--) {
-        int exponent = pow(10, j - 1);
-        int res = deci_num / exponent;
+        long long exponent = pow(10, j - 1);
+        long long res = deci_num / exponent;
         mass[i++] = res + 48;
         deci_num %= exponent;
     }
@@ -67,16 +67,16 @@ char *s21_spec_f(fmt *format, const void *val) {
         buff_exp /= 10;
         count++;
     }
-    printf("counter = %d", count);
-    printf("\nprecision %d\n", format -> precision.number);
+    // printf("counter = %d", count);
+    // printf("\nprecision %d\n", format -> precision.number);
     for (int i = 0; i < format -> precision.number - count; i++) {
         mass_buff[i] = '0';
-        printf("i %d, ", i);
+        // printf("i %d, ", i);
     }
-    printf("buf[%s]", mass_buff);
+    // printf("buf[%s]", mass_buff);
     char mass_str[32] = {'\0'};
     int_to_str(exp, mass_str);
-    printf("str[%s]", mass_str);
+    // printf("str[%s]", mass_str);
     if (count != 0) {
         strcat(mass_buff, mass_str);
     }
@@ -108,13 +108,14 @@ int main() {
     format.flags.minus = 0;
     format.flags.plus = 0;
     format.flags.space = 0;
-    format.precision.number = 6;
+    format.precision.number = 19;
     format.width.number = 0;
     format.length.L = 0;
-    char TEMP[32];
-    printf("\nрезультат = %s", s21_spec_f(&format, &f));
-    // printf("\n%s", TEMP);
-    // printf("\n%f", -0.0001);
+    printf("\nрезультат = %s\n", s21_spec_f(&format, &f));
+    char TEMP[55555];
+    sprintf(TEMP, "%.20Lf\n", f);
+    printf("оригинал  = %s\n", TEMP);
+    
     return 0;
 }
 
