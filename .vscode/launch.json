@@ -11,7 +11,7 @@
 			"program": "/Users/howieter/Documents/howieter/C2_s21_stringplus-0/src/a.out",
 			"args": [],
 			"stopAtEntry": false,
-			"cwd": "/Users/howieter/Documents/howieter/C2_s21_stringplus-0/src",
+			"cwd": "/Users/howieter/Documents/howieter/C2_s21_stringplus-0/src/a.out",
 			"environment": [ { "name": "squid", "value": "clam" } ],
 			"externalConsole": true,
 			"MIMode": "lldb"
@@ -20,7 +20,7 @@
 			"name": "(lldb) Подключить",
 			"type": "cppdbg",
 			"request": "attach",
-			"program": "/Users/howieter/Documents/howieter/C2_s21_stringplus-0/src",
+			"program": "/Users/howieter/Documents/howieter/C2_s21_stringplus-0/src/a.out",
 			"processId": "${command:pickProcess}",
 			"MIMode": "lldb"
 		}
