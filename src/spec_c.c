@@ -4,7 +4,7 @@
 #include <string.h>
 #include "s21_sprintf.h"
 
-char *s21_spec_f(fmt *format, const void *val) {
+char *s21_spec_c(fmt *format, const void *val) {
     static char mass[100] = {'\0'};
     char c = *((char *)val);
     int i = 0;
