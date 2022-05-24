@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
+#include <float.h>
 #include "s21_sprintf.h"
 
 void *int_to_str(long long int number, char *str) {
@@ -75,8 +76,9 @@ char *s21_spec_f(fmt *format, const void *val) {
     }
     // printf("buf[%s]", mass_buff);
     char mass_str[32] = {'\0'};
-    int_to_str(exp, mass_str);
-    // printf("str[%s]", mass_str);
+    // printf("\nexp = [%Lf]", exp);
+    int_to_str((long long)exp, mass_str);
+    // printf("\nstr[%s]", mass_str);
     if (count != 0) {
         strcat(mass_buff, mass_str);
     }
@@ -97,13 +99,12 @@ char *s21_spec_f(fmt *format, const void *val) {
         strcat(mass_2, mass);
         strcpy(mass, mass_2);
     }
-
     return &(mass[0]);
 }
 
 int main() {
-    long double f = 0.0;
-    scanf("%Lf", &f);
+    long double f = 5.52;
+    // scanf("%Lf", &f);
     fmt format;
     format.flags.minus = 0;
     format.flags.plus = 0;
@@ -111,19 +112,10 @@ int main() {
     format.precision.number = 19;
     format.width.number = 0;
     format.length.L = 0;
-    printf("\nрезультат = %s\n", s21_spec_f(&format, &f));
+    // printf("\nрезультат = %s\n", s21_spec_f(&format, &f));
     char TEMP[55555];
-    sprintf(TEMP, "%.20Lf\n", f);
-    printf("оригинал  = %s\n", TEMP);
+    sprintf(TEMP, "%.19Lf\n", f);
+    // printf("оригинал  = %s\n", TEMP);
     
     return 0;
 }
-
-/* 
-typedef struct _flags {
-    int minus;
-    int plus;
-    int space;
-    int hash;
-    int zero;
-} fl; */
