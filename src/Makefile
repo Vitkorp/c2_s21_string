@@ -1,4 +1,6 @@
 all: checkmk s21_string.a test gcov_report
+all2: checkmk s21_string.a test lcov
+
 
 rebuild: clean all
 
@@ -65,11 +67,11 @@ lcov_linux:
 	genhtml ne_ploho/ploho -o ne_ploho/horosho 
 
 
-lcov_report:
-	mkdir ne_ploho
-	gcc -Wall -Werror -Wextra -fprofile-arcs -ftest-coverage test.c -ls21 -L. -lcheck -lm -o mid_html_res
-	./mid_html_res
-	geninfo *.gcda *.gcno -b . -o  ne_ploho/ploho
-	genhtml ne_ploho/ploho -o ne_ploho/horosho
-	open ne_ploho/horosho/index.html
+# lcov_report:
+#	mkdir ne_ploho
+#	gcc -Wall -Werror -Wextra -fprofile-arcs -ftest-coverage test.c -ls21 -L. -lcheck -lm -o mid_html_res
+#	./mid_html_res
+#	geninfo *.gcda *.gcno -b . -o  ne_ploho/ploho
+#	genhtml ne_ploho/ploho -o ne_ploho/horosho
+#	open ne_ploho/horosho/index.html
 
