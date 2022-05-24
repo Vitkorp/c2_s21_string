@@ -33,8 +33,9 @@ typedef struct _precision {
 // {h} {l} {L}
 // количество вхождений флага длины
 typedef struct _length {
-    int l_short;
-    int starchar;
+    int h;
+    int l;
+    int L;
 } len;
 
 typedef struct _format{
@@ -42,13 +43,13 @@ typedef struct _format{
     w  width;
     pr precision;
     len length;
-    char spec;
+    char spec;  
 } fmt;
 
 typedef struct _regs {
-    void *value;
-    void *width;
-    void *precision;
+    void *pValue;
+    void *pWidth;
+    void *pPrecision;
 } regs;
 
 // int sprintf(char *str, const char *format, ...) 
