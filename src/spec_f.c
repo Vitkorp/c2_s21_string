@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#include <string.h>
 #include <float.h>
 #include "s21_sprintf.h"
+#include "spec.h"
 
-void *int_to_str(long long int number, char *str) {
+void *dec_to_str(long long int number, char *str) {
     if (number < 0) {
         number = number * -1;
     }
@@ -77,45 +77,44 @@ char *s21_spec_f(fmt *format, const void *val) {
     // printf("buf[%s]", mass_buff);
     char mass_str[32] = {'\0'};
     // printf("\nexp = [%Lf]", exp);
-    int_to_str((long long)exp, mass_str);
+    dec_to_str((long long)exp, mass_str);
     // printf("\nstr[%s]", mass_str);
     if (count != 0) {
-        strcat(mass_buff, mass_str);
+        s21_strcat(mass_buff, mass_str);
     }
-        strcat(mass, mass_buff);
-    if (format -> flags.minus == 1 && format -> width.number > (int)strlen(mass)) {
-        int leng = format -> width.number - (int)strlen(mass);
-        char mass_2[leng];
+        s21_strcat(mass, mass_buff);
+    if (format -> flags.minus == 1 && format -> width.number > (int)s21_strlen(mass)) {
+        int leng = format -> width.number - (int)s21_strlen(mass);
+        char mass_2[1000] = {0};
         for (int i = 0; i < leng; i++) {
             mass_2[i] = ' ';
         }
-        strcat(mass, mass_2);
-    } else if (format -> flags.minus != 1 && format -> width.number > (int)strlen(mass)) {
-        int leng = format -> width.number - (int)strlen(mass);
-        char mass_2[leng];
+        s21_strcat(mass, mass_2);
+    } else if (format -> flags.minus != 1 && format -> width.number > (int)s21_strlen(mass)) {
+        int leng = format -> width.number - (int)s21_strlen(mass);
+        char mass_2[1000] = {0};
         for (int i = 0; i < leng; i++) {
             mass_2[i] = ' ';
         }
-        strcat(mass_2, mass);
-        strcpy(mass, mass_2);
+        s21_strcat(mass_2, mass);
+        s21_strcpy(mass, mass_2);
     }
     return &(mass[0]);
 }
 
-int main() {
-    long double f = 5.52;
-    // scanf("%Lf", &f);
-    fmt format;
-    format.flags.minus = 0;
-    format.flags.plus = 0;
-    format.flags.space = 0;
-    format.precision.number = 19;
-    format.width.number = 0;
-    format.length.L = 0;
-    // printf("\nрезультат = %s\n", s21_spec_f(&format, &f));
-    char TEMP[55555];
-    sprintf(TEMP, "%.19Lf\n", f);
-    // printf("оригинал  = %s\n", TEMP);
-    
-    return 0;
-}
+// int main() {
+//     long double f = 5.52;
+//     // scanf("%Lf", &f);
+//     fmt format;
+//     format.flags.minus = 0;
+//     format.flags.plus = 0;
+//     format.flags.space = 0;
+//     format.precision.number = 19;
+//     format.width.number = 0;
+//     format.length.L = 0;
+//     printf("\nрезультат = %s\n", s21_spec_f(&format, &f));
+//     char TEMP[55555];
+//     sprintf(TEMP, "%.19Lf\n", f);
+//     printf("оригинал  = %s\n", TEMP);
+//     return 0;
+// }

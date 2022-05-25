@@ -1,7 +1,5 @@
 // Copyright [2022] <Copyright ONDREWVI>
-// #include <string.h>
 #include "s21_string.h"
-#include <string.h>
 #include <stdio.h>
 
 int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
@@ -383,11 +381,9 @@ char *s21_strrchr(const char *str, int c) {
 //     printf("NATIVE - %s\n", native);
 //     printf("MY - %s\n", p);
     
-
 //     int test1;
 //     int test2;
 //     int test3;
-
 //     test1 = strncmp(src, sub, s21_strlen(sub));
 //     test2 = s21_strncmp(src, sub, s21_strlen(sub));
 //     test3 = my_strncmp(src, sub, s21_strlen(sub));
@@ -395,3 +391,99 @@ char *s21_strrchr(const char *str, int c) {
 //     printf("MY - %d\n", test2);
 //     printf("ANOTHER - %d\n", test3);
 // }
+
+void *s21_to_upper(const char *str) {
+  int flag;
+  char *dest = malloc((strlen(str) + 1) * sizeof(char));
+  if (str[0] == '\0' || str == NULL || !dest) {
+    flag = 0;
+  } else {
+    s21_strcpy(dest, str);
+    for (s21_size_t j = 0; j < strlen(str); j++) {
+      if (('a' <= dest[j] && 'z' >= dest[j])) {
+        dest[j] += 'A' - 'a';
+      }
+    }
+    flag = 1;
+  }
+  char *copy_str;
+  if (flag == 0) {
+    copy_str = NULL;
+  } else {
+    copy_str = dest;
+  }
+  return copy_str;
+}
+
+// все в нижний регистр
+void *s21_to_lower(const char *str) {
+  int flag;
+  char *dest = malloc((strlen(str) + 1) * sizeof(char));
+  if (str[0] == '\0' || str == NULL || !dest) {
+    flag = 0;
+  } else {
+    s21_strcpy(dest, str);
+    for (s21_size_t j = 0; j < strlen(str); j++) {
+      if (('A' <= dest[j] && 'Z' >= dest[j])) {
+        dest[j] += 'a' - 'A';
+      }
+    }
+    flag = 1;
+  }
+  char *copy_str;
+  if (flag == 0) {
+    copy_str = NULL;
+  } else {
+    copy_str = dest;
+  }
+  return copy_str;
+}
+
+/*Возвращает новую строку, в которой указанная строка (str)
+вставлена в указанную позицию (start_index) в данной строке (src).
+В случае какой-либо ошибки следует вернуть значение NULL*/
+
+void *s21_insert(const char *src, const char *str, size_t start_index) {
+  char *tmp = NULL;
+  int flag = 0;
+  s21_size_t size = s21_strlen(src) + s21_strlen(str) + 1;
+  if (s21_strlen(src) >= start_index) {
+    char *tmp = malloc(size * sizeof(char));
+    if (tmp) {
+      s21_strncpy(tmp, src, start_index);
+      s21_strcpy(tmp + start_index, str);
+      s21_strcpy(tmp + start_index + s21_strlen(str), src + start_index);
+      flag = 1;
+    }
+  }
+  char *copy_str;
+  if (flag == 0) {
+    copy_str = NULL;
+  } else {
+    copy_str = tmp;
+  }
+  return copy_str;
+}
+
+void *s21_trim(const char *src, const char *trim_chars) {
+    char *result;
+    char *s2;
+    s21_size_t start;
+    s21_size_t end;
+    s21_size_t buf_size;
+    s2 = (char *)src;
+    result = 0;
+    if (src != 0 && trim_chars != 0) {
+        start = 0;
+        end = s21_strlen(src);
+        while (src[start] && s21_strchr(trim_chars, src[start]))
+            ++start;
+        while (src[end - 1] && s21_strchr(trim_chars, src[end - 1]) && end > start)
+            --end;
+        buf_size = end - start + 1;
+        result = (char *)malloc(sizeof(char) * (buf_size));
+        if (result)
+            s21_strlcpy(result, &s2[start], (buf_size));
+    }
+    return (result);
+}

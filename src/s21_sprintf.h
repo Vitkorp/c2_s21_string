@@ -1,19 +1,18 @@
-#include <string.h>
-#include <stdlib.h>
 #include "s21_string.h"
-#include <stdio.h>
 #include <stdarg.h>
+#include "s21_string.h"
+#include "spec.h"
 
 // %[флаги][ширина][.точность][длина]спецификатор
 
 // {-} {+} {' '} {#} {0}
 // количество вхождений флага
 typedef struct _flags {
-    long long minus;
-    long long plus;
-    long long space;
-    long long hash;
-    long long zero;
+    int minus;
+    int plus;
+    int space;
+    int hash;
+    int zero;
 } fl;
 
 // {0..9} {*} 
@@ -46,7 +45,7 @@ typedef struct _format{
     char spec;  
 } fmt;
 
-typedef struct _regs {
+typedef struct _regs{
     void *pValue;
     void *pWidth;
     void *pPrecision;

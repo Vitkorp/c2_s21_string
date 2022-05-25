@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include "s21_errno_mac.h"
 #include "s21_errno_linux.h"
-// #include <string.h>
 #include <stdlib.h>
 
 #ifndef S21_NULL
@@ -279,5 +278,7 @@ char *s21_strtok(char * str, const char * delim);
 
 void *s21_to_upper(const char *str);
 void *s21_to_lower(const char *str);
+void *s21_insert(const char *src, const char *str, size_t start_index);
+void *s21_trim(const char *src, const char *trim_chars);
 
 #endif //S21_STRING_GELLERTI_S21_STRING_H
