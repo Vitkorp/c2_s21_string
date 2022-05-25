@@ -466,25 +466,25 @@ void *s21_insert(const char *src, const char *str, size_t start_index) {
   return copy_str;
 }
 
-void *s21_trim(const char *src, const char *trim_chars) {
-    char *result;
-    char *s2;
-    s21_size_t start;
-    s21_size_t end;
-    s21_size_t buf_size;
-    s2 = (char *)src;
-    result = 0;
-    if (src != 0 && trim_chars != 0) {
-        start = 0;
-        end = s21_strlen(src);
-        while (src[start] && s21_strchr(trim_chars, src[start]))
-            ++start;
-        while (src[end - 1] && s21_strchr(trim_chars, src[end - 1]) && end > start)
-            --end;
-        buf_size = end - start + 1;
-        result = (char *)malloc(sizeof(char) * (buf_size));
-        if (result)
-            s21_strncpy(result, &s2[start], (buf_size));
-    }
-    return (result);
-}
+// void *s21_trim(const char *src, const char *trim_chars) {
+//     char *result;
+//     char *s2;
+//     s21_size_t start;
+//     s21_size_t end;
+//     s21_size_t buf_size;
+//     s2 = (char *)src;
+//     result = 0;
+//     if (src != 0 && trim_chars != 0) {
+//         start = 0;
+//         end = s21_strlen(src);
+//         while (src[start] && s21_strchr(trim_chars, src[start]))
+//             ++start;
+//         while (src[end - 1] && s21_strchr(trim_chars, src[end - 1]) && end > start)
+//             --end;
+//         buf_size = end - start + 1;
+//         result = (char *)malloc(sizeof(char) * (buf_size));
+//         if (result)
+//             s21_strncpy(result, &s2[start], (buf_size));
+//     }
+//     return (result);
+// }
