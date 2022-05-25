@@ -282,10 +282,10 @@ char *s21_strerror(int errnum) {
     int found = 0;
     char res[1000] = {'\0'};
     snprintf(b, 10, "%d", errnum);
-    strcat(baseMsg, b);  // заменить на s21_strcat
+    s21_strcat(baseMsg, b);  // заменить на s21_strcat
     for (int i = 0; i < count; i++) {
         if (errnum == errlist[i].id) {
-            strcpy(res, errlist[i].null_str);
+            s21_strcpy(res, errlist[i].null_str);
             found = 1;
             break;
         }

@@ -5,6 +5,8 @@
 #include "s21_errno_mac.h"
 #include "s21_errno_linux.h"
 #include <stdlib.h>
+#include "s21_sprintf.h"
+#include "spec.h"
 
 #ifndef S21_NULL
 #define S21_NULL (void *)0
