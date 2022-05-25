@@ -4,22 +4,22 @@
 #include "s21_sprintf.h"
 #include "spec.h"
 
-char *s21_spec_c(fmt *format, regs regs) {
+char *s21_spec_c(fmt format, regs regs) {
     const void *val = regs.pValue;
     static char mass[100] = {'\0'};
     char c = *((char *)val);
     int i = 0;
     mass[i] = c;
     
-     if (format -> flags.minus == 1 && format -> width.number > 1) {
-        int leng = format -> width.number - 1;
+     if (format.flags.minus == 1 && format.width.number > 1) {
+        int leng = format.width.number - 1;
         char mass_2[100] = {0};
         for (int i = 0; i < leng; i++) {
             mass_2[i] = ' ';
         }
         s21_strcat(mass, mass_2);
-    } else if (format -> flags.minus != 1 && format -> width.number > 1) {
-        int leng = format -> width.number - 1;
+    } else if (format.flags.minus != 1 && format.width.number > 1) {
+        int leng = format.width.number - 1;
         char mass_2[100] = {0};
         for (int i = 0; i < leng; i++) {
             mass_2[i] = ' ';

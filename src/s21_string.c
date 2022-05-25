@@ -1,5 +1,6 @@
 // Copyright [2022] <Copyright ONDREWVI>
 #include "s21_string.h"
+#include "s21_sprintf.h"
 #include <stdio.h>
 
 int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
@@ -295,11 +296,11 @@ char *s21_strerror(int errnum) {
     char b[12] = "";
     int found = 0;
     char res[1000] = "";
-    snprintf(b, 10, "%d", errnum);
-    strcat(baseMsg, b);  // заменить на s21_strcat
+    s21_sprintf(b, "%d", errnum);
+    s21_strcat(baseMsg, b);  // заменить на s21_strcat
     for (int i = 0; i < count; i++) {
         if (errnum == errlist[i].id) {
-            strcpy(res, errlist[i].null_str);
+            s21_strcpy(res, errlist[i].null_str);
             found = 1;
             break;
         }
@@ -394,12 +395,12 @@ char *s21_strrchr(const char *str, int c) {
 
 void *s21_to_upper(const char *str) {
   int flag;
-  char *dest = malloc((strlen(str) + 1) * sizeof(char));
+  char *dest = malloc((s21_strlen(str) + 1) * sizeof(char));
   if (str[0] == '\0' || str == NULL || !dest) {
     flag = 0;
   } else {
     s21_strcpy(dest, str);
-    for (s21_size_t j = 0; j < strlen(str); j++) {
+    for (s21_size_t j = 0; j < s21_strlen(str); j++) {
       if (('a' <= dest[j] && 'z' >= dest[j])) {
         dest[j] += 'A' - 'a';
       }
@@ -418,12 +419,12 @@ void *s21_to_upper(const char *str) {
 // все в нижний регистр
 void *s21_to_lower(const char *str) {
   int flag;
-  char *dest = malloc((strlen(str) + 1) * sizeof(char));
+  char *dest = malloc((s21_strlen(str) + 1) * sizeof(char));
   if (str[0] == '\0' || str == NULL || !dest) {
     flag = 0;
   } else {
     s21_strcpy(dest, str);
-    for (s21_size_t j = 0; j < strlen(str); j++) {
+    for (s21_size_t j = 0; j < s21_strlen(str); j++) {
       if (('A' <= dest[j] && 'Z' >= dest[j])) {
         dest[j] += 'a' - 'A';
       }
@@ -483,7 +484,7 @@ void *s21_trim(const char *src, const char *trim_chars) {
         buf_size = end - start + 1;
         result = (char *)malloc(sizeof(char) * (buf_size));
         if (result)
-            s21_strlcpy(result, &s2[start], (buf_size));
+            s21_strncpy(result, &s2[start], (buf_size));
     }
     return (result);
 }

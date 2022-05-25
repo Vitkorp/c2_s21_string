@@ -1,9 +1,11 @@
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <float.h>
 #include "s21_sprintf.h"
 #include "spec.h"
+
+
 
 void *dec_to_str(long long int number, char *str) {
     if (number < 0) {
@@ -23,9 +25,9 @@ void *dec_to_str(long long int number, char *str) {
     return 0;
 }
 
-char *s21_spec_f(fmt *format, const void *val) {
+char *s21_spec_f(fmt format, regs regs) {
     static char mass[10000] = {'\0'};
-    long double num = *((long double *)val);
+    long double num = *((long double *)regs.pValue);
     long double exp = 0.0;
     long double n = 0.0;
     int i = 0;
@@ -34,7 +36,7 @@ char *s21_spec_f(fmt *format, const void *val) {
         num *= -1;
     }
     exp = modfl(num, &n);
-    int num_deci_digits = format -> precision.number;
+    int num_deci_digits = format.precision.number;
     long long deci_num = n;
     if (deci_num == 0) {
         mass[i++] = '0';
@@ -54,10 +56,10 @@ char *s21_spec_f(fmt *format, const void *val) {
         mass[i++] = res + 48;
         deci_num %= exponent;
     }
-    if(format -> precision.number != 0) {
+    if(format.precision.number != 0) {
         mass[i++] = '.';
     }
-    for (int j = 0; j < format -> precision.number; j++) {
+    for (int j = 0; j < format.precision.number; j++) {
         exp *= 10.0;
     }
     char mass_buff[32] = {'\0'};
@@ -70,7 +72,7 @@ char *s21_spec_f(fmt *format, const void *val) {
     }
     // printf("counter = %d", count);
     // printf("\nprecision %d\n", format -> precision.number);
-    for (int i = 0; i < format -> precision.number - count; i++) {
+    for (int i = 0; i < format.precision.number - count; i++) {
         mass_buff[i] = '0';
         // printf("i %d, ", i);
     }
@@ -83,15 +85,15 @@ char *s21_spec_f(fmt *format, const void *val) {
         s21_strcat(mass_buff, mass_str);
     }
         s21_strcat(mass, mass_buff);
-    if (format -> flags.minus == 1 && format -> width.number > (int)s21_strlen(mass)) {
-        int leng = format -> width.number - (int)s21_strlen(mass);
+    if (format.flags.minus == 1 && format.width.number > (int)s21_strlen(mass)) {
+        int leng = format.width.number - (int)s21_strlen(mass);
         char mass_2[1000] = {0};
         for (int i = 0; i < leng; i++) {
             mass_2[i] = ' ';
         }
         s21_strcat(mass, mass_2);
-    } else if (format -> flags.minus != 1 && format -> width.number > (int)s21_strlen(mass)) {
-        int leng = format -> width.number - (int)s21_strlen(mass);
+    } else if (format.flags.minus != 1 && format.width.number > (int)s21_strlen(mass)) {
+        int leng = format.width.number - (int)s21_strlen(mass);
         char mass_2[1000] = {0};
         for (int i = 0; i < leng; i++) {
             mass_2[i] = ' ';

@@ -1,7 +1,9 @@
+#ifndef SRC_S21_SPRINTF_H_
+#define SRC_S21_SPRINTF_H_
 #include "s21_string.h"
 #include <stdarg.h>
-#include "s21_string.h"
-#include "spec.h"
+#include <math.h>
+
 
 // %[флаги][ширина][.точность][длина]спецификатор
 
@@ -18,15 +20,15 @@ typedef struct _flags {
 // {0..9} {*} 
 // количество вхождений флага ширины
 typedef struct _width {
-    long long number;
-    long long starchar;
+    int number;
+    int starchar;
 } w;
 
 // {0..9} {*} 
 // количество вхождений флага точности
 typedef struct _precision {
-    long long number;
-    long long starchar;
+    int number;
+    int starchar;
 } pr;
 
 // {h} {l} {L}
@@ -56,3 +58,5 @@ int s21_sprintf(char *str, const char *format, ...);
 
 //  позиция указателя до конца подстроки замещаемой части формата
 int endfmt(const char *str, long long start);
+
+#endif

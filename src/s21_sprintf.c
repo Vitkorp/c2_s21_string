@@ -1,6 +1,7 @@
 
 #include "s21_sprintf.h"
 #include "s21_string.h"
+#include "spec.h"
 
 
 /**
@@ -324,11 +325,11 @@ int s21_sprintf(char *str, const char *format, ...) {
             
             switch (form.spec) {
                 case 'c': {
-                    s21_strcat(str, s21_spec_c(fmt *form, regs registers));
+                    s21_strcat(str, s21_spec_c(form, registers));
                     break;
                 }
                 case 'd': {
-                    s21_strcat(str, int_to_str(fmt form, registers regs));
+                    s21_strcat(str, s21_spec_d(form, registers));
                     break;
                 }
                 // case 'e': {
@@ -338,7 +339,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                 //     break;
                 // }
                 case 'f': {
-                    s21_strcat(str, s21_spec_f(fmt form, registers regs));
+                    s21_strcat(str, s21_spec_f(form, registers));
                     break;
                 }
                 // case 'g': {
@@ -351,11 +352,11 @@ int s21_sprintf(char *str, const char *format, ...) {
                 //     break;
                 // }
                 case 's': {
-                    s21_strcat(str, s21_spec_s(fmt form, registers regs));
+                    s21_strcat(str, s21_spec_s(form, registers));
                     break;
                 }
                 case 'u': {
-                    s21_strcat(str, int_to_str(fmt form, registers regs));
+                    s21_strcat(str, s21_spec_d(form, registers));
                     break;
                 }
                 // case 'x': {
@@ -371,7 +372,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                 //     break;
                 // }
                 case 'i': {
-                    s21_strcat(str, int_to_str(form, registers));
+                    s21_strcat(str, s21_spec_d(form, registers));
                     break;
                 }                
                 case '%': {
@@ -423,32 +424,32 @@ int s21_sprintf(char *str, const char *format, ...) {
     return count;
 }
 
-// int main() {
-//     int a = 5;
-//     char s[10000] = {'\0'};
-//     int len = s21_sprintf(s, "Heool!!!!!!! %+-10.5 d ddddddn\n", a);
-//     printf("pointer = %p, len = %d\n  2.1: %s", s, len, s);
-//     printf("\n===================================\n");
-//     len = s21_sprintf(s, "Hello my friends! %% %d %s in the air\n", a+10, "airplane+5");
-//     printf("pointer = %p, len = %d\n  2.1: %s", s, len, s);
-//     printf("\n===================================\n");
-//     sprintf(s, "Hello %----+#######8.5 lj k  %endl\n");
-//     printf("%s", s);
-//     sprintf(s, "Hello %\n");
-//     printf("%s", s);
-//     sprintf(s, "%e\n");
-//     printf("%s", s);
-//     sprintf(s, "%s\n");
-//     printf("%s", s);
-//     sprintf(s, "%c\n");
-//     printf("%s", s);
-//     sprintf(s, "%d\n");
-//     printf("%s", s);
-//     sprintf(s, "%lu\n");
-//     printf("%s", s);
-//     sprintf(s, "%llu\n");
-//     printf("%s", s);
-//     sprintf(s, "%lld\n");
-//     printf("%s", s);
-//     return 0;
-// }
+int main() {
+    int a = 5;
+    char s[10000] = {'\0'};
+    int len = s21_sprintf(s, "Heool!!!!!!! %+-10.5 d ddddddn\n", a);
+    printf("pointer = %p, len = %d\n  2.1: %s", s, len, s);
+    printf("\n===================================\n");
+    len = s21_sprintf(s, "Hello my friends! %% %d %s in the air\n", a+10, "airplane+5");
+    printf("pointer = %p, len = %d\n  2.1: %s", s, len, s);
+    printf("\n===================================\n");
+    // sprintf(s, "Hello %----+#######8.5 lj k  %endl\n");
+    // printf("%s", s);
+    // sprintf(s, "Hello %\n");
+    // printf("%s", s);
+    // sprintf(s, "%e\n");
+    // printf("%s", s);
+    // sprintf(s, "%s\n");
+    // printf("%s", s);
+    // sprintf(s, "%c\n");
+    // printf("%s", s);
+    // sprintf(s, "%d\n");
+    // printf("%s", s);
+    // sprintf(s, "%lu\n");
+    // printf("%s", s);
+    // sprintf(s, "%llu\n");
+    // printf("%s", s);
+    // sprintf(s, "%lld\n");
+    // printf("%s", s);
+    return 0;
+}
