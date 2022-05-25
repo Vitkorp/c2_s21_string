@@ -1,4 +1,3 @@
-
 #include "s21_sprintf.h"
 
 
@@ -165,28 +164,48 @@ int parseStr(fmt *val, const char *fmtstr, int startFmtPosition, int len) {
         if (i == t) i++;
         
     }
+                printf("form.spec:  %c\n", val->spec);
+            printf("form.flags:\n{\n");
+            printf("      hash: %d\n", val->flags.hash);
+            printf("     minus: %d\n", val->flags.minus);
+            printf("      plus: %d\n", val->flags.plus);
+            printf("     space: %d\n", val->flags.space);
+            printf("      zero: %d\n}\n\n", val->flags.zero);
+
+            printf("form.width:\n{\n");
+            printf("    number: %d\n", val->width.number);
+            printf("  starchar: %d\n}\n\n", val->width.starchar);
+
+            printf("form.precision:\n{\n");
+            printf("    number: %d\n", val->precision.number);
+            printf("  starchar: %d\n}\n\n", val->precision.starchar);
+
+            printf("form.length:\n{\n");
+            printf("         h: %d\n", val->length.h);
+            printf("         l: %d\n", val->length.l);
+            printf("         L: %d\n}\n\n", val->length.L);
     printf("\n");
     return 0;
 }
 
-void reuseRegister(void *val, void *newCell) {
-    if (val) {
+void * reuseRegister(void *val, void *newCell) {
+    if (val != S21_NULL) {
         free(val);
     }
-    val = newCell;
+    return newCell;
 }
 
-void prepareRegisters(fmt form, regs *registers, va_list arglist) {
+regs prepareRegisters(fmt form, regs registers, va_list arglist) {
     if (form.width.starchar != 0) {
         int *p_val = malloc(sizeof(int));
         *p_val = va_arg(arglist, int);
-        registers->pWidth = p_val;
+        registers.pWidth = p_val;
     }
 
     if (form.precision.starchar != 0) {
         int *p_val = malloc(sizeof(int));
         *p_val = va_arg(arglist, int);
-        registers->pPrecision = p_val;
+        registers.pPrecision = p_val;
     }
 
     // сканирование данных в соответствии с типами
@@ -195,13 +214,14 @@ void prepareRegisters(fmt form, regs *registers, va_list arglist) {
             case 'c': {
                 int *p_val = malloc(sizeof(int));
                 *p_val = va_arg(arglist, int);
-                reuseRegister(registers->pValue, p_val);
+                registers.pValue = reuseRegister(registers.pValue, p_val);
                 break;
             }
             case 'd': {
-                long long *p_val = malloc(sizeof(long long));
-                *p_val = va_arg(arglist, long long);
-                reuseRegister(registers->pValue, p_val);
+                long long int *p_val = malloc(sizeof(long long int));
+                *p_val = va_arg(arglist, long long int);
+                printf("value = %lld\n", *p_val);
+                registers.pValue = reuseRegister(registers.pValue, p_val);
                 break;
             }
             // case 'e': {
@@ -216,9 +236,13 @@ void prepareRegisters(fmt form, regs *registers, va_list arglist) {
                 //     *p_val = va_arg(arglist, double);
                 //     reuseRegister(registers->pValue, p_val);
                 // } else {
-                    long double *p_val = malloc(sizeof(long double));
-                    *p_val = va_arg(arglist, long double);
-                    reuseRegister(registers->pValue, p_val);
+                    printf("in f parser\n");
+                    long double *p_val = malloc(sizeof( long double));
+                    *p_val = va_arg(arglist,  double);
+                    printf("pValue = {%p}\n", p_val);
+                    printf("Value = {%Lf}\n", *p_val);
+                    registers.pValue = reuseRegister(registers.pValue, p_val);
+                    printf("Value = {%Lf}\n", *(long double *)registers.pValue);
                 // }
                 break;
             }
@@ -232,13 +256,16 @@ void prepareRegisters(fmt form, regs *registers, va_list arglist) {
             //     break;
             // }
             case 's': {
-                reuseRegister(registers->pValue, va_arg(arglist, char *));
+                char *s = va_arg(arglist, char *);
+                char *ps = malloc(s21_strlen(s) + 1);
+                s21_strcpy(ps, s);
+                registers.pValue = reuseRegister(registers.pValue, ps);
                 break;
             }
             case 'u': {
                 unsigned long long *p_val = malloc(sizeof(unsigned long long));
                 *p_val = va_arg(arglist, unsigned long long);
-                reuseRegister(registers->pValue, p_val);
+                registers.pValue = reuseRegister(registers.pValue, p_val);
                 break;
             }
             // case 'x': {                    
@@ -256,7 +283,7 @@ void prepareRegisters(fmt form, regs *registers, va_list arglist) {
             case 'i': {
                 long long *p_val = malloc(sizeof(long long));
                 *p_val = va_arg(arglist, long long);
-                reuseRegister(registers->pValue, p_val);
+                registers.pValue = reuseRegister(registers.pValue, p_val);
                 break;
             }
             // case '%': {
@@ -266,25 +293,29 @@ void prepareRegisters(fmt form, regs *registers, va_list arglist) {
                 break;
         }
     }
+    return registers;
 }   
 
 
 
-void clearRegisters(regs *reg) {
-    if (reg->pPrecision) {
-        free(reg->pPrecision);
-        reg->pPrecision = S21_NULL;
+regs clearRegisters(regs reg) {
+    printf("clering1\n");
+    if (reg.pPrecision) {
+        free(reg.pPrecision);
+        reg.pPrecision = S21_NULL;
     }
-
-    if (reg->pWidth) {
-        free(reg->pWidth);
-        reg->pWidth = S21_NULL;
+    printf("clering2\n");
+    if (reg.pWidth) {
+        free(reg.pWidth);
+        reg.pWidth = S21_NULL;
     }
-
-    if (reg->pValue) {
-        free(reg->pValue);
-        reg->pValue = S21_NULL;
+    printf("clering3\n");
+    if (reg.pValue) {
+        free(reg.pValue);
+        reg.pValue = S21_NULL;
     }
+    printf("clering return\n");
+    return reg;
 }
 
 // int sprintf(char *str, const char *format, ...) 
@@ -324,11 +355,17 @@ int s21_sprintf(char *str, const char *format, ...) {
                 str = tmp;
                 str[count - 1] = format[i_src];
             }
+            i_src++;
         } else {
             // == '%'
             int startFmtPosition = i_src;
             int endFmrPosition   = endfmt(format, startFmtPosition);
             int len = endFmrPosition - startFmtPosition;
+            if (len) {
+                i_src += len + 1;
+            } else {
+                i_src++;
+            }
             regs registers;
             registers.pPrecision = S21_NULL;
             registers.pValue     = S21_NULL;
@@ -336,7 +373,7 @@ int s21_sprintf(char *str, const char *format, ...) {
 
             printf("startFmtPosition={%d}, endFmrPosition={%d}\n\n", startFmtPosition, endFmrPosition);
             parseStr(&form, format, startFmtPosition, len);
-            prepareRegisters(form, &registers, arglist);
+            registers = prepareRegisters(form, registers, arglist);
             // cdeEfgGosuxXpni
 
             // вызов целевых функций
@@ -351,7 +388,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                 case 'd': {
                     if (registers.pWidth) {printf("registers.pWidth = {%4d}  ", *((int *)registers.pWidth));}
                     if (registers.pPrecision) {printf("registers.pPrecision = {%4d}  ", *((int *)registers.pPrecision));}
-                    if (registers.pValue) {printf("registers.pValue = {%ld}  \n", *((long int *)registers.pValue));}
+                    if (registers.pValue) {printf("registers.pValue = {%lld}  \n", *((long long int *)registers.pValue));}
                     break;
                 }
                 // case 'e': {
@@ -385,7 +422,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                 case 'u': {
                     if (registers.pWidth) {printf("registers.pWidth = {%4d}  ", *((int *)registers.pWidth));}
                     if (registers.pPrecision) {printf("registers.pPrecision = {%4d}  ", *((int *)registers.pPrecision));}
-                    if (registers.pValue) {printf("registers.pValue = {%lu}  \n", *((unsigned long int *)registers.pValue));}
+                    if (registers.pValue) {printf("registers.pValue = {%llu}  \n", *((unsigned long long int *)registers.pValue));}
                     break;
                 }
                 // case 'x': {
@@ -416,22 +453,22 @@ int s21_sprintf(char *str, const char *format, ...) {
                     break;
             }
             printf("form.spec:  %c\n", form.spec);
-            printf("form.flags:\n {");
+            printf("form.flags:\n{\n");
             printf("      hash: %d\n", form.flags.hash);
             printf("     minus: %d\n", form.flags.minus);
             printf("      plus: %d\n", form.flags.plus);
             printf("     space: %d\n", form.flags.space);
             printf("      zero: %d\n}\n\n", form.flags.zero);
 
-            printf("form.width:\n {");
+            printf("form.width:\n{\n");
             printf("    number: %d\n", form.width.number);
             printf("  starchar: %d\n}\n\n", form.width.starchar);
 
-            printf("form.precision:\n {");
+            printf("form.precision:\n{\n");
             printf("    number: %d\n", form.precision.number);
             printf("  starchar: %d\n}\n\n", form.precision.starchar);
 
-            printf("form.length:\n {");
+            printf("form.length:\n{\n");
             printf("         h: %d\n", form.length.h);
             printf("         l: %d\n", form.length.l);
             printf("         L: %d\n}\n\n", form.length.L);
@@ -447,9 +484,9 @@ int s21_sprintf(char *str, const char *format, ...) {
             // parseStr(&form, tmp);
             // char *tmp2 = s21_strcat(str, "\0");
             // i_src += len - 1;
-            clearRegisters(&registers);
+            registers = clearRegisters(registers);
         }
-        i_src++;
+
     }   
     str = tmp;
     va_end(arglist);
@@ -457,13 +494,13 @@ int s21_sprintf(char *str, const char *format, ...) {
 }
 
 int main() {
-    int a = 5;
+    int a = 1555;
     char s[10000] = {'\0'};
-    int len = s21_sprintf(s, "Heool!!!!!!! %+-10.5 d ddddddn\n", a);
+    int len = s21_sprintf(s, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
     printf("pointer = %p, len = %d\n  2.1: %s", s, len, s);
     printf("\n===================================\n");
 
-    len = s21_sprintf(s, "Hello my friends! %% %d %s %-010din the air\n", a+10, "airplane+5", 125);
+    len = s21_sprintf(s, "Hello my friends! %% %d %s %-010d %*.*f in the air\n", a+10, "airplane+5", 125, 20, 19, 18.0);
     printf("pointer = %p, len = %d\n  2.1: %s", s, len, s);
     printf("\n===================================\n");
     // sprintf(s, "Hello %----+#######8.5 lj k  %endl\n");
