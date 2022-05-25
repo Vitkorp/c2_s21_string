@@ -15,6 +15,8 @@ int endfmt(const char *str, int start) {
     int len;
     if ((len = s21_strcspn(str + start, "cdeEfgGosuxXpni")) != 0) {
         _pos += len + 1;
+    } else if ((len = s21_strcspn(str + start, "%")) != 0) {
+        _pos = 1;
     }
     return _pos;
 }
@@ -209,15 +211,15 @@ void prepareRegisters(fmt form, regs *registers, va_list arglist) {
             //     break;
             // }
             case 'f': {
-                if (!form.length.L) {
-                    double *p_val = malloc(sizeof(double));
-                    *p_val = va_arg(arglist, double);
-                    reuseRegister(registers->pValue, p_val);
-                } else {
+                // if (!form.length.L) {
+                //     double *p_val = malloc(sizeof(double));
+                //     *p_val = va_arg(arglist, double);
+                //     reuseRegister(registers->pValue, p_val);
+                // } else {
                     long double *p_val = malloc(sizeof(long double));
                     *p_val = va_arg(arglist, long double);
                     reuseRegister(registers->pValue, p_val);
-                }
+                // }
                 break;
             }
             // case 'g': {
@@ -337,7 +339,7 @@ int s21_sprintf(char *str, const char *format, ...) {
             prepareRegisters(form, &registers, arglist);
             // cdeEfgGosuxXpni
 
-            // вызов цедевых функций сопоставимых с спецификаторами
+            // вызов целевых функций
             
             switch (form.spec) {
                 case 'c': {
@@ -362,6 +364,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                     if (registers.pWidth) {printf("registers.pWidth = {%4d}  ", *((int *)registers.pWidth));}
                     if (registers.pPrecision) {printf("registers.pPrecision = {%4d}  ", *((int *)registers.pPrecision));}
                     if (registers.pValue) {printf("registers.pValue = {%Lf}  \n", *((long double *)registers.pValue));}
+                    // s21_strcat(str, func_f(form, registers));
                     break;
                 }
                 // case 'g': {
@@ -406,7 +409,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                 case '%': {
                     printf("%%\n");
                     s21_strcat(str, "%");
-                    i_src++;
+                    
                     break;
                 }
                 default: 
@@ -460,7 +463,7 @@ int main() {
     printf("pointer = %p, len = %d\n  2.1: %s", s, len, s);
     printf("\n===================================\n");
 
-    len = s21_sprintf(s, "Hello my friends! %% %d %s in the air\n", a+10, "airplane+5");
+    len = s21_sprintf(s, "Hello my friends! %% %d %s %-010din the air\n", a+10, "airplane+5", 125);
     printf("pointer = %p, len = %d\n  2.1: %s", s, len, s);
     printf("\n===================================\n");
     // sprintf(s, "Hello %----+#######8.5 lj k  %endl\n");
