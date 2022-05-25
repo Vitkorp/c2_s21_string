@@ -1,29 +1,49 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-
-  {
-    "name": "(lldb) Запустить",
-    "type": "cppdbg",
-    "request": "launch",
-    "program": "/Users/ondrewvi/Documents/C2_s21_stringplus-0/src/s21_string",
-    "args": [],
-    "stopAtEntry": true,
-    "cwd": "/Users/ondrewvi/Documents/C2_s21_stringplus-0/src",
-    "environment": [ { "name": "squid", "value": "clam" } ],
-    "externalConsole": true,
-    "MIMode": "lldb"
-  },
-  {
-    "name": "(lldb) Подключить",
-    "type": "cppdbg",
-    "request": "attach",
-    "program": "${workspaceFolder}/${workspaceFolderBasename}",
-    "processId": "${command:pickProcess}",
-    "MIMode": "lldb"
-  }
+    {
+      "name": "(lldb) Запустить",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/Users/ondrewvi/Documents/C2_s21_stringplus-0/src/s21_string",
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "/Users/ondrewvi/Documents/C2_s21_stringplus-0/src",
+      "environment": [
+        {
+          "name": "squid",
+          "value": "clam"
+        }
+      ],
+      "externalConsole": true,
+      "MIMode": "lldb"
+    },
+    {
+      "name": "(lldb) Подключить",
+      "type": "cppdbg",
+      "request": "attach",
+      "program": "${workspaceFolder}/${workspaceFolderBasename}",
+      "processId": "${command:pickProcess}",
+      "MIMode": "lldb"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "cwd": "/home/remote/Documents/21-school/projects/C2_s21_stringplus-0/src",
+      "program": "/home/remote/Documents/21-school/projects/C2_s21_stringplus-0/src/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
   ]
 }
