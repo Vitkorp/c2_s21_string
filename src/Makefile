@@ -12,7 +12,7 @@ unit_tests_compiler:
 	gcc -Wall -Werror -Wextra test.c -L. -ls21_string -lcheck -pthread -Icheck_pic -pthread -Irt -lm -Isubunit -o unit_tests
 
 test: 
-	gcc test.c -L. -ls21_string -o test.out -lcheck -pthread -lm
+	gcc test.c s21_string.c s21_sprintf.c spec_c.c spec_s.c spec_f.c spec_d_u.c -L. -ls21_string -o test.out -lcheck -pthread -lm
 
 test_linux: 
 	gcc -Wall -Wextra -Werror test.c -L. -ls21_string -o test -lcheck_pic -pthread -lrt -lm -lsubunit -o unit_tests
@@ -24,7 +24,7 @@ s21_string.a:
 	ranlib libs21_string.a
 
 gcov_report: 
-	gcc test.c s21_string.c -fprofile-arcs -ftest-coverage -pthread -lcheck  -lm  -o mid_html_res; \
+	gcc test.c test.c s21_string.c s21_sprintf.c spec_c.c spec_s.c spec_f.c spec_d_u.c s21_string.c -fprofile-arcs -ftest-coverage -pthread -lcheck  -lm  -o mid_html_res; \
 	./mid_html_res; \
 	gcovr -r . --html --html-details -o html_report
 
