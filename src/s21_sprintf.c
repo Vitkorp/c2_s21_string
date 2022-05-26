@@ -443,49 +443,49 @@ int s21_sprintf(char *str, const char *format, ...) {
 }
 
 
-int main() {
-    int a = 1555;
-    char s[10000] = {'\0'};
-    printf("format: Heool!!!!!!! %%+-10.5d %%*.*d  d ddddddn\n");
-    int len = s21_sprintf(s, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
-    printf("pointer = %p, len = %d\n  2.1: %s", s, len, s);
-    printf("\n===================================\n");
+// int main() {
+//     int a = 1555;
+//     char s[10000] = {'\0'};
+//     printf("format: Heool!!!!!!! %%+-10.5d %%*.*d  d ddddddn\n");
+//     int len = s21_sprintf(s, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
+//     printf("pointer = %p, len = %d\n  2.1: %s", s, len, s);
+//     printf("\n===================================\n");
 
-    char x[10000] = {'\0'};
-    printf("Hello my friends! %%%% %%d %%s %%-010d %%*.*f in the air\n");
-    len = s21_sprintf(x, "Hello my friends! %% %d %s %-010d %*.*f in the air\n", a+10, "airp5", 125, 20, 19, 18.0);
-    printf("pointer = %p, len = %d\n  2.2: %s", x, len, x);
-    printf("\n===================================\n");
+//     char x[10000] = {'\0'};
+//     printf("Hello my friends! %%%% %%d %%s %%-010d %%*.*f in the air\n");
+//     len = s21_sprintf(x, "Hello my friends! %% %d %s %-010d %*.*f in the air\n", a+10, "airp5", 125, 20, 19, 18.0);
+//     printf("pointer = %p, len = %d\n  2.2: %s", x, len, x);
+//     printf("\n===================================\n");
 
-    char y[10000] = {'\0'};
-    printf("Hello my friends! %%%%%%d%%s%%-010d %%*.*f in the air\n");
-    len = s21_sprintf(y, "Hello my friends! %%%d%s%-010d %*.*f in the air\n", a+10, "airp+5", 125, 20, 19, 18.0);
-    printf("pointer = %p, len = %d\n  2.3: %s", y, len, y);
-    printf("\n===================================\n");
-    // sprintf(s, "Hello %----+#######8.5 lj k  %endl\n");
-    // printf("%s", s);
-    // sprintf(s, "Hello %\n");
-    // printf("%s", s);
-    // sprintf(s, "%e\n");
-    // printf("%s", s);
-    // sprintf(s, "%s\n");
-    // printf("%s", s);
-    // sprintf(s, "%c\n");
-    // printf("%s", s);
-    // sprintf(s, "%d\n");
-    // printf("%s", s);
-    // sprintf(s, "%lu\n");
-    // printf("%s", s);
-    // sprintf(s, "%llu\n");
-    // printf("%s", s);
-    // sprintf(s, "%lld\n");
-    // printf("%s", s);
+//     char y[10000] = {'\0'};
+//     printf("Hello my friends! %%%%%%d%%s%%-010d %%*.*f in the air\n");
+//     len = s21_sprintf(y, "Hello my friends! %%%d%s%-010d %*.*f in the air\n", a+10, "airp+5", 125, 20, 19, 18.0);
+//     printf("pointer = %p, len = %d\n  2.3: %s", y, len, y);
+//     printf("\n===================================\n");
+//     // sprintf(s, "Hello %----+#######8.5 lj k  %endl\n");
+//     // printf("%s", s);
+//     // sprintf(s, "Hello %\n");
+//     // printf("%s", s);
+//     // sprintf(s, "%e\n");
+//     // printf("%s", s);
+//     // sprintf(s, "%s\n");
+//     // printf("%s", s);
+//     // sprintf(s, "%c\n");
+//     // printf("%s", s);
+//     // sprintf(s, "%d\n");
+//     // printf("%s", s);
+//     // sprintf(s, "%lu\n");
+//     // printf("%s", s);
+//     // sprintf(s, "%llu\n");
+//     // printf("%s", s);
+//     // sprintf(s, "%lld\n");
+//     // printf("%s", s);
 
-    return 0;
-}
-
-// #include <s21_sprintf.h>
-
-// int main () {
 //     return 0;
 // }
+
+// // #include <s21_sprintf.h>
+
+// // int main () {
+// //     return 0;
+// // }
