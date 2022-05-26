@@ -100,7 +100,16 @@ int main() {
     // v1strcat(bf, end);
     // printf("v1strcat: result outside function: result = %s\n\n", b);
     
+    long long int a = 4928323;
+    long long int *p = malloc(sizeof(long long int));
+    void *c = (void *)p;
 
+    *p = a;
+    printf("1: %lld\n", a);
+    printf("2: %lld\n", *p);
+    printf("3: %lld\n", *(long long int *)c);
+
+    free(c);
     return 0;
 }
 

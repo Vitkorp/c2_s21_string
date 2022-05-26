@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "/usr/bin/gdb",
@@ -28,4 +29,41 @@
     "**/.vscode",
     "**/.vscode/**"
   ]
+=======
+    "files.associations": {
+        "__locale": "c",
+        "chrono": "c",
+        "cstdio": "c",
+        "ctime": "c",
+        "cwchar": "c",
+        "locale": "c",
+        "*.tcc": "c",
+        "s21_string.h": "c",
+        "s21_sprintf.h": "c",
+        "stdarg.h": "c",
+        "random": "c",
+        "__bit_reference": "c",
+        "__functional_base": "c",
+        "__node_handle": "c",
+        "algorithm": "c",
+        "atomic": "c",
+        "bitset": "c",
+        "cstddef": "c",
+        "deque": "c",
+        "__memory": "c",
+        "functional": "c",
+        "iterator": "c",
+        "limits": "c",
+        "optional": "c",
+        "ratio": "c",
+        "system_error": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "vector": "c",
+        "istream": "c",
+        "ostream": "c",
+        "array": "c",
+        "utility": "c"
+    }
+>>>>>>> howieter
 }
