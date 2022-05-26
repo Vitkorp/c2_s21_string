@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#include "s21_sprintf.h"
 #include "spec.h"
 
 char *s21_spec_c(fmt format, regs regs) {

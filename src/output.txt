@@ -1,0 +1,15 @@
+format: Heool!!!!!!! %+-10.5d %*.*d  d ddddddn
+%+-d%*dpointer = 0x7ffd02550aa0, len = 46
+  2.1: Heool!!!!!!! +01555     441555      d ddddddn
+
+===================================
+Hello my friends! %% %d %s %-010d %*.*f in the air
+%% %d%s%-d%*fpointer = 0x7ffd025531b0, len = 60
+  2.2: Hello my friends! %156555     airp5 125555     . in the air
+
+===================================
+Hello my friends! %%%d%s%-010d %*.*f in the air
+%%%d%s%-d%*fpointer = 0x7ffd025558c0, len = 60
+  2.3: Hello my friends! %%156555    airp+5125555     . in the air
+
+===================================

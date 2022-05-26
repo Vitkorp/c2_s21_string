@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <float.h>
-#include "s21_sprintf.h"
 #include "spec.h"
 
 

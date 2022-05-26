@@ -3,6 +3,8 @@
 #include "spec.h"
 
 
+
+
 /**
  * @brief Вычисление положение конца сгмента формата включая символ спецификатора
  * 
@@ -10,7 +12,7 @@
  * @param start[in] стартовая позиция - положение символа '%'
  * @return int положение за спецификатором
  */
-int endfmt(const char *str, long long start) {
+int endfmt(const char *str, int start) {
     int _pos = start;
     int len;
     if (str[start+1] == '%') {
@@ -330,7 +332,8 @@ int s21_sprintf(char *str, const char *format, ...) {
             
             switch (form.spec) {
                 case 'c': {
-                    s21_strcat(str, s21_spec_c(form, registers));
+                    char *a = s21_spec_c(form, registers);
+                    str = s21_strcat(str, a);
                     count++;
                     break;
                 }
