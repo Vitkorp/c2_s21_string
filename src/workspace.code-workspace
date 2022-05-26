@@ -18,7 +18,8 @@
             "stdio.h": "c",
             "sstream": "c",
             "queue": "c",
-            "random": "c"
+            "random": "c",
+            "chrono": "c"
         }
     }
 }
