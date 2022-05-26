@@ -1,36 +1,18 @@
 all: checkmk s21_string.a test gcov_report
-all2: checkmk s21_string.a test lcov
-
 
 rebuild: clean all
 
 clean:
-	rm -rf ./mid_html_res \
-	 ./*.gcda \
-	 ./*.gcnomake \
-	 ./*.html \
-	 ./*.css \
-	 ./html_report \
-	 ./test \
-	 ./ne_ploho/horosho/* \
-	 ./ne_ploho/* \
-	 ./ne_ploho \
-	 ./*.o \
-	 ./*.a \
-	 ./test.out \
-	 ./test.c \
-	 ./s21_string.gcno \
-	 ./test.gcno
-
+	rm -rf unit_tests *.o a.out *.a html_report *.css *.html mid_html_res *.gcda *.gcno horosho ploho ne_ploho report test.c
 
 checkmk:
-	checkmk test.check > test.c
+	checkmk test_all.check > test.c
 
 unit_tests_compiler:
 	gcc -Wall -Werror -Wextra test.c -L. -ls21_string -lcheck -pthread -Icheck_pic -pthread -Irt -lm -Isubunit -o unit_tests
 
 test: 
-	gcc -Wall -Werror -Wextra test.c -L. -ls21_string -o test.out -lcheck -pthread -lm
+	gcc test.c s21_string.c s21_sprintf.c spec_c.c spec_s.c spec_f.c spec_d_u.c -L. -ls21_string -o test.out -lcheck -pthread -lm
 
 test_linux: 
 	gcc -Wall -Wextra -Werror test.c -L. -ls21_string -o test -lcheck_pic -pthread -lrt -lm -lsubunit -o unit_tests
@@ -42,7 +24,7 @@ s21_string.a:
 	ranlib libs21_string.a
 
 gcov_report: 
-	gcc -Wall -Werror -Wextra test.c s21_string.c -fprofile-arcs -ftest-coverage -pthread -lcheck  -lm  -o mid_html_res; \
+	gcc test.c test.c s21_string.c s21_sprintf.c spec_c.c spec_s.c spec_f.c spec_d_u.c s21_string.c -fprofile-arcs -ftest-coverage -pthread -lcheck  -lm  -o mid_html_res; \
 	./mid_html_res; \
 	gcovr -r . --html --html-details -o html_report
 
@@ -67,11 +49,10 @@ lcov_linux:
 	genhtml ne_ploho/ploho -o ne_ploho/horosho 
 
 
-# lcov_report:
-#	mkdir ne_ploho
-#	gcc -Wall -Werror -Wextra -fprofile-arcs -ftest-coverage test.c -ls21 -L. -lcheck -lm -o mid_html_res
-#	./mid_html_res
-#	geninfo *.gcda *.gcno -b . -o  ne_ploho/ploho
-#	genhtml ne_ploho/ploho -o ne_ploho/horosho
-#	open ne_ploho/horosho/index.html
-
+lcov_report:
+	mkdir ne_ploho
+	gcc -Wall -Werror -Wextra -fprofile-arcs -ftest-coverage test.c -ls21 -L. -lcheck -lm -o mid_html_res
+	./mid_html_res
+	geninfo *.gcda *.gcno -b . -o  ne_ploho/ploho
+	genhtml ne_ploho/ploho -o ne_ploho/horosho
+	open ne_ploho/horosho/index.html
