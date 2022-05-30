@@ -2,6 +2,7 @@
 #include "s21_string.h"
 #include "s21_sprintf.h"
 #include <stdio.h>
+#include <string.h>
 
 int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
     const char* string1 = (char*)str1;
@@ -296,7 +297,7 @@ char *s21_strerror(int errnum) {
     char b[12] = "";
     int found = 0;
     char res[1000] = "";
-    s21_sprintf(b, "%d", errnum);
+    sprintf(b, "%d", errnum);
     s21_strcat(baseMsg, b);  // заменить на s21_strcat
     for (int i = 0; i < count; i++) {
         if (errnum == errlist[i].id) {
