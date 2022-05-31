@@ -1,8 +1,10 @@
-// Copyright [2022] <Copyright ONDREWVI>
+// Copyright [2022] <Copyright ondrewvi Bobbie>
+
 #include "s21_string.h"
 #include "s21_sprintf.h"
 #include <stdio.h>
 #include <string.h>
+
 
 int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
     const char* string1 = (char*)str1;
@@ -36,6 +38,7 @@ void *s21_memcpy(void *dest, const void *src, s21_size_t n) {
         *to++ = *from++;
     }
     return dest;
+
 }
 
 // void* s21_memcpy(void* dest, const void* src, s21_size_t n) {
@@ -77,7 +80,7 @@ void *s21_memmove(void *dest, const void *src, s21_size_t n) {
             n--;
         }
     }
-    return dest;
+  return dest;
 }
 
 char *s21_strcat(char *dest, const char *src) {
@@ -176,13 +179,13 @@ char *s21_strpbrk(const char *str1, const char *str2) {
 
 // Копирует строку, на которую указывает src, в dest.
 char *s21_strcpy(char *dest, const char *src) {
-    int i = 0;
-    while (src[i]) {
-        dest[i] = src[i];
-        i++;
-    }
-    dest[i]='\0';
-    return dest;
+  int i = 0;
+  while (src[i]) {
+    dest[i] = src[i];
+    i++;
+  }
+  dest[i] = '\0';
+  return dest;
 }
 
 // char* s21_strcpy(char* dest, const char* src) {
@@ -192,21 +195,20 @@ char *s21_strcpy(char *dest, const char *src) {
 
 // Копирует до n символов из строки, на которую указывает src, в dest.
 char *s21_strncpy(char *dest, const char *src, s21_size_t n) {
-    s21_size_t i;
-    for (i = 0; i < n; i++) {
-        if (src[i] != '\0') {
-            dest[i] = src[i];
-        } else {
-            break;
-        }
+  s21_size_t i;
+  for (i = 0; i < n; i++) {
+    if (src[i] != '\0') {
+      dest[i] = src[i];
+    } else {
+      break;
     }
-    while (i < n) {
-        dest[i] = '\0';
-        i++;
-    }
-    return dest;
+  }
+  while (i < n) {
+    dest[i] = '\0';
+    i++;
+  }
+  return dest;
 }
-
 
 char *s21_strncat(char *dest, const char *src, s21_size_t n) {
     char *tmp = dest;
@@ -327,7 +329,7 @@ s21_size_t s21_strlen(const char *str) {
 }
 
 char *s21_strstr(const char *haystack, const char *needle) {
-    const size_t needle_len = s21_strlen(needle);
+    const s21_size_t needle_len = s21_strlen(needle);
     char *res = "";
     int exit_code = 0;
     while (*haystack != '\0') {
@@ -404,14 +406,16 @@ char *s21_strrchr(const char *str, int c) {
 //     printf("ANOTHER - %d\n", test3);
 // }
 
+
+// все в верхний регистр
 void *s21_to_upper(const char *str) {
   int flag;
-  char *dest = malloc((s21_strlen(str) + 1) * sizeof(char));
+  char *dest = malloc((strlen(str) + 1) * sizeof(char));
   if (str[0] == '\0' || str == NULL || !dest) {
     flag = 0;
   } else {
     s21_strcpy(dest, str);
-    for (s21_size_t j = 0; j < s21_strlen(str); j++) {
+    for (s21_size_t j = 0; j < strlen(str); j++) {
       if (('a' <= dest[j] && 'z' >= dest[j])) {
         dest[j] += 'A' - 'a';
       }
@@ -430,12 +434,12 @@ void *s21_to_upper(const char *str) {
 // все в нижний регистр
 void *s21_to_lower(const char *str) {
   int flag;
-  char *dest = malloc((s21_strlen(str) + 1) * sizeof(char));
+  char *dest = malloc((strlen(str) + 1) * sizeof(char));
   if (str[0] == '\0' || str == NULL || !dest) {
     flag = 0;
   } else {
     s21_strcpy(dest, str);
-    for (s21_size_t j = 0; j < s21_strlen(str); j++) {
+    for (s21_size_t j = 0; j < strlen(str); j++) {
       if (('A' <= dest[j] && 'Z' >= dest[j])) {
         dest[j] += 'a' - 'A';
       }
@@ -455,24 +459,29 @@ void *s21_to_lower(const char *str) {
 вставлена в указанную позицию (start_index) в данной строке (src).
 В случае какой-либо ошибки следует вернуть значение NULL*/
 
+
 void *s21_insert(const char *src, const char *str, s21_size_t start_index) {
-  s21_size_t m = s21_strlen(src);
-  s21_size_t l = s21_strlen(str);
-  char *temp = 0;
-  if (start_index <= m) {
-    temp = (char *)malloc((m + l + 1) * sizeof(char));
-    for (s21_size_t i = 0; i < start_index; i++) {
-      *(temp + i) = *(src + i);
-    }
-    for (s21_size_t i = 0; i < l; i++) {
-      *(temp + start_index + i) = *(str + i);
-    }
-    for (s21_size_t i = 0; i <= m - start_index; i++) {
-      *(temp + start_index + l + i) = *(src + start_index + i);
+  char *tmp = NULL;
+  int flag = 0;
+  s21_size_t size = s21_strlen(src) + s21_strlen(str) + 1;
+  if (s21_strlen(src) >= start_index) {
+    char *tmp = malloc(size * sizeof(char));
+    if (tmp) {
+      s21_strncpy(tmp, src, start_index);
+      s21_strcpy(tmp + start_index, str);
+      s21_strcpy(tmp + start_index + s21_strlen(str), src + start_index);
+      flag = 1;
     }
   }
-  return (void *)(temp);
+  char *copy_str;
+  if (flag == 0) {
+    copy_str = NULL;
+  } else {
+    copy_str = tmp;
+  }
+  return copy_str;
 }
+
 // int main() {
 //     char str[] = "Hello world";
 //     char src[] = "Nails";
@@ -511,3 +520,12 @@ void *s21_insert(const char *src, const char *str, s21_size_t start_index) {
 //     }
 //     return (result);
 // }
+
+
+
+/*Возвращает новую строку, в которой удаляются все начальные и конечные
+вхождения набора заданных символов (trim_chars) из данной строки (src).
+В случае какой-либо ошибки следует вернуть значение NULL*/
+
+void *trim(const char *src, const char *trim_chars) {}
+

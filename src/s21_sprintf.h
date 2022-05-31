@@ -4,8 +4,6 @@
 #include <stdarg.h>
 #include <math.h>
 
-
-
 // %[флаги][ширина][.точность][длина]спецификатор
 
 // {-} {+} {' '} {#} {0}
@@ -54,6 +52,7 @@ typedef struct _regs{
     void *pPrecision;
 } regs;
 
+
 // int sprintf(char *str, const char *format, ...) 
 int s21_sprintf(char *str, const char *format, ...);
 
@@ -100,3 +99,4 @@ char *s21_spec_d(fmt format, regs regs);
 
 
 #endif
+

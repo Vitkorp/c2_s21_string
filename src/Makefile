@@ -9,6 +9,7 @@ checkmk:
 	checkmk test.check > test.c
 
 unit_tests_compiler:
+
 	gcc -Wall -Werror -Wextra test.c -L. s21_string.a -lcheck -pthread -Icheck_pic -pthread -Irt -lm -Isubunit -o unit_tests
 
 test: 
@@ -25,6 +26,7 @@ s21_string.a:
 
 gcov_report: 
 	gcc test.c s21_string.c s21_sprintf.c s -fprofile-arcs -ftest-coverage -pthread -lcheck  -lm  -o mid_html_res; \
+
 	./mid_html_res; \
 	gcovr -r . --html --html-details -o html_report
 
@@ -56,3 +58,4 @@ lcov_report:
 	geninfo *.gcda *.gcno -b . -o  ne_ploho/ploho
 	genhtml ne_ploho/ploho -o ne_ploho/horosho
 	open ne_ploho/horosho/index.html
+
