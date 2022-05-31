@@ -3,6 +3,7 @@
 // #include "spec.h"
 
 
+
 // int sprintf(char *str, const char *format, ...) 
 int s21_sprintf(char *str, const char *format, ...) {
     va_list arglist;
@@ -145,26 +146,26 @@ int s21_sprintf(char *str, const char *format, ...) {
                 default: 
                     break;
             }
-            // printf("form.spec:  %c\n", form.spec);
-            // printf("form.flags:\n{\n");
-            // printf("      hash: %d\n", form.flags.hash);
-            // printf("     minus: %d\n", form.flags.minus);
-            // printf("      plus: %d\n", form.flags.plus);
-            // printf("     space: %d\n", form.flags.space);
-            // printf("      zero: %d\n}\n\n", form.flags.zero);
+            printf("form.spec:  %c\n", form.spec);
+            printf("form.flags:\n{\n");
+            printf("      hash: %d\n", form.flags.hash);
+            printf("     minus: %d\n", form.flags.minus);
+            printf("      plus: %d\n", form.flags.plus);
+            printf("     space: %d\n", form.flags.space);
+            printf("      zero: %d\n}\n\n", form.flags.zero);
 
-            // printf("form.width:\n{\n");
-            // printf("    number: %d\n", form.width.number);
-            // printf("  starchar: %d\n}\n\n", form.width.starchar);
+            printf("form.width:\n{\n");
+            printf("    number: %d\n", form.width.number);
+            printf("  starchar: %d\n}\n\n", form.width.starchar);
 
-            // printf("form.precision:\n{\n");
-            // printf("    number: %d\n", form.precision.number);
-            // printf("  starchar: %d\n}\n\n", form.precision.starchar);
+            printf("form.precision:\n{\n");
+            printf("    number: %d\n", form.precision.number);
+            printf("  starchar: %d\n}\n\n", form.precision.starchar);
 
-            // printf("form.length:\n{\n");
-            // printf("         h: %d\n", form.length.h);
-            // printf("         l: %d\n", form.length.l);
-            // printf("         L: %d\n}\n\n", form.length.L);
+            printf("form.length:\n{\n");
+            printf("         h: %d\n", form.length.h);
+            printf("         l: %d\n", form.length.l);
+            printf("         L: %d\n}\n\n", form.length.L);
 
             registers = clearRegisters(registers);
         }
@@ -766,6 +767,15 @@ int main() {
     len2 = sprintf(y2, "Hello my friends! %%%d%s%-010d %*.*f in the air   \n", a+10, "airp+5", 125, 20, 19, 18.0);
     printf("pointer  = %15p, len  = %10d   res: %s", y, len, y);
     printf("pointer2 = %15p, len2 = %10d  res2: %s", y2, len2, y2);
+    printf("\n===================================\n");
+
+    char z[10000] = {'\0'};
+    char z2[10000] = {'\0'};
+    //printf("Hello my friends! %%%%%%d%%s%%-010d %%*.*f in the air333\n");
+    len = s21_sprintf(z, "Hello my friends! %%%d%s%010d %015.8f in the air  %c %4c  \n", a+10, "airp+5", 125, 20, 19, 18.123, 'f', 'g');
+    len2 = sprintf(z2, "Hello my friends! %%%d%s%010d %015.8f in the air  %c %4c  \n", a+10, "airp+5", 125, 20, 19, 18.123, 'f', 'g');
+    printf("pointer  = %15p, len  = %10d   res: %s", z, len, z);
+    printf("pointer2 = %15p, len2 = %10d  res2: %s", z2, len2, z2);
     printf("\n===================================\n");
     // sprintf(s, "Hello %----+#######8.5 lj k  %endl\n");
     // printf("%s", s);
