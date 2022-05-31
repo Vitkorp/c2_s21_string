@@ -175,6 +175,8 @@ int s21_sprintf(char *str, const char *format, ...) {
     return count;
 }
 
+
+
 /**
  * @brief Вычисление положение конца сгмента формата включая символ спецификатора
  * 
@@ -309,6 +311,7 @@ int parseStr(fmt *val, const char *fmtstr, int startFmtPosition, int len) {
     checkSpec(val, &fmtstr[startFmtPosition + len - 1]);
     for (int i = startFmtPosition; i < startFmtPosition + len; ) {
         //printf("%c", fmtstr[i]);
+
         int t = i;
         i += checkFlags(val, &fmtstr[i]);
         i += checkWidth(val, &fmtstr[i]);
@@ -522,6 +525,7 @@ char *s21_spec_f(fmt format, regs regs) {
     exp = roundl(exp);
     long long buff_exp = exp;
     int count = 0;
+
     while (buff_exp != 0) {
         buff_exp /= 10;
         count++;
@@ -618,7 +622,7 @@ char *s21_spec_d(fmt format, regs regs) {
     if (format.width.number > (int)s21_strlen(mass)) {
         if ((format.flags.minus == 1) && (format.flags.plus == 1)){
             int leng = format.width.number - (int)s21_strlen(str) - 1;
-            char mass_2[leng];
+            char mass_2[1000] = {0};
             for (int i = 0; i < leng; i++) {
                 mass_2[i] = ' ';
             }
@@ -635,7 +639,7 @@ char *s21_spec_d(fmt format, regs regs) {
             }
         } else if (format.flags.minus == 1) {
             int leng = format.width.number - (int)s21_strlen(str);
-            char mass_2[leng];
+            char mass_2[1000] = {0};
             for (int i = 0; i < leng; i++) {
                 mass_2[i] = ' ';
             }
@@ -650,7 +654,7 @@ char *s21_spec_d(fmt format, regs regs) {
             
         } else if (format.flags.plus == 1) {
             int leng = format.width.number - (int)s21_strlen(str) - 1;
-            char mass_2[leng];
+            char mass_2[1000] = {0};
             for (int i = 0; i < leng; i++) {
                 mass_2[i] = ' ';
             }
@@ -669,7 +673,7 @@ char *s21_spec_d(fmt format, regs regs) {
         } else {
             if (flag != 0) {
                 int leng = format.width.number - (int)s21_strlen(str) - 1;
-                char mass_2[leng];
+                char mass_2[1000] = {0};
                 for (int i = 0; i < leng; i++) {
                     mass_2[i] = ' ';
                 }
@@ -680,7 +684,7 @@ char *s21_spec_d(fmt format, regs regs) {
                 s21_strcpy(str, mass_2);
             } else {
                 int leng = format.width.number - (int)s21_strlen(str);
-                char mass_2[leng];
+                char mass_2[1000] = {0};
                 for (int i = 0; i < leng; i++) {
                     mass_2[i] = ' ';
                 }
@@ -712,6 +716,7 @@ char *s21_spec_d(fmt format, regs regs) {
     }*/
     return &(str[0]);
 }
+
 
 char *width_flag_minus_space (fmt *format, char *str) {
     int leng = format -> width.number - (int)s21_strlen(str);
@@ -798,6 +803,7 @@ int main() {
 
     return 0;
 }
+
 
 // // #include <s21_sprintf.h>
 

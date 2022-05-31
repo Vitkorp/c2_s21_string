@@ -1,9 +1,11 @@
 #include "s21_string.h"
 #include <stdio.h>
 
+
 void *s21_trim(const char *str1, const char* str2) {
     char trimed_char[s21_strlen(str1) + 1];
     char *temp1 = "";
+
 
     // копируем строку str1 в trimmed_char
     s21_strcpy(trimed_char, str1);
@@ -34,6 +36,7 @@ void *s21_trim(const char *str1, const char* str2) {
     s21_strcpy(temp1, trimed_char);
 
     return temp1;
+
 }
 
 int main() {
@@ -42,5 +45,6 @@ int main() {
     char *s = (char *)s21_trim(str1, str2);
     printf("res: %s\n", s);
     free(s);
+
     return 0;
 }
