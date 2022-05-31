@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#include "s21_sprintf.h"
 #include "spec.h"
 
 char *s21_spec_c(fmt format, regs regs) {
@@ -40,6 +39,6 @@ char *s21_spec_c(fmt format, regs regs) {
 //     format.precision.number = 6;
 //     format.width.number = 20;
 //     format.length.L = 0;
-//     printf("%s", s21_spec_f(&format, &c));
+//     printf("%s", s21_spec_c(&format, &c));
 //     return 0;
 // }

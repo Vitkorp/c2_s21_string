@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#include "s21_sprintf.h"
 #include "spec.h"
 
 char *s21_spec_s(fmt format, regs regs) {
@@ -29,15 +28,17 @@ char *s21_spec_s(fmt format, regs regs) {
 }
 
 // int main() {
-//     char s[19999];
-//     scanf("%s", s);
+    // char s[1999];
+    // scanf("%s", s);
 //     fmt format;
+//     regs registers;
+//     *pVal = registers."qwerty";
 //     format.flags.minus = 1;
 //     format.flags.plus = 0;
 //     format.flags.space = 0;
 //     format.precision.number = 6;
 //     format.width.number = 15;
 //     format.length.L = 0;
-//     printf("%s", s21_spec_s(&format, &s));
+//     printf("%s", s21_spec_s(format, *pValue));
 //     return 0;
 // }

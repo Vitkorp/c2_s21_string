@@ -2,6 +2,7 @@
 #include "s21_string.h"
 #include "s21_sprintf.h"
 #include <stdio.h>
+#include <string.h>
 
 int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
     const char* string1 = (char*)str1;
@@ -110,45 +111,34 @@ void *s21_memset(void *src, int c, s21_size_t n) {
 }
 
 int s21_strcmp(const char *str1, const char *str2) {
-    int flag = 0;
-    s21_size_t i = 0;
-    while (1) {
-        if (str1[i] == str2[i]) {
+    int res = 0;
+
+    if (str1 && str2) {
+        int i = 0;
+
+        while (str1[i] && str1[i] == str2[i]) {
             i++;
         }
-        if (str1[i] == '\n' || str2[i] == '\n' || str1[i] != str2[i]) {
-            break;
-        }
+
+        res = str1[i] - str2[i];
     }
-    if (str1[i] != str2[i] && (int)str1[i] > (int)str2[i]) {
-        flag = (int)str1[i] - (int)str2[i];
-    }
-    if (str1[i] != str2[i] && (int)str1[i] < (int)str2[i]) {
-        flag = ((int)str2[i] - (int)str1[i]) * (-1);
-    }
-    return flag;
+
+    return res;
 }
 
-
 int s21_strncmp(const char *str1, const char *str2, s21_size_t n) {
-    int flag = 0;
-    s21_size_t i = 0;
-    while (i < n) {
-        if (i == n - 1 && str1[i] == str2[i]) {
-            break;
-        }
-        if (str1[i] == str2[i]) {
-            i++;
-        } else {
-            break;
+    int res = 0;
+
+    if (str1 && str2 && n > 0) {
+        for (s21_size_t i = 0; i < n; i++) {
+            if (str1[i] == '\0' || str1[i] != str2[i]) {
+                res = str1[i] - str2[i];
+                break;
+            }
         }
     }
-    if (str1[i] != str2[i] && (int)str1[i] > (int)str2[i]) {
-        flag = (int)str1[i] - (int)str2[i];
-    } if (str1[i] != str2[i] && (int)str1[i] < (int)str2[i]) {
-        flag = ((int)str2[i] - (int)str1[i]) * (-1);
-    }
-    return flag;
+
+    return res;
 }
 
 char *s21_strchr(const char *str, int c) {
@@ -236,22 +226,43 @@ char *s21_strncat(char *dest, const char *src, s21_size_t n) {
 }
 
 char *s21_strtok(char *str, const char *delim) {
-    char *tok = str;
-    if (tok != S21_NULL) {
-        str = tok + s21_strspn(tok, delim);
-        tok = str + s21_strcspn(str, delim);
-        if (tok == str) {
-            str = 0;
-        } else {
-            if (*tok) {
-                *tok = 0;
-                tok += 1;
-            } else {
-                tok = 0;
+    static int next_null, tok;
+    static s21_size_t ind;
+    static char *max_ptr;
+    static char *addr;
+
+    // We can't initialize static vars to non-const value
+    // because static vars are stored in .data section of binary
+    if (str) {
+        tok = 1;
+        ind = 0, next_null = 0;
+        addr = str + s21_strspn(str, delim);  // skipping trailing delims, if any;
+        max_ptr = str + s21_strlen(str);
+    }
+
+    char *res = S21_NULL;
+
+    if (!(addr >= max_ptr || next_null)) {
+        int non_delim = 1;
+        for (int i = 0; addr[i]; i++) {
+            s21_size_t step = s21_strspn(addr + i, delim);
+            if (step) {
+                non_delim = 0;
+                for (s21_size_t j = i; j < i + step; j++) addr[j] = '\0';
+
+                ind = step + i;
+                break;
             }
         }
+
+        if (tok == 1 && non_delim) next_null = 1;
+
+        res = addr;   // old start of the string
+        addr += ind;  // new start of the new string
     }
-    return str;
+
+    ++tok;
+    return res;
 }
 
 s21_size_t s21_strcspn(const char *str1, const char *str2) {
@@ -444,27 +455,39 @@ void *s21_to_lower(const char *str) {
 вставлена в указанную позицию (start_index) в данной строке (src).
 В случае какой-либо ошибки следует вернуть значение NULL*/
 
-void *s21_insert(const char *src, const char *str, size_t start_index) {
-  char *tmp = NULL;
-  int flag = 0;
-  s21_size_t size = s21_strlen(src) + s21_strlen(str) + 1;
-  if (s21_strlen(src) >= start_index) {
-    char *tmp = malloc(size * sizeof(char));
-    if (tmp) {
-      s21_strncpy(tmp, src, start_index);
-      s21_strcpy(tmp + start_index, str);
-      s21_strcpy(tmp + start_index + s21_strlen(str), src + start_index);
-      flag = 1;
+void *s21_insert(const char *src, const char *str, s21_size_t start_index) {
+  s21_size_t m = s21_strlen(src);
+  s21_size_t l = s21_strlen(str);
+  char *temp = 0;
+  if (start_index <= m) {
+    temp = (char *)malloc((m + l + 1) * sizeof(char));
+    for (s21_size_t i = 0; i < start_index; i++) {
+      *(temp + i) = *(src + i);
+    }
+    for (s21_size_t i = 0; i < l; i++) {
+      *(temp + start_index + i) = *(str + i);
+    }
+    for (s21_size_t i = 0; i <= m - start_index; i++) {
+      *(temp + start_index + l + i) = *(src + start_index + i);
     }
   }
-  char *copy_str;
-  if (flag == 0) {
-    copy_str = NULL;
-  } else {
-    copy_str = tmp;
-  }
-  return copy_str;
+  return (void *)(temp);
 }
+// int main() {
+//     char str[] = "Hello world";
+//     char src[] = "Nails";
+//     s21_size_t index = 1;
+//     char expected[] = "HeNailsllo world";
+//     // char *got = (char *)s21_insert(src, str, index);
+//     if (s21_insert(src, str, index) == S21_NULL) {
+//         printf("ERROR");
+//     } else {
+//         printf("%s", s21_insert(src, str, index));
+//     }
+//     // ck_assert_str_eq(got, expected);
+    
+// }
+
 
 // void *s21_trim(const char *src, const char *trim_chars) {
 //     char *result;

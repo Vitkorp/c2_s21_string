@@ -6,25 +6,25 @@ clean:
 	rm -rf unit_tests *.o a.out *.a html_report *.css *.html mid_html_res *.gcda *.gcno horosho ploho ne_ploho report test.c
 
 checkmk:
-	checkmk test_all.check > test.c
+	checkmk test.check > test.c
 
 unit_tests_compiler:
-	gcc -Wall -Werror -Wextra test.c -L. -ls21_string -lcheck -pthread -Icheck_pic -pthread -Irt -lm -Isubunit -o unit_tests
+	gcc -Wall -Werror -Wextra test.c -L. s21_string.a -lcheck -pthread -Icheck_pic -pthread -Irt -lm -Isubunit -o unit_tests
 
 test: 
-	gcc test.c s21_string.c s21_sprintf.c spec_c.c spec_s.c spec_f.c spec_d_u.c -L. -ls21_string -o test.out -lcheck -pthread -lm
+	gcc test.c s21_string.c s21_sprintf.c spec_c.c spec_s.c spec_f.c spec_d_u.c -L. s21_string.a -o test.out -lcheck -pthread -lm
 
 test_linux: 
-	gcc -Wall -Wextra -Werror test.c -L. -ls21_string -o test -lcheck_pic -pthread -lrt -lm -lsubunit -o unit_tests
+	gcc -Wall -Wextra -Werror test.c -L. s21_string.a -o test -lcheck_pic -pthread -lrt -lm -lsubunit -o unit_tests
 	./unit_tests
 
 s21_string.a:
-	gcc -c -g s21_string.c
-	ar rcs libs21_string.a *.o
-	ranlib libs21_string.a
+	gcc -c -g s21_string.c s21_sprintf.c
+	ar rcs s21_string.a *.o
+	ranlib s21_string.a
 
 gcov_report: 
-	gcc test.c test.c s21_string.c s21_sprintf.c spec_c.c spec_s.c spec_f.c spec_d_u.c s21_string.c -fprofile-arcs -ftest-coverage -pthread -lcheck  -lm  -o mid_html_res; \
+	gcc test.c s21_string.c s21_sprintf.c spec_c.c spec_s.c spec_f.c spec_d_u.c -fprofile-arcs -ftest-coverage -pthread -lcheck  -lm  -o mid_html_res; \
 	./mid_html_res; \
 	gcovr -r . --html --html-details -o html_report
 

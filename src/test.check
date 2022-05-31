@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "s21_string.h"
+#include "s21_sprintf.h"
 
 #test memcpy_1
 char buf1[50] = "It's check memcpy - ok",  buf2[50];
@@ -1916,36 +1917,6 @@ ck_assert_ptr_eq(strstr(s1, "89"), s21_strstr(s1, "89"));
 
 /* *** S21_SPRINTF TESTS *** */
 
-// return value sprintf test
-
-#test s21_sprintf_return_test
-char c, s21_c; // Символ
-int d, s21_d; // Знаковое десятичное целое число
-int i, s21_i; // Знаковое целое число (может быть десятичным, восьмеричным или шестнадцатеричным)
-// float e, s21_e; // Десятичное число с плавающей точкой или научная нотация (мантисса/экспонента)
-//float E, s21_E; // Десятичное число с плавающей точкой или научная нотация (мантисса/экспонента)
-float f, s21_f; // Десятичное число с плавающей точкой или научная нотация (мантисса/экспонента)
-//float g, s21_g; // Десятичное число с плавающей точкой или научная нотация (мантисса/экспонента)
-//float G, s21_G; // Десятичное число с плавающей точкой или научная нотация (мантисса/экспонента)
-//int o, s21_o; // Беззнаковое восьмеричное число
-char s[300], s21_s[300]; // Строка символов
-unsigned int u, s21_u; // Беззнаковое десятичное целое число
-//int x, s21_x; // Беззнаковое шестнадцатеричное целое число (любые буквы)
-//int X, s21_X; // Беззнаковое шестнадцатеричное целое число (любые буквы)
-//void* p = NULL; // Адрес указателя
-//int n, s21_n; // Количество символов, считанных до появления %n
-char percent, s21_percent; // Символ %
-
-ck_assert_int_eq(sprintf(s,
-                         "%c %d %i %f %s %u %%",
-                         'Z', 88, 10, 1.234, "school21", 1),
-             s21_sprintf(s21_s,
-                         "%c %d %i %f %s %u %%",
-                         'Z', 88, 10, 1.234, "school21", 1)
-                    );
-
-// %c sprintf tests
-
 #test s21_sprintf_c_test_1
 char s[40] = "";
 char s21_s[40] = "";
@@ -1994,64 +1965,6 @@ char s21_s[40] = "";
 ck_assert_int_eq(sprintf(s, "%-5c", 'a'), s21_sprintf(s21_s, "%-5c", 'a'));
 ck_assert_str_eq(s, s21_s);
 
-// %d sprintf tests
-
-#test s21_sprintf_d_test_1
-char s[40] = "";
-char s21_s[40] = "";
-ck_assert_int_eq(sprintf(s, "%2d%2.2d", -1, 1), s21_sprintf(s21_s, "%2d%2.2d", -1, 1));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_d_test_2
-char s[40] = "";
-char s21_s[40] = "";
-ck_assert_int_eq(sprintf(s, "%5.d%.5d", 21, -42), s21_sprintf(s21_s, "%5.d%.5d", 21, -42));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_d_test_3
-char s[40] = "";
-char s21_s[40] = "";
-ck_assert_int_eq(sprintf(s, "%ld%hd", -1, 1), s21_sprintf(s21_s, "%ld%hd", -1, 1));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_d_test_4
-char s[40] = "";
-char s21_s[40] = "";
-ck_assert_int_eq(sprintf(s, "%+d % d", 21, 42), s21_sprintf(s21_s, "%+d % d", 21, 42));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_d_test_5
-char s[40] = "";
-char s21_s[40] = "";  
-ck_assert_int_eq(sprintf(s, "%d", -12), s21_sprintf(s21_s, "%d", -12));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_d_test_6
-char s[40] = "";
-char s21_s[40] = "";
-ck_assert_int_eq(sprintf(s, "%-6d", -12), s21_sprintf(s21_s, "%-6d", -12));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_d_test_7
-char s[40] = "";
-char s21_s[40] = "";  
-ck_assert_int_eq(sprintf(s, "% 3d", 123456), s21_sprintf(s21_s, "% 3d", 123456));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_d_test_8
-char s[40] = "";
-char s21_s[40] = "";
-ck_assert_int_eq(sprintf(s, "%-d", -12), s21_sprintf(s21_s, "%-d", -12));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_d_test_9
-char s[40] = "";
-char s21_s[40] = "";
-ck_assert_int_eq(sprintf(s, "%.4d", 228), s21_sprintf(s21_s, "%.4d", 228));
-ck_assert_str_eq(s, s21_s);
-
-// %i sprintf tests
-
 #test s21_sprintf_i_test_1
 char s[40] = "";
 char s21_s[40] = "";
@@ -2061,178 +1974,34 @@ ck_assert_str_eq(s, s21_s);
 #test s21_sprintf_i_test_2
 char s[40] = "";
 char s21_s[40] = "";
-ck_assert_int_eq(sprintf(s, "%i%i", 10, -1), s21_sprintf(s21_s, "%i%i", 10, -1));
+ck_assert_int_eq(sprintf(s, "%i%i", 10, '1'), s21_sprintf(s21_s, "%i%i", 10, '1'));
 ck_assert_str_eq(s, s21_s);
 
-#test s21_sprintf_i_test_3
-char s[40] = "";
-char s21_s[40] = "";
-ck_assert_int_eq(sprintf(s, "%i%i", 1, "test"), s21_sprintf(s21_s, "%i%i", 1, "test"));
-ck_assert_str_eq(s, s21_s);
+#test to_upper_test_1
+char s1[] = "test";
+char s2[] = "tesT123";
+char *A = s21_to_upper(s1);
+char *B = s21_to_upper(s2);
+ck_assert_str_eq("TEST", A);
+ck_assert_str_eq("TEST123", B);
+free(A);
+free(B);
 
-// %f sprintf tests
+#test to_lower_test_1
+char s1[] = "TEST";
+char s2[] = "TESt123";
+char *A = s21_to_lower(s1);
+char *B = s21_to_lower(s2);
+ck_assert_str_eq("test", A);
+ck_assert_str_eq("test123", B);
+free(A);
+free(B);
 
-#test s21_sprintf_f_test_1
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "%f%f", 0.123, 0.123), s21_sprintf(s21_s, "%f%f", 0.123, 0.123));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_f_test_2
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "%f%f", .3, -.3), s21_sprintf(s21_s, "%f%f", .3, -.3));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_f_test_3
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "%f%f", 0.3, "test"), s21_sprintf(s21_s, "%f%f", 0.3, "test"));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_f_test_4
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "%+-10.4f", 3.1415), s21_sprintf(s21_s, "%+-10.4f", 3.1415));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_f_test_5
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "% f", 23.1415), s21_sprintf(s21_s, "% f", 23.1415));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_f_test_6
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "%-15f", 23.1415), s21_sprintf(s21_s, "%-15f", 23.1415));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_f_test_7
-char s[30] = "";
-char s21_s[30] = "";
-double dbl = 12.345;
-ck_assert_int_eq(sprintf(s, "%8f", dbl), s21_sprintf(s21_s, "%8f", dbl));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_f_test_8
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "%15f", 23.1415), s21_sprintf(s21_s, "%15f", 23.1415));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_f_test_9
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "%-2f", 23.1415), s21_sprintf(s21_s, "%-2f", 23.1415));
-ck_assert_str_eq(s, s21_s);
-
-// %s sprintf tests
-
-#test s21_sprintf_s_test_1
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "%s%s", "test", "test\n"), s21_sprintf(s21_s, "%s%s", "test", "test\n"));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_s_test_2
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "%s%s", "t\best\n", "\n \t"), s21_sprintf(s21_s, "%s%s", "t\best\n", "\n \t"));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_s_test_3
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "%s%s", "", "\\"), s21_sprintf(s21_s, "%s%s", "", "\\"));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_s_test_6
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "%20s", "UR MOMMA GAY"), s21_sprintf(s21_s, "%20s", "UR MOMMA GAY"));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_s_test_7
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "%-20s", "GAY LORD"), s21_sprintf(s21_s, "%-20s", "GAY LORD"));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_s_test_8
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "%.3s", "GAY LORD"), s21_sprintf(s21_s, "%.3s", "GAY LORD"));
-ck_assert_str_eq(s, s21_s);
-
-// %u sprintf tests
-
-#test s21_sprintf_u_test_1
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_uint_eq(sprintf(s, "%u %u", 1, 9), s21_sprintf(s21_s, "%u %u", 1, 9));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_u_test_2
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_uint_eq(sprintf(s, "%u %u", -1, -9), s21_sprintf(s21_s, "%u %u", -1, -9));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_u_test_3
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_uint_eq(sprintf(s, "%u %u", "test", -9), s21_sprintf(s21_s, "%u %u", "test", -9));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_u_test_4
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_uint_eq(sprintf(s, "%lu", -1), s21_sprintf(s21_s, "%lu", -1));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_u_test_5
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_uint_eq(sprintf(s, "%hu", -1), s21_sprintf(s21_s, "%hu", -1));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_u_test_6
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_uint_eq(sprintf(s, "%10.4+u", 1337), s21_sprintf(s21_s, "%10.4+u", 1337));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_u_test_7
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_uint_eq(sprintf(s, "% .3u", 1488), s21_sprintf(s21_s, "% .3u", 1488));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_u_test_8
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_uint_eq(sprintf(s, "%-10.4+u", 1337), s21_sprintf(s21_s, "%-10.4+u", 1337));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_u_test_9
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_uint_eq(sprintf(s, "%.6u", 1488), s21_sprintf(s21_s, "%.6u", 1488));
-ck_assert_str_eq(s, s21_s);
-
-#test s21_sprintf_u_test_10
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_uint_eq(sprintf(s, "%3u", 1488), s21_sprintf(s21_s, "%3u", 1488));
-ck_assert_str_eq(s, s21_s);
-
-// %% sprintf tests
-
-#test s21_sprintf_percent_test_1
-char s[30] = "";
-char s21_s[30] = "";
-ck_assert_int_eq(sprintf(s, "hello %%"), s21_sprintf(s21_s, "hello %%"));
-ck_assert_str_eq(s, s21_s);
-
-
+#test s21_insert_test1
+    char str[] = "Johnny Silverhand";
+    char src[] = "I love my . He is very kind!";
+    s21_size_t index = 10;
+    char expected[] = "I love my Johnny Silverhand. He is very kind!";
+    char *got = (char *)s21_insert(src, str, index);
+    ck_assert_str_eq(got, expected);
+    if (got) free(got);

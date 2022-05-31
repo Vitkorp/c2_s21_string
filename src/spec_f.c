@@ -1,8 +1,6 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <float.h>
-#include "s21_sprintf.h"
 #include "spec.h"
 
 
@@ -101,7 +99,7 @@ char *s21_spec_f(fmt format, regs regs) {
         s21_strcat(mass_2, mass);
         s21_strcpy(mass, mass_2);
     }
-    return &(mass[0]);
+    return mass;
 }
 
 // int main() {
@@ -114,7 +112,7 @@ char *s21_spec_f(fmt format, regs regs) {
 //     format.precision.number = 19;
 //     format.width.number = 0;
 //     format.length.L = 0;
-//     printf("\nрезультат = %s\n", s21_spec_f(&format, &f));
+//     printf("\nрезультат = %s\n", s21_spec_f(registers.pValue, p_val));
 //     char TEMP[55555];
 //     sprintf(TEMP, "%.19Lf\n", f);
 //     printf("оригинал  = %s\n", TEMP);

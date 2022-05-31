@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "s21_string.h"
+#include "s21_sprintf.h"
 
 #test memcpy_1
 char buf1[50] = "It's check memcpy - ok",  buf2[50];

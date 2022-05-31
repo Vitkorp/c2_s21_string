@@ -1,8 +1,9 @@
 #ifndef SRC_S21_SPRINTF_H_
 #define SRC_S21_SPRINTF_H_
-#include "s21_string.h"
+
 #include <stdarg.h>
 #include <math.h>
+
 
 
 // %[флаги][ширина][.точность][длина]спецификатор
@@ -57,6 +58,6 @@ typedef struct _regs{
 int s21_sprintf(char *str, const char *format, ...);
 
 //  позиция указателя до конца подстроки замещаемой части формата
-int endfmt(const char *str, long long start);
+int endfmt(const char *str, int start);
 
 #endif
