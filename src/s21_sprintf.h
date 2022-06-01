@@ -74,6 +74,8 @@ int checkDotPrecision(const char *str);
 
 int checkPrecision(fmt *val, const char *str);
 
+int checkLength(fmt *val, const char *str);
+
 int parseStr(fmt *val, const char *fmtstr, int startFmtPosition, int len);
 
 void *reuseRegister(void *val, void *newCell);

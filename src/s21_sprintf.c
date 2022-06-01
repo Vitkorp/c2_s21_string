@@ -56,7 +56,7 @@ int s21_sprintf(char *str, const char *format, ...) {
             registers.pValue     = S21_NULL;
             registers.pWidth     = S21_NULL;
 
-            // printf("startFmtPosition={%d}, endFmrPosition={%d},   i_src = {%d}\n\n", startFmtPosition, endFmrPosition, i_src);
+            
             parseStr(&form, format, startFmtPosition, len);
             registers = prepareRegisters(form, registers, arglist);
             // cdeEfgGosuxXpni
@@ -146,26 +146,28 @@ int s21_sprintf(char *str, const char *format, ...) {
                 default: 
                     break;
             }
-            printf("form.spec:  %c\n", form.spec);
-            printf("form.flags:\n{\n");
-            printf("      hash: %d\n", form.flags.hash);
-            printf("     minus: %d\n", form.flags.minus);
-            printf("      plus: %d\n", form.flags.plus);
-            printf("     space: %d\n", form.flags.space);
-            printf("      zero: %d\n}\n\n", form.flags.zero);
+            // printf("startFmtPosition={%d}, endFmrPosition={%d},   i_src = {%d}\n\n", startFmtPosition, endFmrPosition, i_src);
+            // printf("form.spec:  %c\n", form.spec);
+            // printf("form.flags:\n{\n");
+            // printf("      hash: %d\n", form.flags.hash);
+            // printf("     minus: %d\n", form.flags.minus);
+            // printf("      plus: %d\n", form.flags.plus);
+            // printf("     space: %d\n", form.flags.space);
+            // printf("      zero: %d\n}\n\n", form.flags.zero);
 
-            printf("form.width:\n{\n");
-            printf("    number: %d\n", form.width.number);
-            printf("  starchar: %d\n}\n\n", form.width.starchar);
+            // printf("form.width:\n{\n");
+            // printf("    number: %d\n", form.width.number);
+            // printf("  starchar: %d\n}\n\n", form.width.starchar);
 
-            printf("form.precision:\n{\n");
-            printf("    number: %d\n", form.precision.number);
-            printf("  starchar: %d\n}\n\n", form.precision.starchar);
+            // printf("form.precision:\n{\n");
+            // printf("    number: %d\n", form.precision.number);
+            // printf("  starchar: %d\n}\n\n", form.precision.starchar);
 
-            printf("form.length:\n{\n");
-            printf("         h: %d\n", form.length.h);
-            printf("         l: %d\n", form.length.l);
-            printf("         L: %d\n}\n\n", form.length.L);
+            // printf("form.length:\n{\n");
+            // printf("         h: %d\n", form.length.h);
+            // printf("         l: %d\n", form.length.l);
+            // printf("         L: %d\n}\n\n", form.length.L);
+            // printf("\n\n ********************** end format part *********************** \n\n");
 
             registers = clearRegisters(registers);
         }
@@ -188,7 +190,7 @@ int endfmt(const char *str, int start) {
     int _pos = start;
     int len;
     if (str[start+1] == '%') {
-        _pos += 1;
+        _pos += 2;
     } else if ((len = s21_strcspn(str + start, "cdeEfgGosuxXpni")) != 0) {
         _pos += len + 1;
     }
@@ -264,6 +266,7 @@ int checkFlags(fmt *val, const char *str) {
 int checkWidth(fmt *val, const char *str) {
     int count1 = 0;
     int count2 = 0;
+    if (str[0] == '0') val->flags.zero = 1;
     if ((count1 = s21_strspn(str,"0123456789")) != 0) {
         char *_res = malloc((count1 + 1) * sizeof(char));
         for (s21_size_t i = 0; i < (s21_size_t)(count1 + 1); i++) {
@@ -303,26 +306,52 @@ int checkPrecision(fmt *val, const char *str) {
     return (count1) ? count1 : count2;
 }
 
+int checkLength(fmt *val, const char *str) {
+    int i = 0;
+    switch (str[i]) {
+        case 'l':
+            val->length.l++;
+            break;
+        case 'L':
+            val->length.L++;
+            break;
+        case 'h':
+            val->length.h++;
+            break;
+        default:
+            i--;
+            break;
+    }
+    i++;
+    // if (str[i]) i--;
+    return i;
+}
+
 int parseStr(fmt *val, const char *fmtstr, int startFmtPosition, int len) {
 
-    // printf("source: ");
-    //for (int i = 0; i < len; i++) printf("%c", fmtstr[startFmtPosition + i]);
-    // printf("\nc = {%c}\n", fmtstr[startFmtPosition + len - 1]);
+    // отладочная информация
+    // for (int i = 0; i < len; i++) printf("%c", fmtstr[startFmtPosition + i]);
+    // printf("\n\n");
+
+
     checkSpec(val, &fmtstr[startFmtPosition + len - 1]);
-    for (int i = startFmtPosition; i < startFmtPosition + len; ) {
-        //printf("%c", fmtstr[i]);
+    for (int i = startFmtPosition + 1; i < startFmtPosition + len - 1; ) {
+        // printf("%c", fmtstr[i]);
 
         int t = i;
         i += checkFlags(val, &fmtstr[i]);
+
         i += checkWidth(val, &fmtstr[i]);
         if (checkDotPrecision(&fmtstr[i])) {
             i++;
             i+= checkPrecision(val, &fmtstr[i]);
         }
-        i += checkPrecision(val, &fmtstr[i]);
+        i += checkLength(val, &fmtstr[i]);
         if (i == t) i++;
-        
+        // printf("i = %d\n", i);
     }
+
+    printf("\n");
     return 0;
 }
 
@@ -391,7 +420,7 @@ regs prepareRegisters(fmt form, regs registers, va_list arglist) {
                 break;
             }
             case 'u': {
-                unsigned long long *p_val = malloc(sizeof(unsigned long long));
+                unsigned long long int *p_val = malloc(sizeof(unsigned long long int));
                 *p_val = va_arg(arglist, unsigned long long);
                 registers.pValue = reuseRegister(registers.pValue, p_val);
                 break;
@@ -409,7 +438,7 @@ regs prepareRegisters(fmt form, regs registers, va_list arglist) {
             //     break;
             // }
             case 'i': {
-                long long *p_val = malloc(sizeof(long long));
+                long long int *p_val = malloc(sizeof(long long int));
                 *p_val = va_arg(arglist, long long);
                 registers.pValue = reuseRegister(registers.pValue, p_val);
                 break;
@@ -752,35 +781,66 @@ int main() {
     //printf("format: Heool!!!!!!! %%+-10.5d %%*.*d  d ddddddn\n");
     int len = s21_sprintf(s, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
     int len2 = sprintf(s2, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
+    // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
+    // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
+    // printf("\n===================================\n");
+
+    // char x[10000] = {'\0'};
+    // char x2[10000] = {'\0'};
+    // //printf("Hello my friends! %%%% %%d %%s %%-010d %%*.*f in the air\n");
+    // len = s21_sprintf(x, "Hello my friends! %% %d %s %-010d %*.*f in the air\n", a+10, "airp5", 125, 20, 19, 18.0);
+    // len2 = sprintf(x2, "Hello my friends! %% %d %s %-010d %*.*f in the air\n", a+10, "airp5", 125, 20, 19, 18.0);
+    // printf("pointer  = %15p, len  = %10d   res: %s", x, len, x);
+    // printf("pointer2 = %15p, len2 = %10d  res2: %s", x2, len2, x2);
+    // printf("\n===================================\n");
+
+    // char y[10000] = {'\0'};
+    // char y2[10000] = {'\0'};
+    // //printf("Hello my friends! %%%%%%d%%s%%-010d %%*.*f in the air333\n");
+    // len = s21_sprintf(y, "Hello my friends! %%%d%s%-010d %*.*f in the air   \n", a+10, "airp+5", 125, 20, 19, 18.0);
+    // len2 = sprintf(y2, "Hello my friends! %%%d%s%-010d %*.*f in the air   \n", a+10, "airp+5", 125, 20, 19, 18.0);
+    // printf("pointer  = %15p, len  = %10d   res: %s", y, len, y);
+    // printf("pointer2 = %15p, len2 = %10d  res2: %s", y2, len2, y2);
+    // printf("\n===================================\n");
+
+    // char z[10000] = {'\0'};
+    // char z2[10000] = {'\0'};
+    // //printf("Hello my friends! %%%%%%d%%s%%-010d %%*.*f in the air333\n");
+    // len = s21_sprintf(z, "Hello my friends! %%%d%s%010d %015.8f in the air  %c %4c  \n", a+10, "airp+5", 125, 20, 19, 18.123, 'f', 'g');
+    // len2 = sprintf(z2, "Hello my friends! %%%d%s%010d %015.8f in the air  %c %4c  \n", a+10, "airp+5", 125, 20, 19, 18.123, 'f', 'g');
+    // printf("pointer  = %15p, len  = %10d   res: %s", z, len, z);
+    // printf("pointer2 = %15p, len2 = %10d  res2: %s", z2, len2, z2);
+    // printf("\n===================================\n");
+
+    // len = s21_sprintf(s, "Heool!!!!!!! %+-10.5d %*.*lld  d ddddddn\n", a, 8, 6, 44);
+    // len2 = sprintf(s2, "Heool!!!!!!! %+-10.5d %*.*lld  d ddddddn\n", a, 8, 6, 44);
+    // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
+    // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
+    // printf("\n===================================\n");
+
+    // len = s21_sprintf(s, "Heool!!!!!!! %+-10.5ld %*.*hd  d ddddddn\n", a, 8, 6, 44);
+    // len2 = sprintf(s2, "Heool!!!!!!! %+-10.5ld %*.*hd  d ddddddn\n", a, 8, 6, 44);
+    // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
+    // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
+    // printf("\n===================================\n");
+
+    // len = s21_sprintf(s, "Heool!!!!!!! %+-10.5Ld %*.*hd  d ddddddn\n", a, 8, 6, 44);
+    // len2 = sprintf(s2, "Heool!!!!!!! %+-10.5Ld %*.*hd  d ddddddn\n", a, 8, 6, 44);
+    // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
+    // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
+    // printf("\n===================================\n");
+
+    // len = s21_sprintf(s, "Heool!!!!!!! %+-010.5Ld %*.*hd  d ddddddn\n", a, 8, 6, 44);
+    // len2 = sprintf(s2, "Heool!!!!!!! %+-010.5Ld %*.*hd  d ddddddn\n", a, 8, 6, 44);
+    // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
+    // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
+    // printf("\n===================================\n");
+
+
+    len = s21_sprintf(s, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
+    len2 = sprintf(s2, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
     printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
     printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
-    printf("\n===================================\n");
-
-    char x[10000] = {'\0'};
-    char x2[10000] = {'\0'};
-    //printf("Hello my friends! %%%% %%d %%s %%-010d %%*.*f in the air\n");
-    len = s21_sprintf(x, "Hello my friends! %% %d %s %-010d %*.*f in the air\n", a+10, "airp5", 125, 20, 19, 18.0);
-    len2 = sprintf(x2, "Hello my friends! %% %d %s %-010d %*.*f in the air\n", a+10, "airp5", 125, 20, 19, 18.0);
-    printf("pointer  = %15p, len  = %10d   res: %s", x, len, x);
-    printf("pointer2 = %15p, len2 = %10d  res2: %s", x2, len2, x2);
-    printf("\n===================================\n");
-
-    char y[10000] = {'\0'};
-    char y2[10000] = {'\0'};
-    //printf("Hello my friends! %%%%%%d%%s%%-010d %%*.*f in the air333\n");
-    len = s21_sprintf(y, "Hello my friends! %%%d%s%-010d %*.*f in the air   \n", a+10, "airp+5", 125, 20, 19, 18.0);
-    len2 = sprintf(y2, "Hello my friends! %%%d%s%-010d %*.*f in the air   \n", a+10, "airp+5", 125, 20, 19, 18.0);
-    printf("pointer  = %15p, len  = %10d   res: %s", y, len, y);
-    printf("pointer2 = %15p, len2 = %10d  res2: %s", y2, len2, y2);
-    printf("\n===================================\n");
-
-    char z[10000] = {'\0'};
-    char z2[10000] = {'\0'};
-    //printf("Hello my friends! %%%%%%d%%s%%-010d %%*.*f in the air333\n");
-    len = s21_sprintf(z, "Hello my friends! %%%d%s%010d %015.8f in the air  %c %4c  \n", a+10, "airp+5", 125, 20, 19, 18.123, 'f', 'g');
-    len2 = sprintf(z2, "Hello my friends! %%%d%s%010d %015.8f in the air  %c %4c  \n", a+10, "airp+5", 125, 20, 19, 18.123, 'f', 'g');
-    printf("pointer  = %15p, len  = %10d   res: %s", z, len, z);
-    printf("pointer2 = %15p, len2 = %10d  res2: %s", z2, len2, z2);
     printf("\n===================================\n");
     // sprintf(s, "Hello %----+#######8.5 lj k  %endl\n");
     // printf("%s", s);
