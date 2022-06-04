@@ -66,6 +66,7 @@ int s21_sprintf(char *str, const char *format, ...) {
             switch (form.spec) {
                 case 'c': {
                     char *a = s21_spec_c(form, registers);
+                    printf("s21_spec_c.result = %s\n", a);
                     str = s21_strcat(str, a);
                     count++;
                     break;
@@ -75,6 +76,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                     // if (registers.pPrecision) {printf("registers.pPrecision = {%4d}  ", *((int *)registers.pPrecision));}
                     // if (registers.pValue) {printf("registers.pValue = {%lld}  \n", *((long long int *)registers.pValue));}
                     char *a = s21_spec_d(form, registers);
+                    printf("s21_spec_d.result = %s\n", a);
                     str = s21_strcat(str, a);
                     count += s21_strlen(a);
                     break;
@@ -91,6 +93,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                     // if (registers.pValue) {printf("registers.pValue = {%Lf}  \n", *((long double *)registers.pValue));}
                     // s21_strcat(str, func_f(form, registers));
                     char *a = s21_spec_f(form, registers);
+                    printf("s21_spec_f.result = %s\n", a);
                     str = s21_strcat(str, a);
                     count += s21_strlen(a);
                     break;
@@ -106,6 +109,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                 // }
                 case 's': {
                     char *a = s21_spec_s(form, registers);
+                    printf("s21_spec_s.result = %s\n", a);
                     str = s21_strcat(str, a);
                     count += s21_strlen(a);
                     break;
@@ -115,6 +119,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                     // if (registers.pPrecision) {printf("registers.pPrecision = {%4d}  ", *((int *)registers.pPrecision));}
                     // if (registers.pValue) {printf("registers.pValue = {%llu}  \n", *((unsigned long long int *)registers.pValue));}
                     char *a = s21_spec_d(form, registers);
+                    printf("s21_spec_u.result = %s\n", a);
                     str = s21_strcat(str, a);
                     count += s21_strlen(a);
                     break;
@@ -133,6 +138,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                 // }
                 case 'i': {
                     char *a = s21_spec_d(form, registers);
+                    printf("s21_spec_i.result = %s\n", a);
                     str = s21_strcat(str, a);
                     count += s21_strlen(a);
                     break;
@@ -146,28 +152,104 @@ int s21_sprintf(char *str, const char *format, ...) {
                 default: 
                     break;
             }
-            // printf("startFmtPosition={%d}, endFmrPosition={%d},   i_src = {%d}\n\n", startFmtPosition, endFmrPosition, i_src);
-            // printf("form.spec:  %c\n", form.spec);
-            // printf("form.flags:\n{\n");
-            // printf("      hash: %d\n", form.flags.hash);
-            // printf("     minus: %d\n", form.flags.minus);
-            // printf("      plus: %d\n", form.flags.plus);
-            // printf("     space: %d\n", form.flags.space);
-            // printf("      zero: %d\n}\n\n", form.flags.zero);
+            printf("startFmtPosition={%d}, endFmrPosition={%d},   i_src = {%d}\n\n", startFmtPosition, endFmrPosition, i_src);
+            printf("form.spec:  %c\n", form.spec);
+            printf("form.flags:\n{\n");
+            printf("      hash: %d\n", form.flags.hash);
+            printf("     minus: %d\n", form.flags.minus);
+            printf("      plus: %d\n", form.flags.plus);
+            printf("     space: %d\n", form.flags.space);
+            printf("      zero: %d\n}\n\n", form.flags.zero);
 
-            // printf("form.width:\n{\n");
-            // printf("    number: %d\n", form.width.number);
-            // printf("  starchar: %d\n}\n\n", form.width.starchar);
+            printf("form.width:\n{\n");
+            printf("    number: %d\n", form.width.number);
+            printf("  starchar: %d\n}\n\n", form.width.starchar);
 
-            // printf("form.precision:\n{\n");
-            // printf("    number: %d\n", form.precision.number);
-            // printf("  starchar: %d\n}\n\n", form.precision.starchar);
+            printf("form.precision:\n{\n");
+            printf("    number: %d\n", form.precision.number);
+            printf("  starchar: %d\n}\n\n", form.precision.starchar);
 
-            // printf("form.length:\n{\n");
-            // printf("         h: %d\n", form.length.h);
-            // printf("         l: %d\n", form.length.l);
-            // printf("         L: %d\n}\n\n", form.length.L);
-            // printf("\n\n ********************** end format part *********************** \n\n");
+            printf("form.length:\n{\n");
+            printf("         h: %d\n", form.length.h);
+            printf("         l: %d\n", form.length.l);
+            printf("         L: %d\n}\n\n", form.length.L);
+
+            if (registers.pWidth) {
+                printf("pWidth = %d, ", *(int *)registers.pPrecision);
+            } else {
+                printf("pWidth = (null), ");
+            }
+
+            if (registers.pPrecision) {
+                printf("pPrecision = %d, ", *(int *)registers.pPrecision);
+            } else {
+                printf("pPrecision = (null), ");
+            }
+
+            if (registers.pValue) {
+                switch (form.spec) {
+                    case 'c': {
+                        printf("pValue = %c, ", *(int *)registers.pValue);
+                        break;
+                    }
+                    case 'd': {
+                        printf("pValue = %ld, ", *(long int *)registers.pValue);
+                        break;
+                    }
+                    // case 'e': {
+                    //     break;
+                    // }
+                    // case 'E': {
+                    //     break;
+                    // }
+                    case 'f': {
+                            printf("pValue = %lf, ", *(long double *)registers.pValue);
+                        break;
+                    }
+                    // case 'g': {
+                    //     break;
+                    // }
+                    // case 'G': {
+                    //     break;
+                    // }
+                    // case 'o': {
+                    //     break;
+                    // }
+                    case 's': {
+                        printf("pValue = %s, ", *(char *)registers.pValue);
+                        break;
+                    }
+                    case 'u': {
+                        printf("pValue = %lu, ", *(unsigned long int *)registers.pValue);
+                        break;
+                    }
+                    // case 'x': {                    
+                    //     break;
+                    // }
+                    // case 'X': {
+                    //     break;
+                    // }
+                    // case 'p': {
+                    //     break;
+                    // }
+                    // case 'n': {
+                    //     break;
+                    // }
+                    case 'i': {
+                        printf("pValue = %li, ", *(long int *)registers.pValue);
+                        break;
+                    }
+                    // case '%': {
+                    //     break;
+                    // }
+                    default: 
+                        break;
+                }
+            } else {
+                printf("pValue = (null)");
+            }
+            
+            printf("\n\n ********************** end format part *********************** \n\n");
 
             registers = clearRegisters(registers);
         }
@@ -381,12 +463,23 @@ regs prepareRegisters(fmt form, regs registers, va_list arglist) {
             case 'c': {
                 int *p_val = malloc(sizeof(int));
                 *p_val = va_arg(arglist, int);
+                printf("prepareRegisters.pVal = %c\n", *(int *)p_val);
                 registers.pValue = reuseRegister(registers.pValue, p_val);
                 break;
             }
             case 'd': {
-                long long int *p_val = malloc(sizeof(long long int));
-                *p_val = va_arg(arglist, long long int);
+                signed long long int *p_val = (long long int *)malloc(sizeof(signed long long int));
+                if (form.length.h) {
+                    *p_val = (long long int)va_arg(arglist, int);
+                } else if (form.length.l == 1) {
+                    *p_val = (long long int)va_arg(arglist, long int);
+                }
+                 else if (form.length.l == 2 || form.length.L) {
+                    *p_val = (long long int)va_arg(arglist, long long int);
+                } else {
+                    *p_val = (long long int)va_arg(arglist, int);
+                }
+                printf("prepareRegisters.pVal = %lld\n", *(signed long long int*)p_val);
                 registers.pValue = reuseRegister(registers.pValue, p_val);
                 break;
             }
@@ -397,8 +490,9 @@ regs prepareRegisters(fmt form, regs registers, va_list arglist) {
             //     break;
             // }
             case 'f': {
-                    long double *p_val = malloc(sizeof( long double));
+                    long double *p_val = malloc(sizeof(long double));
                     *p_val = va_arg(arglist, double);
+                    printf("prepareRegisters.pVal = %Lf\n", *(long double *)p_val);
                     registers.pValue = reuseRegister(registers.pValue, p_val);
                 // }
                 break;
@@ -415,6 +509,7 @@ regs prepareRegisters(fmt form, regs registers, va_list arglist) {
             case 's': {
                 char *s = va_arg(arglist, char *);
                 char *ps = malloc(s21_strlen(s) + 1);
+                printf("prepareRegisters.pVal = %s\n", *(char *)ps);
                 s21_strcpy(ps, s);
                 registers.pValue = reuseRegister(registers.pValue, ps);
                 break;
@@ -422,6 +517,7 @@ regs prepareRegisters(fmt form, regs registers, va_list arglist) {
             case 'u': {
                 unsigned long long int *p_val = malloc(sizeof(unsigned long long int));
                 *p_val = va_arg(arglist, unsigned long long);
+                printf("prepareRegisters.pVal = %Lu\n", *(unsigned long long *)p_val);
                 registers.pValue = reuseRegister(registers.pValue, p_val);
                 break;
             }
@@ -440,6 +536,7 @@ regs prepareRegisters(fmt form, regs registers, va_list arglist) {
             case 'i': {
                 long long int *p_val = malloc(sizeof(long long int));
                 *p_val = va_arg(arglist, long long);
+                printf("prepareRegisters.pVal = %Ld\n", *(long long *)p_val);
                 registers.pValue = reuseRegister(registers.pValue, p_val);
                 break;
             }
@@ -778,9 +875,588 @@ int main() {
     int a = 1555;
     char s[10000] = {'\0'};
     char s2[10000] = {'\0'};
+    int continues = 1;
+    int len, len2;
+    #define VC d
+    for (int i = 0; continues;) {
+        switch (i) {
+                        case 0: {
+                #define test "%d", 0
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 1: {
+                #define test "%d", 1
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 2: {
+                #define test "%d", -1
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 3: {
+                #define test "%d", 100
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 4: {
+                #define test "%d", 100.100
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 5: {
+                #define test "%d", 1000
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 6: {
+                #define test "%d", 2147483647
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 7: {
+                #define test "%d", -2147483648
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 8: {
+                #define test "%d", 2147483648
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 9: {
+                #define test "%d", -2147483649
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 10: {
+                #define test "%7d", 0
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 11: {
+                #define test "%7d", 1
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 12: {
+                #define test "%7d", -1
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 13: {
+                #define test "%7d", 100
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 14: {
+                #define test "%7d", 100.100
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 15: {
+                #define test "%7d", 1000
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 16: {
+                #define test "%7d", 2147483647
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 17: {
+                #define test "%7d", -2147483648
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 18: {
+                #define test "%7d", 2147483648
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 19: {
+                #define test "%7d", -2147483649
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 20: {
+                #define test "%0d", 0
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 21: {
+                #define test "%0d", 1
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 22: {
+                #define test "%0d", 100
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 23: {
+                #define test "%0d", 1000
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 24: {
+                #define test "%0d", 2147483647
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 25: {
+                #define test "%0d", -2147483648
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 26: {
+                #define test "%0d", -1
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 27: {
+                #define test "%010d", 0
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 28: {
+                #define test "%010d", 1
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 29: {
+                #define test "%010d", 100
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 30: {
+                #define test "%010d", 1000
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 31: {
+                #define test "%010d", 2147483647
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 32: {
+                #define test "%010d", -2147483648
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 33: {
+                #define test "%0.10d", 0
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 34: {
+                #define test "%0.10d", 1
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 35: {
+                #define test "%0.10d", -1
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 36: {
+                #define test "%0.10d", 100
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 37: {
+                #define test "%0.10d", 1000
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 38: {
+                #define test "%0.10d", 2147483647
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            case 39: {
+                #define test "%f", 15.5
+                    len  = s21_sprintf(s , test);
+                    len2 =     sprintf(s2, test);
+                #undef test
+                break;
+            }
+            // case 0: {
+            //     #define test "%d", 0
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 1: {
+            //     #define test "%d", 1
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 2: {
+            //     #define test "%d", -1L
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 3: {
+            //     #define test "%d", 100
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 4: {
+            //     #define test "%d", 100.100
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 5: {
+            //     #define test "%d", 1000
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 6: {
+            //     #define test "%d", 2147483647
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 7: {
+            //     #define test "%d", -2147483648
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 8: {
+            //     #define test "%d", 2147483648
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 9: {
+            //     #define test "%d", -2147483649
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 10: {
+            //     #define test "%7d", 0
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 11: {
+            //     #define test "%7d", 1
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 12: {
+            //     #define test "%7d", -1
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 13: {
+            //     #define test "%7d", 100
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 14: {
+            //     #define test "%7d", 100.100
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 15: {
+            //     #define test "%7d", 1000
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 16: {
+            //     #define test "%7d", 2147483647
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 17: {
+            //     #define test "%7d", -2147483648
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 18: {
+            //     #define test "%7d", 2147483648
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 19: {
+            //     #define test "%7d", -2147483649
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 20: {
+            //     #define test "%0d", 0
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 21: {
+            //     #define test "%0d", 1
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 22: {
+            //     #define test "%0d", 100
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 23: {
+            //     #define test "%0d", 1000
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 24: {
+            //     #define test "%0d", 2147483647
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 25: {
+            //     #define test "%0d", -2147483648
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 26: {
+            //     #define test "%0d", -1
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 27: {
+            //     #define test "%010d", 0
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 28: {
+            //     #define test "%010d", 1
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 29: {
+            //     #define test "%010d", 100
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 30: {
+            //     #define test "%010d", 1000
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 31: {
+            //     #define test "%010d", 2147483647
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 32: {
+            //     #define test "%010d", -2147483648
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 33: {
+            //     #define test "%0.10d", 0
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 34: {
+            //     #define test "%0.10d", 1
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 35: {
+            //     #define test "%0.10d", -1
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 36: {
+            //     #define test "%0.10d", 100
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 37: {
+            //     #define test "%0.10d", 1000
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 38: {
+            //     #define test "%0.10d", 2147483647
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            // case 39: {
+            //     #define test "%f", 15.5
+            //         len  = s21_sprintf(s , test);
+            //         len2 =     sprintf(s2, test);
+            //     #undef test
+            //     break;
+            // }
+            default: {
+                continues = 0;
+                break;
+            }
+        }
+        if (continues) {
+            printf("test %d\n", i);
+            printf("s21_sprintf: pointer  = %15p, len  = %5d   res: %s\n",  s,  len, s );
+            printf("    sprintf: pointer2 = %15p, len2 = %5d  res2: %s\n", s2, len2, s2);
+            printf("\n===================================\n");
+            for (int j = 0; j < 10000; j++) {s[j] = 0; s2[j] = 0;}
+            i++;
+        }
+    }
     //printf("format: Heool!!!!!!! %%+-10.5d %%*.*d  d ddddddn\n");
-    int len = s21_sprintf(s, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
-    int len2 = sprintf(s2, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
+    // int len = s21_sprintf(s, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
+    // int len2 = sprintf(s2, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
     // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
     // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
     // printf("\n===================================\n");
@@ -837,11 +1513,11 @@ int main() {
     // printf("\n===================================\n");
 
 
-    len = s21_sprintf(s, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
-    len2 = sprintf(s2, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
-    printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
-    printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
-    printf("\n===================================\n");
+    // len = s21_sprintf(s, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
+    // len2 = sprintf(s2, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
+    // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
+    // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
+    // printf("\n===================================\n");
     // sprintf(s, "Hello %----+#######8.5 lj k  %endl\n");
     // printf("%s", s);
     // sprintf(s, "Hello %\n");

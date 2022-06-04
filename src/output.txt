@@ -1,15 +1,1720 @@
-format: Heool!!!!!!! %+-10.5d %*.*d  d ddddddn
-%+-d%*dpointer = 0x7ffd02550aa0, len = 46
-  2.1: Heool!!!!!!! +01555     441555      d ddddddn
+
+prepareRegisters.pVal = 0
+s21_spec_d.result = 0
+startFmtPosition={0}, endFmrPosition={2},   i_src = {2}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 0, 
+
+ ********************** end format part *********************** 
+
+test 0
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     1   res: 0
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     1  res2: 0
 
 ===================================
-Hello my friends! %% %d %s %-010d %*.*f in the air
-%% %d%s%-d%*fpointer = 0x7ffd025531b0, len = 60
-  2.2: Hello my friends! %156555     airp5 125555     . in the air
+
+prepareRegisters.pVal = 1
+s21_spec_d.result = 1
+startFmtPosition={0}, endFmrPosition={2},   i_src = {2}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 1, 
+
+ ********************** end format part *********************** 
+
+test 1
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     1   res: 1
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     1  res2: 1
 
 ===================================
-Hello my friends! %%%d%s%-010d %*.*f in the air
-%%%d%s%-d%*fpointer = 0x7ffd025558c0, len = 60
-  2.3: Hello my friends! %%156555    airp+5125555     . in the air
+
+prepareRegisters.pVal = -1
+s21_spec_d.result = 1
+startFmtPosition={0}, endFmrPosition={2},   i_src = {2}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = -1, 
+
+ ********************** end format part *********************** 
+
+test 2
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     1   res: 1
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     2  res2: -1
+
+===================================
+
+prepareRegisters.pVal = 100
+s21_spec_d.result = 100
+startFmtPosition={0}, endFmrPosition={2},   i_src = {2}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 100, 
+
+ ********************** end format part *********************** 
+
+test 3
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     3   res: 100
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     3  res2: 100
+
+===================================
+
+prepareRegisters.pVal = -479117680
+s21_spec_d.result = 479117680
+startFmtPosition={0}, endFmrPosition={2},   i_src = {2}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = -479117680, 
+
+ ********************** end format part *********************** 
+
+test 4
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     9   res: 479117680
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     1  res2: 0
+
+===================================
+
+prepareRegisters.pVal = 1000
+s21_spec_d.result = 1000
+startFmtPosition={0}, endFmrPosition={2},   i_src = {2}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 1000, 
+
+ ********************** end format part *********************** 
+
+test 5
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     4   res: 1000
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     4  res2: 1000
+
+===================================
+
+prepareRegisters.pVal = 2147483647
+s21_spec_d.result = 2147483647
+startFmtPosition={0}, endFmrPosition={2},   i_src = {2}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 2147483647, 
+
+ ********************** end format part *********************** 
+
+test 6
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 2147483647
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 2147483647
+
+===================================
+
+prepareRegisters.pVal = -2147483648
+s21_spec_d.result = 2147483648
+startFmtPosition={0}, endFmrPosition={2},   i_src = {2}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = -2147483648, 
+
+ ********************** end format part *********************** 
+
+test 7
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 2147483648
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    11  res2: -2147483648
+
+===================================
+
+prepareRegisters.pVal = -2147483648
+s21_spec_d.result = 2147483648
+startFmtPosition={0}, endFmrPosition={2},   i_src = {2}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = -2147483648, 
+
+ ********************** end format part *********************** 
+
+test 8
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 2147483648
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    11  res2: -2147483648
+
+===================================
+
+prepareRegisters.pVal = 2147483647
+s21_spec_d.result = 2147483647
+startFmtPosition={0}, endFmrPosition={2},   i_src = {2}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 2147483647, 
+
+ ********************** end format part *********************** 
+
+test 9
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 2147483647
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 2147483647
+
+===================================
+
+prepareRegisters.pVal = 0
+s21_spec_d.result =       0
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: 7
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 0, 
+
+ ********************** end format part *********************** 
+
+test 10
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     7   res:       0
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     7  res2:       0
+
+===================================
+
+prepareRegisters.pVal = 1
+s21_spec_d.result =       1
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: 7
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 1, 
+
+ ********************** end format part *********************** 
+
+test 11
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     7   res:       1
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     7  res2:       1
+
+===================================
+
+prepareRegisters.pVal = -1
+s21_spec_d.result =      -1
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: 7
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = -1, 
+
+ ********************** end format part *********************** 
+
+test 12
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     7   res:      -1
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     7  res2:      -1
+
+===================================
+
+prepareRegisters.pVal = 100
+s21_spec_d.result =     100
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: 7
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 100, 
+
+ ********************** end format part *********************** 
+
+test 13
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     7   res:     100
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     7  res2:     100
+
+===================================
+
+prepareRegisters.pVal = -479117680
+s21_spec_d.result = 479117680
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: 7
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = -479117680, 
+
+ ********************** end format part *********************** 
+
+test 14
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     9   res: 479117680
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     7  res2:       0
+
+===================================
+
+prepareRegisters.pVal = 1000
+s21_spec_d.result =    1000
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: 7
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 1000, 
+
+ ********************** end format part *********************** 
+
+test 15
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     7   res:    1000
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     7  res2:    1000
+
+===================================
+
+prepareRegisters.pVal = 2147483647
+s21_spec_d.result = 2147483647
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: 7
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 2147483647, 
+
+ ********************** end format part *********************** 
+
+test 16
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 2147483647
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 2147483647
+
+===================================
+
+prepareRegisters.pVal = -2147483648
+s21_spec_d.result = 2147483648
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: 7
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = -2147483648, 
+
+ ********************** end format part *********************** 
+
+test 17
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 2147483648
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    11  res2: -2147483648
+
+===================================
+
+prepareRegisters.pVal = -2147483648
+s21_spec_d.result = 2147483648
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: 7
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = -2147483648, 
+
+ ********************** end format part *********************** 
+
+test 18
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 2147483648
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    11  res2: -2147483648
+
+===================================
+
+prepareRegisters.pVal = 2147483647
+s21_spec_d.result = 2147483647
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: 7
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 2147483647, 
+
+ ********************** end format part *********************** 
+
+test 19
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 2147483647
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 2147483647
+
+===================================
+
+prepareRegisters.pVal = 0
+s21_spec_d.result = 0
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 0, 
+
+ ********************** end format part *********************** 
+
+test 20
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     1   res: 0
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     1  res2: 0
+
+===================================
+
+prepareRegisters.pVal = 1
+s21_spec_d.result = 1
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 1, 
+
+ ********************** end format part *********************** 
+
+test 21
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     1   res: 1
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     1  res2: 1
+
+===================================
+
+prepareRegisters.pVal = 100
+s21_spec_d.result = 100
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 100, 
+
+ ********************** end format part *********************** 
+
+test 22
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     3   res: 100
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     3  res2: 100
+
+===================================
+
+prepareRegisters.pVal = 1000
+s21_spec_d.result = 1000
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 1000, 
+
+ ********************** end format part *********************** 
+
+test 23
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     4   res: 1000
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     4  res2: 1000
+
+===================================
+
+prepareRegisters.pVal = 2147483647
+s21_spec_d.result = 2147483647
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 2147483647, 
+
+ ********************** end format part *********************** 
+
+test 24
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 2147483647
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 2147483647
+
+===================================
+
+prepareRegisters.pVal = -2147483648
+s21_spec_d.result = 2147483648
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = -2147483648, 
+
+ ********************** end format part *********************** 
+
+test 25
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 2147483648
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    11  res2: -2147483648
+
+===================================
+
+prepareRegisters.pVal = -1
+s21_spec_d.result = 1
+startFmtPosition={0}, endFmrPosition={3},   i_src = {3}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = -1, 
+
+ ********************** end format part *********************** 
+
+test 26
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     1   res: 1
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     2  res2: -1
+
+===================================
+
+prepareRegisters.pVal = 0
+s21_spec_d.result =          0
+startFmtPosition={0}, endFmrPosition={5},   i_src = {5}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: 10
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 0, 
+
+ ********************** end format part *********************** 
+
+test 27
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res:          0
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 0000000000
+
+===================================
+
+prepareRegisters.pVal = 1
+s21_spec_d.result =          1
+startFmtPosition={0}, endFmrPosition={5},   i_src = {5}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: 10
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 1, 
+
+ ********************** end format part *********************** 
+
+test 28
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res:          1
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 0000000001
+
+===================================
+
+prepareRegisters.pVal = 100
+s21_spec_d.result =        100
+startFmtPosition={0}, endFmrPosition={5},   i_src = {5}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: 10
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 100, 
+
+ ********************** end format part *********************** 
+
+test 29
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res:        100
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 0000000100
+
+===================================
+
+prepareRegisters.pVal = 1000
+s21_spec_d.result =       1000
+startFmtPosition={0}, endFmrPosition={5},   i_src = {5}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: 10
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 1000, 
+
+ ********************** end format part *********************** 
+
+test 30
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res:       1000
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 0000001000
+
+===================================
+
+prepareRegisters.pVal = 2147483647
+s21_spec_d.result = 2147483647
+startFmtPosition={0}, endFmrPosition={5},   i_src = {5}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: 10
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 2147483647, 
+
+ ********************** end format part *********************** 
+
+test 31
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 2147483647
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 2147483647
+
+===================================
+
+prepareRegisters.pVal = -2147483648
+s21_spec_d.result = 2147483648
+startFmtPosition={0}, endFmrPosition={5},   i_src = {5}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: 10
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = -2147483648, 
+
+ ********************** end format part *********************** 
+
+test 32
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 2147483648
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    11  res2: -2147483648
+
+===================================
+
+prepareRegisters.pVal = 0
+s21_spec_d.result = 0000000000
+startFmtPosition={0}, endFmrPosition={6},   i_src = {6}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: 10
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 0, 
+
+ ********************** end format part *********************** 
+
+test 33
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 0000000000
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 0000000000
+
+===================================
+
+prepareRegisters.pVal = 1
+s21_spec_d.result = 0000000001
+startFmtPosition={0}, endFmrPosition={6},   i_src = {6}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: 10
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 1, 
+
+ ********************** end format part *********************** 
+
+test 34
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 0000000001
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 0000000001
+
+===================================
+
+prepareRegisters.pVal = -1
+s21_spec_d.result = 0000000001
+startFmtPosition={0}, endFmrPosition={6},   i_src = {6}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: 10
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = -1, 
+
+ ********************** end format part *********************** 
+
+test 35
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 0000000001
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    11  res2: -0000000001
+
+===================================
+
+prepareRegisters.pVal = 100
+s21_spec_d.result = 0000000100
+startFmtPosition={0}, endFmrPosition={6},   i_src = {6}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: 10
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 100, 
+
+ ********************** end format part *********************** 
+
+test 36
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 0000000100
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 0000000100
+
+===================================
+
+prepareRegisters.pVal = 1000
+s21_spec_d.result = 0000001000
+startFmtPosition={0}, endFmrPosition={6},   i_src = {6}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: 10
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 1000, 
+
+ ********************** end format part *********************** 
+
+test 37
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 0000001000
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 0000001000
+
+===================================
+
+prepareRegisters.pVal = 2147483647
+s21_spec_d.result = 2147483647
+startFmtPosition={0}, endFmrPosition={6},   i_src = {6}
+
+form.spec:  d
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 1
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: 10
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 2147483647, 
+
+ ********************** end format part *********************** 
+
+test 38
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =    10   res: 2147483647
+    sprintf: pointer2 =  0x7ffee3711780, len2 =    10  res2: 2147483647
+
+===================================
+
+prepareRegisters.pVal = 15.500000
+s21_spec_f.result = .1
+startFmtPosition={0}, endFmrPosition={2},   i_src = {2}
+
+form.spec:  f
+form.flags:
+{
+      hash: 0
+     minus: 0
+      plus: 0
+     space: 0
+      zero: 0
+}
+
+form.width:
+{
+    number: -1
+  starchar: 0
+}
+
+form.precision:
+{
+    number: -1
+  starchar: 0
+}
+
+form.length:
+{
+         h: 0
+         l: 0
+         L: 0
+}
+
+pWidth = (null), pPrecision = (null), pValue = 0.000000, 
+
+ ********************** end format part *********************** 
+
+test 39
+s21_sprintf: pointer  =  0x7ffee3713e90, len  =     2   res: .1
+    sprintf: pointer2 =  0x7ffee3711780, len2 =     9  res2: 15.500000
 
 ===================================

@@ -27,8 +27,5 @@
     "**/.*/**",
     "**/.vscode",
     "**/.vscode/**"
-  ],
-  "files.associations": {
-    "s21_sprintf.h": "c"
-  }
+  ]
 }

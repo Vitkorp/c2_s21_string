@@ -6,17 +6,17 @@
       "type": "cppdbg",
       "request": "launch",
       "args": [],
-      "stopAtEntry": true,
+      "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/Users/ondrewvi/Documents/C2_s21_stringplus-0/src",
-      "program": "/Users/ondrewvi/Documents/C2_s21_stringplus-0/src/a.out",
+      "cwd": "/home/user/21School/C2_s21_stringplus-0/src",
+      "program": "/home/user/21School/C2_s21_stringplus-0/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
           "text": "-enable-pretty-printing",
-          "ignoreFailures": false
+          "ignoreFailures": true
         }
       ]
     }

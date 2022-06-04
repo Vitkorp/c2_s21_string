@@ -2,6 +2,7 @@
 #define SRC_S21_SPRINTF_H_
 
 #include <stdarg.h>
+#include <stdlib.h>
 #include <math.h>
 
 // %[флаги][ширина][.точность][длина]спецификатор

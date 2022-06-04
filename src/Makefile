@@ -25,7 +25,7 @@ s21_string.a:
 	ranlib s21_string.a
 
 gcov_report: 
-	gcc test.c s21_string.c s21_sprintf.c s -fprofile-arcs -ftest-coverage -pthread -lcheck  -lm  -o mid_html_res; \
+	gcc test.c s21_string.c s21_sprintf.c -fprofile-arcs -ftest-coverage -pthread -lcheck  -lm  -o mid_html_res; \
 
 	./mid_html_res; \
 	gcovr -r . --html --html-details -o html_report
