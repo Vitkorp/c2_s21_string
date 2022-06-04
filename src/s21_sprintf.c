@@ -471,23 +471,6 @@ regs clearRegisters(regs reg) {
     return reg;
 }
 
-void *dec_to_str(long long int number, char *str) {
-    if (number < 0) {
-        number = number * -1;
-    }
-    long long int del = 1, copy_number = number;
-    while (copy_number >= 10) {
-        copy_number = copy_number / 10;
-        del = del * 10;
-    }
-    while (del > 0) {
-        *str++ = '0' + number / del;
-        number = number % del;
-        del = del / 10;
-    }
-    *str++ = '\0';
-    return 0;
-}
 
 char *s21_spec_s(fmt format, regs regs) {
     char *mass = {'\0'};
@@ -568,7 +551,7 @@ char *s21_spec_f(fmt format, regs regs) {
     // printf("buf[%s]", mass_buff);
     char mass_str[32] = {'\0'};
     // printf("\nexp = [%Lf]", exp);
-    dec_to_str((long long)exp, mass_str);
+    int_to_str((long long)exp, mass_str);
     // printf("\nstr[%s]", mass_str);
     if (count != 0) {
         s21_strcat(mass_buff, mass_str);
@@ -622,155 +605,146 @@ char *s21_spec_c(fmt format, regs regs) {
 char *s21_spec_d(fmt format, regs regs) {
     static char str[1000] = {'\0'};
     long int num = *((long int *)regs.pValue);
-    int i = 0, count = 0, flag = 0;
+    int flag = 0;
     if (num < 0) {
-        num = num * -1;
         flag = 1;
     }
-    long long int del = 1, copy_num = num;
-    while (copy_num >= 10) {
-        copy_num = copy_num / 10;
-        del = del * 10;
-        count++;
+    char *mass_precision = precision_int(format, str, num);
+    s21_strcpy(str, mass_precision);
+    if (format.width.number > (int)s21_strlen(mass_precision)) {
+        if ((format.flags.minus == 1) && (format.flags.plus == 1)) {
+            char *mass_width = width_plus_short(format, str, flag);
+            s21_strcpy(str, mass_width);
+        } else if (format.flags.minus == 1) {
+            char *mass_width = width_min_short(format, str, flag);
+            s21_strcpy(str, mass_width);
+        } else if (format.flags.plus == 1) {
+            char *mass_width = width_plus_short(format, str, flag);
+            s21_strcpy(str, mass_width);
+        } else {
+            char *mass_width = width_min_short(format, str, flag);
+            s21_strcpy(str, mass_width);
+        }
+    } else {
+        if (flag != 0) {
+            char minuz[2] = "-";
+            s21_strcat(minuz, str);
+            s21_strcpy(str, minuz);
+        } else {
+            if (((format.flags.minus == 1) && (format.flags.plus == 1)) || format.flags.plus == 1) {
+                char pluz[2] = "+";
+                s21_strcat(pluz, str);
+                s21_strcpy(str, pluz);
+            } else if (format.flags.space == 1) {
+                char spaze[2] = " ";
+                s21_strcat(spaze, str);
+                s21_strcpy(str, spaze);
+            }
+        }
     }
-    count++;
+    return &(str[0]);
+}
+
+char *width_flag_minus(fmt format, char *str, int flag) {
+    char mass_2[1000] = {0};
+    int leng = format.width.number - (int)s21_strlen(str);
+    if (flag == 0 && format.flags.plus == 0 /*&& format -> flags.space == 0*/) {
+        for (int i = 0; i < leng; i++) {
+            mass_2[i] = ' ';
+        }
+    } else {
+        for (int i = 0; i < (leng - 1); i++) {
+            mass_2[i] = ' ';
+        }
+    }
+    mass_2[-1] = '\0';
+    char *done = mass_2;
+    return done;
+}
+
+char *width_plus_short(fmt format, char *str, int flag) {
+    char *mass_1 = width_flag_minus(format, str, flag);
+    char mass_2[1000] = {0};
+    if (flag != 0) {
+        char minuz[2] = "-";
+        s21_strcat(minuz, str);
+        if (format.flags.minus != 1) {
+            s21_strcat(mass_1, minuz);
+        } else {
+            s21_strcat(minuz, mass_1);
+            s21_strcpy(mass_1, minuz);
+        }
+    } else {
+        char pluz[2] = "+";
+        s21_strcat(pluz, str);
+        if (format.flags.minus != 1) {
+            s21_strcat(mass_1, pluz);
+        } else {
+            s21_strcat(pluz, mass_1);
+            s21_strcpy(mass_1, pluz);
+        }
+    }
+    return mass_1;
+}
+
+char *width_min_short(fmt format, char *str, int flag) {
+    char *mass_1 = width_flag_minus(format, str, flag);
+    char mass_2[1000] = {0};
+    if (flag != 0) {
+        char minuz[2] = "-";
+        s21_strcat(minuz, str);
+        if (format.flags.minus != 0) {
+            s21_strcat(minuz, mass_1);
+            s21_strcpy(mass_1, minuz);
+            s21_strcpy(mass_2, mass_1); 
+        } else {
+            s21_strcat(mass_1, minuz);
+            s21_strcpy(mass_2, mass_1);
+        }
+    } else {
+        if (format.flags.minus != 0) {
+            char min_copy[1000] = {0};
+            s21_strcpy(min_copy, str);
+            s21_strcat(min_copy, mass_1);
+            s21_strcpy(mass_2, min_copy);
+        } else {
+            s21_strcat(mass_1, str);
+            s21_strcpy(mass_2, mass_1);
+        }
+    }
+    char *done = mass_2;
+    return done;
+}
+
+void *int_to_str(long long int number, char *str) {
+    if (number < 0) {
+        number = number * -1;
+    }
+    long long int del = 1, copy_number = number;
+    while (copy_number >= 10) {
+        copy_number = copy_number / 10;
+        del = del * 10;
+    }
     while (del > 0) {
-        str[i++] = '0' + num / del;
-        num = num % del;
+        *str++ = '0' + number / del;
+        number = number % del;
         del = del / 10;
     }
-    str[i++] = '\0';
+    *str++ = '\0';
+    return 0;
+}
+
+char *precision_int(fmt format, char *str, long int num) {
+    int_to_str((long long)num, str);
     int len = format.precision.number - (int)s21_strlen(str);
     char mass[1000] = {0};
     for (int i = 0; i < len; i++) {
         mass[i] = '0';
     }
     s21_strcat(mass, str);
-    s21_strcpy(str, mass);
-
-    if (format.width.number > (int)s21_strlen(mass)) {
-        if ((format.flags.minus == 1) && (format.flags.plus == 1)){
-            int leng = format.width.number - (int)s21_strlen(str) - 1;
-            char mass_2[1000] = {0};
-            for (int i = 0; i < leng; i++) {
-                mass_2[i] = ' ';
-            }
-            if (flag != 0) {
-                char minuz[2] = "-";
-                s21_strcat(minuz, str);
-                s21_strcat(minuz, mass_2);
-                s21_strcpy(str, minuz);
-            } else {
-                char pluz[2] = "+";
-                s21_strcat(pluz, str);
-                s21_strcat(pluz, mass_2);
-                s21_strcpy(str, pluz);
-            }
-        } else if (format.flags.minus == 1) {
-            int leng = format.width.number - (int)s21_strlen(str);
-            char mass_2[1000] = {0};
-            for (int i = 0; i < leng; i++) {
-                mass_2[i] = ' ';
-            }
-            if (flag != 0) {
-                char minuz[2] = "-";
-                s21_strcat(minuz, str);
-                s21_strcpy(str, minuz);
-                s21_strcat(str, mass_2);
-            } else {
-                s21_strcat(str, mass_2);
-            }
-            
-        } else if (format.flags.plus == 1) {
-            int leng = format.width.number - (int)s21_strlen(str) - 1;
-            char mass_2[1000] = {0};
-            for (int i = 0; i < leng; i++) {
-                mass_2[i] = ' ';
-            }
-            if (flag != 0) {
-                char minuz[2] = "-";
-                s21_strcat(minuz, str);
-                s21_strcpy(str, minuz);
-                s21_strcat(mass_2, minuz);
-                s21_strcpy(str, mass_2);
-            } else {
-                char pluz[2] = "+";
-                s21_strcat(pluz, str);
-                s21_strcat(mass_2, pluz);
-                s21_strcpy(str, mass_2);
-            }
-        } else {
-            if (flag != 0) {
-                int leng = format.width.number - (int)s21_strlen(str) - 1;
-                char mass_2[1000] = {0};
-                for (int i = 0; i < leng; i++) {
-                    mass_2[i] = ' ';
-                }
-                char minuz[2] = "-";
-                s21_strcat(minuz, str);
-                s21_strcpy(str, minuz);
-                s21_strcat(mass_2, minuz);
-                s21_strcpy(str, mass_2);
-            } else {
-                int leng = format.width.number - (int)s21_strlen(str);
-                char mass_2[1000] = {0};
-                for (int i = 0; i < leng; i++) {
-                    mass_2[i] = ' ';
-                }
-                s21_strcat(mass_2, str);
-                s21_strcpy(str, mass_2);
-            }
-            // strcat(mass_2, str);
-            // strcpy(str, mass_2);
-        }
-    }
-        /*if (format -> width.number > (int)strlen(s21_
-        if (format -> flags.minus == 1 && format -> flags.plus == 1){
-            char pluz[2] = "+";
-            strcat(pluz, str);
-            strcat(pluz, mass_2);
-            strcpy(str, pluz);
-        } else if (format -> flags.minus == 1) {
-            strcat(str, mass_1);
-            
-        } else if (format -> flags.plus == 1) {
-            char pluz[2] = "+";
-            strcat(pluz, str);
-            strcat(mass_2, pluz);
-            strcpy(str, mass_2);
-        } else {
-            strcat(mass_1, str);
-            strcpy(str, mass_1);
-        }
-    }*/
-    return &(str[0]);
-}
-
-
-char *width_flag_minus_space (fmt *format, char *str) {
-    int leng = format -> width.number - (int)s21_strlen(str);
-    char mass_1[1000] = {0};
-    int i;
-    for (i = 0; i < leng; i++) {
-        mass_1[i] = ' ';
-    }
-    mass_1[i++] = '\0';
-    char *done = mass_1;
+    char *done = mass;
     return done;
 }
-
-char *width_flag_plus_plumin (fmt *format, char *str) {
-    int leng = format -> width.number - (int)s21_strlen(str) - 1;
-    char mass_2[1000] = {0};
-    int i = 0;;
-    for (int i = 0; i < leng; i++) {
-        mass_2[i] = ' ';
-    }
-    mass_2[i++] = '\0';
-    char *done = mass_2;
-    return done;
-}
-
 
 
 
@@ -779,8 +753,8 @@ int main() {
     char s[10000] = {'\0'};
     char s2[10000] = {'\0'};
     //printf("format: Heool!!!!!!! %%+-10.5d %%*.*d  d ddddddn\n");
-    int len = s21_sprintf(s, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
-    int len2 = sprintf(s2, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
+    // int len = s21_sprintf(s, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
+    // int len2 = sprintf(s2, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
     // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
     // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
     // printf("\n===================================\n");
@@ -837,10 +811,10 @@ int main() {
     // printf("\n===================================\n");
 
 
-    len = s21_sprintf(s, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
-    len2 = sprintf(s2, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
-    printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
-    printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
+    int len = s21_sprintf(s, "Heool!!!!!!! %+10.5hd  d ddddddn\n", a);
+    int len2 = sprintf(s2, "Heool!!!!!!! %+10.5hd  d ddddddn\n", a);
+    printf("\nres1: %s", s);
+    printf("\nres2: %s", s2);
     printf("\n===================================\n");
     // sprintf(s, "Hello %----+#######8.5 lj k  %endl\n");
     // printf("%s", s);

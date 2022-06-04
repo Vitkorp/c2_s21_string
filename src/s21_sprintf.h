@@ -3,6 +3,7 @@
 
 #include <stdarg.h>
 #include <math.h>
+#include <stdlib.h>
 
 // %[флаги][ширина][.точность][длина]спецификатор
 
@@ -84,12 +85,6 @@ regs prepareRegisters(fmt form, regs registers, va_list arglist);
 
 regs clearRegisters(regs reg);
 
-void *dec_to_str(long long int number, char *str);
-
-char *width_flag_minus_space (fmt *format, char *str);
-
-char *width_flag_plus_plumin (fmt *format, char *str);
-
 char *s21_spec_s(fmt format, regs regs);
 
 char *s21_spec_f(fmt format, regs regs);
@@ -98,6 +93,17 @@ char *s21_spec_c(fmt format, regs regs);
 
 char *s21_spec_d(fmt format, regs regs);
 
+char *width_flag_minus(fmt format, char *str, int flag);
+
+char *width_flag_plus(fmt format, char *str, int flag);
+
+void *int_to_str(long long int number, char *str);
+
+char *width_plus_short(fmt format, char *str, int flag);
+
+char *width_min_short(fmt format, char *str, int flag);
+
+char *precision_int(fmt format, char *str, long int num);
 
 
 #endif

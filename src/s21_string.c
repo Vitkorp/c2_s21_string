@@ -284,7 +284,7 @@ s21_size_t s21_strcspn(const char *str1, const char *str2) {
     return i;
 }
 
-
+/*
 char *s21_strerror(int errnum) {
     err errlist[] = S21_ERRLIST;
     int count;
@@ -321,7 +321,7 @@ char *s21_strerror(int errnum) {
 #endif
     return (found) ? res : baseMsg;
 }
-
+*/
 s21_size_t s21_strlen(const char *str) {
     s21_size_t _len = 0;
     for (_len = 0; str[_len]; _len++) {}
@@ -459,7 +459,7 @@ void *s21_to_lower(const char *str) {
 вставлена в указанную позицию (start_index) в данной строке (src).
 В случае какой-либо ошибки следует вернуть значение NULL*/
 
-
+/*
 void *s21_insert(const char *src, const char *str, s21_size_t start_index) {
   char *tmp = NULL;
   int flag = 0;
@@ -481,7 +481,7 @@ void *s21_insert(const char *src, const char *str, s21_size_t start_index) {
   }
   return copy_str;
 }
-
+*/
 // int main() {
 //     char str[] = "Hello world";
 //     char src[] = "Nails";
