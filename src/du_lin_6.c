@@ -1,8 +1,8 @@
 // работают все функции для декомпозиции ширины. работает случай, когда точность больше ширины и число отрицательное или флаг +
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
 #include "s21_sprintf.h"
 char *spec_d_u(fmt *format, const void *number);
 // int l_or_h (fmt *format, const void *number);
@@ -40,8 +40,6 @@ int main() {
     printf("orig pr = >%s<\n", TEMP);
     sprintf(TEMP, "%5.10ld", i);
     printf("orig n  = >%s<\n", TEMP);
-    // sprintf(TEMP, "%.20Lf\n", f);
-    // printf("оригинал  = %s\n", TEMP);
     return 0;
 }
 
