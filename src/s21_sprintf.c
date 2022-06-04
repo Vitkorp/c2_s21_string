@@ -67,7 +67,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                 case 'c': {
                     char *a = s21_spec_c(form, registers);
                     str = s21_strcat(str, a);
-                    count++;
+                    count += s21_strlen(a);
                     break;
                 }
                 case 'd': {
@@ -774,15 +774,22 @@ char *width_flag_plus_plumin (fmt *format, char *str) {
 
 
 
-int main() {
-    int a = 1555;
-    char s[10000] = {'\0'};
-    char s2[10000] = {'\0'};
+// int main() {
+//     int a = 1555;
+//     char s1[10000] = {'\0'};
+//     char s2[10000] = {'\0'};
+//     double f = 15.5;
     //printf("format: Heool!!!!!!! %%+-10.5d %%*.*d  d ddddddn\n");
-    int len = s21_sprintf(s, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
-    int len2 = sprintf(s2, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
+    // int len = s21_sprintf(s, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
+    // int len2 = sprintf(s2, "Heool!!!!!!! %+-10.5d %*.*d  d ddddddn\n", a, 8, 6, 44);
     // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
     // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
+    // printf("\n===================================\n");
+
+    // int len = s21_sprintf(s1, "hello %f\n", f);
+    // int len2 = sprintf(s2, "hello %f\n", f);
+    // printf("res1: %s", s1);
+    // printf("res2: %s", s2);
     // printf("\n===================================\n");
 
     // char x[10000] = {'\0'};
@@ -837,11 +844,11 @@ int main() {
     // printf("\n===================================\n");
 
 
-    len = s21_sprintf(s, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
-    len2 = sprintf(s2, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
-    printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
-    printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
-    printf("\n===================================\n");
+    // len = s21_sprintf(s, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
+    // len2 = sprintf(s2, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
+    // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
+    // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
+    // printf("\n===================================\n");
     // sprintf(s, "Hello %----+#######8.5 lj k  %endl\n");
     // printf("%s", s);
     // sprintf(s, "Hello %\n");
@@ -861,8 +868,8 @@ int main() {
     // sprintf(s, "%lld\n");
     // printf("%s", s);
 
-    return 0;
-}
+//     return 0;
+// }
 
 
 // // #include <s21_sprintf.h>
