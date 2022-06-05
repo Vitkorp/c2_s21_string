@@ -4,14 +4,15 @@
 #include <stdarg.h>
 
 int main() {
-    char *tokenstring = "010111 60  5x ";                                  
+    char *tokenstring = "02.0 -111 60  5x ";                                  
     // char num[100];      
     char v;
-    int num1 = 0;                                                          
+    int num1 = 0;       
+    double fl = 0.0;                                                   
     // sscanf(tokenstring, "%i", &num1);
-    s21_sscanf(tokenstring, "%d %c", &num1, &v);
-    // printf("%c", n);
-    printf("%d%c", num1, v);
+    s21_sscanf(tokenstring, "%d %c %f", &num1, &v, &fl);
+    // printf("%i", num1);
+    printf("%d%c%f", num1, v, fl);
     return 0;
 }
 
@@ -39,11 +40,21 @@ int s21_sscanf(const char *str, const char *format, ...) {
                         count++;
                         break;    
                     }
-                    case 'i': {
-                        char mass[20] = {0};
+                    // case 'i': {
+                    //     char mass[20] = {0};
+                    //     for (int j = 0; *str != ' '; j++) {
+                    //         mass[j] = *str++;
+                    //     }
+                    // }
+                    case 'f': {
+                        char mass[30] = {0};
                         for (int j = 0; *str != ' '; j++) {
                             mass[j] = *str++;
                         }
+                        double *p = va_arg(args, double*);
+                        *p = atof(mass);
+                        count++;
+                        break;
                     }
                 }
             }
