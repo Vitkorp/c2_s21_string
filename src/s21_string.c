@@ -4,6 +4,7 @@
 #include "s21_sprintf.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 
 int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
@@ -494,10 +495,7 @@ void *s21_insert(const char *src, const char *str, s21_size_t start_index) {
 //         printf("%s", s21_insert(src, str, index));
 //     }
 //     // ck_assert_str_eq(got, expected);
-    
 // }
-
-
 // void *s21_trim(const char *src, const char *trim_chars) {
 //     char *result;
 //     char *s2;
@@ -522,10 +520,40 @@ void *s21_insert(const char *src, const char *str, s21_size_t start_index) {
 // }
 
 
-
 /*Возвращает новую строку, в которой удаляются все начальные и конечные
 вхождения набора заданных символов (trim_chars) из данной строки (src).
 В случае какой-либо ошибки следует вернуть значение NULL*/
 
-void *trim(const char *src, const char *trim_chars) {}
+void *s21_trim(const char *str1, const char* str2) {
+    char trimed_char[s21_strlen(str1) + 1];
+    char *temp1 = "";
+
+    // копируем строку str1 в trimmed_char
+    s21_strcpy(trimed_char, str1);
+
+    // пропускаем через алгоритм в прямом и обратном порядке
+    for (int i = 0; i < 2; i++) {
+        // вычисляем длину подстроки в соответствии с шаблоном
+        s21_size_t len_left = s21_strspn(trimed_char, str2);
+
+        int length = s21_strlen(trimed_char);
+        char temp2[length - len_left + 1];
+        // копируем начиная с первого символа вне шаблона в новую подстроку
+        s21_strcpy(temp2, &trimed_char[len_left]);
+
+        char temp3[length - len_left + 1];
+        for (int i = 0, j = s21_strlen(temp2); j != 0; i++, j--) {
+            temp3[i] = temp2[j-1];
+            if (j == 1) {
+                temp3[i+1] = '\0';
+            }
+        }
+        s21_strcpy(trimed_char, temp3);
+    }
+    s21_size_t len = s21_strlen(trimed_char) + 1;
+    temp1 = malloc(len * sizeof(char));
+    s21_strcpy(temp1, trimed_char);
+
+    return temp1;
+}
 

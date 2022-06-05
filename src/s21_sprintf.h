@@ -1,8 +1,10 @@
 #ifndef SRC_S21_SPRINTF_H_
 #define SRC_S21_SPRINTF_H_
 
+#include <stdlib.h>
 #include <stdarg.h>
 #include <math.h>
+
 
 // %[флаги][ширина][.точность][длина]спецификатор
 
@@ -97,8 +99,6 @@ char *s21_spec_f(fmt format, regs regs);
 char *s21_spec_c(fmt format, regs regs);
 
 char *s21_spec_d(fmt format, regs regs);
-
-
 
 #endif
 
