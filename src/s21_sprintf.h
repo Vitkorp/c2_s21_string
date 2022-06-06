@@ -64,6 +64,8 @@ int endfmt(const char *str, int start);
 // перевод числа, записанного в строке, в целочисленное значение
 int s21_atoi(const char *str);
 
+double s21_atof(const char* str);
+
 char *retpointer(char *ptr, int count);
 
 int checkSpec(fmt *val, const char *str);

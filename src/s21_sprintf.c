@@ -213,6 +213,33 @@ int s21_atoi(const char *str) {
   return res * sign;
 }
 
+double s21_atof(const char *str) {
+    int i = 0;
+    double res = 0;
+    int sign = 1;
+    while (str[i] == '0' || str[i] == ' ') i++;
+        if (str[i] == '-') {
+            sign = -1;
+            i++;
+        }
+        while ('0' <= str[i] && str[i] <= '9') {
+            res = res * 10 + ((int)str[i] - '0');
+            i++;
+        }
+        short precision = 0;
+        if (str[i] == '.') {
+            i++;
+            while ('0' <= str[i] && str[i] <= '9') {
+                res = res * 10 + ((int)str[i] - '0');
+                i++;
+                precision++;
+            }
+        }
+        res /= pow(10, precision);
+
+  return res * sign;
+}
+
 // выделение памяти
 char *retpointer(char *ptr, int count) {
     s21_size_t slen = (ptr) ? s21_strlen(ptr) : 0;
@@ -772,8 +799,6 @@ char *width_flag_plus_plumin (fmt *format, char *str) {
 }
 
 
-
-
 // int main() {
 //     int a = 1555;
 //     char s1[10000] = {'\0'};
@@ -785,13 +810,11 @@ char *width_flag_plus_plumin (fmt *format, char *str) {
     // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
     // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
     // printf("\n===================================\n");
-
     // int len = s21_sprintf(s1, "hello %f\n", f);
     // int len2 = sprintf(s2, "hello %f\n", f);
     // printf("res1: %s", s1);
     // printf("res2: %s", s2);
     // printf("\n===================================\n");
-
     // char x[10000] = {'\0'};
     // char x2[10000] = {'\0'};
     // //printf("Hello my friends! %%%% %%d %%s %%-010d %%*.*f in the air\n");
@@ -800,7 +823,6 @@ char *width_flag_plus_plumin (fmt *format, char *str) {
     // printf("pointer  = %15p, len  = %10d   res: %s", x, len, x);
     // printf("pointer2 = %15p, len2 = %10d  res2: %s", x2, len2, x2);
     // printf("\n===================================\n");
-
     // char y[10000] = {'\0'};
     // char y2[10000] = {'\0'};
     // //printf("Hello my friends! %%%%%%d%%s%%-010d %%*.*f in the air333\n");
@@ -809,7 +831,6 @@ char *width_flag_plus_plumin (fmt *format, char *str) {
     // printf("pointer  = %15p, len  = %10d   res: %s", y, len, y);
     // printf("pointer2 = %15p, len2 = %10d  res2: %s", y2, len2, y2);
     // printf("\n===================================\n");
-
     // char z[10000] = {'\0'};
     // char z2[10000] = {'\0'};
     // //printf("Hello my friends! %%%%%%d%%s%%-010d %%*.*f in the air333\n");
@@ -818,32 +839,26 @@ char *width_flag_plus_plumin (fmt *format, char *str) {
     // printf("pointer  = %15p, len  = %10d   res: %s", z, len, z);
     // printf("pointer2 = %15p, len2 = %10d  res2: %s", z2, len2, z2);
     // printf("\n===================================\n");
-
     // len = s21_sprintf(s, "Heool!!!!!!! %+-10.5d %*.*lld  d ddddddn\n", a, 8, 6, 44);
     // len2 = sprintf(s2, "Heool!!!!!!! %+-10.5d %*.*lld  d ddddddn\n", a, 8, 6, 44);
     // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
     // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
     // printf("\n===================================\n");
-
     // len = s21_sprintf(s, "Heool!!!!!!! %+-10.5ld %*.*hd  d ddddddn\n", a, 8, 6, 44);
     // len2 = sprintf(s2, "Heool!!!!!!! %+-10.5ld %*.*hd  d ddddddn\n", a, 8, 6, 44);
     // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
     // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
     // printf("\n===================================\n");
-
     // len = s21_sprintf(s, "Heool!!!!!!! %+-10.5Ld %*.*hd  d ddddddn\n", a, 8, 6, 44);
     // len2 = sprintf(s2, "Heool!!!!!!! %+-10.5Ld %*.*hd  d ddddddn\n", a, 8, 6, 44);
     // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
     // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
     // printf("\n===================================\n");
-
     // len = s21_sprintf(s, "Heool!!!!!!! %+-010.5Ld %*.*hd  d ddddddn\n", a, 8, 6, 44);
     // len2 = sprintf(s2, "Heool!!!!!!! %+-010.5Ld %*.*hd  d ddddddn\n", a, 8, 6, 44);
     // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
     // printf("pointer2 = %15p, len2 = %10d  res2: %s", s2, len2, s2);
     // printf("\n===================================\n");
-
-
     // len = s21_sprintf(s, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
     // len2 = sprintf(s2, "Heool!!!!!!! %+-10.5Ld %f  d ddddddn\n", a, 8, 6, 44.38726384);
     // printf("pointer  = %15p, len  = %10d   res: %s", s, len, s);
@@ -867,13 +882,5 @@ char *width_flag_plus_plumin (fmt *format, char *str) {
     // printf("%s", s);
     // sprintf(s, "%lld\n");
     // printf("%s", s);
-
 //     return 0;
 // }
-
-
-// // #include <s21_sprintf.h>
-
-// // int main () {
-// //     return 0;
-// // }

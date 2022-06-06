@@ -395,7 +395,6 @@ char *s21_strrchr(const char *str, int c) {
 //     p = s21_strstr(src, sub);
 //     printf("NATIVE - %s\n", native);
 //     printf("MY - %s\n", p);
-    
 //     int test1;
 //     int test2;
 //     int test3;
@@ -519,7 +518,6 @@ void *s21_insert(const char *src, const char *str, s21_size_t start_index) {
 //     return (result);
 // }
 
-
 /*Возвращает новую строку, в которой удаляются все начальные и конечные
 вхождения набора заданных символов (trim_chars) из данной строки (src).
 В случае какой-либо ошибки следует вернуть значение NULL*/
@@ -556,4 +554,3 @@ void *s21_trim(const char *str1, const char* str2) {
 
     return temp1;
 }
-

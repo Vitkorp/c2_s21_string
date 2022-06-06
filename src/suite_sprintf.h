@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "spec.h"
 #include "s21_sprintf.h"
 #include "s21_string.h"
 #include <limits.h>
