@@ -1,6 +1,5 @@
 #include "s21_sprintf.h"
 #include "s21_string.h"
-// #include "spec.h"
 
 
 
@@ -114,7 +113,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                     // if (registers.pWidth) {printf("registers.pWidth = {%4d}  ", *((int *)registers.pWidth));}
                     // if (registers.pPrecision) {printf("registers.pPrecision = {%4d}  ", *((int *)registers.pPrecision));}
                     // if (registers.pValue) {printf("registers.pValue = {%llu}  \n", *((unsigned long long int *)registers.pValue));}
-                    char *a = s21_spec_d(form, registers);
+                    char *a = s21_spec_u(form, registers);
                     str = s21_strcat(str, a);
                     count += s21_strlen(a);
                     break;
@@ -746,6 +745,58 @@ char *precision_int(fmt format, char *str, long int num) {
     return done;
 }
 
+void unsigned_int_to_str(unsigned long int number, char *str) {
+   unsigned long long int del = 1, copy_number = number;
+   while (copy_number >= 10) {
+        copy_number = copy_number / 10;
+        del = del * 10;
+    }
+    while (del > 0) {
+        *str++ = '0' + number / del;
+        number = number % del;
+        del = del / 10;
+    }
+    *str++ = '\0';
+}
+
+char *s21_spec_u(fmt format, regs regs) {
+    static char str[1000] = {'\0'};
+    unsigned long int num = *((unsigned long int *)regs.pValue);
+    char *mass_precision = precision_unsigned_int(format, str, num);
+    s21_strcpy(str, mass_precision);
+    if ((format.flags.minus == 1)) {
+        char *mass_width = width_add_space(format, str);
+        s21_strcat(str, mass_width);
+    } else {
+        char *mass_width = width_add_space(format, str);
+        s21_strcat(mass_width, str);
+        s21_strcpy(str, mass_precision);
+    }
+    return &(str[0]);
+}
+
+char *precision_unsigned_int(fmt format, char *str, unsigned long int num) {
+    unsigned_int_to_str((unsigned long int)num, str);
+    int len = format.precision.number - (int)s21_strlen(str);
+    char mass[1000] = {0};
+    for (int i = 0; i < len; i++) {
+        mass[i] = '0';
+    }
+    s21_strcat(mass, str);
+    char *done = mass;
+    return done;
+}
+
+char *width_add_space(fmt format, char *str) {
+    char mass_2[1000] = {0};
+    int leng = format.width.number - (int)s21_strlen(str);
+   for (int i = 0; i < leng; i++) {
+      mass_2[i] = ' ';
+   }
+    mass_2[-1] = '\0';
+    char *done = mass_2;
+    return done;
+}
 
 
 int main() {
@@ -811,8 +862,8 @@ int main() {
     // printf("\n===================================\n");
 
 
-    int len = s21_sprintf(s, "Heool!!!!!!! %+10.5hd  d ddddddn\n", a);
-    int len2 = sprintf(s2, "Heool!!!!!!! %+10.5hd  d ddddddn\n", a);
+    int len = s21_sprintf(s, "Heool!!!!!!! %+10.5u  d ddddddn\n", a);
+    int len2 = sprintf(s2, "Heool!!!!!!! %+10.5u  d ddddddn\n", a);
     printf("\nres1: %s", s);
     printf("\nres2: %s", s2);
     printf("\n===================================\n");

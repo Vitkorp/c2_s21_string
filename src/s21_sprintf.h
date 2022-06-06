@@ -93,18 +93,25 @@ char *s21_spec_c(fmt format, regs regs);
 
 char *s21_spec_d(fmt format, regs regs);
 
-char *width_flag_minus(fmt format, char *str, int flag);
+char *s21_spec_u(fmt format, regs regs); //
 
-char *width_flag_plus(fmt format, char *str, int flag);
+char *width_flag_minus(fmt format, char *str, int flag); //
 
-void *int_to_str(long long int number, char *str);
+char *width_flag_plus(fmt format, char *str, int flag); //
 
-char *width_plus_short(fmt format, char *str, int flag);
+void *int_to_str(long long int number, char *str); //
 
-char *width_min_short(fmt format, char *str, int flag);
+void unsigned_int_to_str (unsigned long int number, char *str); //
 
-char *precision_int(fmt format, char *str, long int num);
+char *width_plus_short(fmt format, char *str, int flag); //
 
+char *width_min_short(fmt format, char *str, int flag); //
+
+char *precision_int(fmt format, char *str, long int num); //
+
+char *width_add_space(fmt format, char *str); //
+
+char *precision_unsigned_int(fmt format, char *str, unsigned long int num); //
 
 #endif
 
