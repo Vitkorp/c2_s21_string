@@ -31,7 +31,7 @@
 //         res /= pow(10, precision);
 //   return res * sign;
 // }
-
+ 
 
 int main() {
     char *tokenstring = "214.128 2 -993.4 x -112.94 60  5x ";                                  

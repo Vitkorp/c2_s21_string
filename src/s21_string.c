@@ -553,4 +553,4 @@ void *s21_trim(const char *str1, const char* str2) {
     s21_strcpy(temp1, trimed_char);
 
     return temp1;
-}
+} 

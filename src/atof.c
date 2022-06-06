@@ -12,7 +12,7 @@
 
 //     return 0;
 // }
-
+ 
 // double s21_atof(const char *str) {
 //     int i = 0;
 //     double res = 0;

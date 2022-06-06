@@ -17,7 +17,7 @@ typedef struct str_err {
     int id;
     char *null_str;
 } err;
-
+ 
 #if defined(__APPLE__) && defined(__MACH__)
 #ifndef S21_ERRLIST 
 #define S21_ERRLIST {                                                                     \

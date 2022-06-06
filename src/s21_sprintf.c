@@ -147,7 +147,7 @@ int s21_sprintf(char *str, const char *format, ...) {
                     break;
             }
             // printf("startFmtPosition={%d}, endFmrPosition={%d},   i_src = {%d}\n\n", startFmtPosition, endFmrPosition, i_src);
-            // printf("form.spec:  %c\n", form.spec);
+            // printf("form.spec:  %c\n", form.spec); 
             // printf("form.flags:\n{\n");
             // printf("      hash: %d\n", form.flags.hash);
             // printf("     minus: %d\n", form.flags.minus);
